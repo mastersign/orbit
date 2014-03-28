@@ -1,1 +1,1 @@
-__all__ = ["setup"]
+__all__ = ["setup", "application", "devices"]
