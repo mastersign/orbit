@@ -4,13 +4,10 @@
 
 import os, json
 
-HOST = "localhost"
-PORT = 4223
+class Configuration:
 
-class ConnConfig:
-
-	host = HOST
-	port = PORT
+	DEFAULT_HOST = "localhost"
+	DEFAULT_PORT = 4223
 
 	def configfilepath(self):
 		return os.path.realpath(os.path.expanduser('~/.tink'))
@@ -20,6 +17,9 @@ class ConnConfig:
 			f.write(json.dumps(data))
 
 	def __init__(self):
+		self.host = Configuration.DEFAULT_HOST
+		self.port = Configuration.DEFAULT_PORT
+
 		configfile = self.configfilepath()
 		if not os.path.isfile(configfile):
 			return
@@ -39,7 +39,6 @@ class ConnConfig:
 			self.writeconfigfile({'host': host, 'port': port})
 		else:
 			self.writeconfigfile({'host': host})
-
 
 # script execution
 if __name__ == '__main__':
