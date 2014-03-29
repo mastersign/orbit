@@ -9,12 +9,12 @@ from tinkerforge.ip_connection import IPConnection
 
 class Core:
 
-	def __init__(self, conf = setup.Configuration(), debug = False):
+	def __init__(self, conf = setup.Configuration(), tracing = False):
 
 		self.started = False
 		self.connected = False
 		self.conf = conf
-		self.debug = debug
+		self.tracing = tracing
 		self.devices = {}
 		self.components = {}
 
@@ -25,36 +25,36 @@ class Core:
 		self.conn.register_callback(IPConnection.CALLBACK_CONNECTED, self.cb_connected)
 		self.conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self.cb_disconnected)
 
-		self.msg("application core initialized")
+		self.trace("application core initialized")
 
-	def msg(self, text):
-		if self.debug:
+	def trace(self, text):
+		if self.tracing:
 			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + "Core: " + text)
 
 	def start(self):
 		if self.started:
-			self.msg("application core allready started")
+			self.trace("application core allready started")
 			return
-		self.msg("starting application core")
+		self.trace("starting application core")
 		self.started = True
 		if self.conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self.conf.host
 			port = self.conf.port
-			self.msg("connecting to " + host + ":" + str(port))
+			self.trace("connecting to " + host + ":" + str(port))
 			self.conn.connect(host, port)
-		self.msg("application core started")
+		self.trace("application core started")
 
 	def stop(self):
 		if not self.started:
-			self.msg("application core allready stopped")
+			self.trace("application core allready stopped")
 			return
-		self.msg("stopping application core")
+		self.trace("stopping application core")
 		self.started = False
 		self.unbind_all_devices()
 		if self.conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
-			self.msg("disconnecting")
+			self.trace("disconnecting")
 			self.conn.disconnect()
-		self.msg("application core stopped")
+		self.trace("application core stopped")
 
 	def cb_enumerate(self, uid, connected_uid, position, hardware_version,
 	                 firmware_version, device_identifier, enumeration_type):
@@ -62,15 +62,15 @@ class Core:
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_AVAILABLE or \
 		   enumeration_type == IPConnection.ENUMERATION_TYPE_CONNECTED:
 			# initialize device configuration and bindings
-			self.msg("device present [" + uid + "] " + device_name(device_identifier))
+			self.trace("device present [" + uid + "] " + device_name(device_identifier))
 			if known_device(device_identifier):
 				# bind device and notify components
 				self.bind_device(device_identifier, uid)
 			else:
-				self.msg("could not create a device binding for device identifier " + device_identifier)
+				self.trace("could not create a device binding for device identifier " + device_identifier)
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
 			# recognize absence of device
-			self.msg("device absent [" + uid + "]")
+			self.trace("device absent [" + uid + "]")
 			# unbind device and notify components
 			self.unbind_device(uid)
 
@@ -78,9 +78,9 @@ class Core:
 		self.connected = True
 		# recognize connection
 		if reason == IPConnection.CONNECT_REASON_AUTO_RECONNECT:
-			self.msg("connection established (auto reconnect)")
+			self.trace("connection established (auto reconnect)")
 		else:
-			self.msg("connection established")
+			self.trace("connection established")
 		# notify components
 		self.for_all_components(lambda c: c.on_connected())
 		# enumerate devices
@@ -90,16 +90,16 @@ class Core:
 		self.connected = False
 		# recognize lost connection
 		if reason == IPConnection.DISCONNECT_REASON_ERROR:
-			self.msg("connection lost (error)")
+			self.trace("connection lost (error)")
 		elif reason == IPConnection.DISCONNECT_REASON_SHUTDOWN:
-			self.msg("connection lost (shutdown")
+			self.trace("connection lost (shutdown")
 		else:
-			self.msg("connection lost")
+			self.trace("connection lost")
 		# notify components
 		self.for_all_components(lambda c: c.on_disconnected())
 
 	def bind_device(self, device_identifier, uid):
-		self.msg("binding device [" + uid + "]")
+		self.trace("binding device [" + uid + "]")
 		# create binding instance
 		device = device_instance(device_identifier, uid, self.conn)
 		# store reference to binding instance
@@ -109,14 +109,14 @@ class Core:
 
 	def unbind_device(self, uid):
 		if uid in self.devices:
-			self.msg("unbinding device [" + uid + "]")
+			self.trace("unbinding device [" + uid + "]")
 			device = self.devices[uid]
 			# notify components
 			self.for_all_components(lambda c: c.on_unbind_device(device))
 			# delete reference to binding interface
 			del(self.devices[uid])
 		else:
-			self.msg("attempt to unbind not bound device [" + uid + "]")
+			self.trace("attempt to unbind not bound device [" + uid + "]")
 
 	def unbind_all_devices(self):
 		for uid in list(self.devices.keys()):
@@ -139,18 +139,17 @@ class Core:
 
 class Component:
 
-	def __init__(self, name, debug = False):
+	def __init__(self, name, tracing = False):
 		self.name = name
-		self.debug = debug
+		self.tracing = tracing
 		self.device_handles = []
 
-	def msg(self, text):
-		if self.debug or (self.core and self.core.debug):
+	def trace(self, text):
+		if self.tracing or (self.core and self.core.tracing):
 			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + self.name + ": " + text)
 
 	def register_core(self, core):
 		self.core = core
-		self.msg("component registered at application core")
 
 	def add_device_handle(self, device_handle):
 		self.device_handles.append(device_handle)
@@ -159,6 +158,7 @@ class Component:
 	def for_all_device_handles(self, f):
 		for dh in self.device_handles:
 			f(dh)
+		self.trace("component registered at application core")
 
 	def on_connected(self):
 		# can be overridden in sub classes
@@ -191,14 +191,14 @@ class DeviceHandle:
 			f(d)
 
 	def on_bind_device(self, device):
-		self.component.msg("binding device [%s] to handle %s" % (device.get_identity()[0], self.name))
+		self.component.trace("binding device [%s] to handle %s" % (device.get_identity()[0], self.name))
 		self.devices.append(device)
 		if self.bind_callback:
 			self.bind_callback(device)
 
 	def on_unbind_device(self, device):
 		if device in self.devices:
-			self.component.msg("unbinding device [%s] from handle %s" % (device.get_identity()[0], self.name))
+			self.component.trace("unbinding device [%s] from handle %s" % (device.get_identity()[0], self.name))
 			if self.unbind_callback:
 				self.unbind_callback(device)
 			self.devices.remove(device)
