@@ -17,6 +17,7 @@ class Core:
 		self.tracing = tracing
 		self.devices = {}
 		self.components = {}
+		self.event_hooks = []
 
 		# initialize IP connection
 		self.conn = IPConnection()
@@ -135,7 +136,13 @@ class Core:
 	def add_components(self, *components):
 		for c in components:
 			self.add_component(c)
+	def listen(self, event_hook):
+		self.event_hooks.append(event_hook)
 
+	def send(self, sender, value, tags):
+		for hook in self.event_hooks:
+			event = (sender, value, tags)
+			hook(event)
 
 
 class Component:
@@ -173,6 +180,22 @@ class Component:
 	def on_unbind_device(self, device):
 		for dh in self.device_handles:
 			dh.on_unbind_device(device)
+
+	def listen(self, event_hook):
+		self.core.listen(event_hook)			
+
+	def listen_to_sender(self, sender, callback):
+		self.listen(EventHook.for_sender(callback, sender))
+
+	def listen_for_tag(self, tag, callback):
+		self.listen(EventHook.for_tag(callback, tag))
+
+	def listen_to_sender_for_tag(self, sender, tag, callback):
+		self.listen(EventHook.for_sender_and_tag(callback, sender, tag))
+
+	def send(self, value, *tags):
+		self.trace("EVENT %s (%s)" % (str(value), ", ".join(map(str, tags))))
+		self.core.send(self.name, value, tags)
 
 
 class DeviceHandle:
@@ -244,3 +267,24 @@ class MultiDeviceHandle(DeviceHandle):
 		if not identity[5] == self.device_identifier:
 			return
 		super().on_bind_device(device)
+
+
+class EventHook:
+
+	def __init__(self, callback, filter):
+		self.callback = callback
+		self.filter = filter
+
+	def __call__(self, event):
+		if self.filter(event):
+			sender, value, tags = event
+			self.callback(sender, value, tags)
+
+	def for_sender(callback, sender):
+		return EventHook(callback, lambda m: sender == m[0])
+
+	def for_tag(callback, tag):
+		return EventHook(callback, lambda m: tag in m[2])
+
+	def for_sender_and_tag(callback, sender, tag):
+		return EventHook(callback, lambda m: sender == m[0] and tag in m[2])
