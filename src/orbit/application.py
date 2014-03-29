@@ -144,6 +144,7 @@ class Component:
 		self.name = name
 		self.tracing = tracing
 		self.device_handles = []
+		self.core = None
 
 	def trace(self, text):
 		if self.tracing or (self.core and self.core.tracing):
@@ -151,12 +152,11 @@ class Component:
 
 	def register_core(self, core):
 		self.core = core
+		self.trace("component registered at application core")
 
 	def add_device_handle(self, device_handle):
 		self.device_handles.append(device_handle)
 		device_handle.register_component(self)
-
-		self.trace("component registered at application core")
 
 	def on_connected(self):
 		# can be overridden in sub classes
