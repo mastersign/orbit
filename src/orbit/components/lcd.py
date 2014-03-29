@@ -1,4 +1,4 @@
-# Package tink.components.lcd
+# Package orbit.components.lcd
 
 from .. import application
 from tinkerforge.bricklet_lcd_20x4 import BrickletLCD20x4

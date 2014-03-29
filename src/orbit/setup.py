@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Package tink.setup
+# Package orbit.setup
 
 import os, json
 

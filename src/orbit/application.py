@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Package tink.application
+# Package orbit.application
 
 from datetime import datetime
 from . import setup

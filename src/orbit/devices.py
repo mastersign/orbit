@@ -1,4 +1,4 @@
-# Package tink.devices
+# Package orbit.devices
 
 from tinkerforge.brick_dc import BrickDC
 from tinkerforge.brick_imu import BrickIMU
