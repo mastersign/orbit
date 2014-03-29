@@ -130,12 +130,7 @@ class Core:
 	def add_component(self, component):
 		# store reference to component
 		self.components[component.name] = component
-		# submit reference to the core
-		component.register_core(self)
 
-	def add_components(self, *components):
-		for c in components:
-			self.add_component(c)
 	def listen(self, event_hook):
 		self.event_hooks.append(event_hook)
 
@@ -147,19 +142,17 @@ class Core:
 
 class Component:
 
-	def __init__(self, name, tracing = False):
+	def __init__(self, core, name, tracing = False):
 		self.name = name
 		self.tracing = tracing
 		self.device_handles = []
-		self.core = None
+		self.core = core
+		self.core.add_component(self)
 
 	def trace(self, text):
-		if self.tracing or (self.core and self.core.tracing):
+		if self.tracing or self.core.tracing:
 			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + self.name + ": " + text)
 
-	def register_core(self, core):
-		self.core = core
-		self.trace("component registered at application core")
 
 
 	def on_connected(self):
