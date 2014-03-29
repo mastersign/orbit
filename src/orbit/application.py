@@ -161,9 +161,6 @@ class Component:
 		self.core = core
 		self.trace("component registered at application core")
 
-	def add_device_handle(self, device_handle):
-		self.device_handles.append(device_handle)
-		device_handle.register_component(self)
 
 	def on_connected(self):
 		# can be overridden in sub classes
@@ -180,6 +177,10 @@ class Component:
 	def on_unbind_device(self, device):
 		for dh in self.device_handles:
 			dh.on_unbind_device(device)
+
+	def add_device_handle(self, device_handle):
+		self.device_handles.append(device_handle)
+		device_handle.register_component(self)
 
 	def listen(self, event_hook):
 		self.core.listen(event_hook)			
