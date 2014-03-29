@@ -82,7 +82,8 @@ class Core:
 		else:
 			self.trace("connection established")
 		# notify components
-		self.for_all_components(lambda c: c.on_connected())
+		for c in self.components.values():
+			c.on_connected()
 		# enumerate devices
 		self.conn.enumerate()
 
@@ -96,7 +97,8 @@ class Core:
 		else:
 			self.trace("connection lost")
 		# notify components
-		self.for_all_components(lambda c: c.on_disconnected())
+		for c in self.components.values():
+			c.on_disconnected()
 
 	def bind_device(self, device_identifier, uid):
 		self.trace("binding device [" + uid + "]")
@@ -105,14 +107,16 @@ class Core:
 		# store reference to binding instance
 		self.devices[uid] = device
 		# notify components
-		self.for_all_components(lambda c: c.on_bind_device(device))
+		for c in self.components.values():
+			c.on_bind_device(device)
 
 	def unbind_device(self, uid):
 		if uid in self.devices:
 			self.trace("unbinding device [" + uid + "]")
 			device = self.devices[uid]
 			# notify components
-			self.for_all_components(lambda c: c.on_unbind_device(device))
+			for c in self.components.values():
+				c.on_unbind_device(device)
 			# delete reference to binding interface
 			del(self.devices[uid])
 		else:
@@ -132,9 +136,6 @@ class Core:
 		for c in components:
 			self.add_component(c)
 
-	def for_all_components(self, f):
-		for c in self.components.values():
-			f(c)
 
 
 class Component:
@@ -155,9 +156,6 @@ class Component:
 		self.device_handles.append(device_handle)
 		device_handle.register_component(self)
 
-	def for_all_device_handles(self, f):
-		for dh in self.device_handles:
-			f(dh)
 		self.trace("component registered at application core")
 
 	def on_connected(self):
@@ -169,10 +167,12 @@ class Component:
 		pass
 
 	def on_bind_device(self, device):
-		self.for_all_device_handles(lambda dh: dh.on_bind_device(device))		
+		for dh in self.device_handles:
+			dh.on_bind_device(device)
 
 	def on_unbind_device(self, device):
-		self.for_all_device_handles(lambda dh: dh.on_unbind_device(device))
+		for dh in self.device_handles:
+			dh.on_unbind_device(device)
 
 
 class DeviceHandle:
