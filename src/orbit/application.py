@@ -38,6 +38,8 @@ class Core:
 			return
 		self.trace("starting application core")
 		self.started = True
+		for c in self.components.values():
+			c.on_core_started()
 		if self.conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self.conf.host
 			port = self.conf.port
@@ -50,11 +52,13 @@ class Core:
 			self.trace("application core allready stopped")
 			return
 		self.trace("stopping application core")
-		self.started = False
 		self.unbind_all_devices()
 		if self.conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
 			self.trace("disconnecting")
 			self.conn.disconnect()
+		self.started = False
+		for c in self.components.values():
+			c.on_core_stopped()
 		self.trace("application core stopped")
 
 	def cb_enumerate(self, uid, connected_uid, position, hardware_version,
@@ -153,7 +157,13 @@ class Component:
 		if self.tracing or self.core.tracing:
 			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + self.name + ": " + text)
 
+	def on_core_started(self):
+		# can be overriden in sub classes
+		pass
 
+	def on_core_stopped(self):
+		# can be overriden in sub classes
+		pass
 
 	def on_connected(self):
 		# can be overridden in sub classes
