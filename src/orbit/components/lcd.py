@@ -9,8 +9,8 @@ LCD204 = BrickletLCD20x4
 
 class LCDButtonEventsComponent(Component):
 
-	def __init__(self, core):
-		super().__init__(core, "LCD Button Events")
+	def __init__(self, core, name, tracing = False):
+		super().__init__(core, name, tracing = tracing)
 
 		self.add_device_handle(MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -20,15 +20,15 @@ class LCDButtonEventsComponent(Component):
 		uid = device.get_identity()[0]
 
 		def button_pressed(no):
-			self.send((uid, no), 'device', 'UI', 'LCD20x4', uid, 'button')
+			self.send('button', (uid, no))
 
 		device.register_callback(LCD204.CALLBACK_BUTTON_PRESSED, button_pressed)
 
 
 class LCDAutoBacklightComponent(Component):
 
-	def __init__(self, core, timeout = 6):
-		super().__init__(core, "LCD Auto Backlight")
+	def __init__(self, core, name, event_info, timeout = 6):
+		super().__init__(core, name)
 		self.timeout = timeout
 		self.timer = None
 		self.state = False
@@ -37,7 +37,7 @@ class LCDAutoBacklightComponent(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen_for_tag('UI', self.process_ui_event)
+		self.listen(event_info.create_listener(process_ui_event))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
