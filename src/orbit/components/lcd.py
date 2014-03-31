@@ -1,13 +1,11 @@
 # Package orbit.components.lcd
 
-from datetime import datetime, timedelta
-from threading import Timer, Event
 from ..application import Component, MultiDeviceHandle
 from tinkerforge.bricklet_lcd_20x4 import BrickletLCD20x4
 
 LCD204 = BrickletLCD20x4
 
-class LCDButtonEventsComponent(Component):
+class LCDButtonsComponent(Component):
 
 	def __init__(self, core, name, tracing = False):
 		super().__init__(core, name, tracing = tracing)
@@ -25,47 +23,30 @@ class LCDButtonEventsComponent(Component):
 		device.register_callback(LCD204.CALLBACK_BUTTON_PRESSED, button_pressed)
 
 
-class LCDAutoBacklightComponent(Component):
+class LCDBacklightComponent(Component):
 
-	def __init__(self, core, name, event_info, timeout = 6):
+	def __init__(self, core, name, event_info):
 		super().__init__(core, name)
-		self.timeout = timeout
-		self.timer = None
 		self.state = False
 
-		self.lcd_handle = MultiDeviceHandle('lcd', LCD204.DEVICE_IDENTIFIER, 
+		self.lcd_handle = MultiDeviceHandle(
+			'lcd', LCD204.DEVICE_IDENTIFIER, 
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(self.process_ui_event))
+		self.listen(event_info.create_listener(self.process_event))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
 
-	def process_ui_event(self, sender, value, tags):
-		self.trigger()
-
-	def trigger(self):
-		if self.timer:
-			self.timer.cancel()
-			self.trace("cancel timer")
-		self.timer = Timer(self.timeout, self.timer_callback)
-		self.timer.start()
-		self.trace("set timer to %d seconds" % self.timeout)
-		self.set_state(True)
-
-	def timer_callback(self):
-		self.timer = None
-		self.trace("timeout")
-		self.set_state(False)
+	def process_event(self, sender, name, value):
+		self.set_state(value)
 
 	def set_state(self, state):
 		if self.state == state:
 			return
 		self.state = state
-		for device in self.lcd_handle.devices:
-			self.update_device(device)
-		self.notify()
+		self.update_devices()
 
 	def update_device(self, device):
 		if self.state:
@@ -73,15 +54,10 @@ class LCDAutoBacklightComponent(Component):
 		else:
 			device.backlight_off()
 
-	def notify(self):
-		self.send('backlight', self.state)
+	def update_devices(self):
+		for device in self.lcd_handle.devices:
+			self.update_device(device)
 
 	def on_core_started(self):
 		super().on_core_started()
-		self.trigger()
-
-	def on_core_stopped(self):
-		if self.timer:
-			self.timer.cancel()
-			self.timer = None
-		super().on_core_stopped()
+		self.update_devices()
