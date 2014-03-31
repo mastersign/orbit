@@ -18,7 +18,8 @@ class Core:
 		self.devices = {}
 		self.components = {}
 		self.event_listeners = {}
-		self.event_group_lookup = {}
+		self.event_groups = {}
+		self.component_groups = {}
 
 		# initialize IP connection
 		self.conn = IPConnection()
@@ -38,7 +39,25 @@ class Core:
 			self.trace("application core allready started")
 			return
 		self.trace("starting application core")
+
+		def build_group_lookup(names_by_group):
+			groups_by_name = {}
+			for group in names_by_group.keys():
+				names = names_by_group[group]
+				for name in names:
+					if name not in groups_by_name:
+						groups = []
+						groups_by_name[name] = groups
+					else:
+						groups = groups_by_name[name]
+					groups.append(group)
+			return groups_by_name
+
+		self.event_group_lookup = build_group_lookup(self.event_groups)
+		self.component_group_lookup = build_group_lookup(self.component_groups)
+
 		self.started = True
+
 		for c in self.components.values():
 			c.on_core_started()
 		if self.conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
@@ -152,6 +171,11 @@ class Core:
 		name_listeners.append(event_listener)
 
 	def send(self, sender, name, value):
+		if not self.started:
+			self.trace("EVENT DROPPED before core started (%s, %s)" \
+				% (sender, name))
+			return
+
 		event = (sender, name, value)
 
 		def send_by_sender(lookup, s):
@@ -159,6 +183,10 @@ class Core:
 				listeners_by_name = lookup[s]
 				send_by_name(listeners_by_name, name)
 				send_by_name(listeners_by_name, None)
+
+			if s and s in self.component_group_lookup:
+				for g in self.component_group_lookup[s]:
+					send_by_sender(lookup, g)
 
 		def send_by_name(lookup, n):
 			if n in lookup:
@@ -178,13 +206,10 @@ class Core:
 		send_by_sender(self.event_listeners, None)
 
 	def event_group(self, group_name, *names):
-		for name in names:
-			if name not in self.event_group_lookup:
-				groups = []
-				self.event_group_lookup[name] = groups
-			else:
-				groups = self.event_group_lookup[name]
-			groups.append(group_name)
+		self.event_groups[group_name] = names
+
+	def component_group(self, group_name, *names):
+		self.component_groups[group_name] = names
 
 
 class Component:
