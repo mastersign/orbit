@@ -37,7 +37,7 @@ class LCDAutoBacklightComponent(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(process_ui_event))
+		self.listen(event_info.create_listener(self.process_ui_event))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
@@ -74,7 +74,7 @@ class LCDAutoBacklightComponent(Component):
 			device.backlight_off()
 
 	def notify(self):
-		self.send(self.state, 'LCD', 'backlight')
+		self.send('backlight', self.state)
 
 	def on_core_started(self):
 		super().on_core_started()
