@@ -17,7 +17,8 @@ class Core:
 		self.tracing = tracing
 		self.devices = {}
 		self.components = {}
-		self.event_hooks = []
+		self.event_listeners = {}
+		self.event_groups = {}
 
 		# initialize IP connection
 		self.conn = IPConnection()
@@ -135,13 +136,43 @@ class Core:
 		# store reference to component
 		self.components[component.name] = component
 
-	def listen(self, event_hook):
-		self.event_hooks.append(event_hook)
+	def listen(self, event_listener):
+		sender = event_listener.sender
+		name = event_listener.name
+		if sender in self.event_listeners:
+			sender_listeners = self.event_listeners[sender]
+		else:
+			sender_listeners = {}
+			self.event_listeners[sender] = sender_listeners
+		if name in sender_listeners:
+			name_listeners = sender_listeners[name]
+		else:
+			name_listeners = []
+			sender_listeners[name] = name_listeners
+		name_listeners.append(event_listener)
 
-	def send(self, sender, value, tags):
-		for hook in self.event_hooks:
-			event = (sender, value, tags)
-			hook(event)
+	def send(self, sender, name, value):
+		if name in self.event_groups:
+			groups = self.event_groups[name]
+			for group in names:
+				self.send(sender, group, value)
+			return
+		if sender in self.event_listeners:
+			sender_listeners = self.event_listeners[sender]
+			if name in sender_listeners:
+				name_listeners = sender_listeners[name]
+				event = (sender, name, value)
+				for listener in name_listeners:
+					listener(event)
+
+	def event_group(self, group_name, *names):
+		for name in names:
+			if name not in self.event_groups:
+				groups = []
+				self.event_groups[name] = groups
+			else:
+				groups = self.event_groups[name]
+			groups.append(group_name)
 
 
 class Component:
@@ -185,21 +216,12 @@ class Component:
 		self.device_handles.append(device_handle)
 		device_handle.register_component(self)
 
-	def listen(self, event_hook):
-		self.core.listen(event_hook)			
+	def listen(self, event_listener):
+		self.core.listen(event_listener)
 
-	def listen_to_sender(self, sender, callback):
-		self.listen(EventHook.for_sender(callback, sender))
-
-	def listen_for_tag(self, tag, callback):
-		self.listen(EventHook.for_tag(callback, tag))
-
-	def listen_to_sender_for_tag(self, sender, tag, callback):
-		self.listen(EventHook.for_sender_and_tag(callback, sender, tag))
-
-	def send(self, value, *tags):
-		self.trace("EVENT %s (%s)" % (str(value), ", ".join(map(str, tags))))
-		self.core.send(self.name, value, tags)
+	def send(self, name, value):
+		self.trace("EVENT %s: %s" % (name, str(value)))
+		self.core.send(self.name, name, value)
 
 
 class DeviceHandle:
@@ -273,22 +295,34 @@ class MultiDeviceHandle(DeviceHandle):
 		super().on_bind_device(device)
 
 
-class EventHook:
+class EventInfo:
 
-	def __init__(self, callback, filter):
+	def __init__(self, sender = None, name = None, predicate = None):
+		self.sender = sender
+		self.name = name
+		self.predicate = predicate
+
+	def create_listener(self, callback):
+		return EventListener(callback, sender = self.sender, name = self.name, predicate = self.predicate)
+
+
+class EventListener:
+
+	def __init__(self, callback, sender = None, name = None, predicate = None):
 		self.callback = callback
-		self.filter = filter
+		self.sender = sender
+		self.name = name
+		self.predicate = predicate
 
 	def __call__(self, event):
-		if self.filter(event):
-			sender, value, tags = event
-			self.callback(sender, value, tags)
+		if self.predicate == None or self.predicate(event):
+			self.callback(*event)
 
 	def for_sender(callback, sender):
-		return EventHook(callback, lambda m: sender == m[0])
+		return EventListener(callback, sender = sender)
 
-	def for_tag(callback, tag):
-		return EventHook(callback, lambda m: tag in m[2])
+	def for_name(callback, name):
+		return EventListener(callback, name = name)
 
-	def for_sender_and_tag(callback, sender, tag):
-		return EventHook(callback, lambda m: sender == m[0] and tag in m[2])
+	def for_sender_and_name(callback, sender, name):
+		return EventListener(callback, sender = sender, name = name)
