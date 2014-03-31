@@ -172,7 +172,7 @@ class Core:
 
 	def send(self, sender, name, value):
 		if not self.started:
-			self.trace("EVENT DROPPED before core started (%s, %s)" \
+			self.trace("DROPPED event before core started (%s, %s)" \
 				% (sender, name))
 			return
 
@@ -198,8 +198,8 @@ class Core:
 
 		def call_listeners(listeners):
 			for l in listeners:
-				self.trace("EVENT ROUTE (%s, %s) => (%s, %s)" \
-					% (sender, name, l.sender, l.name))
+				self.trace("ROUTE %s, %s => %s (%s, %s)" \
+					% (sender, name, l.component, l.sender, l.name))
 				l(event)
 
 		send_by_sender(self.event_listeners, sender)
@@ -254,6 +254,7 @@ class Component:
 		device_handle.register_component(self)
 
 	def listen(self, event_listener):
+		event_listener.component = self.name
 		self.core.listen(event_listener)
 
 	def send(self, name, value):
@@ -340,6 +341,7 @@ class EventInfo:
 		self.sender = sender
 		self.name = name
 		self.predicate = predicate
+		self.component = None
 
 	def create_listener(self, callback):
 		return EventListener(callback, 
@@ -348,17 +350,18 @@ class EventInfo:
 			predicate = self.predicate)
 
 	def __str__(self):
-		return "EventInfo(sender = %s, name = %s, predicate: %s)" \
-			% (self.sender, self.name, self.predicate != None)
+		return "EventInfo(sender = %s, name = %s, predicate: %s, component = %s)" \
+			% (self.sender, self.name, self.predicate != None, self.component)
 
 
 class EventListener:
 
-	def __init__(self, callback, sender = None, name = None, predicate = None):
+	def __init__(self, callback, sender = None, name = None, predicate = None, component = None):
 		self.callback = callback
 		self.sender = sender
 		self.name = name
 		self.predicate = predicate
+		self.component = component
 
 	def __call__(self, event):
 		if self.predicate == None or self.predicate(event):
@@ -374,5 +377,5 @@ class EventListener:
 		return EventListener(callback, sender = sender, name = name)
 
 	def __str__(self):
-		return "EventListener(sender = %s, name = %s, predicate: %s)" \
-			% (self.sender, self.name, self.predicate != None)
+		return "EventListener(sender = %s, name = %s, predicate: %s, component = %s)" \
+			% (self.sender, self.name, self.predicate != None, self.component)
