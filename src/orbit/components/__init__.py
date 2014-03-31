@@ -1,1 +1,1 @@
-__all__ = ["lcd"]
+__all__ = ["timer", "lcd"]
