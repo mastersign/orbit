@@ -18,7 +18,7 @@ class Core:
 		self.devices = {}
 		self.components = {}
 		self.event_listeners = {}
-		self.event_groups = {}
+		self.event_group_lookup = {}
 
 		# initialize IP connection
 		self.conn = IPConnection()
@@ -152,26 +152,38 @@ class Core:
 		name_listeners.append(event_listener)
 
 	def send(self, sender, name, value):
-		if name in self.event_groups:
-			groups = self.event_groups[name]
-			for group in names:
-				self.send(sender, group, value)
-			return
-		if sender in self.event_listeners:
-			sender_listeners = self.event_listeners[sender]
-			if name in sender_listeners:
-				name_listeners = sender_listeners[name]
-				event = (sender, name, value)
-				for listener in name_listeners:
-					listener(event)
+		event = (sender, name, value)
+
+		def send_by_sender(lookup, s):
+			if s in lookup:
+				listeners_by_name = lookup[s]
+				send_by_name(listeners_by_name, name)
+				send_by_name(listeners_by_name, None)
+
+		def send_by_name(lookup, n):
+			if n in lookup:
+				call_listeners(lookup[n])
+
+			if n and n in self.event_group_lookup:
+				for g in self.event_group_lookup[n]:
+					send_by_name(lookup, g)
+
+		def call_listeners(listeners):
+			for l in listeners:
+				self.trace("EVENT ROUTE (%s, %s) => (%s, %s)" \
+					% (sender, name, l.sender, l.name))
+				l(event)
+
+		send_by_sender(self.event_listeners, sender)
+		send_by_sender(self.event_listeners, None)
 
 	def event_group(self, group_name, *names):
 		for name in names:
-			if name not in self.event_groups:
+			if name not in self.event_group_lookup:
 				groups = []
-				self.event_groups[name] = groups
+				self.event_group_lookup[name] = groups
 			else:
-				groups = self.event_groups[name]
+				groups = self.event_group_lookup[name]
 			groups.append(group_name)
 
 
@@ -186,7 +198,7 @@ class Component:
 
 	def trace(self, text):
 		if self.tracing or self.core.tracing:
-			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + self.name + ": " + text)
+			print("%s %s: %s" % (datetime.now().strftime("[%Y-%m-%d %H-%M-%S]"), self.name, text))
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -240,14 +252,16 @@ class DeviceHandle:
 			f(d)
 
 	def on_bind_device(self, device):
-		self.component.trace("binding device [%s] to handle %s" % (device.get_identity()[0], self.name))
+		self.component.trace("binding device [%s] to handle %s" \
+			% (device.get_identity()[0], self.name))
 		self.devices.append(device)
 		if self.bind_callback:
 			self.bind_callback(device)
 
 	def on_unbind_device(self, device):
 		if device in self.devices:
-			self.component.trace("unbinding device [%s] from handle %s" % (device.get_identity()[0], self.name))
+			self.component.trace("unbinding device [%s] from handle %s" \
+				% (device.get_identity()[0], self.name))
 			if self.unbind_callback:
 				self.unbind_callback(device)
 			self.devices.remove(device)
@@ -303,7 +317,14 @@ class EventInfo:
 		self.predicate = predicate
 
 	def create_listener(self, callback):
-		return EventListener(callback, sender = self.sender, name = self.name, predicate = self.predicate)
+		return EventListener(callback, 
+			sender = self.sender, 
+			name = self.name, 
+			predicate = self.predicate)
+
+	def __str__(self):
+		return "EventInfo(sender = %s, name = %s, predicate: %s)" \
+			% (self.sender, self.name, self.predicate != None)
 
 
 class EventListener:
@@ -326,3 +347,7 @@ class EventListener:
 
 	def for_sender_and_name(callback, sender, name):
 		return EventListener(callback, sender = sender, name = name)
+
+	def __str__(self):
+		return "EventListener(sender = %s, name = %s, predicate: %s)" \
+			% (self.sender, self.name, self.predicate != None)
