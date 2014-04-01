@@ -9,12 +9,13 @@ from tinkerforge.ip_connection import IPConnection
 
 class Core:
 
-	def __init__(self, conf = setup.Configuration(), tracing = False):
+	def __init__(self, conf = setup.Configuration(), tracing = False, event_tracing = False):
 
 		self.started = False
 		self.connected = False
 		self.conf = conf
 		self.tracing = tracing
+		self.event_tracing = event_tracing
 		self.devices = {}
 		self.components = {}
 		self.event_listeners = {}
@@ -33,6 +34,10 @@ class Core:
 	def trace(self, text):
 		if self.tracing:
 			print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + "Core: " + text)
+
+	def event_trace(self, text):
+		if self.event_tracing:
+			self.trace(text)
 
 	def start(self):
 		if self.started:
@@ -175,7 +180,7 @@ class Core:
 
 	def send(self, sender, name, value):
 		if not self.started:
-			self.trace("DROPPED event before core started (%s, %s)" \
+			self.event_trace("DROPPED event before core started (%s, %s)" \
 				% (sender, name))
 			return
 
@@ -201,7 +206,7 @@ class Core:
 
 		def call_listeners(listeners):
 			for l in listeners:
-				self.trace("ROUTE %s, %s => %s (%s, %s)" \
+				self.event_trace("ROUTE %s, %s => %s (%s, %s)" \
 					% (sender, name, l.component, l.sender, l.name))
 				l(event)
 
@@ -217,16 +222,21 @@ class Core:
 
 class Component:
 
-	def __init__(self, core, name, tracing = False):
+	def __init__(self, core, name, tracing = None, event_tracing = None):
 		self.name = name
 		self.tracing = tracing
+		self.event_tracing = event_tracing
 		self.device_handles = []
 		self.core = core
 		self.core.add_component(self)
 
 	def trace(self, text):
-		if self.tracing or self.core.tracing:
+		if self.tracing != False and (self.tracing or self.core.tracing):
 			print("%s %s: %s" % (datetime.now().strftime("[%Y-%m-%d %H-%M-%S]"), self.name, text))
+
+	def event_trace(self, text):
+		if self.event_tracing != False and (self.event_tracing or self.core.event_tracing):
+			self.trace(text)
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -261,7 +271,7 @@ class Component:
 		self.core.listen(event_listener)
 
 	def send(self, name, value):
-		self.trace("EVENT %s: %s" % (name, str(value)))
+		self.event_trace("EVENT %s: %s" % (name, str(value)))
 		self.core.send(self.name, name, value)
 
 
