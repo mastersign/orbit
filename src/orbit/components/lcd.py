@@ -8,8 +8,11 @@ LCD204 = BrickletLCD20x4
 
 class LCDButtonsComponent(Component):
 
-	def __init__(self, core, name, tracing = False):
-		super().__init__(core, name, tracing = tracing)
+	def __init__(self, core, name, 
+		tracing = None, event_tracing = None):
+		
+		super().__init__(core, name, 
+			tracing = tracing, event_tracing = event_tracing)
 
 		self.add_device_handle(MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -31,8 +34,11 @@ class LCDButtonsComponent(Component):
 
 class LCDBacklightComponent(Component):
 
-	def __init__(self, core, name, event_info):
-		super().__init__(core, name)
+	def __init__(self, core, name, event_info, 
+		tracing = None, event_tracing = None):
+
+		super().__init__(core, name, 
+			tracing = tracing, event_tracing = event_tracing)
 		self.state = False
 
 		self.lcd_handle = MultiDeviceHandle(
@@ -71,10 +77,12 @@ class LCDBacklightComponent(Component):
 
 class LCDWatch(Component):
 
-	def __init__(self, core, name, event_info, lcd_uid = None, 
-		lines = {0: "%d.%m.%Y  %H:%M:%S"}):
+	def __init__(self, core, name, event_info,
+		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"},
+		tracing = None, event_tracing = None):
 
-		super().__init__(core, name)
+		super().__init__(core, name, 
+			tracing = tracing, event_tracing = event_tracing)
 		self.lines = lines
 
 		if lcd_uid:
