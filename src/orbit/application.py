@@ -348,35 +348,41 @@ class MultiDeviceHandle(DeviceHandle):
 
 class EventInfo:
 
-	def __init__(self, sender = None, name = None, predicate = None):
+	def __init__(self, sender = None, name = None, predicate = None, transform = None):
 		self.sender = sender
 		self.name = name
 		self.predicate = predicate
+		self.transform = transform
 		self.component = None
 
 	def create_listener(self, callback):
 		return EventListener(callback, 
 			sender = self.sender, 
 			name = self.name, 
-			predicate = self.predicate)
+			predicate = self.predicate,
+			transform = self.transform)
 
 	def __str__(self):
-		return "EventInfo(sender = %s, name = %s, predicate: %s, component = %s)" \
-			% (self.sender, self.name, self.predicate != None, self.component)
+		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
+			% (self.sender, self.name,
+			   self.transform != None, self.predicate != None, 
+			   self.component)
 
 
 class EventListener:
 
-	def __init__(self, callback, sender = None, name = None, predicate = None, component = None):
+	def __init__(self, callback, sender = None, name = None, predicate = None, transform = None, component = None):
 		self.callback = callback
 		self.sender = sender
 		self.name = name
 		self.predicate = predicate
+		self.transform = transform
 		self.component = component
 
 	def __call__(self, event):
 		if self.predicate == None or self.predicate(event):
-			self.callback(*event)
+			self.callback(event[0], event[1], 
+				self.transform(event[2]) if self.transform else event[2])
 
 	def for_sender(callback, sender):
 		return EventListener(callback, sender = sender)
@@ -388,5 +394,7 @@ class EventListener:
 		return EventListener(callback, sender = sender, name = name)
 
 	def __str__(self):
-		return "EventListener(sender = %s, name = %s, predicate: %s, component = %s)" \
-			% (self.sender, self.name, self.predicate != None, self.component)
+		return "EventListener(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
+			% (self.sender, self.name,
+			   self.transform != None, self.predicate != None, 
+			   self.component)
