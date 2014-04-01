@@ -129,6 +129,9 @@ class Core:
 		self.trace("binding device [" + uid + "]")
 		# create binding instance
 		device = device_instance(device_identifier, uid, self.conn)
+		# add passive identity attribute
+		identity = device.get_identity()
+		device.identity = identity
 		# store reference to binding instance
 		self.devices[uid] = device
 		# notify components
@@ -279,7 +282,7 @@ class DeviceHandle:
 
 	def on_bind_device(self, device):
 		self.component.trace("binding device [%s] to handle %s" \
-			% (device.get_identity()[0], self.name))
+			% (device.identity[0], self.name))
 		self.devices.append(device)
 		if self.bind_callback:
 			self.bind_callback(device)
@@ -287,7 +290,7 @@ class DeviceHandle:
 	def on_unbind_device(self, device):
 		if device in self.devices:
 			self.component.trace("unbinding device [%s] from handle %s" \
-				% (device.get_identity()[0], self.name))
+				% (device.identity[0], self.name))
 			if self.unbind_callback:
 				self.unbind_callback(device)
 			self.devices.remove(device)
@@ -305,13 +308,12 @@ class SingleDeviceHandle(DeviceHandle):
 	def on_bind_device(self, device):
 		if len(self.devices) > 0:
 			return
-		identity = device.get_identity()
-		if identity[5] != self.device_identifier:
+		if device.identity[5] != self.device_identifier:
 			return
 		if self.uid == None:
 			if self.auto_fix:
 				self.uid = identity[0]
-		elif identity[0] != self.uid:
+		elif device.identity[0] != self.uid:
 			return
 		self.device = device
 		super().on_bind_device(device)
@@ -329,8 +331,7 @@ class MultiDeviceHandle(DeviceHandle):
 		self.device_identifier = get_device_identifier(device_name_or_id)
 
 	def on_bind_device(self, device):
-		identity = device.get_identity()
-		if not identity[5] == self.device_identifier:
+		if not device.identity[5] == self.device_identifier:
 			return
 		super().on_bind_device(device)
 

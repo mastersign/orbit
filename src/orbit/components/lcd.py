@@ -16,7 +16,7 @@ class LCDButtonsComponent(Component):
 			bind_callback=self.bind_lcd))
 
 	def bind_lcd(self, device):
-		uid = device.get_identity()[0]
+		uid = device.identity[0]
 
 		def button_pressed(no):
 			self.send('button_pressed', (uid, no))
