@@ -138,7 +138,7 @@ class LCDMessage(Component):
 
 class LCDMenu(Component):
 
-	def __init__(self, core, name, event_info,
+	def __init__(self, core, name, enter_event_info, exit_event_info,
 		lcd_uid = None,	entries = [('None', 'none')],
 		tracing = None, event_tracing = None):
 
@@ -153,7 +153,8 @@ class LCDMenu(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(self.process_activation_event))
+		self.listen(enter_event_info.create_listener(self.process_enter_event))
+		self.listen(exit_event_info.create_listener(self.process_exit_event))
 		
 		self.lcd_handle.register_callback(
 			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
@@ -162,8 +163,11 @@ class LCDMenu(Component):
 		if self.active:
 			self.update_lcd(device)
 
-	def process_activation_event(self, sender, name, value):
-		self.set_active(value)
+	def process_enter_event(self, sender, name, value):
+		self.set_active(True)
+
+	def process_exit_event(self, sender, name, value):
+		self.set_active(False)
 
 	def button_pressed(self, no):
 		if not self.active:

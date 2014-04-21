@@ -45,6 +45,10 @@ class ActivityTimer(Component):
 
 	def notify(self):
 		self.send('state', self.state)
+		if self.state:
+			self.send('on')
+		else:
+			self.send('off')
 
 	def on_core_started(self):
 		super().on_core_started()
