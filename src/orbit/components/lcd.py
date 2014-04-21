@@ -98,7 +98,7 @@ class LCDWatch(Component):
 		self.listen(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
-		self.lcd_handle.for_all_devices(self.show_time)
+		self.lcd_handle.for_each_device(self.show_time)
 
 	def show_time(self, device):
 		for line in self.lines.keys():
@@ -126,7 +126,7 @@ class LCDMessage(Component):
 		self.listen(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
-		self.lcd_handle.for_all_devices(self.show_message)
+		self.lcd_handle.for_each_device(self.show_message)
 
 	def show_message(self, device):
 		device.clear_display()
@@ -177,11 +177,11 @@ class LCDMenu(Component):
 		if self.active == value:
 			return
 		self.active = value
-		self.lcd_handle.for_all_devices(self.update_lcd)
+		self.lcd_handle.for_each_device(self.update_lcd)
 
 	def set_selected(self, index):
 		self.selected = index % len(self.entries)
-		self.lcd_handle.for_all_devices(self.update_lcd)
+		self.lcd_handle.for_each_device(self.update_lcd)
 
 	def lcd_pos(self, index):
 		return (index % 4, (index // 4) * 10)

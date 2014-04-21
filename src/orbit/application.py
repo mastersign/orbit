@@ -286,10 +286,6 @@ class DeviceHandle:
 	def register_component(self, component):
 		self.component = component
 
-	def for_all_devices(self, f):
-		for d in self.devices:
-			f(d)
-
 	def on_bind_device(self, device):
 		self.component.trace("binding device [%s] to handle %s" \
 			% (device.identity[0], self.name))
@@ -304,6 +300,10 @@ class DeviceHandle:
 			if self.unbind_callback:
 				self.unbind_callback(device)
 			self.devices.remove(device)
+
+	def for_each_device(self, f):
+		for d in self.devices:
+			f(d)
 
 
 class SingleDeviceHandle(DeviceHandle):
