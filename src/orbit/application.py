@@ -5,7 +5,7 @@
 from datetime import datetime
 from . import setup
 from .devices import known_device, get_device_identifier, device_name, device_instance
-from tinkerforge.ip_connection import IPConnection
+from tinkerforge.ip_connection import IPConnection, Error
 
 class Core:
 
@@ -367,7 +367,11 @@ class DeviceHandle:
 
 	def for_each_device(self, f):
 		for d in self.devices:
-			f(d)
+			try:
+				f(d)
+			except Error as err:
+				if err.value != -8: # connection lost
+					print(err.description)
 
 	def register_callback(self, event_code, callback):
 		self.unregister_callback(event_code)
