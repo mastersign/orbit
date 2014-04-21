@@ -300,7 +300,7 @@ class Component:
 		event_listener.component = self.name
 		self.core.listen(event_listener)
 
-	def send(self, name, value):
+	def send(self, name, value = None):
 		self.event_trace("EVENT %s: %s" % (name, str(value)))
 		self.core.send(self.name, name, value)
 
