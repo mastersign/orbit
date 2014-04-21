@@ -69,7 +69,7 @@ class Core:
 		if self.conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self.conf.host
 			port = self.conf.port
-			self.trace("connecting to " + host + ":" + str(port))
+			self.trace("connecting to %s:%d" % (host, port))
 			self.conn.connect(host, port)
 		self.trace("application core started")
 
@@ -93,7 +93,7 @@ class Core:
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_AVAILABLE or \
 		   enumeration_type == IPConnection.ENUMERATION_TYPE_CONNECTED:
 			# initialize device configuration and bindings
-			self.trace("device present [" + uid + "] " + device_name(device_identifier))
+			self.trace("device present [%s] %s" % (uid, device_name(device_identifier)))
 			if known_device(device_identifier):
 				# bind device and notify components
 				self.bind_device(device_identifier, uid)
@@ -101,7 +101,7 @@ class Core:
 				self.trace("could not create a device binding for device identifier " + device_identifier)
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
 			# recognize absence of device
-			self.trace("device absent [" + uid + "]")
+			self.trace("device absent [%s]" % uid)
 			# unbind device and notify components
 			self.unbind_device(uid)
 
@@ -132,7 +132,7 @@ class Core:
 			c.on_disconnected()
 
 	def bind_device(self, device_identifier, uid):
-		self.trace("binding device [" + uid + "]")
+		self.trace("binding device [%s]" % uid)
 		# create binding instance
 		device = device_instance(device_identifier, uid, self.conn)
 		# add passive identity attribute
@@ -146,7 +146,7 @@ class Core:
 
 	def unbind_device(self, uid):
 		if uid in self.devices:
-			self.trace("unbinding device [" + uid + "]")
+			self.trace("unbinding device [%s]" % uid)
 			device = self.devices[uid]
 			# notify components
 			for c in self.components.values():
@@ -158,7 +158,7 @@ class Core:
 			if uid in self.device_callbacks:
 				del(self.device_callbacks[uid])
 		else:
-			self.trace("attempt to unbind not bound device [" + uid + "]")
+			self.trace("attempt to unbind not bound device [%s]" % uid)
 
 	def unbind_all_devices(self):
 		for uid in list(self.devices.keys()):
