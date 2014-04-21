@@ -15,9 +15,10 @@ class LCDButtonsComponent(Component):
 		super().__init__(core, name, 
 			tracing = tracing, event_tracing = event_tracing)
 
-		self.add_device_handle(MultiDeviceHandle(
+		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
-			bind_callback=self.bind_lcd))
+			bind_callback=self.bind_lcd)
+		self.add_device_handle(self.lcd_handle)
 
 	def bind_lcd(self, device):
 		uid = device.identity[0]
@@ -25,12 +26,14 @@ class LCDButtonsComponent(Component):
 		def button_pressed(no):
 			self.send('button_pressed', (uid, no))
 
-		device.register_callback(LCD204.CALLBACK_BUTTON_PRESSED, button_pressed)
+		self.lcd_handle.register_callback(
+			LCD204.CALLBACK_BUTTON_PRESSED, button_pressed)
 
 		def button_released(no):
 			self.send('button_released', (uid, no))
 
-		device.register_callback(LCD204.CALLBACK_BUTTON_RELEASED, button_released)
+		self.lcd_handle.register_callback(
+			LCD204.CALLBACK_BUTTON_RELEASED, button_released)
 
 
 class LCDBacklightComponent(Component):
@@ -135,7 +138,7 @@ class LCDMessage(Component):
 
 class LCDMenu(Component):
 
-	def __init__(self, core, name, event_info, button_event_info,
+	def __init__(self, core, name, event_info,
 		lcd_uid = None,	entries = [('None', 'none')],
 		tracing = None, event_tracing = None):
 
@@ -151,7 +154,9 @@ class LCDMenu(Component):
 		self.add_device_handle(self.lcd_handle)
 
 		self.listen(event_info.create_listener(self.process_activation_event))
-		self.listen(button_event_info.create_listener(self.process_button_event))
+		
+		self.lcd_handle.register_callback(
+			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
 
 	def bind_lcd(self, device):
 		if self.active:
@@ -160,10 +165,9 @@ class LCDMenu(Component):
 	def process_activation_event(self, sender, name, value):
 		self.set_active(value)
 
-	def process_button_event(self, sender, name, value):
+	def button_pressed(self, no):
 		if not self.active:
 			return
-		_, no = value
 		if no == 0:
 			self.on_button_escape()
 		elif no == 1:
