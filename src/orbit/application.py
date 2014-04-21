@@ -17,6 +17,7 @@ class Core:
 		self.tracing = tracing
 		self.event_tracing = event_tracing
 		self.devices = {}
+		self.device_callbacks = {}
 		self.components = {}
 		self.event_listeners = {}
 		self.event_groups = {}
@@ -152,12 +153,41 @@ class Core:
 				c.on_unbind_device(device)
 			# delete reference to binding interface
 			del(self.devices[uid])
+
+			# delete reference to multicast callbacks
+			if uid in self.device_callbacks:
+				del(self.device_callbacks[uid])
 		else:
 			self.trace("attempt to unbind not bound device [" + uid + "]")
 
 	def unbind_all_devices(self):
 		for uid in list(self.devices.keys()):
 			self.unbind_device(uid)
+
+	def add_device_callback(self, device, event, callback):
+		uid = device.identity[0]
+
+		if uid not in self.device_callbacks:
+			self.device_callbacks[uid] = callbacks = {}
+		else:
+			callbacks = self.device_callbacks[uid]
+		
+		if event not in callbacks:
+			mcc = MulticastCallback()
+			device.register_callback(event, mcc)
+		else:
+			mcc = callbacks[event]
+
+		mcc.add_callback(callback)
+
+	def remove_device_callback(self, device, event, callback):
+		uid = device.identity[0]
+
+		if uid in self.device_callbacks:
+			callbacks = self.device_callbacks[uid]
+			if event in callbacks:
+				mcc = callbacks[event]
+				mcc.remove_callback(callback)
 
 	def add_component(self, component):
 		# store reference to component
@@ -275,6 +305,22 @@ class Component:
 		self.core.send(self.name, name, value)
 
 
+class MulticastCallback:
+
+	def __init__(self):
+		self.callbacks = []
+
+	def add_callback(self, callback):
+		self.callbacks.append(callback)
+
+	def remove_callback(self, callback):
+		self.callbacks.remove(callback)
+
+	def __call__(self, *pargs, **nargs):
+		for callback in self.callbacks:
+			callback(*pargs, **nargs)
+
+
 class DeviceHandle:
 
 	def __init__(self, name, bind_callback, unbind_callback):
@@ -282,18 +328,18 @@ class DeviceHandle:
 		self.bind_callback = bind_callback
 		self.unbind_callback = unbind_callback
 		self.devices = []
+		self.callbacks = {}
 
 	def register_component(self, component):
 		self.component = component
-
-	def for_all_devices(self, f):
-		for d in self.devices:
-			f(d)
 
 	def on_bind_device(self, device):
 		self.component.trace("binding device [%s] to handle %s" \
 			% (device.identity[0], self.name))
 		self.devices.append(device)
+		for event_code in self.callbacks:
+			self.component.core.add_device_callback(
+					device, event_code, self.callbacks[event_code])
 		if self.bind_callback:
 			self.bind_callback(device)
 
@@ -304,6 +350,27 @@ class DeviceHandle:
 			if self.unbind_callback:
 				self.unbind_callback(device)
 			self.devices.remove(device)
+
+	def for_each_device(self, f):
+		for d in self.devices:
+			f(d)
+
+	def register_callback(self, event_code, callback):
+		self.unregister_callback(event_code)
+		self.callbacks[event_code] = callback
+		self.for_each_device(
+			lambda device:
+				self.component.core.add_device_callback(
+					device, event_code, callback))
+
+	def unregister_callback(self, event_code):
+		if event_code in self.callbacks:
+			callback = self.callbacks[event_code]
+			self.for_each_device(
+				lambda device: 
+					self.component.core.remove_device_callback(
+						device, event_code, callback))
+			del(self.callbacks[event_code])
 
 
 class SingleDeviceHandle(DeviceHandle):
