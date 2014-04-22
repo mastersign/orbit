@@ -109,13 +109,19 @@ class Configuration:
 	def save(self):
 		self._write_configfile(self._to_data())
 
+	def __str__(self):
+		return \
+			'Orbit Setup\n' + \
+			'-----------\n' + \
+			'Host:              ' + str(self.host) + '\n' + \
+			'Port:              ' + str(self.port) + '\n' + \
+			'Core Tracing:      ' + str(self.core_tracing) + '\n' + \
+			'Device Tracing:    ' + str(self.device_tracing) + '\n' + \
+			'Event Tracing:     ' + str(self.event_tracing) + '\n' + \
+			'Component Tracing: ' + str(self.component_tracing)
+
 
 # script execution
 if __name__ == '__main__':
 	cc = ConnConfig()
-	print('Orbit Setup:\n'
-		+ 'Host           = ' + str(cc.host()) + '\n'
-		+ 'Port           = ' + str(cc.port()) + '\n'
-		+ 'Core Tracing   = ' + str(cc.core_tracing()) + '\n'
-		+ 'Device Tracing = ' + str(cc.device_tracing()) + '\n'
-		+ 'Event Tracing  = ' + str(cc.event_tracing()))
+	print(str(cc))
