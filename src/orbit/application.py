@@ -70,6 +70,8 @@ class DeviceManager:
 		self.connected = False
 		self.devices = {}
 		self._device_callbacks = {}
+		self._device_initializers = {}
+		self._device_finalizers = {}
 
 		# initialize IP connection
 		self.conn = IPConnection()
@@ -90,7 +92,7 @@ class DeviceManager:
 			self.conn.connect(host, port)
 
 	def stop(self):
-		self._unbind_all_devices()
+		self._finalize_and_unbind_devices()
 		if self.conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
 			self.trace("disconnecting")
 			self.conn.disconnect()
@@ -146,6 +148,8 @@ class DeviceManager:
 		# add passive identity attribute
 		identity = device.get_identity()
 		device.identity = identity
+		# initialize device
+		self._initialize_device(device)
 		# store reference to binding instance
 		self.devices[uid] = device
 		# register callbacks
@@ -175,9 +179,44 @@ class DeviceManager:
 		else:
 			self.trace("attempt to unbind not bound device [%s]" % uid)
 
-	def _unbind_all_devices(self):
+	def _finalize_and_unbind_devices(self):
 		for uid in list(self.devices.keys()):
+			self._finalize_device(self.devices[uid])
 			self._unbind_device(uid)
+
+	def add_device_initializer(self, device_identifier, initializer):
+		if device_identifier not in self._device_initializers:
+			self._device_initializers[device_identifier] = []
+		self._device_initializers[device_identifier].append(initializer)
+
+	def _initialize_device(self, device):
+		device_identifier = device.identity[5]
+		if device_identifier in self._device_initializers:
+			for initializer in self._device_initializers[device_identifier]:
+				try:
+					initializer(device)
+				except Error as err:
+					if err.value != -8: # connection lost
+						print("Error during device initialization: %s" % err.description)
+				except Exception as exc:
+					print("Exception caught during device initialization:\n%s" % exc)
+
+	def add_device_finalizer(self, device_identifier, finalizer):
+		if device_identifier not in self._device_finalizers:
+			self._device_finalizers[device_identifier] = []
+		self._device_finalizers[device_identifier].append(finalizer)
+
+	def _finalize_device(self, device):
+		device_identifier = device.identity[5]
+		if device_identifier in self._device_finalizers:
+			for finalizer in self._device_finalizers[device_identifier]:
+				try:
+					finalizer(device)
+				except Error as err:
+					if err.value != -8: # connection lost
+						print("Error during device finalization: %s" % err.description)
+				except Exception as exc:
+					print("Exception caught during device finalization:\n%s" % exc)
 
 	def add_device_callback(self, uid, event, callback):
 		if uid not in self._device_callbacks:
