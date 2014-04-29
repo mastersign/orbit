@@ -13,42 +13,61 @@ def _trace(text, source):
 class Core:
 
 	def __init__(self, config = setup.Configuration()):
+		self._running = False
+		self._configuration = config
+		self._components = {}
 
-		self.started = False
-		self.configuration = config
-		self.components = {}
-
-		self.device_manager = DeviceManager(self)
-		self.blackboard = Blackboard(self)
+		self._device_manager = DeviceManager(self)
+		self._blackboard = Blackboard(self)
 
 		self.trace("application core initialized")
 
+	@property
+	def running(self):
+		return self._running
+
+	@property
+	def configuration(self):
+		return self._configuration
+
+	@property
+	def components(self):
+		return self._components
+
+	@property
+	def device_manager(self):
+	    return self._device_manager
+
+	@property
+	def blackboard(self):
+		return self._blackboard	
+
 	def trace(self, text):
-		if self.configuration.core_tracing:
+		if self._configuration.core_tracing:
 			_trace(text, 'Core')
 
 	def start(self):
-		if self.started:
+		if self._running:
 			self.trace("application core allready started")
 			return
 		self.trace("starting application core")
 
-		self.blackboard.initialize()
-		self.started = True
+		self._blackboard.initialize()
+		self._running = True
 		self.for_each_component(
 			lambda c: c.on_core_started())
-		self.device_manager.start()
+		self._device_manager.start()
 
 		self.trace("application core started")
 
 	def stop(self):
-		if not self.started:
+		if not self._running:
 			self.trace("application core allready stopped")
 			return
 		self.trace("stopping application core")
 
-		self.device_manager.stop()
-		self.started = False
+		self._device_manager.stop()
+		self._running = False
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
 			
@@ -56,10 +75,10 @@ class Core:
 
 	def add_component(self, component):
 		# store reference to component
-		self.components[component.name] = component
+		self._components[component.name] = component
 
 	def for_each_component(self, f):
-		for component in self.components.values():
+		for component in self._components.values():
 			f(component)
 
 
@@ -67,35 +86,39 @@ class DeviceManager:
 
 	def __init__(self, core):
 		self._core = core
-		self.connected = False
-		self.devices = {}
+		self._connected = False
+		self._devices = {}
 		self._device_callbacks = {}
 		self._device_initializers = {}
 		self._device_finalizers = {}
 
 		# initialize IP connection
-		self.conn = IPConnection()
-		self.conn.set_auto_reconnect(True)
-		self.conn.register_callback(IPConnection.CALLBACK_ENUMERATE, self._cb_enumerate)
-		self.conn.register_callback(IPConnection.CALLBACK_CONNECTED, self._cb_connected)
-		self.conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self._cb_disconnected)
+		self._conn = IPConnection()
+		self._conn.set_auto_reconnect(True)
+		self._conn.register_callback(IPConnection.CALLBACK_ENUMERATE, self._cb_enumerate)
+		self._conn.register_callback(IPConnection.CALLBACK_CONNECTED, self._cb_connected)
+		self._conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self._cb_disconnected)
+
+	@property
+	def devices(self):
+		return self._devices
 
 	def trace(self, text):
 		if self._core.configuration.device_tracing:
 			_trace(text, 'DeviceManager')
 
 	def start(self):
-		if self.conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
+		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self._core.configuration.host
 			port = self._core.configuration.port
 			self.trace("connecting to %s:%d" % (host, port))
-			self.conn.connect(host, port)
+			self._conn.connect(host, port)
 
 	def stop(self):
 		self._finalize_and_unbind_devices()
-		if self.conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
+		if self._conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
 			self.trace("disconnecting")
-			self.conn.disconnect()
+			self._conn.disconnect()
 
 	def _cb_enumerate(self, uid, connected_uid, position, hardware_version,
 	                 firmware_version, device_identifier, enumeration_type):
@@ -116,7 +139,7 @@ class DeviceManager:
 			self._unbind_device(uid)
 
 	def _cb_connected(self, reason):
-		self.connected = True
+		self._connected = True
 		# recognize connection
 		if reason == IPConnection.CONNECT_REASON_AUTO_RECONNECT:
 			self.trace("connection established (auto reconnect)")
@@ -126,10 +149,10 @@ class DeviceManager:
 		self._core.for_each_component(
 			lambda c: c.on_connected())
 		# enumerate devices
-		self.conn.enumerate()
+		self._conn.enumerate()
 
 	def _cb_disconnected(self, reason):
-		self.connected = False
+		self._connected = False
 		# recognize lost connection
 		if reason == IPConnection.DISCONNECT_REASON_ERROR:
 			self.trace("connection lost (error)")
@@ -144,7 +167,7 @@ class DeviceManager:
 	def _bind_device(self, device_identifier, uid):
 		self.trace("binding device [%s]" % uid)
 		# create binding instance
-		device = device_instance(device_identifier, uid, self.conn)
+		device = device_instance(device_identifier, uid, self._conn)
 		# add passive identity attribute
 		identity = device.get_identity()
 		device.identity = identity
@@ -164,14 +187,14 @@ class DeviceManager:
 			lambda c: c.on_bind_device(device))
 
 	def _unbind_device(self, uid):
-		if uid in self.devices:
+		if uid in self._devices:
 			self.trace("unbinding device [%s]" % uid)
-			device = self.devices[uid]
+			device = self._devices[uid]
 			# notify components
 			self._core.for_each_component(
 				lambda c: c.on_unbind_device(device))
 			# delete reference to binding interface
-			del(self.devices[uid])
+			del(self._devices[uid])
 
 			# delete reference to multicast callbacks
 			if uid in self._device_callbacks:
@@ -180,8 +203,8 @@ class DeviceManager:
 			self.trace("attempt to unbind not bound device [%s]" % uid)
 
 	def _finalize_and_unbind_devices(self):
-		for uid in list(self.devices.keys()):
-			self._finalize_device(self.devices[uid])
+		for uid in list(self._devices.keys()):
+			self._finalize_device(self._devices[uid])
 			self._unbind_device(uid)
 
 	def add_device_initializer(self, device_identifier, initializer):
@@ -228,8 +251,8 @@ class DeviceManager:
 			self.trace("creating dispatcher for [%s] (%s)" % (uid, event))
 			mcc = MulticastCallback()
 			callbacks[event] = mcc
-			if uid in self.devices:
-				device = self.devices[uid]
+			if uid in self._devices:
+				device = self._devices[uid]
 				self.trace("binding dispatcher to [%s] (%s)" % (uid, event))
 				device.register_callback(event, mcc)
 		
@@ -291,7 +314,7 @@ class Blackboard:
 		self.sender_group_lookup = build_group_lookup(self._sender_groups)
 
 	def send(self, sender, name, value):
-		if not self._core.started:
+		if not self._core.running:
 			self.trace("DROPPED event before core started (%s, %s)" \
 				% (sender, name))
 			return
@@ -336,12 +359,20 @@ class Component:
 
 	def __init__(self, core, name, 
 		tracing = None, event_tracing = None):
-		self.core = core
-		self.name = name
+		self._core = core
+		self._name = name
 		self._tracing = tracing
 		self._event_tracing = event_tracing
 		self._device_handles = []
 		self.core.add_component(self)
+
+	@property
+	def core(self):
+	    return self._core
+
+	@property
+	def name(self):
+	    return self._name
 
 	def trace(self, text):
 		if self._tracing != False and \
@@ -409,12 +440,20 @@ class MulticastCallback:
 class DeviceHandle:
 
 	def __init__(self, name, bind_callback, unbind_callback):
-		self.name = name
+		self._name = name
 		self._bind_callback = bind_callback
 		self._unbind_callback = unbind_callback
-		self.devices = []
+		self._devices = []
 		self._callbacks = {}
 		self._component = None
+
+	@property
+	def name(self):
+	    return self._name
+
+	@property
+	def devices(self):
+	    return self._devices
 
 	def register_component(self, component):
 		self._component = component
@@ -476,38 +515,42 @@ class SingleDeviceHandle(DeviceHandle):
 
 	def __init__(self, name, device_name_or_id, bind_callback = None, unbind_callback = None, uid = None, auto_fix = False):
 		super().__init__(name, bind_callback, unbind_callback)
-		self.device_identifier = get_device_identifier(device_name_or_id)
-		self.uid = uid
-		self.auto_fix = auto_fix
-		self.device = None
+		self._device_identifier = get_device_identifier(device_name_or_id)
+		self._uid = uid
+		self._auto_fix = auto_fix
+		self._device = None
+
+	@property
+	def device(self):
+	    return self._device
 
 	def on_bind_device(self, device):
 		if len(self.devices) > 0:
 			return
-		if device.identity[5] != self.device_identifier:
+		if device.identity[5] != self._device_identifier:
 			return
-		if self.uid == None:
-			if self.auto_fix:
-				self.uid = identity[0]
-		elif device.identity[0] != self.uid:
+		if self._uid == None:
+			if self._auto_fix:
+				self._uid = identity[0]
+		elif device.identity[0] != self._uid:
 			return
-		self.device = device
+		self._device = device
 		super().on_bind_device(device)
 
 	def on_unbind_device(self, device):
 		super().on_unbind_device(device)
-		if self.device == device:
-			self.device = None
+		if self._device == device:
+			self._device = None
 
 
 class MultiDeviceHandle(DeviceHandle):
 
 	def __init__(self, name, device_name_or_id, bind_callback = None, unbind_callback = None):
 		super().__init__(name, bind_callback, unbind_callback)
-		self.device_identifier = get_device_identifier(device_name_or_id)
+		self._device_identifier = get_device_identifier(device_name_or_id)
 
 	def on_bind_device(self, device):
-		if not device.identity[5] == self.device_identifier:
+		if not device.identity[5] == self._device_identifier:
 			return
 		super().on_bind_device(device)
 
@@ -515,40 +558,60 @@ class MultiDeviceHandle(DeviceHandle):
 class EventInfo:
 
 	def __init__(self, sender = None, name = None, predicate = None, transform = None):
-		self.sender = sender
-		self.name = name
-		self.predicate = predicate
-		self.transform = transform
-		self.component = None
+		self._sender = sender
+		self._name = name
+		self._predicate = predicate
+		self._transform = transform
+		self._component = None
+
+	@property
+	def sender(self):
+		return self._sender
+
+	@property
+	def name(self):
+		return self._name
+
+	@property
+	def component(self):
+	    return self._component
 
 	def create_listener(self, callback):
 		return EventListener(callback, 
-			sender = self.sender, 
-			name = self.name, 
-			predicate = self.predicate,
-			transform = self.transform)
+			sender = self._sender, 
+			name = self._name, 
+			predicate = self._predicate,
+			transform = self._transform)
 
 	def __str__(self):
 		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
-			% (self.sender, self.name,
-			   self.transform != None, self.predicate != None, 
-			   self.component)
+			% (self._sender, self._name,
+			   self._transform != None, self._predicate != None, 
+			   self._component)
 
 
 class EventListener:
 
 	def __init__(self, callback, sender = None, name = None, predicate = None, transform = None, component = None):
-		self.callback = callback
-		self.sender = sender
-		self.name = name
-		self.predicate = predicate
-		self.transform = transform
-		self.component = component
+		self._callback = callback
+		self._sender = sender
+		self._name = name
+		self._predicate = predicate
+		self._transform = transform
+		self._component = component
 
 	def __call__(self, event):
-		if self.predicate == None or self.predicate(event):
-			self.callback(event[0], event[1], 
-				self.transform(event[2]) if self.transform else event[2])
+		if self._predicate == None or self._predicate(event):
+			self._callback(event[0], event[1], 
+				self._transform(event[2]) if self._transform else event[2])
+
+	@property
+	def sender(self):
+	    return self._sender
+
+	@property
+	def name(self):
+	    return self._name
 
 	def for_sender(callback, sender):
 		return EventListener(callback, sender = sender)
@@ -561,6 +624,6 @@ class EventListener:
 
 	def __str__(self):
 		return "EventListener(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
-			% (self.sender, self.name,
-			   self.transform != None, self.predicate != None, 
-			   self.component)
+			% (self._sender, self._name,
+			   self._transform != None, self._predicate != None, 
+			   self._component)
