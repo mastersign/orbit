@@ -364,7 +364,7 @@ class Component:
 		self._tracing = tracing
 		self._event_tracing = event_tracing
 		self._device_handles = []
-		self.core.add_component(self)
+		self._core.add_component(self)
 
 	@property
 	def core(self):
@@ -376,12 +376,12 @@ class Component:
 
 	def trace(self, text):
 		if self._tracing != False and \
-			(self._tracing or self.core.configuration.component_tracing):
+			(self._tracing or self._core.configuration.component_tracing):
 			_trace(text, self.name)
 
 	def event_trace(self, text):
 		if self._event_tracing != False and \
-			(self._event_tracing or self.core.configuration.event_tracing):
+			(self._event_tracing or self._core.configuration.event_tracing):
 			_trace(text, self.name)
 
 	def on_core_started(self):
