@@ -2,6 +2,9 @@
 
 # Package orbit.setup
 
+# Hint: This module is runnable as a script 
+#       to print the current configuration.
+
 import os, json
 
 class Configuration:
@@ -123,5 +126,5 @@ class Configuration:
 
 # script execution
 if __name__ == '__main__':
-	cc = ConnConfig()
+	cc = Configuration()
 	print(str(cc))
