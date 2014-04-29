@@ -355,6 +355,48 @@ class Blackboard:
 		self._sender_groups[group_name] = names
 
 
+class Job:
+
+	def __init__(self, core, name, background):
+		self._core = core
+		self._background = background
+		self._components = {}
+
+	@property
+	def core(self):
+	    return self._core
+
+	@property
+	def background(self):
+	    return self._background
+
+	def add_component(self):
+		# TODO
+		pass
+
+	def activate(self):
+		# TODO bind available devices
+		# TODO activate event bindings
+		pass
+
+	def deactivate(self):
+		# TODO unbind bound devices
+		# TODO deactivate event bindings
+		pass
+
+
+class App:
+
+	def __init__(self, core, name):
+		super().__init__(core, name, False)
+
+
+class Service:
+
+	def __init__(self, core, name):
+		super().__init__(core, name, True)
+
+
 class Component:
 
 	def __init__(self, core, name, 
