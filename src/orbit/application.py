@@ -314,21 +314,6 @@ class Blackboard:
 		if self._core.configuration.event_tracing:
 			_trace(text, 'Blackboard')
 
-	def listen(self, event_listener):
-		sender = event_listener.sender
-		name = event_listener.name
-		if sender in self._event_listeners:
-			sender_listeners = self._event_listeners[sender]
-		else:
-			sender_listeners = {}
-			self._event_listeners[sender] = sender_listeners
-		if name in sender_listeners:
-			name_listeners = sender_listeners[name]
-		else:
-			name_listeners = []
-			sender_listeners[name] = name_listeners
-		name_listeners.append(event_listener)
-
 	def initialize(self):
 		def build_group_lookup(names_by_group):
 			groups_by_name = {}
@@ -345,6 +330,35 @@ class Blackboard:
 
 		self.event_group_lookup = build_group_lookup(self._event_groups)
 		self.sender_group_lookup = build_group_lookup(self._sender_groups)
+
+	def add_listener(self, event_listener):
+		sender = event_listener.sender
+		name = event_listener.name
+		if sender in self._event_listeners:
+			sender_listeners = self._event_listeners[sender]
+		else:
+			sender_listeners = {}
+			self._event_listeners[sender] = sender_listeners
+		if name in sender_listeners:
+			name_listeners = sender_listeners[name]
+		else:
+			name_listeners = []
+			sender_listeners[name] = name_listeners
+		name_listeners.append(event_listener)
+
+	def remove_listener(self, event_listener):
+		sender = event_listener.sender
+		name = event_listener.name
+		if sender in self._event_listeners:
+			sender_listeners = self._event_listeners[sender]
+			if name in sender_listeners:
+				name_listeners = sender_listeners[name]
+				if event_listener in name_listeners:
+					name_listeners.remove(event_listener)
+				if len(name_listeners) == 0:
+					del(sender_listeners[sender])
+			if len(self._event_listeners) == 0:
+				del(self._event_listeners[sender])
 
 	def send(self, sender, name, value):
 		if not self._core.running:
