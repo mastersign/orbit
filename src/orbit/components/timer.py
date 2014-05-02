@@ -7,18 +7,18 @@ from ..application import Component
 
 class ActivityTimer(Component):
 
-	def __init__(self, core, name, event_info, 
+	def __init__(self, name, event_info, 
 		initial_state = True, timeout = 6,
 		tracing = None, event_tracing = None):
 
-		super().__init__(core, name,
+		super().__init__(name,
 			tracing = tracing, event_tracing = event_tracing)
 		self.timeout = timeout
 		self.timer = None
 		self.state = False
 		self.initial_state = initial_state
 
-		self.listen(event_info.create_listener(self.process_event))
+		self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		self.trigger()
@@ -63,11 +63,11 @@ class ActivityTimer(Component):
 
 class IntervalTimer(Component):
 
-	def __init__(self, core, name, event_info = None, 
+	def __init__(self, name, event_info = None, 
 		initial_state = True, interval = 1,
 		tracing = None, event_tracing = None):
 
-		super().__init__(core, name,
+		super().__init__(name,
 			tracing = tracing, event_tracing = event_tracing)
 		self.next_call = time()
 		self.interval = interval
@@ -76,7 +76,7 @@ class IntervalTimer(Component):
 		self.initial_state = initial_state
 
 		if event_info:
-			self.listen(event_info.create_listener(self.process_event))
+			self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		if value == self.state:
