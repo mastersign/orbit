@@ -357,29 +357,55 @@ class Blackboard:
 
 class Job:
 
-	def __init__(self, core, name, background):
-		self._core = core
+	def __init__(self, name, background):
+		self._core = None
 		self._background = background
 		self._components = {}
+		self._active = False
 
 	@property
 	def core(self):
 	    return self._core
 
+	def register_core(self, core):
+		if self._core:
+			raise AttributeError("the job is already associated with a core")
+		self._core = core
+
+	@property
+	def configuration(self):
+		if self._core:
+			return self._core.configuration
+		else
+			return None
+
 	@property
 	def background(self):
 	    return self._background
 
-	def add_component(self):
-		# TODO
-		pass
+	@property
+	def active(self):
+		return self._active
+
+	@property
+	def components(self):
+		return self._components
+
+	def add_component(self, component):
+		self._components[component.name] = component
+
+	def for_each_component(self, f):
+		for component in self._components.values():
+			f(component)
 
 	def activate(self):
 		# TODO bind available devices
 		# TODO activate event bindings
+		self._active = True
 		pass
 
 	def deactivate(self):
+		self._active = False
 		# TODO unbind bound devices
 		# TODO deactivate event bindings
 		pass
@@ -387,14 +413,14 @@ class Job:
 
 class App:
 
-	def __init__(self, core, name):
-		super().__init__(core, name, False)
+	def __init__(self, name):
+		super().__init__(name, False)
 
 
 class Service:
 
-	def __init__(self, core, name):
-		super().__init__(core, name, True)
+	def __init__(self, name):
+		super().__init__(name, True)
 
 
 class Component:
