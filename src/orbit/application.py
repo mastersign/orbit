@@ -807,13 +807,12 @@ class EventInfo:
 
 class EventListener:
 
-	def __init__(self, callback, sender = None, name = None, predicate = None, transform = None, component = None):
+	def __init__(self, callback, sender = None, name = None, predicate = None, transform = None):
 		self._callback = callback
 		self._sender = sender
 		self._name = name
 		self._predicate = predicate
 		self._transform = transform
-		self._component = component
 
 	def __call__(self, event):
 		if self._predicate == None or self._predicate(event):
@@ -838,7 +837,6 @@ class EventListener:
 		return EventListener(callback, sender = sender, name = name)
 
 	def __str__(self):
-		return "EventListener(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
+		return "EventListener(sender = %s, name = %s, predicate: %s, transform: %s)" \
 			% (self._sender, self._name,
-			   self._transform != None, self._predicate != None, 
-			   self._component)
+			   self._transform != None, self._predicate != None)
