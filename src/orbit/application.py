@@ -292,6 +292,7 @@ class DeviceManager:
 		if device_handle in self._device_handles:
 			return
 		self._device_handles.append(device_handle)
+		device_handle.on_add_handle(self)
 		for device in self._devices:
 			device_handle.on_bind_device(device)
 
@@ -300,6 +301,7 @@ class DeviceManager:
 			return
 		for device in self._devices:
 			device_handle.on_unbind_device(device)
+		device_handle.on_remove_handle()
 		self._device_handles.remove(device_handle)
 
 	def add_device_callback(self, uid, event, callback):
