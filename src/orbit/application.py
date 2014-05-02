@@ -468,12 +468,18 @@ class Job:
 		return self._active
 	@active.setter
 	def active(self, value):
+		if self._active == value:
+			return
 		if self._core == None:
 			raise AttributeError("the job is not installed in any core")
 		if value and not self._core.started:
 			raise AttributeError("the job can not be activated while the core is not started")
 		self._active = value
 		self.for_each_component(lambda c: c.enabled = value)
+		if self._active:
+			self.for_each_component(lambda c: c.on_job_activated())
+		else:
+			self.for_each_component(lambda c: c.on_job_deactivated())
 
 	@property
 	def components(self):
