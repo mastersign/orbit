@@ -44,13 +44,15 @@ by user with optional *Configuration*
 * fix association with *Configuration*
 * `install(job)` associates with *Job*s  
   Called by: user
+	* if `started` and `job.background` then `job.active = True` 
 * `uninstall(job)` disassociates from *Job*s  
   Called by: user
+	* if `job.active` then `job.active = False`
 * `activate(application)` selectes current *Application*  
   Called by: **???**
 	* if `current_application` then `current_application.active = False`
 	* `current_application = application`
-	* `current_application.active = True`
+	* if `current_application` then `current_application.active = True`
 
 ### Transitions
 
