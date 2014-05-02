@@ -13,26 +13,24 @@ def _trace(text, source):
 class Core:
 
 	def __init__(self, config = setup.Configuration()):
-		self._running = False
+		self._started = False
 		self._configuration = config
-		self._components = {}
-
+		
 		self._device_manager = DeviceManager(self)
 		self._blackboard = Blackboard(self)
+
+		self._jobs = {}
+		self._current_application = None
 
 		self.trace("application core initialized")
 
 	@property
-	def running(self):
-		return self._running
+	def started(self):
+		return self._started
 
 	@property
 	def configuration(self):
 		return self._configuration
-
-	@property
-	def components(self):
-		return self._components
 
 	@property
 	def device_manager(self):
@@ -40,46 +38,81 @@ class Core:
 
 	@property
 	def blackboard(self):
-		return self._blackboard	
+		return self._blackboard
+
+	@property
+	def jobs(self):
+		return self._jobs
 
 	def trace(self, text):
 		if self._configuration.core_tracing:
 			_trace(text, 'Core')
 
 	def start(self):
-		if self._running:
+		if self._started:
 			self.trace("application core allready started")
 			return
 		self.trace("starting application core")
 
+		self._started = True
+
 		self._blackboard.initialize()
-		self._running = True
-		self.for_each_component(
-			lambda c: c.on_core_started())
 		self._device_manager.start()
+
+		self.for_each_job(
+			lambda job:
+				if job.background:
+					job.active = True)
 
 		self.trace("application core started")
 
 	def stop(self):
-		if not self._running:
+		if not self._started:
 			self.trace("application core allready stopped")
 			return
 		self.trace("stopping application core")
 
 		self._device_manager.stop()
-		self._running = False
+		self._started = False
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
 			
 		self.trace("application core stopped")
 
-	def add_component(self, component):
-		# store reference to component
-		self._components[component.name] = component
+	def install(self, job):
+		if job.name in self._jobs:
+			self.uninstall(self._jobs[job.name])
+		self._jobs[self.name] = job
+		if self._started and job.background:
+			job.active = True
 
-	def for_each_component(self, f):
-		for component in self._components.values():
-			f(component)
+	def uninstall(self, job):
+		if job.active:
+			job.active = False
+		del(self._jobs[job.name])
+
+	def for_each_job(self, f):
+		for job in self._jobs.values():
+			f(job)
+
+	def for_each_active_job(self, f):
+		for job in self._jobs.values():
+			if job.active:
+				f(job)
+
+	def activate(self, application):
+		# if only the name is given: lookup job name
+		if type(application) is str:
+			if application in self._jobs:
+				application = self._jobs[application]
+			else
+				raise KeyError("job name not found")
+		# set job as current application
+		if self._current_application:
+			self._current_application.active = False
+		self._current_application = application
+		if self._current_application:
+			self._current_application.active = True
 
 
 class DeviceManager:
