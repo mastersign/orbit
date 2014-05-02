@@ -44,10 +44,12 @@ by user with optional *Configuration*
 * fix association with *Configuration*
 * `install(job)` associates with *Job*s  
   Called by: user
+	* `job.on_install(core)`
 	* if `started` and `job.background` then `job.active = True` 
 * `uninstall(job)` disassociates from *Job*s  
   Called by: user
 	* if `job.active` then `job.active = False`
+	* `job.on_uninstall()`
 * `activate(application)` selectes current *Application*  
   Called by: **???**
 	* if `current_application` then `current_application.active = False`
@@ -58,10 +60,14 @@ by user with optional *Configuration*
 
 * `started = True`  
   Called by: `core.start()`
-	* if `job.background` then `job.active = True`
+	* for each *Job*s:
+		* `job.on_core_started()`
+	* for each *Job*s:
+		* if `job.background` then `job.active = True`
 * `started = False`  
   Called by: `core.stop()`
-	* `job.active = False`
+	* for each *Job*s:	
+		* `job.active = False`
 
 ## Blackboard
 ### Initialization
@@ -80,15 +86,34 @@ by *Core* with reference to *Core*
 ### Association
 
 * fix association with *Core*
+* fix association with *TF.IPConnection*(s)
 * `add_handle(device_handle)` associates with *DeviceHandle*s  
   Called by: `component.enabled` and `component.add_device_handle(device_handle)`
+	* `device_handle.on_add_handle(device_manager)`
+	* for each *TF.Device*:
+		* `device_handle.on_bind_device(device)`
 * `remove_handle(device_handle)` disassociates from *DeviceHandle*s  
   Called by: `component.enabled`
+	* for each *TF.Device*:
+		* `device_handle.on_unbind_device(device)`
+	* `device_handle.on_remove_handle()`
 * `add_device_callback(uid, event_code, device_callback)` associates with *DeviceCallback*s  
   Called by: `device_handle.on_bind_device(device)`
 * `remove_device_callback(uid, event_code, device_callback)` disassociates from *DeviceCallback*s  
   Called by: `device_handle.on_unbind_device(device)`
+* `_bind_device(device)` associates with *TF.Device*  
+  Called by: `device_manager._cb_enumerate(...)`
+	* for each *device_callback* with matching device type:
+		* `device.register_callback(callback)`
+* `_unbind_device(device)` disassociates from *TF.Device"  
+  Called by: `device_manager._cb_enumerate(...)`
 
+### Transitions
+
+* `start()`  
+  Called by: `core.start()`
+* `stop()`
+  Called by: `core.stop()`
 
 ## Job
 ### Initialization
@@ -101,21 +126,27 @@ stand alone by user
   Called by: `core.uninstall(job)`
 * `add_component(component)` associates with *Component*s  
   Called by: user
+	* `component.on_add_component(parent)`
 	* if `job.active` then `component.enabled = True`
 * `remove_component(component)` disassociates from *Component*s  
-  called by user
+  Called by: user
 	* if `job.active` then `component.enabled = False`
+	* `component.on_remove_component()`
 
 ### Transitions
 
 * `active = True`  
-  Condition: `core` present and `core.started`  
-  Called by: `job.activate()`
-	* `component.enabled = True`
+  Condition: `core` present and `core.started`
+	* for each *component*s:	
+		* `component.enabled = True`
+	* for each *Component*s:
+		* `component.on_job_activated()`  
 * `active = False`  
   Condition: `core` present  
-  Called by: `job.deactivate()`
-	* `component.enabled = False`
+	* for each *component*s:	
+		* `component.enabled = False`
+	* for each *Component*s:
+		* `component.on_job_deactivated()`  
 
 ### Invariants
 
