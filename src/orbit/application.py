@@ -121,6 +121,7 @@ class DeviceManager:
 		self._core = core
 		self._connected = False
 		self._devices = {}
+		self._device_handles = []
 		self._device_callbacks = {}
 		self._device_initializers = {}
 		self._device_finalizers = {}
@@ -178,9 +179,6 @@ class DeviceManager:
 			self.trace("connection established (auto reconnect)")
 		else:
 			self.trace("connection established")
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_connected())
 		# enumerate devices
 		self._conn.enumerate()
 
@@ -193,9 +191,6 @@ class DeviceManager:
 			self.trace("connection lost (shutdown")
 		else:
 			self.trace("connection lost")
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_disconnected())
 
 	def _bind_device(self, device_identifier, uid):
 		self.trace("binding device [%s]" % uid)
@@ -215,17 +210,17 @@ class DeviceManager:
 				self.trace("binding dispatcher to [%s] (%s)" % (uid, event))
 				mcc = callbacks[event]
 				device.register_callback(event, mcc)
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_bind_device(device))
+		# notify device handles
+		for device_handle in self._device_handles:
+			device_handle.on_bind_device(device)
 
 	def _unbind_device(self, uid):
 		if uid in self._devices:
 			self.trace("unbinding device [%s]" % uid)
 			device = self._devices[uid]
-			# notify components
-			self._core.for_each_component(
-				lambda c: c.on_unbind_device(device))
+			# notify device handles
+			for device_handle in self._device_handles:
+				device_handle.on_unbind_device(device)
 			# delete reference to binding interface
 			del(self._devices[uid])
 
@@ -273,6 +268,20 @@ class DeviceManager:
 						print("Error during device finalization: %s" % err.description)
 				except Exception as exc:
 					print("Exception caught during device finalization:\n%s" % exc)
+
+	def add_handle(self, device_handle):
+		if device_handle in self._device_handles:
+			return
+		self._device_handles.append(device_handle)
+		for device in self._devices:
+			device_handle.on_bind_device(device)
+
+	def remove_handle(self, device_handle):
+		if device_handle not in self._device_handles:
+			return
+		for device in self._devices:
+			device_handle.on_unbind_device(device)
+		self._device_handles.remove(device_handle)
 
 	def add_device_callback(self, uid, event, callback):
 		if uid not in self._device_callbacks:
