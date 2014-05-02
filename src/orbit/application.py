@@ -783,7 +783,6 @@ class EventInfo:
 		self._name = name
 		self._predicate = predicate
 		self._transform = transform
-		self._component = None
 
 	@property
 	def sender(self):
@@ -793,10 +792,6 @@ class EventInfo:
 	def name(self):
 		return self._name
 
-	@property
-	def component(self):
-	    return self._component
-
 	def create_listener(self, callback):
 		return EventListener(callback, 
 			sender = self._sender, 
@@ -805,10 +800,9 @@ class EventInfo:
 			transform = self._transform)
 
 	def __str__(self):
-		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
+		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s)" \
 			% (self._sender, self._name,
-			   self._transform != None, self._predicate != None, 
-			   self._component)
+			   self._transform != None, self._predicate != None)
 
 
 class EventListener:
