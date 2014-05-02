@@ -442,10 +442,13 @@ class Job:
 	def core(self):
 	    return self._core
 
-	def register_core(self, core):
+	def on_install(self, core):
 		if self._core:
 			raise AttributeError("the job is already associated with a core")
 		self._core = core
+
+	def on_uninstall(self):
+		self._core = None
 
 	@property
 	def configuration(self):
@@ -461,29 +464,44 @@ class Job:
 	@property
 	def active(self):
 		return self._active
+	@active.setter
+	def active(self, value):
+		if self._core == None:
+			raise AttributeError("the job is not installed in any core")
+		if value and not self._core.started:
+			raise AttributeError("the job can not be activated while the core is not started")
+		self._active = value
+		self.for_each_component(lambda c: c.enabled = value)
 
 	@property
 	def components(self):
 		return self._components
 
 	def add_component(self, component):
+		if component.name in self._components:
+			self.remove_component(self._components[component.name])
 		self._components[component.name] = component
+		if self._active:
+			component.enabled = True
+
+	def remove_component(self, component):
+		if component.name not in self._components:
+			raise AttributeError("the given component is not associated with this job")
+		if component.enabled:
+			component.enabled = False
+		del(self._components[component.name])
 
 	def for_each_component(self, f):
 		for component in self._components.values():
 			f(component)
 
-	def activate(self):
-		# TODO bind available devices
-		# TODO activate event bindings
-		self._active = True
-		pass
+	def on_core_started(self):
+		self.for_each_component(
+			lambda c: c.on_core_started())
 
-	def deactivate(self):
-		self._active = False
-		# TODO unbind bound devices
-		# TODO deactivate event bindings
-		pass
+	def on_core_stopped(self):
+		self.for_each_component(
+			lambda c: c.on_core_stopped())
 
 
 class App:
