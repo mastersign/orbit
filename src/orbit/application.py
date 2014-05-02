@@ -526,24 +526,61 @@ class Service:
 
 class Component:
 
-	def __init__(self, core, name, 
+	def __init__(self, name, 
 		tracing = None, event_tracing = None):
-		self._core = core
+		self._job = None
 		self._name = name
+		self._enabled = False
 		self._tracing = tracing
 		self._event_tracing = event_tracing
 		self._device_handles = []
-		self._core.add_component(self)
-
-	@property
-	def core(self):
-	    return self._core
+		self._event_listeners = []
 
 	@property
 	def name(self):
-	    return self._name
+		return self._name
+
+	@property
+	def job(self):
+		return self._job
+
+	def on_add_component(self, job):
+		if self._job:
+			raise AttributeError("the component is already associated with a job")
+		self._job = job
+
+	def on_remove_component(self):
+		self._job = None
+
+	@property
+	def enabled(self):
+	    return self._enabled
+	@enabled.setter
+	def enabled(self, value):
+		if self._enabled == value:
+			return
+		if self._job == None:
+			raise AttributeError("the component is not associated with any job")
+		if value and not self._job.active:
+			raise AttributeError("the component can not be enabled while the job is not active")
+	    self._enabled = value
+	    if self._enabled:
+			for event_listener in self._event_listeners:
+				self._job._core.blackboard.add_listener(event_listener)
+			for device_handle in self._device_handles:
+				self._job._core.device_manager.add_handle(device_handle)
+		else:
+			for event_listener in self._event_listeners:
+				self._job._core.blackboard.remove_listener(event_listener)
+			for device_handle in self._device_handles:
+				self._job._core.device_manager.remove_handle(device_handle)
 
 	def trace(self, text):
+		if self._tracing == False:
+			return
+		if self._job == None:
+			return
+		if self._job.configuration
 		if self._tracing != False and \
 			(self._tracing or self._core.configuration.component_tracing):
 			_trace(text, self.name)
@@ -561,33 +598,48 @@ class Component:
 		# can be overriden in sub classes
 		pass
 
-	def on_connected(self):
-		# can be overridden in sub classes
+	def on_job_activated(self):
+		# can be overriden in sub classes
 		pass
 
-	def on_disconnected(self):
-		# can be overridden in sub classes
+	def on_job_deactivated(self):
+		# can be overriden in sub classes
 		pass
-
-	def on_bind_device(self, device):
-		for dh in self._device_handles:
-			dh.on_bind_device(device)
-
-	def on_unbind_device(self, device):
-		for dh in self._device_handles:
-			dh.on_unbind_device(device)
 
 	def add_device_handle(self, device_handle):
+		if device_handle in self._device_handles:
+			return
 		self._device_handles.append(device_handle)
-		device_handle.register_component(self)
+		if self._enabled:
+			self._job._core.device_manager.add_handle(device_handle)
 
-	def listen(self, event_listener):
+	def remove_device_handle(self, device_handle):
+		if device_handle not in self._device_handles:
+			return
+		if self._enabled:
+			self._job._core.device_manager.remove_handle(device_handle)
+		self._device_handles.remove(device_handle)
+
+	def add_listener(self, event_listener):
+		if event_listener in self._event_listeners:
+			return
 		event_listener.component = self.name
-		self.core.blackboard.listen(event_listener)
+		self._event_listeners.append(event_listener)
+		if self._enabled:
+			self._job._core.blackboard.add_listener(event_listener)
+
+	def remove_listener(self, event_listener):
+		if event_listener not in self._event_listeners:
+			return
+		if self._enabled:
+			self._job._core.blackboard.remove_listener(event_listener)
+		self._event_listeners.remove(event_listener)
 
 	def send(self, name, value = None):
+		if not self._enabled:
+			raise AttributeError("this component is not enabled")
 		self.event_trace("EVENT %s: %s" % (name, str(value)))
-		self.core.blackboard.send(self.name, name, value)
+		self._job._core.blackboard.send(self.name, name, value)
 
 
 class MulticastCallback:
