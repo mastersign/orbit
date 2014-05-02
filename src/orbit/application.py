@@ -80,8 +80,9 @@ class Core:
 			self.trace("application core allready stopped")
 			return
 
-		self.for_each_active_job(
-			lambda j: j.active = False)
+		def deactivator(job):
+			job.active = False
+		self.for_each_active_job(deactivator)
 
 		self.trace("stopping application core")
 
@@ -97,7 +98,7 @@ class Core:
 			raise AttributeError("the given job is already associated with a core")
 		if job.name in self._jobs:
 			self.uninstall(self._jobs[job.name])
-		self._jobs[self.name] = job
+		self._jobs[job.name] = job
 		job.on_install(self)
 		if self._started and job.background:
 			job.active = True
@@ -124,7 +125,7 @@ class Core:
 		if type(application) is str:
 			if application in self._jobs:
 				application = self._jobs[application]
-			else
+			else:
 				raise KeyError("job name not found")
 		# set job as current application
 		if self._current_application:
@@ -435,10 +436,15 @@ class Blackboard:
 class Job:
 
 	def __init__(self, name, background):
+		self._name = name
 		self._core = None
 		self._background = background
 		self._components = {}
 		self._active = False
+
+	@property
+	def name(self):
+		return self._name
 
 	@property
 	def core(self):
@@ -456,7 +462,7 @@ class Job:
 	def configuration(self):
 		if self._core:
 			return self._core.configuration
-		else
+		else:
 			return None
 
 	@property
@@ -475,11 +481,22 @@ class Job:
 		if value and not self._core.started:
 			raise AttributeError("the job can not be activated while the core is not started")
 		self._active = value
-		self.for_each_component(lambda c: c.enabled = value)
 		if self._active:
-			self.for_each_component(lambda c: c.on_job_activated())
+			self.on_activated()
 		else:
-			self.for_each_component(lambda c: c.on_job_deactivated())
+			self.on_deactivated()
+
+	def on_activated(self):
+		def enabler(component):
+			component.enabled = True
+		self.for_each_component(enabler)
+		self.for_each_component(lambda c: c.on_job_activated())
+
+	def on_deactivated(self):
+		def disabler(component):
+			component.enabled = False
+		self.for_each_component(disabler)
+		self.for_each_component(lambda c: c.on_job_deactivated())
 
 	@property
 	def components(self):
@@ -512,13 +529,31 @@ class Job:
 			lambda c: c.on_core_stopped())
 
 
-class App:
+class App(Job):
 
 	def __init__(self, name):
 		super().__init__(name, False)
+		self._triggers = []
 
+	def add_trigger(self, event_info):
+		listener = event_info.create_listener(self.on_trigger)
+		self._triggers.append(listener)
 
-class Service:
+	def on_install(self, core):
+		super().on_install(core)
+		for trigger in self._triggers:
+			self._core.blackboard.add_listener(trigger)
+
+	def on_uninstall(self):
+		for trigger in self._triggers:
+			self._core.blackboard.remove_listener(trigger)
+		super().on_uninstall()
+
+	def on_trigger(self, sender, name, value):
+		self.trace("activating app %s, caused by trigger" % self.name)
+		self._core.activate(self)
+
+class Service(Job):
 
 	def __init__(self, name):
 		super().__init__(name, True)
@@ -554,7 +589,7 @@ class Component:
 
 	@property
 	def enabled(self):
-	    return self._enabled
+		return self._enabled
 	@enabled.setter
 	def enabled(self, value):
 		if self._enabled == value:
@@ -563,8 +598,8 @@ class Component:
 			raise AttributeError("the component is not associated with any job")
 		if value and not self._job.active:
 			raise AttributeError("the component can not be enabled while the job is not active")
-	    self._enabled = value
-	    if self._enabled:
+		self._enabled = value
+		if self._enabled:
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.add_listener(event_listener)
 			for device_handle in self._device_handles:
@@ -580,14 +615,17 @@ class Component:
 			return
 		if self._job == None:
 			return
-		if self._job.configuration
 		if self._tracing != False and \
-			(self._tracing or self._core.configuration.component_tracing):
+			(self._tracing or self._job._core.configuration.component_tracing):
 			_trace(text, self.name)
 
 	def event_trace(self, text):
+		if self._event_tracing == False:
+			return
+		if self._job == None:
+			return
 		if self._event_tracing != False and \
-			(self._event_tracing or self._core.configuration.event_tracing):
+			(self._event_tracing or self._job._core.configuration.event_tracing):
 			_trace(text, self.name)
 
 	def on_core_started(self):
@@ -620,7 +658,7 @@ class Component:
 			self._job._core.device_manager.remove_handle(device_handle)
 		self._device_handles.remove(device_handle)
 
-	def add_listener(self, event_listener):
+	def add_event_listener(self, event_listener):
 		if event_listener in self._event_listeners:
 			return
 		event_listener.component = self.name
@@ -628,7 +666,7 @@ class Component:
 		if self._enabled:
 			self._job._core.blackboard.add_listener(event_listener)
 
-	def remove_listener(self, event_listener):
+	def remove_event_listener(self, event_listener):
 		if event_listener not in self._event_listeners:
 			return
 		if self._enabled:
