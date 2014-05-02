@@ -20,6 +20,7 @@ class Core:
 		self._blackboard = Blackboard(self)
 
 		self._jobs = {}
+		self._default_application = None
 		self._current_application = None
 
 		self.trace("application core initialized")
@@ -44,6 +45,13 @@ class Core:
 	def jobs(self):
 		return self._jobs
 
+	@property
+	def default_application(self):
+		return self._default_application
+	@default_application.setter
+	def default_application(self, application):
+		self._default_application = application
+
 	def trace(self, text):
 		if self._configuration.core_tracing:
 			_trace(text, 'Core')
@@ -54,41 +62,52 @@ class Core:
 			return
 		self.trace("starting application core")
 
-		self._started = True
-
 		self._blackboard.initialize()
+		self._started = True
 		self._device_manager.start()
-
 		self.for_each_job(
-			lambda job:
-				if job.background:
-					job.active = True)
+			lambda j: j.on_core_started())
 
 		self.trace("application core started")
+
+		def activator(job):
+			if job.background:
+				job.active = True
+		self.for_each_job(activator)
 
 	def stop(self):
 		if not self._started:
 			self.trace("application core allready stopped")
 			return
+
+		self.for_each_active_job(
+			lambda j: j.active = False)
+
 		self.trace("stopping application core")
 
 		self._device_manager.stop()
 		self._started = False
-		self.for_each_component(
-			lambda c: c.on_core_stopped())
-			
+		self.for_each_job(
+			lambda j: j.on_core_stopped())
+
 		self.trace("application core stopped")
 
 	def install(self, job):
+		if job.core:
+			raise AttributeError("the given job is already associated with a core")
 		if job.name in self._jobs:
 			self.uninstall(self._jobs[job.name])
 		self._jobs[self.name] = job
+		job.on_install(self)
 		if self._started and job.background:
 			job.active = True
 
 	def uninstall(self, job):
+		if job.name not in self._jobs:
+			raise AttributeError("the given job is not associated with this core")
 		if job.active:
 			job.active = False
+		job.on_uninstall()
 		del(self._jobs[job.name])
 
 	def for_each_job(self, f):
