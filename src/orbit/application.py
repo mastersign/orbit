@@ -151,13 +151,13 @@ class DeviceManager:
 		self._conn.register_callback(IPConnection.CALLBACK_CONNECTED, self._cb_connected)
 		self._conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self._cb_disconnected)
 
-	@property
-	def devices(self):
-		return self._devices
-
 	def trace(self, text):
 		if self._core.configuration.device_tracing:
 			_trace(text, 'DeviceManager')
+
+	@property
+	def devices(self):
+		return self._devices
 
 	def start(self):
 		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
