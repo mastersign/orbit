@@ -292,13 +292,13 @@ class DeviceManager:
 			return
 		self._device_handles.append(device_handle)
 		device_handle.on_add_handle(self)
-		for device in self._devices:
+		for device in self._devices.values():
 			device_handle.on_bind_device(device)
 
 	def remove_handle(self, device_handle):
 		if device_handle not in self._device_handles:
 			return
-		for device in self._devices:
+		for device in self._devices.values():
 			device_handle.on_unbind_device(device)
 		device_handle.on_remove_handle()
 		self._device_handles.remove(device_handle)
