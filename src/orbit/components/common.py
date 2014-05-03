@@ -5,11 +5,9 @@ from ..application import Component
 class EventCallback(Component):
 
 	def __init__(self, name, 
-		event_info, callback,
-		tracing = None, event_tracing = None):
+		event_info, callback):
 		
-		super().__init__(name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 
 		self.callback = callback
 

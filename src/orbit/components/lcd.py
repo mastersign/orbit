@@ -12,8 +12,7 @@ class LCDButtonsComponent(Component):
 	def __init__(self, name, 
 		tracing = None, event_tracing = None):
 		
-		super().__init__(name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 
 		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -38,11 +37,9 @@ class LCDButtonsComponent(Component):
 
 class LCDBacklightComponent(Component):
 
-	def __init__(self, name, event_info, 
-		tracing = None, event_tracing = None):
+	def __init__(self, name, event_info):
 
-		super().__init__(name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.state = False
 
 		self.lcd_handle = MultiDeviceHandle(
@@ -82,11 +79,9 @@ class LCDBacklightComponent(Component):
 class LCDWatch(Component):
 
 	def __init__(self, name, event_info,
-		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"},
-		tracing = None, event_tracing = None):
+		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"}):
 
-		super().__init__(name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.lines = lines
 
 		if lcd_uid:
@@ -111,11 +106,9 @@ class LCDWatch(Component):
 class LCDMessage(Component):
 
 	def __init__(self, name, event_info, lines, 
-		lcd_uid = None,
-		tracing = None, event_tracing = None):
+		lcd_uid = None):
 
-		super().__init__(name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.lines = lines
 
 		if lcd_uid:
@@ -139,11 +132,9 @@ class LCDMessage(Component):
 class LCDMenu(Component):
 
 	def __init__(self, name, enter_event_info, exit_event_info,
-		lcd_uid = None,	entries = [('None', 'none')],
-		tracing = None, event_tracing = None):
+		lcd_uid = None,	entries = [('None', 'none')]):
 
-		super().__init__(name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.entries = entries
 		self.selected = 0
 		self.active = False

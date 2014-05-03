@@ -25,6 +25,10 @@ class Core:
 
 		self.trace("application core initialized")
 
+	def trace(self, text):
+		if self._configuration.core_tracing:
+			_trace(text, 'Core')
+
 	@property
 	def started(self):
 		return self._started
@@ -51,10 +55,6 @@ class Core:
 	@default_application.setter
 	def default_application(self, application):
 		self._default_application = application
-
-	def trace(self, text):
-		if self._configuration.core_tracing:
-			_trace(text, 'Core')
 
 	def start(self):
 		if self._started:
@@ -441,6 +441,18 @@ class Job:
 		self._background = background
 		self._components = {}
 		self._active = False
+		self._tracing = True
+
+	@property
+	def tracing(self):
+	    return self._tracing
+	@tracing.setter
+	def tracing(self, value):
+	    self._tracing = value
+	
+	def trace(self, text):
+		if self._tracing and (self._core == None or self._core.configuration.job_tracing):
+			_trace(text, "Job " + self._name)
 
 	@property
 	def name(self):
@@ -561,15 +573,36 @@ class Service(Job):
 
 class Component:
 
-	def __init__(self, name, 
-		tracing = None, event_tracing = None):
+	def __init__(self, name):
 		self._job = None
 		self._name = name
 		self._enabled = False
-		self._tracing = tracing
-		self._event_tracing = event_tracing
+		self._tracing = True
+		self._event_tracing = True
 		self._device_handles = []
 		self._event_listeners = []
+
+	@property
+	def tracing(self):
+		return self._tracing
+	@tracing.setter
+	def tracing(self, enabled):
+		self._tracing = enabled
+
+	def trace(self, text):
+		if self._tracing and (self._job == None or self._job._core.configuration.job_tracing):
+			_trace(text, "Component: " + self._name)
+
+	@property
+	def event_tracing(self):
+		return self._event_tracing
+	@event_tracing.setter
+	def event_tracing(self, enabled):
+		self._event_tracing = enabled
+
+	def event_trace(self, name, value):
+		if self._event_tracing:
+			_trace("EVENT %s: %s" % (name, str(value)), "Component " + self._name)
 
 	@property
 	def name(self):
@@ -609,24 +642,6 @@ class Component:
 				self._job._core.blackboard.remove_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
-
-	def trace(self, text):
-		if self._tracing == False:
-			return
-		if self._job == None:
-			return
-		if self._tracing != False and \
-			(self._tracing or self._job._core.configuration.component_tracing):
-			_trace(text, self.name)
-
-	def event_trace(self, text):
-		if self._event_tracing == False:
-			return
-		if self._job == None:
-			return
-		if self._event_tracing != False and \
-			(self._event_tracing or self._job._core.configuration.event_tracing):
-			_trace(text, self.name)
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -676,7 +691,7 @@ class Component:
 	def send(self, name, value = None):
 		if not self._enabled:
 			raise AttributeError("this component is not enabled")
-		self.event_trace("EVENT %s: %s" % (name, str(value)))
+		self.event_trace(name, value)
 		self._job._core.blackboard.send(self.name, name, value)
 
 
