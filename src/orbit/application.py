@@ -633,6 +633,7 @@ class Component:
 			raise AttributeError("the component can not be enabled while the job is not active")
 		self._enabled = value
 		if self._enabled:
+			self.on_enabled()
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.add_listener(event_listener)
 			for device_handle in self._device_handles:
@@ -642,6 +643,7 @@ class Component:
 				self._job._core.blackboard.remove_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
+			self.on_disabled()
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -656,6 +658,14 @@ class Component:
 		pass
 
 	def on_job_deactivated(self):
+		# can be overriden in sub classes
+		pass
+
+	def on_enabled(self):
+		# can be overriden in sub classes
+		pass
+
+	def on_disabled(self):
 		# can be overriden in sub classes
 		pass
 
