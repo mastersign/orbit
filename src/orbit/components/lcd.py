@@ -9,11 +9,10 @@ LCD204 = BrickletLCD20x4
 
 class LCDButtonsComponent(Component):
 
-	def __init__(self, core, name, 
+	def __init__(self, name, 
 		tracing = None, event_tracing = None):
 		
-		super().__init__(core, name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 
 		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -38,11 +37,9 @@ class LCDButtonsComponent(Component):
 
 class LCDBacklightComponent(Component):
 
-	def __init__(self, core, name, event_info, 
-		tracing = None, event_tracing = None):
+	def __init__(self, name, event_info):
 
-		super().__init__(core, name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.state = False
 
 		self.lcd_handle = MultiDeviceHandle(
@@ -50,7 +47,7 @@ class LCDBacklightComponent(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(self.process_event))
+		self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
@@ -81,12 +78,10 @@ class LCDBacklightComponent(Component):
 
 class LCDWatch(Component):
 
-	def __init__(self, core, name, event_info,
-		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"},
-		tracing = None, event_tracing = None):
+	def __init__(self, name, event_info,
+		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"}):
 
-		super().__init__(core, name, 
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.lines = lines
 
 		if lcd_uid:
@@ -98,7 +93,7 @@ class LCDWatch(Component):
 
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(self.process_event))
+		self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		self.lcd_handle.for_each_device(self.show_time)
@@ -110,12 +105,10 @@ class LCDWatch(Component):
 
 class LCDMessage(Component):
 
-	def __init__(self, core, name, event_info, lines, 
-		lcd_uid = None,
-		tracing = None, event_tracing = None):
+	def __init__(self, name, event_info, lines, 
+		lcd_uid = None):
 
-		super().__init__(core, name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.lines = lines
 
 		if lcd_uid:
@@ -126,7 +119,7 @@ class LCDMessage(Component):
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(event_info.create_listener(self.process_event))
+		self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		self.lcd_handle.for_each_device(self.show_message)
@@ -138,12 +131,10 @@ class LCDMessage(Component):
 
 class LCDMenu(Component):
 
-	def __init__(self, core, name, enter_event_info, exit_event_info,
-		lcd_uid = None,	entries = [('None', 'none')],
-		tracing = None, event_tracing = None):
+	def __init__(self, name, 
+		lcd_uid = None, entries = [('None', 'none')]):
 
-		super().__init__(core, name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.entries = entries
 		self.selected = 0
 		self.active = False
@@ -153,9 +144,6 @@ class LCDMenu(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.listen(enter_event_info.create_listener(self.process_enter_event))
-		self.listen(exit_event_info.create_listener(self.process_exit_event))
-		
 		self.lcd_handle.register_callback(
 			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
 
@@ -163,10 +151,10 @@ class LCDMenu(Component):
 		if self.active:
 			self.update_lcd(device)
 
-	def process_enter_event(self, sender, name, value):
+	def on_enabled(self):
 		self.set_active(True)
 
-	def process_exit_event(self, sender, name, value):
+	def on_disabled(self):
 		self.set_active(False)
 
 	def button_pressed(self, no):

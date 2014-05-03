@@ -12,8 +12,9 @@ class Configuration:
 	DEFAULT_HOST = "localhost"
 	DEFAULT_PORT = 4223
 	DEFAULT_CORE_TRACING = True
-	DEFAULT_DEVICE_TRACING = False
+	DEFAULT_DEVICE_TRACING = True
 	DEFAULT_EVENT_TRACING = False
+	DEFAULT_JOB_TRACING = True
 	DEFAULT_COMPONENT_TRACING = True
 
 	@property
@@ -52,6 +53,14 @@ class Configuration:
 	    self._event_tracing = value
 
 	@property
+	def job_tracing(self):
+	    return self._job_tracing
+	@job_tracing.setter
+	def job_tracing(self, value):
+	    self._job_tracing = value
+	
+
+	@property
 	def component_tracing(self):
 	    return self._component_tracing
 	@component_tracing.setter
@@ -60,7 +69,7 @@ class Configuration:
 	
 
 	def _configfile_path(self):
-		return os.path.realpath(os.path.expanduser('~/.tink'))
+		return os.path.realpath(os.path.expanduser('~/.orbit'))
 
 	def _write_configfile(self, data):
 		with open(self._configfile_path(), 'w', encoding='utf-8') as f:
@@ -72,6 +81,7 @@ class Configuration:
 		self._core_tracing = Configuration.DEFAULT_CORE_TRACING
 		self._device_tracing = Configuration.DEFAULT_DEVICE_TRACING
 		self._event_tracing = Configuration.DEFAULT_EVENT_TRACING
+		self._job_tracing = Configuration.DEFAULT_JOB_TRACING
 		self._component_tracing = Configuration.DEFAULT_COMPONENT_TRACING
 
 		self.load()
@@ -83,6 +93,7 @@ class Configuration:
 			'core_tracing': self._core_tracing,
 			'device_tracing': self._device_tracing,
 			'event_tracing': self._event_tracing,
+			'job_tracing': self._job_tracing,
 			'component_tracing': self._component_tracing
 		}
 
@@ -98,6 +109,8 @@ class Configuration:
 				self._device_tracing = bool(data['device_tracing'])
 			if 'event_tracing' in data:
 				self._event_tracing = bool(data['event_tracing'])
+			if 'job_tracing' in data:
+				self._job_tracing = bool(data['job_tracing'])
 			if 'component_tracing' in data:
 				self._component_tracing = bool(data['component_tracing'])
 
@@ -121,6 +134,7 @@ class Configuration:
 			'Core Tracing:      ' + str(self.core_tracing) + '\n' + \
 			'Device Tracing:    ' + str(self.device_tracing) + '\n' + \
 			'Event Tracing:     ' + str(self.event_tracing) + '\n' + \
+			'Job Tracing:       ' + str(self.job_tracing) + '\n' + \
 			'Component Tracing: ' + str(self.component_tracing)
 
 

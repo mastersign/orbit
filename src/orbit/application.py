@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # Package orbit.application
 
 from datetime import datetime
@@ -13,26 +11,29 @@ def _trace(text, source):
 class Core:
 
 	def __init__(self, config = setup.Configuration()):
-		self._running = False
+		self._started = False
 		self._configuration = config
-		self._components = {}
-
+		
 		self._device_manager = DeviceManager(self)
 		self._blackboard = Blackboard(self)
 
+		self._jobs = {}
+		self._default_application = None
+		self._current_application = None
+
 		self.trace("application core initialized")
 
+	def trace(self, text):
+		if self._configuration.core_tracing:
+			_trace(text, 'Core')
+
 	@property
-	def running(self):
-		return self._running
+	def started(self):
+		return self._started
 
 	@property
 	def configuration(self):
 		return self._configuration
-
-	@property
-	def components(self):
-		return self._components
 
 	@property
 	def device_manager(self):
@@ -40,46 +41,96 @@ class Core:
 
 	@property
 	def blackboard(self):
-		return self._blackboard	
+		return self._blackboard
 
-	def trace(self, text):
-		if self._configuration.core_tracing:
-			_trace(text, 'Core')
+	@property
+	def jobs(self):
+		return self._jobs
+
+	@property
+	def default_application(self):
+		return self._default_application
+	@default_application.setter
+	def default_application(self, application):
+		self._default_application = application
 
 	def start(self):
-		if self._running:
+		if self._started:
 			self.trace("application core allready started")
 			return
 		self.trace("starting application core")
 
 		self._blackboard.initialize()
-		self._running = True
-		self.for_each_component(
-			lambda c: c.on_core_started())
+		self._started = True
 		self._device_manager.start()
+		self.for_each_job(
+			lambda j: j.on_core_started())
 
 		self.trace("application core started")
 
+		def activator(job):
+			if job.background:
+				job.active = True
+		self.for_each_job(activator)
+
 	def stop(self):
-		if not self._running:
+		if not self._started:
 			self.trace("application core allready stopped")
 			return
+
+		def deactivator(job):
+			job.active = False
+		self.for_each_active_job(deactivator)
+
 		self.trace("stopping application core")
 
 		self._device_manager.stop()
-		self._running = False
-		self.for_each_component(
-			lambda c: c.on_core_stopped())
-			
+		self._started = False
+		self.for_each_job(
+			lambda j: j.on_core_stopped())
+
 		self.trace("application core stopped")
 
-	def add_component(self, component):
-		# store reference to component
-		self._components[component.name] = component
+	def install(self, job):
+		if job.core:
+			raise AttributeError("the given job is already associated with a core")
+		if job.name in self._jobs:
+			self.uninstall(self._jobs[job.name])
+		self._jobs[job.name] = job
+		job.on_install(self)
+		if self._started and job.background:
+			job.active = True
 
-	def for_each_component(self, f):
-		for component in self._components.values():
-			f(component)
+	def uninstall(self, job):
+		if job.name not in self._jobs:
+			raise AttributeError("the given job is not associated with this core")
+		if job.active:
+			job.active = False
+		job.on_uninstall()
+		del(self._jobs[job.name])
+
+	def for_each_job(self, f):
+		for job in self._jobs.values():
+			f(job)
+
+	def for_each_active_job(self, f):
+		for job in self._jobs.values():
+			if job.active:
+				f(job)
+
+	def activate(self, application):
+		# if only the name is given: lookup job name
+		if type(application) is str:
+			if application in self._jobs:
+				application = self._jobs[application]
+			else:
+				raise KeyError("job name not found")
+		# set job as current application
+		if self._current_application:
+			self._current_application.active = False
+		self._current_application = application
+		if self._current_application:
+			self._current_application.active = True
 
 
 class DeviceManager:
@@ -88,6 +139,7 @@ class DeviceManager:
 		self._core = core
 		self._connected = False
 		self._devices = {}
+		self._device_handles = []
 		self._device_callbacks = {}
 		self._device_initializers = {}
 		self._device_finalizers = {}
@@ -99,13 +151,13 @@ class DeviceManager:
 		self._conn.register_callback(IPConnection.CALLBACK_CONNECTED, self._cb_connected)
 		self._conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self._cb_disconnected)
 
-	@property
-	def devices(self):
-		return self._devices
-
 	def trace(self, text):
 		if self._core.configuration.device_tracing:
 			_trace(text, 'DeviceManager')
+
+	@property
+	def devices(self):
+		return self._devices
 
 	def start(self):
 		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
@@ -145,9 +197,6 @@ class DeviceManager:
 			self.trace("connection established (auto reconnect)")
 		else:
 			self.trace("connection established")
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_connected())
 		# enumerate devices
 		self._conn.enumerate()
 
@@ -160,9 +209,6 @@ class DeviceManager:
 			self.trace("connection lost (shutdown")
 		else:
 			self.trace("connection lost")
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_disconnected())
 
 	def _bind_device(self, device_identifier, uid):
 		self.trace("binding device [%s]" % uid)
@@ -182,17 +228,17 @@ class DeviceManager:
 				self.trace("binding dispatcher to [%s] (%s)" % (uid, event))
 				mcc = callbacks[event]
 				device.register_callback(event, mcc)
-		# notify components
-		self._core.for_each_component(
-			lambda c: c.on_bind_device(device))
+		# notify device handles
+		for device_handle in self._device_handles:
+			device_handle.on_bind_device(device)
 
 	def _unbind_device(self, uid):
 		if uid in self._devices:
 			self.trace("unbinding device [%s]" % uid)
 			device = self._devices[uid]
-			# notify components
-			self._core.for_each_component(
-				lambda c: c.on_unbind_device(device))
+			# notify device handles
+			for device_handle in self._device_handles:
+				device_handle.on_unbind_device(device)
 			# delete reference to binding interface
 			del(self._devices[uid])
 
@@ -241,6 +287,22 @@ class DeviceManager:
 				except Exception as exc:
 					print("Exception caught during device finalization:\n%s" % exc)
 
+	def add_handle(self, device_handle):
+		if device_handle in self._device_handles:
+			return
+		self._device_handles.append(device_handle)
+		device_handle.on_add_handle(self)
+		for device in self._devices.values():
+			device_handle.on_bind_device(device)
+
+	def remove_handle(self, device_handle):
+		if device_handle not in self._device_handles:
+			return
+		for device in self._devices.values():
+			device_handle.on_unbind_device(device)
+		device_handle.on_remove_handle()
+		self._device_handles.remove(device_handle)
+
 	def add_device_callback(self, uid, event, callback):
 		if uid not in self._device_callbacks:
 			self._device_callbacks[uid] = {}
@@ -281,21 +343,6 @@ class Blackboard:
 		if self._core.configuration.event_tracing:
 			_trace(text, 'Blackboard')
 
-	def listen(self, event_listener):
-		sender = event_listener.sender
-		name = event_listener.name
-		if sender in self._event_listeners:
-			sender_listeners = self._event_listeners[sender]
-		else:
-			sender_listeners = {}
-			self._event_listeners[sender] = sender_listeners
-		if name in sender_listeners:
-			name_listeners = sender_listeners[name]
-		else:
-			name_listeners = []
-			sender_listeners[name] = name_listeners
-		name_listeners.append(event_listener)
-
 	def initialize(self):
 		def build_group_lookup(names_by_group):
 			groups_by_name = {}
@@ -313,8 +360,37 @@ class Blackboard:
 		self.event_group_lookup = build_group_lookup(self._event_groups)
 		self.sender_group_lookup = build_group_lookup(self._sender_groups)
 
+	def add_listener(self, event_listener):
+		sender = event_listener.sender
+		name = event_listener.name
+		if sender in self._event_listeners:
+			sender_listeners = self._event_listeners[sender]
+		else:
+			sender_listeners = {}
+			self._event_listeners[sender] = sender_listeners
+		if name in sender_listeners:
+			name_listeners = sender_listeners[name]
+		else:
+			name_listeners = []
+			sender_listeners[name] = name_listeners
+		name_listeners.append(event_listener)
+
+	def remove_listener(self, event_listener):
+		sender = event_listener.sender
+		name = event_listener.name
+		if sender in self._event_listeners:
+			sender_listeners = self._event_listeners[sender]
+			if name in sender_listeners:
+				name_listeners = sender_listeners[name]
+				if event_listener in name_listeners:
+					name_listeners.remove(event_listener)
+				if len(name_listeners) == 0:
+					del(sender_listeners[name])
+			if len(self._event_listeners) == 0:
+				del(self._event_listeners[sender])
+
 	def send(self, sender, name, value):
-		if not self._core.running:
+		if not self._core.started:
 			self.trace("DROPPED event before core started (%s, %s)" \
 				% (sender, name))
 			return
@@ -355,34 +431,219 @@ class Blackboard:
 		self._sender_groups[group_name] = names
 
 
-class Component:
+class Job:
 
-	def __init__(self, core, name, 
-		tracing = None, event_tracing = None):
-		self._core = core
+	def __init__(self, name, background):
 		self._name = name
-		self._tracing = tracing
-		self._event_tracing = event_tracing
-		self._device_handles = []
-		self._core.add_component(self)
+		self._core = None
+		self._background = background
+		self._components = {}
+		self._active = False
+		self._tracing = True
+
+	@property
+	def tracing(self):
+	    return self._tracing
+	@tracing.setter
+	def tracing(self, value):
+	    self._tracing = value
+	
+	def trace(self, text):
+		if self._tracing and (self._core == None or self._core.configuration.job_tracing):
+			_trace(text, "Job " + self._name)
+
+	@property
+	def name(self):
+		return self._name
 
 	@property
 	def core(self):
 	    return self._core
 
+	def on_install(self, core):
+		if self._core:
+			raise AttributeError("the job is already associated with a core")
+		self._core = core
+
+	def on_uninstall(self):
+		self._core = None
+
 	@property
-	def name(self):
-	    return self._name
+	def configuration(self):
+		if self._core:
+			return self._core.configuration
+		else:
+			return None
+
+	@property
+	def background(self):
+	    return self._background
+
+	@property
+	def active(self):
+		return self._active
+	@active.setter
+	def active(self, value):
+		if self._active == value:
+			return
+		if self._core == None:
+			raise AttributeError("the job is not installed in any core")
+		if value and not self._core.started:
+			raise AttributeError("the job can not be activated while the core is not started")
+		self._active = value
+		if self._active:
+			self.on_activated()
+		else:
+			self.on_deactivated()
+
+	def on_activated(self):
+		def enabler(component):
+			component.enabled = True
+		self.for_each_component(enabler)
+		self.for_each_component(lambda c: c.on_job_activated())
+
+	def on_deactivated(self):
+		def disabler(component):
+			component.enabled = False
+		self.for_each_component(disabler)
+		self.for_each_component(lambda c: c.on_job_deactivated())
+
+	@property
+	def components(self):
+		return self._components
+
+	def add_component(self, component):
+		if component.name in self._components:
+			self.remove_component(self._components[component.name])
+		self._components[component.name] = component
+		component.on_add_component(self)
+		if self._active:
+			component.enabled = True
+
+	def remove_component(self, component):
+		if component.name not in self._components:
+			raise AttributeError("the given component is not associated with this job")
+		if component.enabled:
+			component.enabled = False
+			component.on_remove_component()
+		del(self._components[component.name])
+
+	def for_each_component(self, f):
+		for component in self._components.values():
+			f(component)
+
+	def on_core_started(self):
+		self.for_each_component(
+			lambda c: c.on_core_started())
+
+	def on_core_stopped(self):
+		self.for_each_component(
+			lambda c: c.on_core_stopped())
+
+
+class App(Job):
+
+	def __init__(self, name):
+		super().__init__(name, False)
+		self._triggers = []
+
+	def add_trigger(self, event_info):
+		listener = event_info.create_listener(self.on_trigger)
+		self._triggers.append(listener)
+
+	def on_install(self, core):
+		super().on_install(core)
+		for trigger in self._triggers:
+			self._core.blackboard.add_listener(trigger)
+
+	def on_uninstall(self):
+		for trigger in self._triggers:
+			self._core.blackboard.remove_listener(trigger)
+		super().on_uninstall()
+
+	def on_trigger(self, sender, name, value):
+		self.trace("activating app %s, caused by trigger" % self.name)
+		self._core.activate(self)
+
+class Service(Job):
+
+	def __init__(self, name):
+		super().__init__(name, True)
+
+
+class Component:
+
+	def __init__(self, name):
+		self._job = None
+		self._name = name
+		self._enabled = False
+		self._tracing = True
+		self._event_tracing = True
+		self._device_handles = []
+		self._event_listeners = []
+
+	@property
+	def tracing(self):
+		return self._tracing
+	@tracing.setter
+	def tracing(self, enabled):
+		self._tracing = enabled
 
 	def trace(self, text):
-		if self._tracing != False and \
-			(self._tracing or self._core.configuration.component_tracing):
-			_trace(text, self.name)
+		if self._tracing and (self._job == None or self._job._core.configuration.job_tracing):
+			_trace(text, "Component: " + self._name)
 
-	def event_trace(self, text):
-		if self._event_tracing != False and \
-			(self._event_tracing or self._core.configuration.event_tracing):
-			_trace(text, self.name)
+	@property
+	def event_tracing(self):
+		return self._event_tracing
+	@event_tracing.setter
+	def event_tracing(self, enabled):
+		self._event_tracing = enabled
+
+	def event_trace(self, name, value):
+		if self._event_tracing:
+			_trace("EVENT %s: %s" % (name, str(value)), "Component " + self._name)
+
+	@property
+	def name(self):
+		return self._name
+
+	@property
+	def job(self):
+		return self._job
+
+	def on_add_component(self, job):
+		if self._job:
+			raise AttributeError("the component is already associated with a job")
+		self._job = job
+
+	def on_remove_component(self):
+		self._job = None
+
+	@property
+	def enabled(self):
+		return self._enabled
+	@enabled.setter
+	def enabled(self, value):
+		if self._enabled == value:
+			return
+		if self._job == None:
+			raise AttributeError("the component is not associated with any job")
+		if value and not self._job.active:
+			raise AttributeError("the component can not be enabled while the job is not active")
+		self._enabled = value
+		if self._enabled:
+			self.on_enabled()
+			for event_listener in self._event_listeners:
+				self._job._core.blackboard.add_listener(event_listener)
+			for device_handle in self._device_handles:
+				self._job._core.device_manager.add_handle(device_handle)
+		else:
+			for event_listener in self._event_listeners:
+				self._job._core.blackboard.remove_listener(event_listener)
+			for device_handle in self._device_handles:
+				self._job._core.device_manager.remove_handle(device_handle)
+			self.on_disabled()
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -392,33 +653,57 @@ class Component:
 		# can be overriden in sub classes
 		pass
 
-	def on_connected(self):
-		# can be overridden in sub classes
+	def on_job_activated(self):
+		# can be overriden in sub classes
 		pass
 
-	def on_disconnected(self):
-		# can be overridden in sub classes
+	def on_job_deactivated(self):
+		# can be overriden in sub classes
 		pass
 
-	def on_bind_device(self, device):
-		for dh in self._device_handles:
-			dh.on_bind_device(device)
+	def on_enabled(self):
+		# can be overriden in sub classes
+		pass
 
-	def on_unbind_device(self, device):
-		for dh in self._device_handles:
-			dh.on_unbind_device(device)
+	def on_disabled(self):
+		# can be overriden in sub classes
+		pass
 
 	def add_device_handle(self, device_handle):
+		if device_handle in self._device_handles:
+			return
 		self._device_handles.append(device_handle)
-		device_handle.register_component(self)
+		if self._enabled:
+			self._job._core.device_manager.add_handle(device_handle)
 
-	def listen(self, event_listener):
+	def remove_device_handle(self, device_handle):
+		if device_handle not in self._device_handles:
+			return
+		if self._enabled:
+			self._job._core.device_manager.remove_handle(device_handle)
+		device_handle.on_remove_device_handle()
+		self._device_handles.remove(device_handle)
+
+	def add_event_listener(self, event_listener):
+		if event_listener in self._event_listeners:
+			return
 		event_listener.component = self.name
-		self.core.blackboard.listen(event_listener)
+		self._event_listeners.append(event_listener)
+		if self._enabled:
+			self._job._core.blackboard.add_listener(event_listener)
+
+	def remove_event_listener(self, event_listener):
+		if event_listener not in self._event_listeners:
+			return
+		if self._enabled:
+			self._job._core.blackboard.remove_listener(event_listener)
+		self._event_listeners.remove(event_listener)
 
 	def send(self, name, value = None):
-		self.event_trace("EVENT %s: %s" % (name, str(value)))
-		self.core.blackboard.send(self.name, name, value)
+		if not self._enabled:
+			raise AttributeError("this component is not enabled")
+		self.event_trace(name, value)
+		self._job._core.blackboard.send(self.name, name, value)
 
 
 class MulticastCallback:
@@ -445,7 +730,7 @@ class DeviceHandle:
 		self._unbind_callback = unbind_callback
 		self._devices = []
 		self._callbacks = {}
-		self._component = None
+		self._device_manager = None
 
 	@property
 	def name(self):
@@ -455,33 +740,40 @@ class DeviceHandle:
 	def devices(self):
 	    return self._devices
 
-	def register_component(self, component):
-		self._component = component
+	def on_add_handle(self, device_manager):
+		self._device_manager = device_manager
+
+	def on_remove_handle(self):
+		self._device_manager = None
 
 	def on_bind_device(self, device):
 		uid = device.identity[0]
-		self._component.trace("binding device [%s] to handle %s" \
+		self._device_manager.trace("binding device [%s] to handle %s" \
 			% (uid, self.name))
 		self.devices.append(device)
-		dm = self._component.core.device_manager
+
 		for event_code in self._callbacks:
-			dm.add_device_callback(
-					uid, event_code, self._callbacks[event_code])
+			self._install_callback(
+				device, event_code, self._callbacks[event_code])
+
 		if self._bind_callback:
 			self._bind_callback(device)
 
 	def on_unbind_device(self, device):
 		uid = device.identity[0]
-		if device in self.devices:
-			self._component.trace("unbinding device [%s] from handle %s" \
-				% (uid, self.name))
-			if self._unbind_callback:
-				self._unbind_callback(device)
-			dm = self._component.core.device_manager
-			for event_code in self._callbacks:
-				dm.remove_device_callback(
-					uid, event_code, self._callbacks[event_code])
-			self.devices.remove(device)
+		if device not in self.devices:
+			return
+
+		self._device_manager.trace("unbinding device [%s] from handle %s" \
+			% (uid, self.name))
+		if self._unbind_callback:
+			self._unbind_callback(device)
+		
+		for event_code in self._callbacks:
+			self._uninstall_callback(
+				device, event_code)
+
+		self.devices.remove(device)
 
 	def for_each_device(self, f):
 		for d in self.devices:
@@ -491,24 +783,31 @@ class DeviceHandle:
 				if err.value != -8: # connection lost
 					print(err.description)
 
+	def _install_callback(self, device, event_code, callback):
+		self._device_manager.add_device_callback(
+			device.identity[0], event_code, callback)
+
+	def _uninstall_callback(self, device, event_code):
+		callback = self._callbacks[event_code]
+		self._device_manager.remove_device_callback(
+			device.identity[0], event_code, callback)
+
 	def register_callback(self, event_code, callback):
 		self.unregister_callback(event_code)
 		self._callbacks[event_code] = callback
-		dm = self._component.core.device_manager
-		self.for_each_device(
-			lambda device:
-				dm.add_device_callback(
-					device.identity[0], event_code, callback))
+		if self._device_manager:
+			self.for_each_device(
+				lambda device: self._install_callback(
+					device, event_code, callback))
 
 	def unregister_callback(self, event_code):
-		if event_code in self._callbacks:
-			callback = self._callbacks[event_code]
-			dm = self._component.core.device_manager
+		if event_code not in self._callbacks:
+			return
+		if self._device_manager:
 			self.for_each_device(
-				lambda device: 
-					dm.remove_device_callback(
-						device.identity[0], event_code, callback))
-			del(self._callbacks[event_code])
+				lambda device: self._uninstall_callback(
+					device, event_code))
+		del(self._callbacks[event_code])
 
 
 class SingleDeviceHandle(DeviceHandle):
@@ -562,7 +861,6 @@ class EventInfo:
 		self._name = name
 		self._predicate = predicate
 		self._transform = transform
-		self._component = None
 
 	@property
 	def sender(self):
@@ -572,10 +870,6 @@ class EventInfo:
 	def name(self):
 		return self._name
 
-	@property
-	def component(self):
-	    return self._component
-
 	def create_listener(self, callback):
 		return EventListener(callback, 
 			sender = self._sender, 
@@ -584,10 +878,9 @@ class EventInfo:
 			transform = self._transform)
 
 	def __str__(self):
-		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
+		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s)" \
 			% (self._sender, self._name,
-			   self._transform != None, self._predicate != None, 
-			   self._component)
+			   self._transform != None, self._predicate != None)
 
 
 class EventListener:
@@ -612,6 +905,13 @@ class EventListener:
 	@property
 	def name(self):
 	    return self._name
+
+	@property
+	def component(self):
+		return self._component
+	@component.setter
+	def component(self, component):
+		self._component = component
 
 	def for_sender(callback, sender):
 		return EventListener(callback, sender = sender)

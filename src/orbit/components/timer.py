@@ -7,18 +7,16 @@ from ..application import Component
 
 class ActivityTimer(Component):
 
-	def __init__(self, core, name, event_info, 
-		initial_state = True, timeout = 6,
-		tracing = None, event_tracing = None):
+	def __init__(self, name, event_info, 
+		initial_state = True, timeout = 6):
 
-		super().__init__(core, name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.timeout = timeout
 		self.timer = None
 		self.state = False
 		self.initial_state = initial_state
 
-		self.listen(event_info.create_listener(self.process_event))
+		self.add_event_listener(event_info.create_listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		self.trigger()
@@ -50,41 +48,30 @@ class ActivityTimer(Component):
 		else:
 			self.send('off')
 
-	def on_core_started(self):
-		super().on_core_started()
+	def on_enabled(self):
 		if self.initial_state:
 			self.trigger()
 
-	def on_core_stopped(self):
+	def on_disabled(self):
 		if self.timer:
 			self.timer.cancel()
 			self.timer = None
-		super().on_core_stopped()
 
 class IntervalTimer(Component):
 
-	def __init__(self, core, name, event_info = None, 
-		initial_state = True, interval = 1,
-		tracing = None, event_tracing = None):
+	def __init__(self, name, interval = 1):
 
-		super().__init__(core, name,
-			tracing = tracing, event_tracing = event_tracing)
+		super().__init__(name)
 		self.next_call = time()
 		self.interval = interval
 		self.timer = None
 		self.state = False
-		self.initial_state = initial_state
 
-		if event_info:
-			self.listen(event_info.create_listener(self.process_event))
+	def on_enabled(self):
+		self.start()
 
-	def process_event(self, sender, name, value):
-		if value == self.state:
-			return
-		if value:
-			self.start()
-		else:
-			self.stop()
+	def on_disabled(self):
+		self.stop()
 
 	def start(self, fire = True):
 		self.state = True
@@ -98,7 +85,7 @@ class IntervalTimer(Component):
 			self.timer = None
 
 	def timer_callback(self, fire = True):
-		if fire:
+		if fire and self.enabled:
 			self.send('timer', self.next_call)
 		self.next_call = self.next_call + self.interval
 		td = self.next_call - time()
@@ -109,11 +96,3 @@ class IntervalTimer(Component):
 			self.trace("overtaken by workload - interval exceeded")
 			Thread(target = self.start).start()
 
-	def on_core_started(self):
-		super().on_core_started()
-		if self.initial_state:
-			self.start(fire = False)
-
-	def on_core_stopped(self):
-		self.stop()
-		super().on_core_stopped()
