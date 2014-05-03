@@ -385,7 +385,7 @@ class Blackboard:
 				if event_listener in name_listeners:
 					name_listeners.remove(event_listener)
 				if len(name_listeners) == 0:
-					del(sender_listeners[sender])
+					del(sender_listeners[name])
 			if len(self._event_listeners) == 0:
 				del(self._event_listeners[sender])
 
