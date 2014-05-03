@@ -390,7 +390,7 @@ class Blackboard:
 				del(self._event_listeners[sender])
 
 	def send(self, sender, name, value):
-		if not self._core.running:
+		if not self._core.started:
 			self.trace("DROPPED event before core started (%s, %s)" \
 				% (sender, name))
 			return
