@@ -69,7 +69,7 @@ class Configuration:
 	
 
 	def _configfile_path(self):
-		return os.path.realpath(os.path.expanduser('~/.tink'))
+		return os.path.realpath(os.path.expanduser('~/.orbit'))
 
 	def _write_configfile(self, data):
 		with open(self._configfile_path(), 'w', encoding='utf-8') as f:
