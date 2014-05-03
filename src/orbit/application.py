@@ -516,6 +516,7 @@ class Job:
 		if component.name in self._components:
 			self.remove_component(self._components[component.name])
 		self._components[component.name] = component
+		component.on_add_component(self)
 		if self._active:
 			component.enabled = True
 
@@ -524,6 +525,7 @@ class Job:
 			raise AttributeError("the given component is not associated with this job")
 		if component.enabled:
 			component.enabled = False
+			component.on_remove_component()
 		del(self._components[component.name])
 
 	def for_each_component(self, f):
@@ -669,6 +671,7 @@ class Component:
 			return
 		if self._enabled:
 			self._job._core.device_manager.remove_handle(device_handle)
+		device_handle.on_remove_device_handle()
 		self._device_handles.remove(device_handle)
 
 	def add_event_listener(self, event_listener):
@@ -717,7 +720,7 @@ class DeviceHandle:
 		self._unbind_callback = unbind_callback
 		self._devices = []
 		self._callbacks = {}
-		self._component = None
+		self._device_manager = None
 
 	@property
 	def name(self):
@@ -727,33 +730,40 @@ class DeviceHandle:
 	def devices(self):
 	    return self._devices
 
-	def register_component(self, component):
-		self._component = component
+	def on_add_handle(self, device_manager):
+		self._device_manager = device_manager
+
+	def on_remove_handle(self):
+		self._device_manager = None
 
 	def on_bind_device(self, device):
 		uid = device.identity[0]
-		self._component.trace("binding device [%s] to handle %s" \
+		self._device_manager.trace("binding device [%s] to handle %s" \
 			% (uid, self.name))
 		self.devices.append(device)
-		dm = self._component.core.device_manager
+
 		for event_code in self._callbacks:
-			dm.add_device_callback(
-					uid, event_code, self._callbacks[event_code])
+			self._install_callback(
+				device, event_code, self._callbacks[event_code])
+
 		if self._bind_callback:
 			self._bind_callback(device)
 
 	def on_unbind_device(self, device):
 		uid = device.identity[0]
-		if device in self.devices:
-			self._component.trace("unbinding device [%s] from handle %s" \
-				% (uid, self.name))
-			if self._unbind_callback:
-				self._unbind_callback(device)
-			dm = self._component.core.device_manager
-			for event_code in self._callbacks:
-				dm.remove_device_callback(
-					uid, event_code, self._callbacks[event_code])
-			self.devices.remove(device)
+		if device not in self.devices:
+			return
+
+		self._device_manager.trace("unbinding device [%s] from handle %s" \
+			% (uid, self.name))
+		if self._unbind_callback:
+			self._unbind_callback(device)
+		
+		for event_code in self._callbacks:
+			self._uninstall_callback(
+				device, event_code)
+
+		self.devices.remove(device)
 
 	def for_each_device(self, f):
 		for d in self.devices:
@@ -763,24 +773,31 @@ class DeviceHandle:
 				if err.value != -8: # connection lost
 					print(err.description)
 
+	def _install_callback(self, device, event_code, callback):
+		self._device_manager.add_device_callback(
+			device.identity[0], event_code, callback)
+
+	def _uninstall_callback(self, device, event_code):
+		callback = self._callbacks[event_code]
+		self._device_manager.remove_device_callback(
+			device.identity[0], event_code, callback)
+
 	def register_callback(self, event_code, callback):
 		self.unregister_callback(event_code)
 		self._callbacks[event_code] = callback
-		dm = self._component.core.device_manager
-		self.for_each_device(
-			lambda device:
-				dm.add_device_callback(
-					device.identity[0], event_code, callback))
+		if self._device_manager:
+			self.for_each_device(
+				lambda device: self._install_callback(
+					device, event_code, callback))
 
 	def unregister_callback(self, event_code):
-		if event_code in self._callbacks:
-			callback = self._callbacks[event_code]
-			dm = self._component.core.device_manager
+		if event_code not in self._callbacks:
+			return
+		if self._device_manager:
 			self.for_each_device(
-				lambda device: 
-					dm.remove_device_callback(
-						device.identity[0], event_code, callback))
-			del(self._callbacks[event_code])
+				lambda device: self._uninstall_callback(
+					device, event_code))
+		del(self._callbacks[event_code])
 
 
 class SingleDeviceHandle(DeviceHandle):
