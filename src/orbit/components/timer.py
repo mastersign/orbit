@@ -48,16 +48,16 @@ class ActivityTimer(Component):
 		else:
 			self.send('off')
 
-	def on_core_started(self):
-		super().on_core_started()
+	def on_job_activated(self):
+		super().on_job_activated()
 		if self.initial_state:
 			self.trigger()
 
-	def on_core_stopped(self):
+	def on_job_deactivated(self):
 		if self.timer:
 			self.timer.cancel()
 			self.timer = None
-		super().on_core_stopped()
+		super().on_job_deactivated()
 
 class IntervalTimer(Component):
 
