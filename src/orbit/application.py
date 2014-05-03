@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # Package orbit.application
 
 from datetime import datetime
