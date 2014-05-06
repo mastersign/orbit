@@ -525,8 +525,8 @@ class Job:
 	def on_activated(self):
 		def enabler(component):
 			component.enabled = True
-		self.for_each_component(enabler)
 		self.for_each_component(lambda c: c.on_job_activated())
+		self.for_each_component(enabler)
 
 	def on_deactivated(self):
 		def disabler(component):
@@ -671,20 +671,20 @@ class Component:
 			raise AttributeError("the component can not be enabled while the job is not active")
 		self._enabled = value
 		if self._enabled:
-			self.on_enabled()
 			self.trace("enabling ...")
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.add_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.add_handle(device_handle)
+			self.on_enabled()
 			self.trace("... enabled")
 		else:
 			self.trace("disabling ...")
+			self.on_disabled()
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.remove_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
-			self.on_disabled()
 			self.trace("... disabled")
 
 	def on_core_started(self):
