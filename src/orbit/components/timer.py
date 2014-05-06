@@ -7,7 +7,7 @@ from ..application import Component
 
 class ActivityTimer(Component):
 
-	def __init__(self, name, event_info, 
+	def __init__(self, name, slot, 
 		initial_state = True, timeout = 6):
 
 		super().__init__(name)
@@ -16,9 +16,9 @@ class ActivityTimer(Component):
 		self.state = False
 		self.initial_state = initial_state
 
-		self.add_event_listener(event_info.create_listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.trigger()
 
 	def trigger(self):

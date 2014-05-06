@@ -37,7 +37,7 @@ class LCDButtonsComponent(Component):
 
 class LCDBacklightComponent(Component):
 
-	def __init__(self, name, event_info):
+	def __init__(self, name, slot):
 
 		super().__init__(name)
 		self.state = False
@@ -47,12 +47,12 @@ class LCDBacklightComponent(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_event_listener(event_info.create_listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.set_state(value)
 
 	def set_state(self, state):
@@ -78,7 +78,7 @@ class LCDBacklightComponent(Component):
 
 class LCDWatch(Component):
 
-	def __init__(self, name, event_info,
+	def __init__(self, name, slot,
 		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"}):
 
 		super().__init__(name)
@@ -93,9 +93,9 @@ class LCDWatch(Component):
 
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_event_listener(event_info.create_listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_time)
 
 	def show_time(self, device):
@@ -105,7 +105,7 @@ class LCDWatch(Component):
 
 class LCDMessage(Component):
 
-	def __init__(self, name, event_info, lines, 
+	def __init__(self, name, slot, lines, 
 		lcd_uid = None):
 
 		super().__init__(name)
@@ -119,9 +119,9 @@ class LCDMessage(Component):
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_event_listener(event_info.create_listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_message)
 
 	def show_message(self, device):
