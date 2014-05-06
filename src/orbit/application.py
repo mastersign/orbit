@@ -57,7 +57,7 @@ class Core:
 
 	def start(self):
 		if self._started:
-			self.trace("application core allready started")
+			self.trace("application core already started")
 			return
 		self.trace("starting ...")
 
@@ -75,7 +75,7 @@ class Core:
 
 	def stop(self):
 		if not self._started:
-			self.trace("application core allready stopped")
+			self.trace("application core already stopped")
 			return
 
 		def deactivator(job):
