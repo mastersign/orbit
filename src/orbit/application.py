@@ -854,7 +854,7 @@ class MultiDeviceHandle(DeviceHandle):
 class Slot:
 
 	def __init__(self, job, component, name, predicate = None, transformation = None):
-		self._job = job,
+		self._job = job
 		self._component = component
 		self._name = name
 		self._predicate = predicate
