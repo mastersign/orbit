@@ -277,9 +277,9 @@ class DeviceManager:
 					initializer(device)
 				except Error as err:
 					if err.value != -8: # connection lost
-						print("Error during initialization of : %s" % err.description)
+						self.trace("Error during initialization of : %s" % err.description)
 				except Exception as exc:
-					print("Exception caught during device initialization:\n%s" % exc)
+					self.trace("Exception caught during device initialization:\n%s" % exc)
 
 	def add_device_finalizer(self, device_identifier, finalizer):
 		if device_identifier not in self._device_finalizers:
@@ -298,9 +298,9 @@ class DeviceManager:
 					finalizer(device)
 				except Error as err:
 					if err.value != -8: # connection lost
-						print("Error during device finalization: %s" % err.description)
+						self.trace("Error during device finalization: %s" % err.description)
 				except Exception as exc:
-					print("Exception caught during device finalization:\n%s" % exc)
+					self.trace("Exception caught during device finalization:\n%s" % exc)
 
 	def add_handle(self, device_handle):
 		if device_handle in self._device_handles:
