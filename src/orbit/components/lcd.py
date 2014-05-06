@@ -47,12 +47,12 @@ class LCDBacklightComponent(Component):
 			bind_callback = self.bind_lcd)
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_listener(slot.listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
 	def bind_lcd(self, device):
 		self.update_device(device)
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.set_state(value)
 
 	def set_state(self, state):
@@ -93,9 +93,9 @@ class LCDWatch(Component):
 
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_listener(slot.listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_time)
 
 	def show_time(self, device):
@@ -119,9 +119,9 @@ class LCDMessage(Component):
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_listener(slot.listener(self.process_event))
+		self.add_listener(slot.listener(self.process_message))
 
-	def process_event(self, sender, name, value):
+	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_message)
 
 	def show_message(self, device):
