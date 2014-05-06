@@ -896,7 +896,7 @@ class MultiDeviceHandle(DeviceHandle):
 		super().on_bind_device(device)
 
 
-class EventInfo:
+class Slot:
 
 	def __init__(self, sender = None, name = None, predicate = None, transform = None):
 		self._sender = sender
@@ -920,7 +920,7 @@ class EventInfo:
 			transform = self._transform)
 
 	def __str__(self):
-		return "EventInfo(sender = %s, name = %s, predicate: %s, transform: %s)" \
+		return "Slot(sender = %s, name = %s, predicate: %s, transform: %s)" \
 			% (self._sender, self._name,
 			   self._transform != None, self._predicate != None)
 
