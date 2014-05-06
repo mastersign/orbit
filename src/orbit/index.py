@@ -8,7 +8,6 @@ class MultiLevelIndex:
 		self._is_parent = len(self._sub_attributes) > 0
 		self._index = {}
 		self._groups = {}
-		self._group_index = {}
 
 	def add_group(self, attribute, group, keys):
 		if not (type(keys) is list):
@@ -20,44 +19,26 @@ class MultiLevelIndex:
 			gm[group] = keys
 		else:
 			gm[group].extend(keys)
-		if attribute not in self._group_index:
-			self._group_index[attribute] = {}
-		gi = self._group_index[attribute]
-		for key in keys:
-			if key in gi:
-				gi[key].append(group)
-			else:
-				gi[key] = [group]
 
 	def delete_group(self, attribute, group):
-		if attribute not in self._groups or \
-		   attribute not in self._group_index:
+		if attribute not in self._groups:
 			return
-		
 		gm = self._groups[attribute]
-		gi = self._group_index[attribute]
 		if group in gm:
-			keys = gm[group]
 			del(gm[group])
-			for key in keys:
-				if key in gi:
-					lst = gi[key]
-					lst.remove(group)
-					if len(lst) == 0:
-						del(gi[key])
 
-	def _get_groups(self, pivot):
-		if self._attribute in self._group_index:
-			gi = self._group_index[self._attribute]
-			if pivot in gi:
-				return gi[pivot]
+	def _get_group(self, group):
+		if self._attribute in self._groups:
+			gm = self._groups[self._attribute]
+			if group in gm:
+				return gm[group]
 		return []
 
 	def add(self, value):
 		pivot = getattr(value, self._attribute)
 		self._add(value, pivot)
-		for group in self._get_groups(pivot):
-			self._add(value, group)
+		for pivot2 in self._get_group(pivot):
+			self._add(value, pivot2)
 
 	def _add(self, value, pivot):
 		if self._is_parent:
@@ -73,14 +54,13 @@ class MultiLevelIndex:
 	def _create_sub_index(self):
 		sub_index = MultiLevelIndex(self._sub_attributes)
 		sub_index._groups = self._groups
-		sub_index._group_index = self._group_index
 		return sub_index
 
 	def remove(self, value):
 		pivot = getattr(value, self._attribute)
 		self._remove(value, pivot)
-		for group in self._get_groups(pivot):
-			self._remove(value, group)
+		for pivot2 in self._get_group(pivot):
+			self._remove(value, pivot2)
 
 	def _remove(self, value, pivot):
 		if pivot not in self._index:
@@ -104,25 +84,31 @@ class MultiLevelIndex:
 	def lookup(self, address):
 		pivot = getattr(address, self._attribute)
 		if self._is_parent:
-			if pivot != None:
+			if pivot == None:
 				if pivot in self._index:
 					return self._index[pivot].lookup(address)
 				else:
 					return []
 			else:
 				res = []
-				for i in self._index.values():
-					res.extend(i.lookup(address))
+				if pivot in self._index:
+					res.extend(self._index[pivot].lookup(address))
+				if None in self._index:
+					res.extend(self._index[None].lookup(address))
 				return res
 		else:
-			if pivot != None:
-				return list(self._index[pivot])
+			if pivot == None:
+				if pivot in self._index:
+					return list(self._index[pivot])
+				else:
+					return []
 			else:
-				return sum(map(list, self._index.values()), [])
-
-	def __len__(self):
-		return sum(map(len, self._index.values()), 0)
-
+				res = []
+				if pivot in self._index:
+					res.extend(list(self._index[pivot]))
+				if None in self._index:
+					res.extend(list(self._index[None]))
+				return res
 
 # Tests
 
@@ -150,34 +136,34 @@ if __name__ == '__main__':
 	items = [
 		Item(1, 1, 1, "1-1-1"),
 		Item(1, 1, 2, "1-1-2"),
-		Item(1, 2, 1, "1-2-1"),
-		Item(1, 2, 2, "1-2-2"),
-		Item(2, 1, 1, "2-1-1"),
-		Item(2, 1, 2, "2-1-2"),
-		Item(2, 2, 1, "2-2-1"),
-		Item(2, 2, 2, "2-2-2")]
+		Item(1, 1, None, "1-1-*"),
+		Item(1, None, 1, "1-*-1"),
+		Item(None, None, 1, "*-*-1")]
 
 	for i in items:
 		index.add(i)
-	print(len(index))
 	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
-	print("1,*,1: " + str(index.lookup(Pattern(1, None, 1))))
-	print("*,*,*: " + str(index.lookup(Pattern(None, None, None))))
-
-	print("1-1-1: " + str(index.lookup(items[0])))
+	print("1,1,2: " + str(index.lookup(Pattern(1, 1, 2))))
+	print("1,2,1: " + str(index.lookup(Pattern(1, 2, 1))))
+	print("1,2,2: " + str(index.lookup(Pattern(1, 2, 2))))
+	print("2,1,1: " + str(index.lookup(Pattern(2, 1, 1))))
+	print("2,1,2: " + str(index.lookup(Pattern(2, 1, 2))))
+	print("2,2,1: " + str(index.lookup(Pattern(2, 2, 1))))
+	print("2,2,2: " + str(index.lookup(Pattern(2, 2, 2))))
 
 	index.remove(items[0])
-	print(len(index))
-	print("1,1,*: " + str(index.lookup(Pattern(1, 1, None))))
+	print("removed 1-1-1")
+	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
 
 	index.add(items[0])
-	print(len(index))
-	print("1,1,*: " + str(index.lookup(Pattern(1, 1, None))))
+	print("added 1-1-1")
+	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
+
 
 	for i in items:
 		index.remove(i)
-	print(len(index))
-	print("*,*,*: " + str(index.lookup(Pattern(None, None, None))))
+	print("removed all")
+	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
 
 	# None test
 
@@ -185,12 +171,11 @@ if __name__ == '__main__':
 	index = MultiLevelIndex(("a", "b", "c"))
 	items = [
 		Item(1, 1, 1, "1-1-1"),
-		Item(1, 1, None, "1-1-N")]
+		Item(1, 1, None, "1-1-*")]
 	for i in items:
 		index.add(i)
-	print(len(index))
 	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
-	print("1,1,*: " + str(index.lookup(Pattern(1, 1, None))))
+	print("1,1,N: " + str(index.lookup(Pattern(1, 1, None))))
 
 	# group test
 
@@ -198,11 +183,14 @@ if __name__ == '__main__':
 	index = MultiLevelIndex(("a", "b", "c"))
 	items = [
 		Item(1, 1, 1, "1-1-1"),
-		Item(1, 2, 1, "1-2-1"),
+		Item(1, 0, 1, "1-0-1"),
 		Item(1, 3, 1, "1-3-2"),
-		Item(1, 4, 1, "1-4-2")]
+		Item(1, 0, 1, "1-0-2")]
 	index.add_group("b", 0, [2, 4])
 	for i in items:
 		index.add(i)
-	print(len(index))
-	print("1,0,*: " + str(index.lookup(Pattern(1, 0, None))))
+	print("1,1,1: " + str(index.lookup(Pattern(1, 1, 1))))
+	print("1,2,1: " + str(index.lookup(Pattern(1, 2, 1))))
+	print("1,3,1: " + str(index.lookup(Pattern(1, 3, 1))))
+	print("1,4,1: " + str(index.lookup(Pattern(1, 4, 1))))
+
