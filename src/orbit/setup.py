@@ -15,7 +15,7 @@ class Configuration:
 	DEFAULT_DEVICE_TRACING = True
 	DEFAULT_EVENT_TRACING = False
 	DEFAULT_JOB_TRACING = True
-	DEFAULT_COMPONENT_TRACING = True
+	DEFAULT_COMPONENT_TRACING = False
 
 	@property
 	def host(self):

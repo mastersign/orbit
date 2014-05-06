@@ -58,7 +58,7 @@ class Core:
 		if self._started:
 			self.trace("application core allready started")
 			return
-		self.trace("starting application core")
+		self.trace("starting ...")
 
 		self._blackboard.initialize()
 		self._started = True
@@ -66,7 +66,7 @@ class Core:
 		self.for_each_job(
 			lambda j: j.on_core_started())
 
-		self.trace("application core started")
+		self.trace("... started")
 
 		def activator(job):
 			if job.background:
@@ -82,14 +82,14 @@ class Core:
 			job.active = False
 		self.for_each_active_job(deactivator)
 
-		self.trace("stopping application core")
+		self.trace("stopping ...")
 
 		self._device_manager.stop()
 		self._started = False
 		self.for_each_job(
 			lambda j: j.on_core_stopped())
 
-		self.trace("application core stopped")
+		self.trace("... stopped")
 
 	def install(self, job):
 		if job.core:
@@ -98,6 +98,7 @@ class Core:
 			self.uninstall(self._jobs[job.name])
 		self._jobs[job.name] = job
 		job.on_install(self)
+		self.trace("installed job '%s'" % job.name)
 		if self._started and job.background:
 			job.active = True
 
@@ -108,6 +109,7 @@ class Core:
 			job.active = False
 		job.on_uninstall()
 		del(self._jobs[job.name])
+		self.trace("uninstalled job '%s'" % job.name)
 
 	def for_each_job(self, f):
 		for job in self._jobs.values():
@@ -126,11 +128,13 @@ class Core:
 			else:
 				raise KeyError("job name not found")
 		# set job as current application
+		self.trace("activating application '%s' ..." % application.name)
 		if self._current_application:
 			self._current_application.active = False
 		self._current_application = application
 		if self._current_application:
 			self._current_application.active = True
+		self.trace("... activated application '%s'" % application.name)
 
 
 class DeviceManager:
@@ -178,7 +182,7 @@ class DeviceManager:
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_AVAILABLE or \
 		   enumeration_type == IPConnection.ENUMERATION_TYPE_CONNECTED:
 			# initialize device configuration and bindings
-			self.trace("device present [%s] %s" % (uid, device_name(device_identifier)))
+			self.trace("device present '%s' [%s]" % (device_name(device_identifier), uid))
 			if known_device(device_identifier):
 				# bind device and notify components
 				self._bind_device(device_identifier, uid)
@@ -186,7 +190,7 @@ class DeviceManager:
 				self.trace("could not create a device binding for device identifier " + device_identifier)
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
 			# recognize absence of device
-			self.trace("device absent [%s]" % uid)
+			self.trace("device absent '%s' [%s]" % (device_name(device_identifier), uid))
 			# unbind device and notify components
 			self._unbind_device(uid)
 
@@ -211,7 +215,8 @@ class DeviceManager:
 			self.trace("connection lost")
 
 	def _bind_device(self, device_identifier, uid):
-		self.trace("binding device [%s]" % uid)
+		self.trace("binding '%s' [%s]" % 
+			(device_name(device_identifier), uid))
 		# create binding instance
 		device = device_instance(device_identifier, uid, self._conn)
 		# add passive identity attribute
@@ -225,7 +230,8 @@ class DeviceManager:
 		if uid in self._device_callbacks:
 			callbacks = self._device_callbacks[uid]
 			for event in callbacks:
-				self.trace("binding dispatcher to [%s] (%s)" % (uid, event))
+				self.trace("binding dispatcher to '%s' [%s] (%s)" % 
+					(device_name(device_identifier), uid, event))
 				mcc = callbacks[event]
 				device.register_callback(event, mcc)
 		# notify device handles
@@ -234,8 +240,9 @@ class DeviceManager:
 
 	def _unbind_device(self, uid):
 		if uid in self._devices:
-			self.trace("unbinding device [%s]" % uid)
 			device = self._devices[uid]
+			self.trace("unbinding '%s' [%s]" % 
+				(device_name(device.identity[5]), uid))
 			# notify device handles
 			for device_handle in self._device_handles:
 				device_handle.on_unbind_device(device)
@@ -257,16 +264,20 @@ class DeviceManager:
 		if device_identifier not in self._device_initializers:
 			self._device_initializers[device_identifier] = []
 		self._device_initializers[device_identifier].append(initializer)
+		self.trace("added initializer for '%s'" % 
+			(device_name(device_identifier)))
 
 	def _initialize_device(self, device):
 		device_identifier = device.identity[5]
 		if device_identifier in self._device_initializers:
+			self.trace("initializing '%s' [%s]" %
+				(device_name(device.identity[5]), device.identity[0]))
 			for initializer in self._device_initializers[device_identifier]:
 				try:
 					initializer(device)
 				except Error as err:
 					if err.value != -8: # connection lost
-						print("Error during device initialization: %s" % err.description)
+						print("Error during initialization of : %s" % err.description)
 				except Exception as exc:
 					print("Exception caught during device initialization:\n%s" % exc)
 
@@ -274,10 +285,14 @@ class DeviceManager:
 		if device_identifier not in self._device_finalizers:
 			self._device_finalizers[device_identifier] = []
 		self._device_finalizers[device_identifier].append(finalizer)
+		self.trace("added finalizer for '%s'" % 
+			device_name(device_identifier))
 
 	def _finalize_device(self, device):
 		device_identifier = device.identity[5]
 		if device_identifier in self._device_finalizers:
+			self.trace("finalizing '%s' [%s]" %
+				(device_name(device.identity[5]), device.identity[0]))
 			for finalizer in self._device_finalizers[device_identifier]:
 				try:
 					finalizer(device)
@@ -439,7 +454,7 @@ class Job:
 		self._background = background
 		self._components = {}
 		self._active = False
-		self._tracing = True
+		self._tracing = None
 
 	@property
 	def tracing(self):
@@ -449,8 +464,15 @@ class Job:
 	    self._tracing = value
 	
 	def trace(self, text):
-		if self._tracing and (self._core == None or self._core.configuration.job_tracing):
-			_trace(text, "Job " + self._name)
+		if self._tracing == True or \
+			(self._tracing != False and \
+			 self._core and \
+			 self._core.configuration.job_tracing):
+
+			if self._background:
+				_trace(text, "Service " + self._name)
+			else:
+				_trace(text, "App " + self._name)
 
 	@property
 	def name(self):
@@ -492,9 +514,13 @@ class Job:
 			raise AttributeError("the job can not be activated while the core is not started")
 		self._active = value
 		if self._active:
+			self.trace("activating ...")
 			self.on_activated()
+			self.trace("... activated")
 		else:
+			self.trace("deactivating ...")
 			self.on_deactivated()
+			self.trace("... deactivated")
 
 	def on_activated(self):
 		def enabler(component):
@@ -517,6 +543,7 @@ class Job:
 			self.remove_component(self._components[component.name])
 		self._components[component.name] = component
 		component.on_add_component(self)
+		self.trace("added component %s" % component.name)
 		if self._active:
 			component.enabled = True
 
@@ -527,6 +554,7 @@ class Job:
 			component.enabled = False
 			component.on_remove_component()
 		del(self._components[component.name])
+		self.trace("removed component %s" % component.name)
 
 	def for_each_component(self, f):
 		for component in self._components.values():
@@ -577,8 +605,8 @@ class Component:
 		self._job = None
 		self._name = name
 		self._enabled = False
-		self._tracing = True
-		self._event_tracing = True
+		self._tracing = None
+		self._event_tracing = None
 		self._device_handles = []
 		self._event_listeners = []
 
@@ -590,8 +618,13 @@ class Component:
 		self._tracing = enabled
 
 	def trace(self, text):
-		if self._tracing and (self._job == None or self._job._core.configuration.job_tracing):
-			_trace(text, "Component: " + self._name)
+		if self._tracing == True or \
+			(self._tracing != False and \
+			 self._job and \
+			 self._job._core.configuration.component_tracing):
+
+			_trace(text, "Component %s %s" % 
+				(self._job.name if self._job else "NO_JOB", self._name))
 
 	@property
 	def event_tracing(self):
@@ -601,8 +634,13 @@ class Component:
 		self._event_tracing = enabled
 
 	def event_trace(self, name, value):
-		if self._event_tracing:
-			_trace("EVENT %s: %s" % (name, str(value)), "Component " + self._name)
+		if self._event_tracing == True or \
+			(self._event_tracing != False and \
+			 self._job and \
+			 self._job._core.configuration.event_tracing):
+
+			_trace("EVENT %s: %s" % (name, str(value)), "Component %s %s" % 
+				(self._job.name if self._job else "NO_JOB", self._name))
 
 	@property
 	def name(self):
@@ -634,16 +672,20 @@ class Component:
 		self._enabled = value
 		if self._enabled:
 			self.on_enabled()
+			self.trace("enabling ...")
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.add_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.add_handle(device_handle)
+			self.trace("... enabled")
 		else:
+			self.trace("disabling ...")
 			for event_listener in self._event_listeners:
 				self._job._core.blackboard.remove_listener(event_listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
 			self.on_disabled()
+			self.trace("... disabled")
 
 	def on_core_started(self):
 		# can be overriden in sub classes
@@ -747,9 +789,9 @@ class DeviceHandle:
 		self._device_manager = None
 
 	def on_bind_device(self, device):
-		uid = device.identity[0]
-		self._device_manager.trace("binding device [%s] to handle %s" \
-			% (uid, self.name))
+		self._device_manager.trace("binding '%s' [%s] to handle '%s'" \
+			% (device_name(device.identity[5]), device.identity[0], self.name))
+
 		self.devices.append(device)
 
 		for event_code in self._callbacks:
@@ -760,12 +802,12 @@ class DeviceHandle:
 			self._bind_callback(device)
 
 	def on_unbind_device(self, device):
-		uid = device.identity[0]
 		if device not in self.devices:
 			return
 
-		self._device_manager.trace("unbinding device [%s] from handle %s" \
-			% (uid, self.name))
+		self._device_manager.trace("unbinding '%s' [%s] from handle '%s'" \
+			% (device_name(device.identity[5]), device.identity[0], self.name))
+
 		if self._unbind_callback:
 			self._unbind_callback(device)
 		
