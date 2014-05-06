@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from . import setup
+from .index import MultiLevelIndex
 from .devices import known_device, get_device_identifier, device_name, device_instance
 from tinkerforge.ip_connection import IPConnection, Error
 
@@ -60,7 +61,6 @@ class Core:
 			return
 		self.trace("starting ...")
 
-		self._blackboard.initialize()
 		self._started = True
 		self._device_manager.start()
 		self.for_each_job(
@@ -350,59 +350,26 @@ class Blackboard:
 
 	def __init__(self, core):
 		self._core = core
-		self._listeners = {}
-		self._event_groups = {}
-		self._sender_groups = {}
+		self._index = MultiLevelIndex(('job', 'component', 'name'))
 
 	def trace(self, text):
 		if self._core.configuration.event_tracing:
 			_trace(text, 'Blackboard')
 
-	def initialize(self):
-		def build_group_lookup(names_by_group):
-			groups_by_name = {}
-			for group in names_by_group.keys():
-				names = names_by_group[group]
-				for name in names:
-					if name not in groups_by_name:
-						groups = []
-						groups_by_name[name] = groups
-					else:
-						groups = groups_by_name[name]
-					groups.append(group)
-			return groups_by_name
+	def job_group(self, group_name, *names):
+		self._index.add_group('job', group_name, names)
 
-		self.event_group_lookup = build_group_lookup(self._event_groups)
-		self.sender_group_lookup = build_group_lookup(self._sender_groups)
+	def component_group(self, group_name, *names):
+		self._index.add_group('component', group_name, names)
+
+	def name_group(self, group_name, *names):
+		self._index.add_group('name', group_name, names)
 
 	def add_listener(self, listener):
-		sender = listener.sender
-		name = listener.name
-		if sender in self._listeners:
-			sender_listeners = self._listeners[sender]
-		else:
-			sender_listeners = {}
-			self._listeners[sender] = sender_listeners
-		if name in sender_listeners:
-			name_listeners = sender_listeners[name]
-		else:
-			name_listeners = []
-			sender_listeners[name] = name_listeners
-		name_listeners.append(listener)
+		self._index.add(listener)
 
 	def remove_listener(self, listener):
-		sender = listener.sender
-		name = listener.name
-		if sender in self._listeners:
-			sender_listeners = self._listeners[sender]
-			if name in sender_listeners:
-				name_listeners = sender_listeners[name]
-				if listener in name_listeners:
-					name_listeners.remove(listener)
-				if len(name_listeners) == 0:
-					del(sender_listeners[name])
-			if len(self._listeners) == 0:
-				del(self._listeners[sender])
+		self._index.remove(listener)
 
 	def send(self, job, component, name, value):
 		if not self._core.started:
@@ -410,38 +377,25 @@ class Blackboard:
 				% (job, component, name))
 			return
 
-		def send_by_sender(lookup, s):
-			if s in lookup:
-				listeners_by_name = lookup[s]
-				send_by_name(listeners_by_name, name)
-				send_by_name(listeners_by_name, None)
+		msg = Blackboard.Message(job, component, name, value)
 
-			if s and s in self.sender_group_lookup:
-				for g in self.sender_group_lookup[s]:
-					send_by_sender(lookup, g)
+		listeners = self._index.lookup(msg)
 
-		def send_by_name(lookup, n):
-			if n in lookup:
-				call_listeners(lookup[n])
+		for l in listeners:
+			self.trace("ROUTE %s, %s, %s => %s (%s, %s, %s)" \
+				% (job, component, name, l.receiver, l.job, l.component, l.name))
+			try:
+				l(msg)
+			except Exception as exc:
+				self.trace("Error while calling listener: %s" % exc)
 
-			if n and n in self.event_group_lookup:
-				for g in self.event_group_lookup[n]:
-					send_by_name(lookup, g)
+	class Message:
 
-		def call_listeners(listeners):
-			for l in listeners:
-				self.trace("ROUTE %s, %s, %s => (%s, %s, %s)" \
-					% (job, component, name, l.job, l.component, l.name))
-				l(job, component, name, value)
-
-		send_by_sender(self._listeners, sender)
-		send_by_sender(self._listeners, None)
-
-	def event_group(self, group_name, *names):
-		self._event_groups[group_name] = names
-
-	def sender_group(self, group_name, *names):
-		self._sender_groups[group_name] = names
+		def __init__(self, job, component, name, value):
+			self.job = job
+			self.component = component
+			self.name = name
+			self.value = value
 
 
 class Job:
@@ -587,7 +541,7 @@ class App(Job):
 			self._core.blackboard.remove_listener(trigger)
 		super().on_uninstall()
 
-	def on_trigger(self, sender, name, value):
+	def on_trigger(self, job, component, name, value):
 		self.trace("activating app %s, caused by trigger" % self.name)
 		self._core.activate(self)
 
@@ -746,7 +700,7 @@ class Component:
 		if not self._enabled:
 			raise AttributeError("this component is not enabled")
 		self.event_trace(name, value)
-		self._job._core.blackboard.send(self.name, name, value)
+		self._job._core.blackboard.send(self._job.name, self.name, name, value)
 
 
 class MulticastCallback:
@@ -940,7 +894,7 @@ class Slot:
 
 	def __str__(self):
 		return "Slot(job = %s, component = %s, name = %s, predicate: %s, transformation: %s)" \
-			% (self._job, self._sender, self._name,
+			% (self._job, self._component, self._name,
 			   self._transform != None, self._predicate != None)
 
 
@@ -951,10 +905,11 @@ class Listener:
 		self._slot = slot
 		self._receiver = None
 
-	def __call__(self, job, component, name, value):
-		if self._slot.predicate == None or self._slot.predicate(job, component, name, value):
-			self._callback(job, component, name,
-				self._slot.transformation(value) if self._slot.transformation else value)
+	def __call__(self, msg):
+		if self._slot.predicate == None or \
+			self._slot.predicate(msg.job, msg.component, msg.name, msg.value):
+			self._callback(msg.job, msg.component, msg.name,
+				self._slot.transformation(msg.value) if self._slot.transformation else msg.value)
 
 	@property
 	def job(self):
