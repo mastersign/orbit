@@ -11,7 +11,7 @@ class EventCallback(Component):
 
 		self.callback = callback
 
-		self.add_event_listener(slot.create_listener(self.event_handler))
+		self.add_listener(slot.listener(self.event_handler))
 
 	def event_handler(self, sender, name, value):
 		self.callback()

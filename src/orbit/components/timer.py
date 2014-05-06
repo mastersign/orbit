@@ -16,7 +16,7 @@ class ActivityTimer(Component):
 		self.state = False
 		self.initial_state = initial_state
 
-		self.add_event_listener(slot.create_listener(self.process_event))
+		self.add_listener(slot.listener(self.process_event))
 
 	def process_event(self, sender, name, value):
 		self.trigger()

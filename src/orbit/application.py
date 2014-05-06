@@ -350,7 +350,7 @@ class Blackboard:
 
 	def __init__(self, core):
 		self._core = core
-		self._event_listeners = {}
+		self._listeners = {}
 		self._event_groups = {}
 		self._sender_groups = {}
 
@@ -375,42 +375,40 @@ class Blackboard:
 		self.event_group_lookup = build_group_lookup(self._event_groups)
 		self.sender_group_lookup = build_group_lookup(self._sender_groups)
 
-	def add_listener(self, event_listener):
-		sender = event_listener.sender
-		name = event_listener.name
-		if sender in self._event_listeners:
-			sender_listeners = self._event_listeners[sender]
+	def add_listener(self, listener):
+		sender = listener.sender
+		name = listener.name
+		if sender in self._listeners:
+			sender_listeners = self._listeners[sender]
 		else:
 			sender_listeners = {}
-			self._event_listeners[sender] = sender_listeners
+			self._listeners[sender] = sender_listeners
 		if name in sender_listeners:
 			name_listeners = sender_listeners[name]
 		else:
 			name_listeners = []
 			sender_listeners[name] = name_listeners
-		name_listeners.append(event_listener)
+		name_listeners.append(listener)
 
-	def remove_listener(self, event_listener):
-		sender = event_listener.sender
-		name = event_listener.name
-		if sender in self._event_listeners:
-			sender_listeners = self._event_listeners[sender]
+	def remove_listener(self, listener):
+		sender = listener.sender
+		name = listener.name
+		if sender in self._listeners:
+			sender_listeners = self._listeners[sender]
 			if name in sender_listeners:
 				name_listeners = sender_listeners[name]
-				if event_listener in name_listeners:
-					name_listeners.remove(event_listener)
+				if listener in name_listeners:
+					name_listeners.remove(listener)
 				if len(name_listeners) == 0:
 					del(sender_listeners[name])
-			if len(self._event_listeners) == 0:
-				del(self._event_listeners[sender])
+			if len(self._listeners) == 0:
+				del(self._listeners[sender])
 
-	def send(self, sender, name, value):
+	def send(self, job, component, name, value):
 		if not self._core.started:
-			self.trace("DROPPED event before core started (%s, %s)" \
-				% (sender, name))
+			self.trace("DROPPED event before core started (%s, %s, %s)" \
+				% (job, component, name))
 			return
-
-		event = (sender, name, value)
 
 		def send_by_sender(lookup, s):
 			if s in lookup:
@@ -432,12 +430,12 @@ class Blackboard:
 
 		def call_listeners(listeners):
 			for l in listeners:
-				self.trace("ROUTE %s, %s => %s (%s, %s)" \
-					% (sender, name, l.component, l.sender, l.name))
-				l(event)
+				self.trace("ROUTE %s, %s, %s => (%s, %s, %s)" \
+					% (job, component, name, l.job, l.component, l.name))
+				l(job, component, name, value)
 
-		send_by_sender(self._event_listeners, sender)
-		send_by_sender(self._event_listeners, None)
+		send_by_sender(self._listeners, sender)
+		send_by_sender(self._listeners, None)
 
 	def event_group(self, group_name, *names):
 		self._event_groups[group_name] = names
@@ -576,7 +574,7 @@ class App(Job):
 		self._triggers = []
 
 	def add_trigger(self, event_info):
-		listener = event_info.create_listener(self.on_trigger)
+		listener = event_info.listener(self.on_trigger)
 		self._triggers.append(listener)
 
 	def on_install(self, core):
@@ -608,7 +606,7 @@ class Component:
 		self._tracing = None
 		self._event_tracing = None
 		self._device_handles = []
-		self._event_listeners = []
+		self._listeners = []
 
 	@property
 	def tracing(self):
@@ -672,8 +670,10 @@ class Component:
 		self._enabled = value
 		if self._enabled:
 			self.trace("enabling ...")
-			for event_listener in self._event_listeners:
-				self._job._core.blackboard.add_listener(event_listener)
+			for listener in self._listeners:
+				listener.listening_job = self._job.name
+				listener.listening_component = self.name
+				self._job._core.blackboard.add_listener(listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.add_handle(device_handle)
 			self.on_enabled()
@@ -681,8 +681,8 @@ class Component:
 		else:
 			self.trace("disabling ...")
 			self.on_disabled()
-			for event_listener in self._event_listeners:
-				self._job._core.blackboard.remove_listener(event_listener)
+			for listener in self._listeners:
+				self._job._core.blackboard.remove_listener(listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
 			self.trace("... disabled")
@@ -726,20 +726,21 @@ class Component:
 		device_handle.on_remove_device_handle()
 		self._device_handles.remove(device_handle)
 
-	def add_event_listener(self, event_listener):
-		if event_listener in self._event_listeners:
+	def add_listener(self, listener):
+		if listener in self._listeners:
 			return
-		event_listener.component = self.name
-		self._event_listeners.append(event_listener)
+		self._listeners.append(listener)
 		if self._enabled:
-			self._job._core.blackboard.add_listener(event_listener)
+			listener.listening_job = self._job.name
+			listener.listening_component = self.name
+			self._job._core.blackboard.add_listener(listener)
 
-	def remove_event_listener(self, event_listener):
-		if event_listener not in self._event_listeners:
+	def remove_listener(self, listener):
+		if listener not in self._listeners:
 			return
 		if self._enabled:
-			self._job._core.blackboard.remove_listener(event_listener)
-		self._event_listeners.remove(event_listener)
+			self._job._core.blackboard.remove_listener(listener)
+		self._listeners.remove(listener)
 
 	def send(self, name, value = None):
 		if not self._enabled:
@@ -898,74 +899,84 @@ class MultiDeviceHandle(DeviceHandle):
 
 class Slot:
 
-	def __init__(self, sender = None, name = None, predicate = None, transform = None):
-		self._sender = sender
+	def __init__(self, job, component, name, predicate = None, transformation = None):
+		self._job = job,
+		self._component = component
 		self._name = name
 		self._predicate = predicate
-		self._transform = transform
+		self._transformation = transformation
 
 	@property
-	def sender(self):
-		return self._sender
+	def job(self):
+		return self._job
+
+	@property
+	def component(self):
+		return self._component
 
 	@property
 	def name(self):
 		return self._name
 
-	def create_listener(self, callback):
-		return EventListener(callback, 
-			sender = self._sender, 
-			name = self._name, 
-			predicate = self._predicate,
-			transform = self._transform)
+	@property
+	def predicate(self):
+		return self._predicate
+
+	@property
+	def transformation(self):
+		return self._transformation
+
+	def for_job(job):
+		return Slot(job, None, None)
+
+	def for_component(job, component):
+		return Slot(job, component, None)
+
+	def for_name(name):
+		return Slot(None, None, name)
+
+	def listener(self, callback):
+		return Listener(callback, self)
 
 	def __str__(self):
-		return "Slot(sender = %s, name = %s, predicate: %s, transform: %s)" \
-			% (self._sender, self._name,
+		return "Slot(job = %s, component = %s, name = %s, predicate: %s, transformation: %s)" \
+			% (self._job, self._sender, self._name,
 			   self._transform != None, self._predicate != None)
 
 
-class EventListener:
+class Listener:
 
-	def __init__(self, callback, sender = None, name = None, predicate = None, transform = None, component = None):
+	def __init__(self, callback, slot):
 		self._callback = callback
-		self._sender = sender
-		self._name = name
-		self._predicate = predicate
-		self._transform = transform
-		self._component = component
+		self._slot = slot
+		self._receiver = None
 
-	def __call__(self, event):
-		if self._predicate == None or self._predicate(event):
-			self._callback(event[0], event[1], 
-				self._transform(event[2]) if self._transform else event[2])
+	def __call__(self, job, component, name, value):
+		if self._slot.predicate == None or self._slot.predicate(job, component, name, value):
+			self._callback(job, component, name,
+				self._slot.transformation(value) if self._slot.transformation else value)
 
 	@property
-	def sender(self):
-	    return self._sender
-
-	@property
-	def name(self):
-	    return self._name
+	def job(self):
+		return self._slot.job
 
 	@property
 	def component(self):
-		return self._component
-	@component.setter
-	def component(self, component):
-		self._component = component
+		return self._slot.component
 
-	def for_sender(callback, sender):
-		return EventListener(callback, sender = sender)
+	@property
+	def name(self):
+		return self._slot.name
 
-	def for_name(callback, name):
-		return EventListener(callback, name = name)
-
-	def for_sender_and_name(callback, sender, name):
-		return EventListener(callback, sender = sender, name = name)
+	@property
+	def receiver(self):
+	    return self._receiver
+	@receiver.setter
+	def receiver(self, value):
+	    self._receiver = value
 
 	def __str__(self):
-		return "EventListener(sender = %s, name = %s, predicate: %s, transform: %s, component = %s)" \
-			% (self._sender, self._name,
-			   self._transform != None, self._predicate != None, 
-			   self._component)
+		return "Listener(job = %s, component = %s, name = %s, predicate: %s, transform: %s, receiver = %s)" \
+			% (self._slot.job, self._slot.component, self._slot.name,
+			   self._slot.transformation != None, self._slot.predicate != None, 
+			   self._receiver)
