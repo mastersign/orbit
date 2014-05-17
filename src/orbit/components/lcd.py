@@ -118,6 +118,13 @@ class LCDMessage(Component):
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
 
+		self.lcd_handle.register_callback(
+			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
+
+	def button_pressed(self, no):
+		if no == 0:
+			self.send('escape', None)
+
 	def on_enabled(self):
 		self.lcd_handle.for_each_device(self.show_message)
 
