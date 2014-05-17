@@ -21,6 +21,7 @@ class Core:
 		self._jobs = {}
 		self._default_application = None
 		self._current_application = None
+		self._application_history = []
 
 		self.trace("application core initialized")
 
@@ -134,8 +135,28 @@ class Core:
 		self._current_application = application
 		if self._current_application:
 			self._current_application.active = True
+			if application.in_history:
+				self._application_history.append(application)
 		self.trace("... activated application '%s'" % application.name)
 
+	def clear_application_history(self):
+		del(self._application_history[:])
+
+	def deactivate(self, application):
+		# if only the name is given: lookup job name
+		if type(application) is str:
+			if application in self._jobs:
+				application = self._jobs[application]
+			else:
+				raise KeyError("job name not found")
+		# deactivate and activate last application in history
+		if len(self._application_history) > 0:
+			last_application = self._application_history.pop()
+			if last_application == application:
+				last_application = self._application_history[-1]
+			self.activate(last_application)
+		elif self._default_application:
+			self.activate(self._default_application)
 
 class DeviceManager:
 
@@ -523,10 +544,15 @@ class Job:
 
 class App(Job):
 
-	def __init__(self, name):
+	def __init__(self, name, in_history = False):
 		super().__init__(name, False)
 		self._activators = MultiListener(self._process_activator)
 		self._deactivators = MultiListener(self._process_deactivator)
+		self._in_history = in_history
+
+	@property
+	def in_history(self):
+	    return self._in_history
 
 	def _process_activator(self, *args):
 		self.trace("activating app %s, caused by event" % self.name)
