@@ -37,10 +37,10 @@ class LCDButtonsComponent(Component):
 
 class LCDBacklightComponent(Component):
 
-	def __init__(self, name, slot):
+	def __init__(self, name, slot, initial_state = False):
 
 		super().__init__(name)
-		self.state = False
+		self.state = initial_state
 
 		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -68,8 +68,7 @@ class LCDBacklightComponent(Component):
 			device.backlight_off()
 
 	def update_devices(self):
-		for device in self.lcd_handle.devices:
-			self.update_device(device)
+		self.lcd_handle.for_each_device(self.update_device)
 
 	def on_core_started(self):
 		super().on_core_started()
@@ -105,7 +104,7 @@ class LCDWatch(Component):
 
 class LCDMessage(Component):
 
-	def __init__(self, name, slot, lines, 
+	def __init__(self, name, lines, 
 		lcd_uid = None):
 
 		super().__init__(name)
@@ -119,13 +118,15 @@ class LCDMessage(Component):
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
 
-		self.add_listener(slot.listener(self.process_message))
-
-	def process_message(self, job, component, name, value):
+	def on_enabled(self):
 		self.lcd_handle.for_each_device(self.show_message)
+
+	def on_disabled(self):
+		self.lcd_handle.for_each_device(lambda device: device.clear_display())
 
 	def show_message(self, device):
 		device.clear_display()
+		device.set_config(False, False)
 		for i in range(0, min(len(self.lines), 4)):
 			device.write_line(i, 0, unicode_to_ks0066u(self.lines[i]))
 
