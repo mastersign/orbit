@@ -204,7 +204,6 @@ class LCDMenu(Component):
 
 	def on_button_escape(self):
 		self.trace("escape")
-		self.set_active(False)
 		self.send('escape', None)
 
 	def on_button_previous(self):
@@ -217,5 +216,4 @@ class LCDMenu(Component):
 		if self.selected >= 0 and self.selected < len(self.entries):
 			label, name = self.entries[self.selected]
 			self.trace("selected entry %s" % name)
-			self.set_active(False)
 			self.send(name, None)
