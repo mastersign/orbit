@@ -525,24 +525,37 @@ class App(Job):
 
 	def __init__(self, name):
 		super().__init__(name, False)
-		self._multi_listener = MultiListener(self._process_trigger_event)
+		self._activators = MultiListener(self._process_activator)
+		self._deactivators = MultiListener(self._process_deactivator)
 
-	def _process_trigger_event(self, job, component, name, value):
-		self.trace("activating app %s, caused by trigger" % self.name)
+	def _process_activator(self, *args):
+		self.trace("activating app %s, caused by event" % self.name)
 		self._core.activate(self)
 
-	def add_trigger(self, slot):
-		self._multi_listener.add_slot(slot)
+	def _process_deactivator(self, *args):
+		self.trace("deactivating app %s, caused by event" % self.name)
+		self._core.deactivate(self)
 
-	def remove_trigger(self, slot):
-		self._multi_listener.remove_slot(slot)
+	def add_activator(self, slot):
+		self._activators.add_slot(slot)
 
+	def remove_activator(self, slot):
+		self._activators.remove_slot(slot)
+
+	def add_deactivator(self, slot):
+		self._deactivators.add_slot(slot)
+
+	def remove_deactivator(self, slot):
+		self._deactivators.remove_slot(slot)
+	
 	def on_install(self, core):
 		super().on_install(core)
-		self._multi_listener.activate(self._core.blackboard)
+		self._activators.activate(self._core.blackboard)
+		self._deactivators.activate(self._core.blackboard)
 
 	def on_uninstall(self):
-		self._multi_listener.deactivate(self._core.blackboard)
+		self._deactivators.deactivate(self._core.blackboard)
+		self._activators.deactivate(self._core.blackboard)
 		super().on_uninstall()
 
 
