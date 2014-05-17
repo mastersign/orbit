@@ -69,7 +69,7 @@ class Core:
 		self.trace("... started")
 
 		def activator(job):
-			if job.background:
+			if job.background or job == self.default_application:
 				job.active = True
 		self.for_each_job(activator)
 
