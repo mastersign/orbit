@@ -525,25 +525,26 @@ class App(Job):
 
 	def __init__(self, name):
 		super().__init__(name, False)
-		self._triggers = []
+		self._multi_listener = MultiListener(self._process_trigger_event)
 
-	def add_trigger(self, event_info):
-		listener = event_info.listener(self.on_trigger)
-		self._triggers.append(listener)
+	def _process_trigger_event(self, job, component, name, value):
+		self.trace("activating app %s, caused by trigger" % self.name)
+		self._core.activate(self)
+
+	def add_trigger(self, slot):
+		self._multi_listener.add_slot(slot)
+
+	def remove_trigger(self, slot):
+		self._multi_listener.remove_slot(slot)
 
 	def on_install(self, core):
 		super().on_install(core)
-		for trigger in self._triggers:
-			self._core.blackboard.add_listener(trigger)
+		self._multi_listener.activate(self._core.blackboard)
 
 	def on_uninstall(self):
-		for trigger in self._triggers:
-			self._core.blackboard.remove_listener(trigger)
+		self._multi_listener.deactivate(self._core.blackboard)
 		super().on_uninstall()
 
-	def on_trigger(self, job, component, name, value):
-		self.trace("activating app %s, caused by trigger" % self.name)
-		self._core.activate(self)
 
 class Service(Job):
 
@@ -935,3 +936,41 @@ class Listener:
 			% (self._slot.job, self._slot.component, self._slot.name,
 			   self._slot.transformation != None, self._slot.predicate != None, 
 			   self._receiver)
+
+
+class MultiListener:
+
+	def __init__(self, callback):
+		self._callback = callback
+		self._listeners = {}
+		self._blackboards = []
+
+	@property
+	def slots(self):
+		return self._listeners.keys()
+
+	@property
+	def listeners(self):
+		return self._listeners.values()
+
+	def add_slot(self, slot):
+		listener = slot.listener(self._callback)
+		self._listeners[slot] = listener
+		for blackboard in self._blackboards:
+			blackboard.add_listener(listener)
+
+	def remove_slot(self, slot):
+		listener = self._listeners[slot]
+		del(self._listeners[slot])
+		for blackboard in self._blackboards:
+			blackboard.remove_listener(listener)
+
+	def activate(self, blackboard):
+		for listener in self._listeners.values():
+			blackboard.add_listener(listener)
+		self._blackboards.append(blackboard)
+
+	def deactivate(self, blackboard):
+		for listener in self._listeners.values():
+			blackboard.remove_listener(listener)
+		self._blackboards.remove(blackboard)
