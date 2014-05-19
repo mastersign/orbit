@@ -97,6 +97,9 @@ class LCDWatchComponent(Component):
 	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_time)
 
+	def on_enabled(self):
+		self.lcd_handle.for_each_device(self.show_time)
+
 	def show_time(self, device):
 		for line in self.lines.keys():
 			text = datetime.now().strftime(self.lines[line])
@@ -117,13 +120,6 @@ class LCDMessageComponent(Component):
 			self.lcd_handle = MultiDeviceHandle(
 				'lcds', LCD204.DEVICE_IDENTIFIER)
 		self.add_device_handle(self.lcd_handle)
-
-		self.lcd_handle.register_callback(
-			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
-
-	def button_pressed(self, no):
-		if no == 0:
-			self.send('escape', None)
 
 	def on_enabled(self):
 		self.lcd_handle.for_each_device(self.show_message)

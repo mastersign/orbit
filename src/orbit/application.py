@@ -433,6 +433,8 @@ class Job:
 		self._components = {}
 		self._active = False
 		self._tracing = None
+		self._event_tracing = None
+		self._listeners = []
 
 	@property
 	def tracing(self):
@@ -451,6 +453,20 @@ class Job:
 				_trace(text, "Service " + self._name)
 			else:
 				_trace(text, "App " + self._name)
+
+	@property
+	def event_tracing(self):
+		return self._event_tracing
+	@event_tracing.setter
+	def event_tracing(self, enabled):
+		self._event_tracing = enabled
+
+	def event_trace(self, name, value):
+		if self._event_tracing == True or \
+			(self._event_tracing != False and \
+			 self._core.configuration.event_tracing):
+
+			_trace("EVENT %s: %s" % (name, str(value)), "Job %s" % self._name)
 
 	@property
 	def name(self):
@@ -493,10 +509,16 @@ class Job:
 		self._active = value
 		if self._active:
 			self.trace("activating ...")
+			for listener in self._listeners:
+				listener.listening_job = self.name
+				listener.listening_component = 'JOB'
+				self._core.blackboard.add_listener(listener)
 			self.on_activated()
 			self.trace("... activated")
 		else:
 			self.trace("deactivating ...")
+			for listener in self._listeners:
+				self._core.blackboard.remove_listener(listener)
 			self.on_deactivated()
 			self.trace("... deactivated")
 
@@ -546,6 +568,28 @@ class Job:
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
 
+	def add_listener(self, listener):
+		if listener in self._listeners:
+			return
+		self._listeners.append(listener)
+		if self._active:
+			listener.listening_job = self.name
+			listener.listening_component = 'JOB'
+			self._core.blackboard.add_listener(listener)
+
+	def remove_listener(self, listener):
+		if listener not in self._listeners:
+			return
+		if self._active:
+			self._core.blackboard.remove_listener(listener)
+		self._listeners.remove(listener)
+
+	def send(self, name, value = None):
+		if not self._active:
+			raise AttributeError("this job is not active")
+		self.event_trace(name, value)
+		self._core.blackboard.send(self.name, 'JOB', name, value)
+
 
 class App(Job):
 
@@ -588,6 +632,20 @@ class App(Job):
 		self._deactivators.deactivate(self._core.blackboard)
 		self._activators.deactivate(self._core.blackboard)
 		super().on_uninstall()
+
+	def activate(self):
+		if not self.core:
+			raise AttributeError("the job is not associated with a core")
+		if self.active:
+			raise AttributeError("the job is already activated")
+		self.core.activate(self)
+
+	def deactivate(self):
+		if not self.core:
+			raise AttributeError("the job is not associated with a core")
+		if not self.active:
+			raise AttributeError("the job is not activated")
+		self.core.deactivate(self)
 
 
 class Service(Job):
