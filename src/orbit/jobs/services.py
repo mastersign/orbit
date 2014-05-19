@@ -7,8 +7,8 @@ from ..components.lcd import LCDBacklightComponent
 
 class StandbyService(Service):
 
-	def __init__(self, name, activity_slot, timeout = 6):
-		super().__init__(name)
+	def __init__(self, name, activity_slot, timeout = 6, **nargs):
+		super().__init__(name, **nargs)
 
 		self.add_component(
 			ActivityTimerComponent('standby_timer',
