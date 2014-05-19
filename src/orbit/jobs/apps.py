@@ -20,11 +20,9 @@ class WatchApp(App):
 		self.add_component(
 			LCDButtonsComponent('lcd_buttons'))
 
-		self.add_listener(
-			Slot(self.name, 'lcd_buttons', 'button_pressed') \
-			.listener(self._process_button_pressed))
+		self.add_deactivator(Slot(self.name, 'lcd_buttons', 'button_pressed',
+			predicate = self._exit_predicate))
 
-	def _process_button_pressed(self, job, component, name, value):
+	def _exit_predicate(self, job, component, name, value):
 		uid, button = value
-		if button == 0:
-			self.deactivate()
+		return button == 0
