@@ -154,6 +154,8 @@ class Core:
 				application = self._jobs[application]
 			else:
 				raise KeyError("job name not found")
+		if self._current_application == application:
+			return
 		# set job as current application
 		self.trace("activating application '%s' ..." % application.name)
 		if self._current_application:
