@@ -41,3 +41,16 @@ class MessageApp(EscapableApp):
 
 		self.add_component(
 			lcd.LCDMessageComponent('msg', lines))
+
+
+class MenuApp(App):
+
+	def __init__(self, name, entries, **nargs):
+		if 'in_history' not in nargs:
+			nargs['in_history'] = True
+		super().__init__(name, **nargs)
+
+		self.add_component(
+			lcd.LCDMenuComponent('menu', entries = entries))
+
+		self.add_deactivator(Slot(self.name, 'menu', 'escape'))
