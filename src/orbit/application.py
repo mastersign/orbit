@@ -622,6 +622,20 @@ class App(Job):
 		self._activators.deactivate(self._core.blackboard)
 		super().on_uninstall()
 
+	def activate(self):
+		if not self.core:
+			raise AttributeError("the job is not associated with a core")
+		if self.active:
+			raise AttributeError("the job is already activated")
+		self.core.activate(self)
+
+	def deactivate(self):
+		if not self.core:
+			raise AttributeError("the job is not associated with a core")
+		if not self.active:
+			raise AttributeError("the job is not activated")
+		self.core.deactivate(self)
+
 
 class Service(Job):
 
