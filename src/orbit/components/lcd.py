@@ -97,6 +97,9 @@ class LCDWatchComponent(Component):
 	def process_message(self, job, component, name, value):
 		self.lcd_handle.for_each_device(self.show_time)
 
+	def on_enabled(self):
+		self.lcd_handle.for_each_device(self.show_time)
+
 	def show_time(self, device):
 		for line in self.lines.keys():
 			text = datetime.now().strftime(self.lines[line])
