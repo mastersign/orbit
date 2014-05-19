@@ -152,10 +152,13 @@ class Core:
 				raise KeyError("job name not found")
 		# deactivate and activate last application in history
 		if len(self._application_history) > 0:
-			last_application = self._application_history.pop()
-			if last_application == application:
-				last_application = self._application_history[-1]
-			self.activate(last_application)
+			next_app = self._application_history.pop()
+			if next_app == application:
+				if len(self._application_history) > 0:
+					next_app = self._application_history[-1]
+				else:
+					next_app = self._default_application
+			self.activate(next_app)
 		elif self._default_application:
 			self.activate(self._default_application)
 
