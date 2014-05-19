@@ -34,4 +34,10 @@ class WatchApp(EscapableApp):
 				slot = Slot(self.name, 'watch_timer', 'timer')))
 
 
+class MessageApp(EscapableApp):
 
+	def __init__(self, name, lines, **nargs):
+		super().__init__(name, **nargs)
+
+		self.add_component(
+			LCDMessageComponent('msg', lines))
