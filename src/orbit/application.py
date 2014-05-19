@@ -24,6 +24,9 @@ class Core:
 		self._current_application = None
 		self._application_history = []
 
+		self._stopper = MultiListener(self._core_stopper)
+		self._stopper.activate(self._blackboard)
+
 		self.trace("application core initialized")
 
 	def trace(self, text):
@@ -92,6 +95,16 @@ class Core:
 			lambda j: j.on_core_stopped())
 
 		self.trace("... stopped")
+	def _core_stopper(self, *args):
+		self.trace("core stopping, caused by event")
+		self.stop()
+
+	def add_stopper(self, slot):
+		self._stopper.add_slot(slot)
+
+	def remove_stopper(self, slot):
+		self._stopper.remove_slot(slot)
+
 
 	def install(self, job):
 		if job.core:
