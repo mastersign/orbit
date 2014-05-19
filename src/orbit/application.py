@@ -1,6 +1,7 @@
 # Package orbit.application
 
 from datetime import datetime
+from traceback import print_exc
 from . import setup
 from .index import MultiLevelIndex
 from .devices import known_device, get_device_identifier, device_name, device_instance
@@ -409,6 +410,7 @@ class Blackboard:
 				l(msg)
 			except Exception as exc:
 				self.trace("Error while calling listener: %s" % exc)
+				print_exc()
 
 	class Message:
 
