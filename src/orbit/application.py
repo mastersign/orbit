@@ -593,11 +593,26 @@ class Job:
 
 class App(Job):
 
-	def __init__(self, name, in_history = False):
+	def __init__(self, name, in_history = False, 
+		activator = None, deactivator = None):
 		super().__init__(name, False)
 		self._activators = MultiListener(self._process_activator)
 		self._deactivators = MultiListener(self._process_deactivator)
 		self._in_history = in_history
+
+		if activator:
+			if type(activator) is list or type(activator) is tuple:
+				for a in activator:
+					self.add_activator(a)
+			else:
+				self.add_activator(activator)
+
+		if deactivator:
+			if type(deactivator) is list or type(deactivator) is tuple:
+				for d in deactivator:
+					self.add_deactivator(d)
+			else:
+				self.add_deactivator(deactivator)
 
 	@property
 	def in_history(self):
