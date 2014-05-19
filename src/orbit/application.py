@@ -504,10 +504,16 @@ class Job:
 		self._active = value
 		if self._active:
 			self.trace("activating ...")
+			for listener in self._listeners:
+				listener.listening_job = self.name
+				listener.listening_component = 'JOB'
+				self._core.blackboard.add_listener(listener)
 			self.on_activated()
 			self.trace("... activated")
 		else:
 			self.trace("deactivating ...")
+			for listener in self._listeners:
+				self._core.blackboard.remove_listener(listener)
 			self.on_deactivated()
 			self.trace("... deactivated")
 
@@ -561,7 +567,7 @@ class Job:
 		if listener in self._listeners:
 			return
 		self._listeners.append(listener)
-		if self._enabled:
+		if self._active:
 			listener.listening_job = self.name
 			listener.listening_component = 'JOB'
 			self._core.blackboard.add_listener(listener)
@@ -569,7 +575,7 @@ class Job:
 	def remove_listener(self, listener):
 		if listener not in self._listeners:
 			return
-		if self._enabled:
+		if self._active:
 			self._core.blackboard.remove_listener(listener)
 		self._listeners.remove(listener)
 
