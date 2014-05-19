@@ -75,7 +75,7 @@ class LCDBacklightComponent(Component):
 		self.update_devices()
 
 
-class LCDWatch(Component):
+class LCDWatchComponent(Component):
 
 	def __init__(self, name, slot,
 		lcd_uid = None, lines = {0: "%d.%m.%Y  %H:%M:%S"}):
@@ -102,7 +102,7 @@ class LCDWatch(Component):
 			text = datetime.now().strftime(self.lines[line])
 			device.write_line(line, 0, text)
 
-class LCDMessage(Component):
+class LCDMessageComponent(Component):
 
 	def __init__(self, name, lines, 
 		lcd_uid = None):
@@ -137,7 +137,7 @@ class LCDMessage(Component):
 		for i in range(0, min(len(self.lines), 4)):
 			device.write_line(i, 0, unicode_to_ks0066u(self.lines[i]))
 
-class LCDMenu(Component):
+class LCDMenuComponent(Component):
 
 	def __init__(self, name, 
 		lcd_uid = None, entries = [('None', 'none')]):

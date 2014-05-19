@@ -5,7 +5,7 @@ from time import time
 from threading import Timer, Thread
 from ..application import Component
 
-class ActivityTimer(Component):
+class ActivityTimerComponent(Component):
 
 	def __init__(self, name, slot, 
 		initial_state = True, timeout = 6):
@@ -57,7 +57,7 @@ class ActivityTimer(Component):
 			self.timer.cancel()
 			self.timer = None
 
-class IntervalTimer(Component):
+class IntervalTimerComponent(Component):
 
 	def __init__(self, name, interval = 1):
 

@@ -2,7 +2,7 @@
 
 from ..application import Component
 
-class EventCallback(Component):
+class EventCallbackComponent(Component):
 
 	def __init__(self, name, 
 		slot, callback):
