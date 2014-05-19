@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from traceback import print_exc
+from threading import Event
 from . import setup
 from .index import MultiLevelIndex
 from .devices import known_device, get_device_identifier, device_name, device_instance
@@ -26,6 +27,9 @@ class Core:
 
 		self._stopper = MultiListener(self._core_stopper)
 		self._stopper.activate(self._blackboard)
+
+		self._stop_event = Event()
+		self._stop_event.set()
 
 		self.trace("application core initialized")
 
@@ -66,6 +70,8 @@ class Core:
 			return
 		self.trace("starting ...")
 
+		self._stop_event.clear()
+
 		self._started = True
 		self._device_manager.start()
 		self.for_each_job(
@@ -95,6 +101,8 @@ class Core:
 			lambda j: j.on_core_stopped())
 
 		self.trace("... stopped")
+		self._stop_event.set()
+
 	def _core_stopper(self, *args):
 		self.trace("core stopping, caused by event")
 		self.stop()
@@ -105,6 +113,10 @@ class Core:
 	def remove_stopper(self, slot):
 		self._stopper.remove_slot(slot)
 
+	def wait_for_stop(self):
+		if not self._started:
+			return
+		self._stop_event.wait()
 
 	def install(self, job):
 		if job.core:
