@@ -428,6 +428,8 @@ class Job:
 		self._components = {}
 		self._active = False
 		self._tracing = None
+		self._event_tracing = None
+		self._listeners = []
 
 	@property
 	def tracing(self):
@@ -446,6 +448,20 @@ class Job:
 				_trace(text, "Service " + self._name)
 			else:
 				_trace(text, "App " + self._name)
+
+	@property
+	def event_tracing(self):
+		return self._event_tracing
+	@event_tracing.setter
+	def event_tracing(self, enabled):
+		self._event_tracing = enabled
+
+	def event_trace(self, name, value):
+		if self._event_tracing == True or \
+			(self._event_tracing != False and \
+			 self._core.configuration.event_tracing):
+
+			_trace("EVENT %s: %s" % (name, str(value)), "Job %s" % self._name)
 
 	@property
 	def name(self):
@@ -540,6 +556,28 @@ class Job:
 	def on_core_stopped(self):
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
+
+	def add_listener(self, listener):
+		if listener in self._listeners:
+			return
+		self._listeners.append(listener)
+		if self._enabled:
+			listener.listening_job = self.name
+			listener.listening_component = 'JOB'
+			self._core.blackboard.add_listener(listener)
+
+	def remove_listener(self, listener):
+		if listener not in self._listeners:
+			return
+		if self._enabled:
+			self._core.blackboard.remove_listener(listener)
+		self._listeners.remove(listener)
+
+	def send(self, name, value = None):
+		if not self._active:
+			raise AttributeError("this job is not active")
+		self.event_trace(name, value)
+		self._core.blackboard.send(self.name, 'JOB', name, value)
 
 
 class App(Job):
