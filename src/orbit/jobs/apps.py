@@ -2,7 +2,7 @@
 
 from ..application import App, Slot
 from ..components.timer import IntervalTimerComponent
-from ..components.lcd import LCDButtonsComponent, LCDWatchComponent, LCDMessageComponent
+from ..components import lcd
 
 class EscapableApp(App):
 
@@ -10,7 +10,7 @@ class EscapableApp(App):
 		super().__init__(*args, **nargs)
 
 		self.add_component(
-			LCDButtonsComponent('lcd_buttons'))
+			lcd.LCDButtonsComponent('lcd_buttons'))
 
 		self.add_deactivator(Slot(self.name, 'lcd_buttons', 'button_pressed',
 			predicate = self._escape_predicate))
@@ -29,7 +29,7 @@ class WatchApp(EscapableApp):
 			IntervalTimerComponent('watch_timer'))
 
 		self.add_component(
-			LCDWatchComponent('lcd_watch',
+			lcd.LCDWatchComponent('lcd_watch',
 				lines = {1: "     %d.%m.%Y     ", 2: "      %H:%M:%S      "},
 				slot = Slot(self.name, 'watch_timer', 'timer')))
 
@@ -40,4 +40,4 @@ class MessageApp(EscapableApp):
 		super().__init__(name, **nargs)
 
 		self.add_component(
-			LCDMessageComponent('msg', lines))
+			lcd.LCDMessageComponent('msg', lines))
