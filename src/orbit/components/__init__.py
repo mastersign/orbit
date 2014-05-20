@@ -1,1 +1,1 @@
-__all__ = ["common", "timer", "lcd"]
+__all__ = ["common", "timer", "lcd", "remoteswitch"]
