@@ -116,7 +116,10 @@ class Core:
 	def wait_for_stop(self):
 		if not self._started:
 			return
-		self._stop_event.wait()
+		try:
+			self._stop_event.wait()
+		except KeyboardInterrupt:
+			self.stop()
 
 	def install(self, job):
 		if job.core:
