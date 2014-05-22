@@ -32,7 +32,7 @@ class Core:
 		self._stop_event = Event()
 		self._stop_event.set()
 
-		self.trace("application core initialized")
+		self.trace("core initialized")
 
 	def trace(self, text):
 		if self._configuration.core_tracing:
@@ -67,7 +67,7 @@ class Core:
 
 	def start(self):
 		if self._started:
-			self.trace("orbit core already started")
+			self.trace("core already started")
 			return
 		self.trace("starting ...")
 		self._stop_event.clear()
@@ -87,7 +87,7 @@ class Core:
 
 	def stop(self):
 		if not self._started:
-			self.trace("application core already stopped")
+			self.trace("core already stopped")
 			return
 
 		def deactivator(job):
