@@ -2,7 +2,8 @@
 
 from datetime import datetime
 from traceback import print_exc
-from threading import Event
+from threading import Thread, Lock, Event
+from collections import deque
 from . import setup
 from .index import MultiLevelIndex
 from .devices import known_device, get_device_identifier, device_name, device_instance
@@ -66,14 +67,14 @@ class Core:
 
 	def start(self):
 		if self._started:
-			self.trace("application core already started")
+			self.trace("orbit core already started")
 			return
 		self.trace("starting ...")
-
 		self._stop_event.clear()
-
 		self._started = True
+		self._blackboard.start()
 		self._device_manager.start()
+
 		self.for_each_job(
 			lambda j: j.on_core_started())
 
@@ -95,17 +96,18 @@ class Core:
 
 		self.trace("stopping ...")
 
-		self._device_manager.stop()
-		self._started = False
 		self.for_each_job(
 			lambda j: j.on_core_stopped())
 
+		self._device_manager.stop()
+		self._blackboard.stop()
+		self._started = False
 		self.trace("... stopped")
 		self._stop_event.set()
 
 	def _core_stopper(self, *args):
 		self.trace("core stopping, caused by event")
-		self.stop()
+		Thread(target = self.stop).start()
 
 	def add_stopper(self, slot):
 		self._stopper.add_slot(slot)
@@ -406,25 +408,84 @@ class Blackboard:
 	def __init__(self, core):
 		self._core = core
 		self._index = MultiLevelIndex(('job', 'component', 'name'))
+		self._lock = Lock()
+		self._queue_event = Event()
+		self._queue = deque()
+		self._stopped = True
+		self._worker = Thread(name = 'Orbit Blackboard Queue Worker', target = self._queue_worker)
 
 	def trace(self, text):
 		if self._core.configuration.event_tracing:
 			_trace(text, 'Blackboard')
 
+	def _locked(self, f, *nargs, **kargs):
+		self._lock.acquire()
+		result = f(*nargs, **kargs)
+		self._lock.release()
+		return result
+
 	def job_group(self, group_name, *names):
-		self._index.add_group('job', group_name, names)
+		self._locked(
+			self._index.add_group, 'job', group_name, names)
 
 	def component_group(self, group_name, *names):
-		self._index.add_group('component', group_name, names)
+		self._locked(
+			self._index.add_group, 'component', group_name, names)
 
 	def name_group(self, group_name, *names):
-		self._index.add_group('name', group_name, names)
+		self._locked(
+			self._index.add_group, 'name', group_name, names)
 
 	def add_listener(self, listener):
-		self._index.add(listener)
+		self._locked(
+			self._index.add, listener)
 
 	def remove_listener(self, listener):
-		self._index.remove(listener)
+		self._locked(
+			self._index.remove, listener)
+
+	def start(self):
+		if not self._stopped:
+			return
+		self.trace("starting blackboard ...")
+		self._stopped = False
+		self._worker.start()
+
+	def stop(self):
+		if self._stopped:
+			return
+		self.trace("stopping blackboard ...")
+		self._stopped = True
+		self._queue_event.set()
+		self._worker.join()
+
+	def _queue_worker(self):
+		self.trace("... blackboard started")
+		while not self._stopped:
+			# working the queue until it is empty
+			while True:
+				msg = self._locked(lambda: self._queue.popleft() if len(self._queue) > 0 else None)
+				if msg:
+					self._distribute(msg)
+				else:
+					break
+
+			# wait for new events or stopping
+			self._queue_event.wait()
+			self._queue_event.clear()
+
+		self.trace("... blackboard stopped")
+
+	def _distribute(self, msg):
+		listeners = self._index.lookup(msg)
+		for l in listeners:
+			self.trace("ROUTE %s, %s, %s => %s (%s, %s, %s)" \
+				% (msg.job, msg.component, msg.name, l.receiver, l.job, l.component, l.name))
+			try:
+				l(msg)
+			except Exception as exc:
+				self.trace("Error while calling listener: %s" % exc)
+				print_exc()
 
 	def send(self, job, component, name, value):
 		if not self._core.started:
@@ -433,17 +494,8 @@ class Blackboard:
 			return
 
 		msg = Blackboard.Message(job, component, name, value)
-
-		listeners = self._index.lookup(msg)
-
-		for l in listeners:
-			self.trace("ROUTE %s, %s, %s => %s (%s, %s, %s)" \
-				% (job, component, name, l.receiver, l.job, l.component, l.name))
-			try:
-				l(msg)
-			except Exception as exc:
-				self.trace("Error while calling listener: %s" % exc)
-				print_exc()
+		self._locked(self._queue.append, msg)
+		self._queue_event.set()
 
 	class Message:
 
