@@ -224,8 +224,15 @@ class DeviceManager:
 		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self._core.configuration.host
 			port = self._core.configuration.port
-			self.trace("connecting to %s:%d" % (host, port))
-			self._conn.connect(host, port)
+			self.trace("connecting to %s:%d ..." % (host, port))
+			connected = False
+			while not connected:
+				try:
+					self._conn.connect(host, port)
+					connected = True
+				except TimeoutError:
+					self.trace("... timeout, retry ...")
+			self.trace("... connected")
 
 	def stop(self):
 		self._finalize_and_unbind_devices()
