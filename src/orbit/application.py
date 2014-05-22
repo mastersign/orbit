@@ -25,7 +25,7 @@ class Core:
 		self._current_application = None
 		self._application_history = []
 
-		self._stopper = MultiListener(self._core_stopper)
+		self._stopper = MultiListener('Core Stopper', self._core_stopper)
 		self._stopper.activate(self._blackboard)
 
 		self._stop_event = Event()
@@ -540,8 +540,6 @@ class Job:
 		if self._active:
 			self.trace("activating ...")
 			for listener in self._listeners:
-				listener.listening_job = self.name
-				listener.listening_component = 'JOB'
 				self._core.blackboard.add_listener(listener)
 			self.on_activated()
 			self.trace("... activated")
@@ -601,10 +599,9 @@ class Job:
 	def add_listener(self, listener):
 		if listener in self._listeners:
 			return
+		listener.receiver = self.name
 		self._listeners.append(listener)
 		if self._active:
-			listener.listening_job = self.name
-			listener.listening_component = 'JOB'
 			self._core.blackboard.add_listener(listener)
 
 	def remove_listener(self, listener):
@@ -626,8 +623,8 @@ class App(Job):
 	def __init__(self, name, in_history = False, 
 		activator = None, deactivator = None):
 		super().__init__(name, False)
-		self._activators = MultiListener(self._process_activator)
-		self._deactivators = MultiListener(self._process_deactivator)
+		self._activators = MultiListener("%s Activator" % name, self._process_activator)
+		self._deactivators = MultiListener("%s Deactivator" % name, self._process_deactivator)
 		self._in_history = in_history
 
 		if activator:
@@ -773,8 +770,7 @@ class Component:
 		if self._enabled:
 			self.trace("enabling ...")
 			for listener in self._listeners:
-				listener.listening_job = self._job.name
-				listener.listening_component = self.name
+				listener.receiver = "%s, %s" % (self._job.name, self.name)
 				self._job._core.blackboard.add_listener(listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.add_handle(device_handle)
@@ -833,8 +829,7 @@ class Component:
 			return
 		self._listeners.append(listener)
 		if self._enabled:
-			listener.listening_job = self._job.name
-			listener.listening_component = self.name
+			listener.receiver = "%s, %s" % (self._job.name, self.name)
 			self._job._core.blackboard.add_listener(listener)
 
 	def remove_listener(self, listener):
@@ -1087,10 +1082,15 @@ class Listener:
 
 class MultiListener:
 
-	def __init__(self, callback):
+	def __init__(self, name, callback):
 		self._callback = callback
 		self._listeners = {}
 		self._blackboards = []
+		self._name = name
+
+	@property
+	def name(self):
+	    return self._name
 
 	@property
 	def slots(self):
@@ -1102,6 +1102,7 @@ class MultiListener:
 
 	def add_slot(self, slot):
 		listener = slot.listener(self._callback)
+		listener.receiver = self.name
 		self._listeners[slot] = listener
 		for blackboard in self._blackboards:
 			blackboard.add_listener(listener)
