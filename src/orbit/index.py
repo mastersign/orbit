@@ -2,7 +2,48 @@
 
 # Package orbit.index
 
+"""
+Dieses Modul unterstützt das Nachrichtensystem von ORBIT
+mit einer hierarchischen Indexstruktur.
+Es enthält die Klasse :py:class:`MultiLevelReverseIndex` welche
+die Indexstruktur implementiert.
+"""
+
 class MultiLevelReverseIndex:
+	"""
+	Diese Klasse implementiert eine hierarchischen Indexstruktur
+	mit Unterstützung für mehrstufige Schlüssel einschließlich
+	Gruppen und Wildcards im Schlüssel.
+
+	``attributes``
+		Eine Liste mit den Namen der Indexattribute.
+	``item_attribut_selector`` (*optional*)
+		Eine Funktion die beim Hinzufügen eines Objektes mit :py:meth:`add`
+		verwendet wird, um den Attributwert unter Angabe des 
+		Objektes und des Attributnamens zu ermitteln.
+		Standardwert ist :py:meth:`getattr`.
+	``lookup_attribut_selector`` (*optional*)
+		Eine Funktion die beim Look-Up mit :py:meth:`lookup` 
+		verwendet wird, um den Attributwert unter Angabe des 
+		Schlüsselobjektes und des Attributnamens zu ermitteln.
+		Standardwert ist :py:meth:`getattr`.
+
+	Der Index wird mit einer Liste von Attributnamen (Indexattribute) initialisiert.
+	Jedes Indexattribut steht für eine Ebene des hierarchischen Index.
+
+	Gruppen für jedes Indexattribut können mit :py:meth:`add_group` und 
+	:py:meth:`delete_group` verwaltet werden.
+
+	Objekte werden mit :py:meth:`add` hinzugefügt und anhand der 
+	Indexattribute indiziert. Die Attributwerte des Objektes können
+	konkrete Werte, ein Gruppennamen oder `None` als Wildcard sein.
+
+	Ein Look-Up erfolgt mit :py:meth:`lookup` und der Angabe eines 
+	Schlüsselobjekts. Ein Schlüsselobjekt besitzt wie die indizierten Objekte
+	alle Indexattribute.
+	Zurückgegeben werden bei einem Look-Up alle Objekte, deren 
+	Attributwerte zum angegebenen Schlüsselobjekt passen.
+	"""
 
 	def __init__(self, attributes, 
 			item_attribute_selector = getattr,
@@ -16,6 +57,17 @@ class MultiLevelReverseIndex:
 		self._groups = {}
 
 	def add_group(self, attribute, group, keys):
+		"""
+		Fügt dem Index eine Gruppe für ein Attribut hinzu.
+
+		``attribute``
+			Der Name des Indexattributes für das eine Gruppe eingerichtet werden soll.
+		``group``
+			Der Gruppenname unter dem Objekte indiziert werden können.
+		``keys``
+			Eine Sequenz von Werten die bei Look-Ups zu Objekten führen welche
+			unter dem Gruppennamen indiziert wurden.
+		"""
 		if not (type(keys) is list):
 			keys = list(keys)
 		if attribute not in self._groups:
@@ -27,6 +79,14 @@ class MultiLevelReverseIndex:
 			gm[group].extend(keys)
 
 	def delete_group(self, attribute, group):
+		"""
+		Entfernt eine Gruppe für ein Attribut aus dem Index.
+
+		``attribute``
+			Der Name des Indexattributes für das die Gruppe entfernt werden soll.
+		``group``
+			Der Name der Gruppe.
+		"""
 		if attribute not in self._groups:
 			return
 		gm = self._groups[attribute]
@@ -41,6 +101,13 @@ class MultiLevelReverseIndex:
 		return []
 
 	def add(self, item):
+		"""
+		Fügt dem Index ein Objekt hinzu.
+		Das Objekt wird anhand der Indexattribute indiziert.
+
+		Die Werte der Indexattribute können konkrete Werte, Gruppennamen
+		oder `None` als Wildcard sein.
+		"""
 		pivot = self._item_attribute_selector(item, self._attribute)
 		self._add(item, pivot)
 		for pivot2 in self._get_group(pivot):
@@ -63,6 +130,9 @@ class MultiLevelReverseIndex:
 		return sub_index
 
 	def remove(self, item):
+		"""
+		Entfernt ein Objekt aus dem Index.
+		"""
 		pivot = self._item_attribute_selector(item, self._attribute)
 		self._remove(item, pivot)
 		for pivot2 in self._get_group(pivot):
@@ -85,9 +155,28 @@ class MultiLevelReverseIndex:
 				del(self._index[pivot])
 
 	def is_empty(self):
+		"""
+		Gibt ``True`` zurück, wenn der Index kein Objekt enthält,
+		sonst ``False``. 
+
+		Der Index ist auch dann leer, wenn Gruppen eingerichtet,
+		aber keine Objekte indiziert wurden.
+		"""
 		return len(self._index) == 0
 
 	def lookup(self, key_obj):
+		"""
+		Ruft eine Liste mit allen Objekten ab, deren indizierte Attributwerte zu den
+		Attributwerten des übergebenen Schlüsselobjektes passen.
+
+		Damit ein Objekt im Ergebnis enthalten ist, müssen alle
+		Indexattribute passen. Ein Indexattribut passt
+
+		1. wenn der indizierte Attributwert gleich dem Schlüsselattribut ist
+		2. oder das indizierte Attribut ein Gruppenname 
+		   und das Schlüsselattribut in dieser Gruppe ist,
+		3. oder das indizierte Attribut `None` ist.
+		"""
 		pivot = self._lookup_attribute_selector(key_obj, self._attribute)
 		if self._is_parent:
 			if pivot == None:
