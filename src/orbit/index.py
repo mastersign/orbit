@@ -1,6 +1,6 @@
 # Package orbit.index
 
-class MultiLevelIndex:
+class MultiLevelReverseIndex:
 
 	def __init__(self, attributes, 
 			item_attribute_selector = getattr,
@@ -56,7 +56,7 @@ class MultiLevelIndex:
 			s.add(item)
 
 	def _create_sub_index(self):
-		sub_index = MultiLevelIndex(self._sub_attributes)
+		sub_index = MultiLevelReverseIndex(self._sub_attributes)
 		sub_index._groups = self._groups
 		return sub_index
 
@@ -85,20 +85,20 @@ class MultiLevelIndex:
 	def is_empty(self):
 		return len(self._index) == 0
 
-	def lookup(self, address):
-		pivot = self._lookup_attribute_selector(address, self._attribute)
+	def lookup(self, key_obj):
+		pivot = self._lookup_attribute_selector(key_obj, self._attribute)
 		if self._is_parent:
 			if pivot == None:
 				if pivot in self._index:
-					return self._index[pivot].lookup(address)
+					return self._index[pivot].lookup(key_obj)
 				else:
 					return []
 			else:
 				res = []
 				if pivot in self._index:
-					res.extend(self._index[pivot].lookup(address))
+					res.extend(self._index[pivot].lookup(key_obj))
 				if None in self._index:
-					res.extend(self._index[None].lookup(address))
+					res.extend(self._index[None].lookup(key_obj))
 				return res
 		else:
 			if pivot == None:

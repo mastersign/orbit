@@ -5,7 +5,7 @@ from traceback import print_exc
 from threading import Thread, Lock, Event
 from collections import deque
 from . import setup
-from .index import MultiLevelIndex
+from .index import MultiLevelReverseIndex
 from .devices import known_device, get_device_identifier, device_name, device_instance
 from tinkerforge.ip_connection import IPConnection, Error
 
@@ -414,7 +414,7 @@ class Blackboard:
 
 	def __init__(self, core):
 		self._core = core
-		self._index = MultiLevelIndex(('job', 'component', 'name'))
+		self._index = MultiLevelReverseIndex(('job', 'component', 'name'))
 		self._lock = Lock()
 		self._queue_event = Event()
 		self._queue = deque()
