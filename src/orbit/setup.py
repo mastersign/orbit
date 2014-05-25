@@ -1,13 +1,31 @@
 #!/usr/bin/python3
+# coding=utf-8
 
 # Package orbit.setup
 
 # Hint: This module is runnable as a script 
 #       to print the current configuration.
 
+"""
+Dieses Modul enthält die Klasse ``Configuration``, 
+die für die Konfiguration von ORBIT verantwortlich ist.
+
+Dieses Modul kann auch als Skript ausgeführt werden und gibt
+in dann die aktuelle ORBIT-Konfiguration aus.
+"""
+
 import os, json
 
 class Configuration:
+	"""
+	Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT. 
+
+	Jeder Parameter ist mit einem Standardwert vorbelegt und kann
+	in der Datei ``<Benutzerverzeichnis>/.orbit`` überschrieben werden.
+
+	Dazu besitzt die Kasse die Methoden ``load()`` and ``save()``.
+	Die Methode ``load()`` wird bereits automatisch beim Instanzieren aufgerufen.
+	"""
 
 	DEFAULT_HOST = "localhost"
 	DEFAULT_PORT = 4223
@@ -115,6 +133,10 @@ class Configuration:
 				self._component_tracing = bool(data['component_tracing'])
 
 	def load(self):
+		"""
+		Diese Method lädt die überschrieben Parameterwerte aus der 
+		benutzerspezifischen Konfigurationsdatei.
+		""" 
 		configfile = self._configfile_path()
 		if not os.path.isfile(configfile):
 			return
