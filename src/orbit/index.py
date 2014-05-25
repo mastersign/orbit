@@ -1,6 +1,6 @@
 # Package orbit.index
 
-class MultiLevelIndex:
+class MultiLevelReverseIndex:
 
 	def __init__(self, attributes, 
 			item_attribute_selector = getattr,
@@ -56,7 +56,7 @@ class MultiLevelIndex:
 			s.add(item)
 
 	def _create_sub_index(self):
-		sub_index = MultiLevelIndex(self._sub_attributes)
+		sub_index = MultiLevelReverseIndex(self._sub_attributes)
 		sub_index._groups = self._groups
 		return sub_index
 
