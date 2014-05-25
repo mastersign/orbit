@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # Package orbit.jobs.services
 
 from ..application import Service, Slot
