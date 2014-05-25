@@ -2,6 +2,21 @@
 
 # Package orbit.application
 
+"""
+Diese Modul enthält die wichtigsten Klassen für die Entwicklung einer
+ORBIT-Anwendung. Eine ORBIT-Anwendung wird von einem :py:class:`Core` verwaltet
+und kann mehrere :py:class:`Job` Instanzen enthalten.
+Ein :py:class:`Job` ist entweder ein :py:class:`Service` 
+oder eine :py:class:`App`. 
+Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component` Instanzen zusammen.
+
+Die TinkerForge-Bricklets werden durch :py:class:`DeviceManager` verwaltet
+und den :py:class:`Job` und ihren :py:class:`Component` Instanzen zugeordnet.
+:py:class:`Component` und :py:class:`Job` Instanzen
+kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
+die Klasse :py:class:`Blackboard` implementiert wird.
+"""
+
 from datetime import datetime
 from traceback import print_exc
 from threading import Thread, Lock, Event
