@@ -1,23 +1,24 @@
-.. orbit documentation master file, created by
-   sphinx-quickstart on Sun May 25 16:11:28 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+ORBIT Online-Dokumentation
+==========================
 
-Welcome to orbit's documentation!
-=================================
+**ORBIT ist ein Anwendungsrahmen für TinkerForge und Python**
 
-Contents:
+Version: |release|
+
+Erstellt am: |today|
+
+Inhalt
+------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    architecture
    reference
 
-Indices and tables
-==================
+Schnellzugriff
+--------------
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
