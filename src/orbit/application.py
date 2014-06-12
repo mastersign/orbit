@@ -8,7 +8,12 @@ ORBIT-Anwendung. Eine ORBIT-Anwendung wird von einem :py:class:`Core` verwaltet
 und kann mehrere :py:class:`Job` Instanzen enthalten.
 Ein :py:class:`Job` ist entweder ein :py:class:`Service` 
 oder eine :py:class:`App`. 
+
+.. image:: architecture-overview.png
+
 Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component` Instanzen zusammen.
+
+.. image:: job-overview.png
 
 Die TinkerForge-Bricklets werden durch :py:class:`DeviceManager` verwaltet
 und den :py:class:`Job` und ihren :py:class:`Component` Instanzen zugeordnet.
@@ -30,9 +35,41 @@ def _trace(text, source):
 	print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + ("%s: %s" % (source, text)))
 
 class Core:
+	"""
+	Diese Klasse repräsentiert den Kern einer ORBIT-Anwendung.
+
+	**Parameter**
+
+	``config`` (*optional*)
+		Die Konfiguration für die ORBIT-Anwendung. 
+		Eine Instanz der Klasse :py:class:`setup.Configuration`.
+
+	**Beschreibung**
+
+	Diese Klasse ist verantwortlich für die Einrichtung des Nachrichtensystems
+	und der Geräteverwaltung. Des Weiteren verwaltet sie alle Dienste
+	und Apps, die in der ORBIT-Anwendung verwendet werden.
+
+	Für die Einrichtung einer Anwendung wird zunächst eine Instanz von
+	:py:class:`Core` erzeugt. Dabei kann optional
+	eine benutzerdefinierte Konfiguration (:py:class:`..setup.Configuration`)
+	an den Konstruktor übergeben werden. 
+	Anschließend werden durch den mehrfachen Aufruf von
+	:py:meth:`install` Jobs hinzugefügt. Jobs können 
+	Dienste (:py:class:`Service`) oder Apps (:py:class:`App`) sein.
+	Über die Eigenschaft :py:attr:`default_application` kann eine App
+	als Standard-App festgelegt werden.
+
+	Um die ORBIT-Anwendung zu starten wird die Methode :py:meth:`start`
+	aufgerufen. Um die ORBIT-Anwendung zu beenden, kann entweder direkt
+	die Methode :py:meth:`stop` aufgerufen werden, oder es werden
+	vor dem Start der Anwendung ein oder mehrere Slots 
+	(Ereignisempfänger für das ORBIT-Nachritensystem) hinzugefügt,
+	welche die Anwendung stoppen sollen.
+	"""
 
 	def __init__(self, config = setup.Configuration()):
-		self._started = False
+		self._is_started = False
 		self._configuration = config
 		
 		self._device_manager = DeviceManager(self)
@@ -52,43 +89,102 @@ class Core:
 		self.trace("core initialized")
 
 	def trace(self, text):
+		"""
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``Core``
+		auf die Konsole.
+		"""
 		if self._configuration.core_tracing:
 			_trace(text, 'Core')
 
 	@property
-	def started(self):
-		return self._started
+	def is_started(self):
+		"""
+		Gibt an ob die ORBIT-Anwendung gestartet wurde oder nicht.
+		(*schreibgeschützt*)
+		Ist ``True`` wenn die Anwendung läuft, sonst ``False``.
+
+		*Siehe auch:*
+		:py:meth:`start`,
+		:py:meth:`stop`
+		"""
+		return self._is_started
 
 	@property
 	def configuration(self):
+		"""
+		Gibt die ORBIT-Anwendungskonfiguration (:py:class:`..setup.Configuration`) zurück.
+		(*schreibgeschützt*)
+		"""
 		return self._configuration
 
 	@property
 	def device_manager(self):
-	    return self._device_manager
+		"""
+		Gibt den Gerätemanager (:py:class:`DeviceManager`) zurück.
+		(*schreibgeschützt*)
+		"""
+		return self._device_manager
 
 	@property
 	def blackboard(self):
+		"""
+		Gibt das Nachrichtensystem (:py:class:`Blackboard`) zurück.
+		(*schreibgeschützt*)
+		"""
 		return self._blackboard
 
 	@property
 	def jobs(self):
+		"""
+		Gibt ein Dictionary mit allen installierten Jobs zurück.
+		(*schreibgeschützt*)
+		Der Schlüssel ist der Name des Jobs und der Wert ist der Job selbst.
+
+		*Siehe auch:*
+		:py:meth:`install`,
+		:py:meth:`uninstall`
+		"""
 		return self._jobs
 
 	@property
 	def default_application(self):
+		"""
+		Gibt die Standard-App zurück oder legt sie fest.
+		"""
 		return self._default_application
 	@default_application.setter
 	def default_application(self, application):
 		self._default_application = application
 
 	def start(self):
-		if self._started:
+		"""
+		Startet die ORBIT-Anwendung.
+
+		Beim Start wird das Nachrichtensystem gestartet und damit
+		die Weiterleitung von Ereignissen zwischen den Jobs und
+		Komponenten aktiviert. Des Weiteren wird der Gerätemanager
+		gestartet, der die Verbindung zum TinkerForge-Server aufbaut
+		und die angeschlossenen Bricks und Bricklets ermittelt.
+
+		Ist die Infrastruktur des Kerns erfolgreich gestartet,
+		werden zunächst alle Dienste, und zum Schluss die Standard-App
+		aktiviert.
+
+		.. note::
+			Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
+			bereits gestartet wurde, wird lediglich eine Meldung
+			auf der Konsole ausgegeben.
+
+		*Siehe auch:*
+		:py:meth:`stop`,
+		:py:attr:`is_started`
+		"""
+		if self._is_started:
 			self.trace("core already started")
 			return
 		self.trace("starting ...")
 		self._stop_event.clear()
-		self._started = True
+		self._is_started = True
 		self._blackboard.start()
 		self._device_manager.start()
 
@@ -103,7 +199,25 @@ class Core:
 		self.for_each_job(activator)
 
 	def stop(self):
-		if not self._started:
+		"""
+		Stoppt die ORBIT-Anwendung.
+
+		Beim Stoppen werden zunächst alle Jobs (Dienste und Apps)
+		deaktiviert. Anschließend wird der Gerätemanager
+		beendet und dabei die Verbindung zum TinkerForge-Server getrennt.
+		Zum Schluss wird das Nachrichtensystem beendet und die Weiterleitung
+		von Ereignissen gestoppt.
+
+		.. note::
+			Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
+			nicht gestartet ist, wird lediglich eine Meldung auf der Konsole
+			ausgegeben.
+
+		*Siehe auch:*
+		:py:meth:`start`,
+		:py:attr:`is_started`
+		"""
+		if not self._is_started:
 			self.trace("core already stopped")
 			return
 
@@ -118,7 +232,7 @@ class Core:
 
 		self._device_manager.stop()
 		self._blackboard.stop()
-		self._started = False
+		self._is_started = False
 		self.trace("... stopped")
 		self._stop_event.set()
 
@@ -127,13 +241,56 @@ class Core:
 		Thread(target = self.stop).start()
 
 	def add_stopper(self, slot):
+		"""
+		Fügt einen Slot hinzu, der das Stoppen der ORBIT-Anwendung
+		veranlassen soll.
+
+		*Siehe auch:*
+		:py:meth:`remove_stopper`
+		"""
 		self._stopper.add_slot(slot)
 
 	def remove_stopper(self, slot):
+		"""
+		Entfernt einen Slot, der das Stoppen der ORBIT-Anwendung
+		veranlassen sollte.
+
+		*Siehe auch:*
+		:py:meth:`add_stopper`
+		"""
 		self._stopper.remove_slot(slot)
 
 	def wait_for_stop(self):
-		if not self._started:
+		"""
+		Blockiert solange den Aufrufer, bis die ORBIT-Anwendung beendet wurde.
+
+		Der Grund für das Beenden kann ein direkter Aufruf von :py:meth:`stop`
+		oder das Abfangen eines Ereignisses von einem der Stopper-Slots sein.
+
+		Zusätzlich wird das Unterbrechungssignal (SIGINT z.B. Strg+C) abgefangen.
+		Tritt das Unterbrechungssignal auf, wird die ORBIT-Anwendung durch den Aufruf
+		von :py:meth:`stop` gestoppt und die Methode kehrt zum Aufrufer zurück.
+
+		.. note::
+			Die Methode kehrt erst dann zum Aufrufer zurück, 
+
+			* wenn alle Jobs deaktiviert wurden,
+			* der Gerätemanager alle Bricks und Bricklets freigegeben und die Verbindung
+			  zum TinkerForge-Server beendet hat
+			* und das Nachrichtensystem alle ausstehenden Ereignisse weitergeleitet hat
+			  und beendet wurde.
+
+		.. warning::
+			Diese Methode darf nicht direkt oder indirekt durch einen Slot 
+			aufgerufen werden, da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung
+			blockiert.
+
+		*Siehe auch:*
+		:py:meth:`stop`,
+		:py:meth:`add_stopper`, 
+		:py:meth:`remove_stopper`
+		"""
+		if not self._is_started:
 			return
 		try:
 			self._stop_event.wait()
@@ -141,6 +298,20 @@ class Core:
 			self.stop()
 
 	def install(self, job):
+		"""
+		Fügt der ORBIT-Anwendung einen Job (:py:class:`Job`) hinzu.
+		Ein Job kann ein Dienst (:py:class:`Service`) oder eine 
+		App (:py:class:`App`) sein.
+		Jobs können vor oder nach dem Starten der ORBIT-Anwendung 
+		hinzugefügt werden.
+
+		Wird ein Job mehrfach hinzugefügt, wird eine Ausnahme vom Typ 
+		:py:exc:`AttributeError` ausgelöst.
+
+		*Siehe auch:*
+		:py:meth:`uninstall`,
+		:py:attr:`jobs`
+		"""
 		if job.core:
 			raise AttributeError("the given job is already associated with a core")
 		if job.name in self._jobs:
@@ -148,10 +319,22 @@ class Core:
 		self._jobs[job.name] = job
 		job.on_install(self)
 		self.trace("installed job '%s'" % job.name)
-		if self._started and job.background:
+		if self._is_started and job.background:
 			job.active = True
 
 	def uninstall(self, job):
+		"""
+		Entfernt einen Job aus der ORBIT-Anwendung.
+		Ist der Job zur Zeit aktiv, wird er deaktiviert bevor
+		er aus der Anwendung entfernt wird.
+
+		Wird ein Job übergeben, der nicht installiert ist,
+		wird eine Ausnahme vom Typ :py:exc:`AttributeError` ausgelöst.
+
+		*Siehe auch:*
+		:py:meth:`install`,
+		:py:attr:`jobs`
+		"""
 		if job.name not in self._jobs:
 			raise AttributeError("the given job is not associated with this core")
 		if job.active:
@@ -161,21 +344,59 @@ class Core:
 		self.trace("uninstalled job '%s'" % job.name)
 
 	def for_each_job(self, f):
+		"""
+		Führt eine Funktion für jeden installierten Job aus.
+
+		*Siehe auch:*
+		:py:attr:`jobs`,
+		:py:meth:`install`,
+		:py:meth:`uninstall`
+		"""
 		for job in self._jobs.values():
 			f(job)
 
 	def for_each_active_job(self, f):
+		"""
+		Führt eine Funktion für jeden aktiven Job aus.
+
+		*Siehe auch:*
+		:py:meth:`activate`,
+		:py:meth:`deactivate`
+		"""
 		for job in self._jobs.values():
 			if job.active:
 				f(job)
 
 	def activate(self, application):
+		"""
+		Aktiviert eine App. Die App kann direkt übergeben
+		oder durch ihren Namen identifiziert werden.
+
+		Zu jedem Zeitpunkt ist immer nur eine App aktiv.
+		Ist bereits eine andere App aktiv, wird diese deaktiviert,
+		bevor die übergebene App aktiviert wird.
+
+		Ist die Eigenschaft :py:attr:`App.in_history` der bereits aktiven App 
+		gleich ``True``, wird die App vor dem Deaktivieren in der
+		App-History vermerkt.
+
+		Wird der Name einer App übergeben, die nicht in der ORBIT-Anwendung
+		installiert ist, wird eine :py:exc:`KeyError` ausgelöst.
+
+		*Siehe auch:*
+		:py:meth:`deactivate`,
+		:py:meth:`clear_application_history`,
+		:py:meth:`for_each_active_job`
+		"""
 		# if only the name is given: lookup job name
 		if type(application) is str:
 			if application in self._jobs:
 				application = self._jobs[application]
 			else:
 				raise KeyError("job name not found")
+		else:
+			if application not in self._jobs.values:
+				raise 
 		if self._current_application == application:
 			return
 		# set job as current application
@@ -190,9 +411,35 @@ class Core:
 		self.trace("... activated application '%s'" % application.name)
 
 	def clear_application_history(self):
+		"""
+		Leert die App-History.
+
+		Das hat zur Folge, dass nach dem Deaktivieren 
+		der zur Zeit aktiven App die Standard-App oder gar keine
+		aktiviert wird.
+
+		*Siehe auch:*
+		:py:meth:`activate`,
+		:py:meth:`deactivate`
+		"""
 		del(self._application_history[:])
 
 	def deactivate(self, application):
+		"""
+		Deaktiviert eine App. Die App App kann direkt übergeben
+		oder durch ihren Namen identifiziert werden.
+
+		Nach dem Deaktivieren der App wird geprüft, ob in der App-History
+		eine App vermerkt ist, welche vorher aktiv war. Ist dies der
+		Fall wird jene App automatisch aktiviert.
+
+		Ist die App-History leer, wird geprüft ob eine Standard-App
+		registriert ist (:py:attr:`default_application`) und ggf. diese aktiviert.
+
+		*Siehe auch:*
+		:py:meth:`activate`,
+		:py:meth:`clear_application_history`
+		"""
 		# if only the name is given: lookup job name
 		if type(application) is str:
 			if application in self._jobs:
@@ -212,6 +459,35 @@ class Core:
 			self.activate(self._default_application)
 
 class DeviceManager:
+	"""
+	Diese Klasse implementiert den Gerätemanager einer ORBIT-Anwendung.
+
+	**Parameter**
+
+	``core``
+		Ein Verweis auf den Anwendungskern der ORBIT-Anwendung.
+		Eine Instanz der Klasse :py:class:`Core`.
+
+	**Beschreibung**
+
+	Der Gerätemanager baut eine Verbindung zu einem TinkerForge-Server auf,
+	ermittelt die angeschlossenen Bricks und Bricklets und stellt
+	den Komponenten in den Jobs die jeweils geforderten Geräte zur Verfügung.
+
+	Dabei behält der Gerätemanager die Kontrolle über den Gerätezugriff.
+	Das bedeutet, dass der Gerätemanager die Autorität hat, einer Komponente
+	ein Gerät zur Verügung zu stellen, aber auch wieder zu entziehen.
+
+	Eine Komponente bekommt ein von ihm angefordertes Gerät i.d.R. dann zugewiesen,
+	wenn die Komponente aktiv und das Gerät verfügbar ist. Wird die Verbindung
+	zum TinkerForge-Server unterbrochen oder verliert der TinkerForge-Server
+	die Verbindung zum Master-Brick (USB-Kabel herausgezogen), entzieht
+	der Gerätemanager der Komponente automatisch das Gerät, so dass eine 
+	Komponente i.d.R. keine Verbindungsprobleme behandeln muss.
+
+	Umgesetzt wird dieses Konzept mit Hilfe der Klassen :py:class:`SingleDeviceHandle`
+	und :py:class:`MultiDeviceHandle`.
+	"""
 
 	def __init__(self, core):
 		self._core = core
@@ -230,14 +506,30 @@ class DeviceManager:
 		self._conn.register_callback(IPConnection.CALLBACK_DISCONNECTED, self._cb_disconnected)
 
 	def trace(self, text):
+		"""
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``DeviceManager``
+		auf die Konsole.
+		"""
 		if self._core.configuration.device_tracing:
 			_trace(text, 'DeviceManager')
 
 	@property
 	def devices(self):
+		"""
+		Ein Dictionary mit allen zur Zeit verfügbaren Geräten.
+		Die UID des Geräts ist der Schlüssel und der Wert ist eine Instanz
+		der TinkerForge-Geräte-Klasse 
+		(wie z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4``).
+		"""
 		return self._devices
 
 	def start(self):
+		"""
+		Startet den Gerätemanager und baut eine Verbindung zu einem TinkerForge-Server auf.
+		Die Verbindungdaten für den Server werden der ORBIT-Konfiguration entnommen.
+
+		Siehe auch: :py:meth:`stop`
+		"""
 		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self._core.configuration.host
 			port = self._core.configuration.port
@@ -252,6 +544,14 @@ class DeviceManager:
 			self.trace("... connected")
 
 	def stop(self):
+		"""
+		Trennt die Verbindung zum TinkerForge-Server und beendet den Gerätemanager.
+
+		Vor dem Trennen der Verbindung wird die Zuordnung zwischen den Geräten
+		und den Komponenten aufgehoben.
+
+		Siehe auch: :py:meth:`start`
+		"""
 		self._finalize_and_unbind_devices()
 		if self._conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
 			self.trace("disconnecting")
@@ -342,6 +642,28 @@ class DeviceManager:
 			self._unbind_device(uid)
 
 	def add_device_initializer(self, device_identifier, initializer):
+		"""
+		Richtet eine Initialisierungsfunktion für einen Brick- oder Bricklet-Typ ein.
+
+		**Parameter**
+
+		``device_identifier``
+			Die Geräte-ID der TinkerForge-API. 
+			Z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.DEVICE_IDENTIFIER``
+		``initializer``
+			Eine Funktion, welche als Parameter eine Instanz der TinkerForge-Geräteklasse
+			entgegennimmt.
+
+		**Beschreibung**
+
+		Sobald der Gerätemanager ein neues Gerät entdeckt, 
+		zu dem er bisher keine Verbindung aufgebaut hatte, 
+		ruft er alle Initialisierungsfunktionen für die entsprechende
+		Geräte-ID auf.
+
+		*Siehe auch:*
+		:py:meth:`add_device_finalizer`
+		"""
 		if device_identifier not in self._device_initializers:
 			self._device_initializers[device_identifier] = []
 		self._device_initializers[device_identifier].append(initializer)
@@ -363,6 +685,28 @@ class DeviceManager:
 					self.trace("Exception caught during device initialization:\n%s" % exc)
 
 	def add_device_finalizer(self, device_identifier, finalizer):
+		"""
+		Richtet eine Abschlussfunktion für einen Brick- oder Bricklet-Typ ein.
+
+		**Parameter**
+
+		``device_identifier``
+			Die Geräte-ID der TinkerForge-API. 
+			Z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.DEVICE_IDENTIFIER``
+		``finalizer``
+			Eine Funktion, welche als Parameter eine Instanz der TinkerForge-Geräteklasse
+			entgegennimmt.
+
+		**Beschreibung**
+
+		Sobald der Gerätemanager die Verbindung zu einem Gerät selbstständig
+		aufgibt (d.h. die Verbindung nicht durch eine Störung unterbrochen wurde),
+		ruft er alle Abschlussfunktionen für die entsprechende
+		Geräte-ID auf.
+
+		*Siehe auch:*
+		:py:meth:`add_device_initializer`
+		"""
 		if device_identifier not in self._device_finalizers:
 			self._device_finalizers[device_identifier] = []
 		self._device_finalizers[device_identifier].append(finalizer)
@@ -384,6 +728,23 @@ class DeviceManager:
 					self.trace("Exception caught during device finalization:\n%s" % exc)
 
 	def add_handle(self, device_handle):
+		"""
+		Richtet eine Geräteanforderung (Geräte-Handle) ein.
+
+		Eine Geräteanforderung ist eine Instanz einer Sub-Klasse
+		von :py:class:`DeviceHandle`. Das kann entweder eine Instanz von
+		:py:class:`SingleDeviceHandle` oder von :py:class:`MultiDeviceHandle` sein.
+
+		Das übergebene Geräte-Handle wird über alle neu entdeckten Geräte
+		mit einem Aufruf von :py:meth:`DeviceHandle.on_bind_device` benachrichtigt.
+		Je nach Konfiguration nimmt das Handle das neue Gerät an oder ignoriert es.
+		Verliert der Gerätemanager die Verbindung zu einem Gerät, wird das
+		Geräte-Handle ebenfalls mit einem Aufruf von
+		:py:meth:`DeviceHandle.on_unbind_device` benachrichtigt.
+
+		*Siehe auch:*
+		:py:meth:`remove_handle`
+		"""
 		if device_handle in self._device_handles:
 			return
 		self._device_handles.append(device_handle)
@@ -392,6 +753,16 @@ class DeviceManager:
 			device_handle.on_bind_device(device)
 
 	def remove_handle(self, device_handle):
+		"""
+		Entfernt eine Geräteanforderung (Geräte-Handle).
+
+		Eine Geräteanforderung ist eine Instanz einer Sub-Klasse
+		von :py:class:`DeviceHandle`. Das kann entweder eine Instanz von
+		:py:class:`SingleDeviceHandle` oder von :py:class:`MultiDeviceHandle` sein.
+
+		*Siehe auch:*
+		:py:meth:`add_handle`
+		"""
 		if device_handle not in self._device_handles:
 			return
 		for device in self._devices.values():
@@ -400,6 +771,37 @@ class DeviceManager:
 		self._device_handles.remove(device_handle)
 
 	def add_device_callback(self, uid, event, callback):
+		"""
+		Richtet eine Callback-Funktion für ein Ereignis
+		eines Bricks oder eines Bricklets ein.
+
+		**Parameter**
+
+		``uid``
+			Die UID des Gerätes für das ein Ereignis abgefangen werden soll.
+		``event``
+			Die ID für das abzufangene Ereignis.
+			Z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.CALLBACK_BUTTON_PRESSED``
+		``callback``
+			Eine Callback-Funktion die bei Auftreten des Ereignisses aufgerufen werden soll.
+
+		**Beschreibung**
+
+		Da jedes Ereignis andere Ereignisparameter besitzt,
+		muss die richtige Signatur für die Callbackfunktion der TinkerForge-Dokumentation
+		entnommen werden. Die Ereignisparameter werden in der API-Dokumentation
+		für jeden Brick und jedes Bricklet im Abschnitt *Callbacks* beschrieben.
+
+		.. note:: Der Gerätemanager stellt einen zentralen
+			Mechanismus für die Registrierung von Callbacks
+			für Geräteereignisse zur Verfügung, weil die 
+			TinkerForge-Geräteklassen nur ein Callback per Ereignis
+			zulassen. Der Gerätemanager hingegen unterstützt beliebig viele 
+			Callbacks für ein Ereignis eines Gerätes.
+
+		*Siehe auch:*
+		:py:meth:`remove_device_callback`
+		"""
 		if uid not in self._device_callbacks:
 			self._device_callbacks[uid] = {}
 		
@@ -419,6 +821,28 @@ class DeviceManager:
 		mcc.add_callback(callback)
 
 	def remove_device_callback(self, uid, event, callback):
+		"""
+		Entfernt eine Callback-Funktion von einem Ereignis
+		eines Bricks oder eines Bricklets.
+
+		**Parameter**
+
+		``uid``
+			Die UID des Gerätes für das ein Callback aufgehoben werden soll.
+		``event``
+			Die ID für das Ereignis.
+			Z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.CALLBACK_BUTTON_PRESSED``
+		``callback``
+			Die registrierte Callback-Funktion die entfernt werde soll.
+
+		**Beschreibung**
+
+		Für die Aufhebung des Callbacks muss die gleiche Funktionsreferenz übergeben werden
+		wie bei der Einrichtung des Callback.
+
+		*Siehe auch:*
+		:py:meth:`add_device_callback`
+		"""
 		if uid in self._device_callbacks:
 			callbacks = self._device_callbacks[uid]
 			if event in callbacks:
@@ -512,7 +936,7 @@ class Blackboard:
 				print_exc()
 
 	def send(self, job, component, name, value):
-		if not self._core.started:
+		if not self._core.is_started:
 			self.trace("DROPPED event before core started (%s, %s, %s)" \
 				% (job, component, name))
 			return
@@ -610,7 +1034,7 @@ class Job:
 			return
 		if self._core == None:
 			raise AttributeError("the job is not installed in any core")
-		if value and not self._core.started:
+		if value and not self._core.is_started:
 			raise AttributeError("the job can not be activated while the core is not started")
 		self._active = value
 		if self._active:
