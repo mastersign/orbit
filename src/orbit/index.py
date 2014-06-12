@@ -15,6 +15,8 @@ class MultiLevelReverseIndex:
 	mit Unterstützung für mehrstufige Schlüssel einschließlich
 	Gruppen und Wildcards im Schlüssel.
 
+	**Parameter**
+
 	``attributes``
 		Eine Liste mit den Namen der Indexattribute.
 	``item_attribut_selector`` (*optional*)
@@ -27,6 +29,8 @@ class MultiLevelReverseIndex:
 		verwendet wird, um den Attributwert unter Angabe des 
 		Schlüsselobjektes und des Attributnamens zu ermitteln.
 		Standardwert ist :py:meth:`getattr`.
+
+	**Beschreibung**
 
 	Der Index wird mit einer Liste von Attributnamen (Indexattribute) initialisiert.
 	Jedes Indexattribut steht für eine Ebene des hierarchischen Index.
