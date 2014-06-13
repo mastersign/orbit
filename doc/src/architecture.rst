@@ -11,12 +11,13 @@ Alle anwendungsspezifischen Fähigkeiten können in eigenen Komponente und Jobs 
 werden.
 
 Der Gerätemanager im Kern verwaltet die TinkerForge-Verbindungen und die angeschlossenen
-Bricklets. Jede Komponente kann die Zuordnung von ein oder mehreren Bricklets eines Typs anfordern.
-Dabei können auch UIDs von Bricklets als Einschränkung angegeben werden.
-Sobald ein Bricklet verfügbar ist, wird es den entsprechenden Komponenten zugeordnet
+Brick(let)s. Jede Komponente kann die Zuordnung von ein oder mehreren Brick(let)s eines 
+Typs anfordern.
+Dabei können auch UIDs von Brick(let)s als Einschränkung angegeben werden.
+Sobald ein Brick(let) verfügbar ist, wird es den entsprechenden Komponenten zugeordnet
 und die Komponenten werden über die Verfügbarkeit benachrichtigt. Wird eine Verbindung
 getrennt, wird den Komponenten das Bricklet wieder entzogen.
 
-Komponente und Jobs können über ein integriertes Nachrichtensystem kommunizieren.
+Komponente und Jobs können über ein integriertes, asynchrones Nachrichtensystem kommunizieren.
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs 
 von einander und sorgt für eine robustere Anwendung.

@@ -4,22 +4,35 @@
 
 """
 Diese Modul enthält die wichtigsten Klassen für die Entwicklung einer
-ORBIT-Anwendung. Eine ORBIT-Anwendung wird von einem :py:class:`Core` verwaltet
-und kann mehrere :py:class:`Job` Instanzen enthalten.
-Ein :py:class:`Job` ist entweder ein :py:class:`Service` 
-oder eine :py:class:`App`. 
+ORBIT-Anwendung. 
+Eine ORBIT-Anwendung wird von einem :py:class:`Core` verwaltet
+und kann mehrere :py:class:`Job`-Objekte enthalten.
+Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component`-Objekten zusammen.
+Ein :py:class:`Job` ist entweder eine :py:class:`App` oder ein :py:class:`Service`.
 
-.. image:: architecture-overview.png
+.. image:: figures/architecture-overview.png
 
-Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component` Instanzen zusammen.
+Die TinkerForge-Bricklets werden durch den :py:class:`DeviceManager` verwaltet
+und den :py:class:`Component`-Objekten über :py:class:`DeviceHandle`-Objekte zugeordnet.
 
-.. image:: job-overview.png
+.. image:: figures/devicemanager-overview.png
 
-Die TinkerForge-Bricklets werden durch :py:class:`DeviceManager` verwaltet
-und den :py:class:`Job` und ihren :py:class:`Component` Instanzen zugeordnet.
-:py:class:`Component` und :py:class:`Job` Instanzen
+:py:class:`Component`- und :py:class:`Job`-Objekte
 kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
 die Klasse :py:class:`Blackboard` implementiert wird.
+
+.. image:: figures/blackboard-overview.png
+
+:py:class:`Component`- und :py:class:`Job`-Objekte können jederzeit Nachrichten
+senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem 
+dedizierten Nachrichten-Thread an die Empfänger versandt
+(:py:meth:`Job.send`, :py:meth:`Component.send`).
+
+Für den Empfang von Nachrichten werden :py:class:`Slot`-Objekte verwendet.
+Ein :py:class:`Slot` bindet ein Empfangsmuster/-filter an ein Callback
+(:py:meth:`Job.listen`, :py:meth:`Component.listen`).
+Wird eine Nachricht über das Nachrichtensystem versandt, welches dem Muster
+eines :py:class:`Slot`-Objekts entspricht, wird das Callback des Slots aufgerufen.
 """
 
 from datetime import datetime
@@ -852,6 +865,39 @@ class DeviceManager:
 
 
 class Blackboard:
+	"""
+	Diese Klasse implementiert das ORBIT-Nachrichtensystem.
+
+	**Parameter**
+
+	``core``
+		Ein Verweis auf den Anwendungskern der ORBIT-Anwendung.
+		Eine Instanz der Klasse :py:class:`Core`.
+
+	**Beschreibung**
+
+	Das Nachrichtensystem ist nach dem Blackboard-Entwurfsmuster
+	entwickelt. Nachrichten werden von einem Absender an das Nachrichtensystem
+	übergeben, ohne dass der Absender weiß, wer die Nachricht empfangen wird
+	(:py:meth:`send`).
+
+	Empfänger können sich mit einem Empfangsmuster (:py:class:`Slot`) 
+	bei dem Nachrichtensystem registrieren (:py:meth:`add_listener`)
+	und bekommen alle Nachrichten zugestellt, die ihrem Empfangsmuster entsprechen.
+
+	Das Zustellen der Nachrichten (der Aufruf der Empfänger-Callbacks) 
+	erfolgt in einem dedizierten Thread. Das hat den Vorteil, dass das Versenden
+	einer Nachricht ein asynchroner Vorgang ist, der den Absender nicht blockiert.
+
+	Jede Nachricht ist einem Ereignis zugeordnet. Dieses Ereignis ist
+	durch einen Job, eine Komponente und einen Ereignisnamen definiert.
+	Der Absender eines Ereignisses gibt beim Versenden einer Nachricht
+	den Namen des Ereignisses an.
+
+	Um das Erzeugen von Empfangsmustern (:py:class:`Slot`) zu vereinfachen,
+	können Jobs, Komponenten und Ereignisnamen zu Gruppen zusammengefasst werden
+	(:py:meth:`job_group`, :py:meth:`component_group`, :py:meth:`name_group`).
+	"""
 
 	def __init__(self, core):
 		self._core = core
@@ -860,9 +906,14 @@ class Blackboard:
 		self._queue_event = Event()
 		self._queue = deque()
 		self._stopped = True
+		self._immediate_stop = False
 		self._worker = Thread(name = 'Orbit Blackboard Queue Worker', target = self._queue_worker)
 
 	def trace(self, text):
+		"""
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``Blackboard``
+		auf die Konsole.
+		"""
 		if self._core.configuration.event_tracing:
 			_trace(text, 'Blackboard')
 
@@ -873,37 +924,186 @@ class Blackboard:
 		return result
 
 	def job_group(self, group_name, *names):
+		"""
+		Richtet eine Absendergruppe auf Job-Ebene ein.
+
+		**Parameter**
+
+		``group_name``
+			Der Name der Gruppe.
+		``names`` (*var args*)
+			Die Namen der Jobs, welche in der Gruppe zusammengefasst werden sollen.
+
+		**Beschreibung**
+
+		Durch eine Absendergruppe auf Job-Ebene kann ein Slot
+		anstelle eines spezifischen Jobnamens einen Gruppennamen 
+		im Empfangsmuster angeben.
+
+		*Siehe auch:*
+		:py:class:`Slot`,
+		:py:meth:`add_listener`,
+		:py:meth:`remove_listener`,
+		:py:meth:`Job.listen`,
+		:py:meth:`Component.listen`
+		"""
 		self._locked(
 			self._index.add_group, 'job', group_name, names)
 
 	def component_group(self, group_name, *names):
+		"""
+		Richtet eine Absendergruppe auf Komponentenebene ein.
+
+		**Parameter**
+
+		``group_name``
+			Der Name der Gruppe.
+		``names`` (*var args*)
+			Die Namen der Komponenten, welche in der Gruppe zusammengefasst werden sollen.
+
+		**Beschreibung**
+
+		Durch eine Absendergruppe auf Komponentenebene kann ein Slot
+		anstelle eines spezifischen Komponentennamens einen Gruppennamen 
+		im Empfangsmuster angeben.
+
+		*Siehe auch:*
+		:py:class:`Slot`,
+		:py:meth:`add_listener`,
+		:py:meth:`remove_listener`,
+		:py:meth:`Job.listen`,
+		:py:meth:`Component.listen`
+		"""
 		self._locked(
 			self._index.add_group, 'component', group_name, names)
 
 	def name_group(self, group_name, *names):
+		"""
+		Richtet eine Absendergruppe auf Ereignisebene ein.
+
+		**Parameter**
+
+		``group_name``
+			Der Name der Gruppe.
+		``names`` (*var args*)
+			Die Namen der Ereignisse, welche in der Gruppe zusammengefasst werden sollen.
+
+		**Beschreibung**
+
+		Durch eine Absendergruppe auf Ereignisebene kann ein Slot
+		anstelle eines spezifischen Ereignisnamens einen Gruppennamen 
+		im Empfangsmuster angeben.
+
+		*Siehe auch:*
+		:py:class:`Slot`,
+		:py:meth:`add_listener`,
+		:py:meth:`remove_listener`,
+		:py:meth:`Job.listen`,
+		:py:meth:`Component.listen`
+		"""
 		self._locked(
 			self._index.add_group, 'name', group_name, names)
 
 	def add_listener(self, listener):
+		"""
+		Registriert einen Empfänger mit einem Empfangsmuster im Nachrichtensystem.
+		
+		Das Empfangsmuster besteht aus den drei Attributen 
+		``job``, ``component`` und ``name``.
+		Diese Attribute können jeweils einen Namen, einen Gruppennamen oder ``None`` enthalten.
+		Sie werden benutzt, um zu entscheiden, ob eine Nachricht 
+		an den Empfänger übergeben wird oder nicht. 
+
+		Üblichweise wird als Empfänger ein :py:class:`Slot`-Objekt verwendet.
+
+		| Die Nachricht 
+			*M*: job = ``"A"``, component = ``"1"``, name = ``"a"``, value = ...
+		| wird an alle Empfänger mit dem Empfangsmuster
+		| |lpb| job = ``"A"``, component = ``"1"``, name = ``"a"`` |rpb|
+			übergeben.
+
+		| Existiert eine Ereignisnamengruppe mit dem Namen ``"x"`` und den Ereignisnamen
+			``"a"``, ``b"``, ``"c"``, wird die Nachricht *M* auch an alle Empfänger
+			mit dem Empfangsmuster
+		| |lpb| job = ``"A"``, component = ``"1"``, name = ``"x"`` |rpb|
+			übergeben.
+
+		| Hat ein Attribut den Wert ``None``, wird es ignoriert. 
+			Das bedeutet, die Nachricht *M* wird auch an alle Empfänger mit dem Empfangsmuster
+		| |lpb|  job = ``"A"``, component = ``"1"``, name = ``None`` |rpb|
+			übergeben.
+
+		Der Empfänger muss den Aufruf als Funktion unterstützen. 
+		Er wird für die Übergabe der Nachricht mit den folgenden vier Parametern aufgerufen:
+
+		``job``
+			Der Name des versendenden Jobs
+		``component``
+			Der Name der versendenden Komponente
+		``name``
+			Der Name des Ereignisses
+		``value``
+			Der Nachrichteninhalt
+
+		Die Parameter werden in der dargestellten Reihenfolge als Positionsparameter übergeben.
+
+		.. |lpb| unicode:: U+2329
+		.. |rpb| unicode:: U+232A
+
+		*Siehe auch:*
+		:py:class:`Slot`,
+		:py:meth:`remove_listener`,
+		:py:meth:`send`
+		"""
 		self._locked(
 			self._index.add, listener)
 
 	def remove_listener(self, listener):
+		"""
+		Entfernt einen Empfänger und sein Empfangsmuster aus dem Nachrichtensystem.
+
+		.. note::
+			Es muss das gleiche Objekt übergeben werden, wie an :py:meth:`add_listener`
+			übergeben wurde.
+
+		*Siehe auch:*
+		:py:meth:`add_listener`
+		"""
 		self._locked(
 			self._index.remove, listener)
 
 	def start(self):
+		"""
+		Startet das Nachrichtensystem.
+
+		Zur Weiterleitung der Nachrichten wird ein dedizierter Thread gestartet.
+		"""
 		if not self._stopped:
 			return
 		self.trace("starting blackboard ...")
 		self._stopped = False
+		self._immediate_stop = False
 		self._worker.start()
 
-	def stop(self):
+	def stop(self, immediate = False):
+		"""
+		Beendet das Nachrichtensystem.
+
+		**Parameter**
+
+		``immediate`` (*optional*)
+			``True`` wenn wartende Nachrichten nicht mehr abgearbeitet
+			werden sollen, ``False`` wenn erst alle wartenden Nachrichten
+			abgearbeitet werden sollen.
+
+		Blockiert solange bis der dedizierte Thread für die Nachrichtenverteilung
+		beendet wurde und kehrt erst anschließend zum Aufrufer zurück.
+		"""
 		if self._stopped:
 			return
 		self.trace("stopping blackboard ...")
 		self._stopped = True
+		self._immediate_stop = immediate
 		self._queue_event.set()
 		self._worker.join()
 
@@ -911,7 +1111,7 @@ class Blackboard:
 		self.trace("... blackboard started")
 		while not self._stopped:
 			# working the queue until it is empty
-			while True:
+			while not self._immediate_stop:
 				msg = self._locked(lambda: self._queue.popleft() if len(self._queue) > 0 else None)
 				if msg:
 					self._distribute(msg)
@@ -936,6 +1136,28 @@ class Blackboard:
 				print_exc()
 
 	def send(self, job, component, name, value):
+		"""
+		Sendet eine Nachricht über das Nachrichtensystem.
+
+		**Parameter**
+
+		``job``
+			Der versendende Job
+		``component``
+			Die versendende Komponente
+		``name``
+			Der Ereignisname
+		``value``
+			Der Inhalt der Nachricht
+
+		**Beschreibung**
+
+		Die Nachricht wird in die Warteschlange eingestellt.
+		Der Aufruf kehrt sofort wieder zum Aufrufer zurück.
+
+		*Siehe auch:*
+		:py:meth:`add_listener`
+		"""
 		if not self._core.is_started:
 			self.trace("DROPPED event before core started (%s, %s, %s)" \
 				% (job, component, name))
