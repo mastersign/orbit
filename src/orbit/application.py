@@ -1177,6 +1177,35 @@ class Blackboard:
 
 
 class Job:
+	"""
+	Dies ist die Basisklasse für Aufgaben in einer ORBIT-Anwendung.
+
+	**Parameter**
+
+	``name``
+		Der Name der Aufgabe. 
+		Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.
+	``background``
+		``True`` wenn die Aufgabe als Hintergrunddienst laufen soll,
+		sonst ``False```.
+
+	**Beschreibung**
+
+	Ein Job wird durch die Zusammenstellung von Komponenten implementiert.
+	Wird ein Job aktiviert, werden alle seine Komponenten aktiviert. 
+	Wird ein Job deaktiviert, werden alle seine Komponenten deaktiviert.
+	Ein aktiver Job kann Nachrichten über das Nachrichtensystem austauschen.
+	Ein inaktiver Job kann keine Nachrichten senden oder empfangen.
+
+	.. note::
+		Die :py:class:`Job`-Klasse sollte nicht direkt verwendet werden.
+		Statt dessen sollten die abgeleiteten Klassen :py:class:`Service`
+		und :py:class:`App` verwendet werden.
+
+	*Siehe auch:*
+	:py:meth:`add_component`,
+	:py:meth:`remove_component`
+	"""
 
 	def __init__(self, name, background):
 		self._name = name
@@ -1190,12 +1219,22 @@ class Job:
 
 	@property
 	def tracing(self):
-	    return self._tracing
+		"""
+		Legt fest, ob Nachverfolgungsmeldungen für diesen Job 
+		auf der Konsole ausgegeben werden sollen.
+
+		Mögliche Werte sind ``True`` oder ``False``.
+		"""
+		return self._tracing
 	@tracing.setter
 	def tracing(self, value):
-	    self._tracing = value
+		self._tracing = value
 	
 	def trace(self, text):
+		"""
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``Service <Name>``
+		oder ``App <Name>`` auf die Konsole.
+		"""
 		if self._tracing == True or \
 			(self._tracing != False and \
 			 self._core and \
@@ -1208,6 +1247,12 @@ class Job:
 
 	@property
 	def event_tracing(self):
+		"""
+		Legt fest, ob über das Nachrichtensystem versendete
+		Nachrichten auf der Konsole protokolliert werden sollen.
+
+		Mögliche Werte sind ``True`` oder ``False``.
+		"""
 		return self._event_tracing
 	@event_tracing.setter
 	def event_tracing(self, enabled):
@@ -1222,22 +1267,58 @@ class Job:
 
 	@property
 	def name(self):
+		"""
+		Gibt den Namen des Jobs zurück.
+		"""
 		return self._name
 
 	@property
 	def core(self):
-	    return self._core
+		"""
+		Gibt eine Referenz auf den Anwendungskern zurück.
+		Wenn der Job nicht installiert ist, wird ``None`` zurück gegeben.
+
+		*Siehe auch:*
+		:py:class:`Core`,
+		:py:meth:`Core.install`
+		"""
+		return self._core
 
 	def on_install(self, core):
+		"""
+		Wird aufgerufen, wenn der Job installiert wird.
+
+		**Parameter**
+
+		``core``
+			Eine Referenz auf den Anwendungskern.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		if self._core:
 			raise AttributeError("the job is already associated with a core")
 		self._core = core
 
 	def on_uninstall(self):
+		"""
+		Wird aufgerufen, wenn der Job deinstalliert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		self._core = None
 
 	@property
 	def configuration(self):
+		"""
+		Gibt die Anwendungskonfiguration zurück.
+		Wenn der Job nicht installiert ist, wird ``None`` zurück gegeben.
+		"""
 		if self._core:
 			return self._core.configuration
 		else:
@@ -1245,10 +1326,29 @@ class Job:
 
 	@property
 	def background(self):
-	    return self._background
+		"""
+		Legt fest, ob der Job als Hintergrunddienst
+		ausgeführt wird oder als Vordergrund-App.
+
+		Mögliche Werte sind ``True`` für Hintergrunddienst 
+		oder ``False`` für Vordergrund-App.
+		"""
+		return self._background
 
 	@property
 	def active(self):
+		"""
+		Gibt einen Wert zurück oder legt ihn fest, der angibt, ob der Job aktiv ist.
+
+		.. note::
+			Dieses Attribut sollte nicht direkt gesetzt werden.
+			Statt dessen sollte :py:meth:`Core.activate` und 
+			:py:meth:`Core.deactivate` verwendet werden.
+
+		*Siehe auch:*
+		:py:meth:`Core.activate`,
+		:py:meth:`Core.deactivate`
+		"""
 		return self._active
 	@active.setter
 	def active(self, value):
@@ -1273,12 +1373,28 @@ class Job:
 			self.trace("... deactivated")
 
 	def on_activated(self):
+		"""
+		Wird aufgerufen, wenn der Job aktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		def enabler(component):
 			component.enabled = True
 		self.for_each_component(lambda c: c.on_job_activated())
 		self.for_each_component(enabler)
 
 	def on_deactivated(self):
+		"""
+		Wird aufgerufen, wenn der Job deaktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		def disabler(component):
 			component.enabled = False
 		self.for_each_component(disabler)
@@ -1286,9 +1402,17 @@ class Job:
 
 	@property
 	def components(self):
+		"""
+		Gibt ein Dictionary mit allen Komponenten des Jobs zurück.
+		Die Namen der Komponenten werden als Schlüssel verwendet.
+		Die Komponenten selbst sind die Werte.
+		"""
 		return self._components
 
 	def add_component(self, component):
+		"""
+		Fügt dem Job eine Komponente hinzu.
+		"""
 		if component.name in self._components:
 			self.remove_component(self._components[component.name])
 		self._components[component.name] = component
@@ -1298,6 +1422,9 @@ class Job:
 			component.enabled = True
 
 	def remove_component(self, component):
+		"""
+		Entfernt eine Komponente aus dem Job.
+		"""
 		if component.name not in self._components:
 			raise AttributeError("the given component is not associated with this job")
 		if component.enabled:
@@ -1307,14 +1434,33 @@ class Job:
 		self.trace("removed component %s" % component.name)
 
 	def for_each_component(self, f):
+		"""
+		Führt die übergebene Funktion für jede Komponente des Jobs aus.
+		"""
 		for component in self._components.values():
 			f(component)
 
 	def on_core_started(self):
+		"""
+		Wird aufgerufen, wenn der Anwendungskern gestartet wurde.
+		
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		self.for_each_component(
 			lambda c: c.on_core_started())
 
 	def on_core_stopped(self):
+		"""
+		Wird aufgerufen, wenn der Anwendungskern gestoppt wird.
+		
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+		"""
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
 
