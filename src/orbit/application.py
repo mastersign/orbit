@@ -2204,6 +2204,51 @@ class MulticastCallback:
 
 
 class DeviceHandle:
+	"""
+	Diese Klasse ist die Basisklasse für Geräteanforderungen.
+
+	Anstelle diese Klasse direkt zu verwenden, werden die beiden Kindklassen
+	:py:class:`SingleDeviceHandle` und :py:class:`MultiDeviceHandle`
+	verwendet.
+
+	**Parameter**
+
+	``name``
+		Der Name der Geräteanforderung. 
+		Dieser Name hilft, verschiedene Geräte, die von einer Komponente
+		angesteuert werden, zu unterscheiden.
+	``bind_callback``
+		Eine Funktion, die aufgerufen wird, sobald die Verbindung zu einem
+		Gerät verfügbar ist.
+	``unbind_callback``
+		Eine Funktion, die aufgerufen wird, sobald eine Verbindung zu einem
+		Gerät verloren geht.
+
+	**Beschreibung**
+
+	Eine Geräteanforderung repräsentiert die Fähigkeit einer Komponente
+	mit einem Typ von TinkerForge-Brick(let)s zu kommunizieren.
+	Sie entbindet die Komponente aber von der Aufgabe die Verbindung
+	zu den Brick(let)s zu verwalten.
+	Die Komponente wird durch Callbacks darüber informiert, 
+	ab wann ein Brick(let) verfügbar ist und ab wann es nicht
+	mehr verfügbar ist.
+	Eine Geräteanforderung kann mehrere Brick(let)s gleichen Typs
+	umfassen. 
+	Eine Komponente kann jederzeit alle verfügbaren Brick(let)s einer 
+	Geräteanforderung abfragen und ansteuern.
+
+	Geräteanforderungen verwalten auch Ereignis-Callbacks für Brick(let)s.
+	Eine Komponente kann durch den Aufruf von :py:meth:`register_callback`
+	ein Callback für ein Brick(let)-Ereignis einrichten und die Geräteanforderung
+	übernimmt gemeinsam mit dem :py:class:`DeviceManager` die Verwaltung.
+
+	*Siehe auch:*
+	:py:class:`SingleDeviceHandle`,
+	:py:class:`MultiDeviceHandle`,
+	:py:meth:`Component.add_device_handle`,
+	:py:meth:`register_callback`
+	"""
 
 	def __init__(self, name, bind_callback, unbind_callback):
 		self._name = name
@@ -2215,19 +2260,78 @@ class DeviceHandle:
 
 	@property
 	def name(self):
-	    return self._name
+		"""
+		Gibt den Namen der Geräteanforderung zurück.
+		"""
+		return self._name
 
 	@property
 	def devices(self):
-	    return self._devices
+		"""
+		Gibt eine Liste mit allen verfügbaren Brick(let)s zurück.
+
+		Ein Brick(let) wird durch ein Objekt der entsprechenden
+		TinkerForge-Geräteklasse 
+		(wie z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4``)
+		repräsentiert.
+		"""
+		return self._devices
 
 	def on_add_handle(self, device_manager):
+		"""
+		Wird aufgerufen, wenn die Geräteanforderung im :py:class:`DeviceManager`
+		registriert wurde.
+
+		.. note::
+			Kann von einer abgeleiteten Klasse überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung der
+			Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`DeviveManager.add_handle`,
+		:py:meth:`on_remove_handle`
+		"""
 		self._device_manager = device_manager
 
 	def on_remove_handle(self):
+		"""
+		Wird aufgerufen, wenn die Geräteanforderung im :py:class:`DeviceManager`
+		deregistriert wurde.
+
+		.. note::
+			Kann von einer abgeleiteten Klasse überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung der
+			Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`DeviveManager.remove_handle`,
+		:py:meth:`on_add_handle`
+		"""
 		self._device_manager = None
 
 	def on_bind_device(self, device):
+		"""
+		Wird aufgerufen, wenn ein beliebiges Gerät verfügbar wird.
+
+		.. note::
+			Muss von einer abgeleiteten Klasse überschrieben werden.
+
+		Eine Implementierung muss die Methode :py:meth:`accept_device`
+		für alle Geräte aufrufen, die der Geräteanforderung entsprechen.
+
+		*Siehe auch:*
+		:py:meth:`accept_device`
+		"""
+		raise Exception("Not implented. Must be overridden in a child class.")
+
+	def accept_device(self, device):
+		"""
+		Nimmt ein Gerät in die Geräteanforderung auf.
+		Wird von :py:meth:`on_bind_device` aufgerufen.
+
+		*Siehe auch:*
+		:py:meth:`on_bind_device`
+		"""
 		self._device_manager.trace("binding '%s' [%s] to handle '%s'" \
 			% (device_name(device.identity[5]), device.identity[0], self.name))
 
@@ -2241,9 +2345,32 @@ class DeviceHandle:
 			self._bind_callback(device)
 
 	def on_unbind_device(self, device):
+		"""
+		Wird aufgerufen, wenn ein beliebiges Gerät nicht mehr verfügbar ist.
+
+		Ruft die Methode :py:meth:`release_device` auf, wenn das
+		Gerät in dieser Geräteanforderung gebunden ist.
+
+		*Siehe auch:*
+		:py:meth:`release_device`
+		"""
 		if device not in self.devices:
 			return
+		self.release_device(device)
 
+	def release_device(self, device):
+		"""
+		Wird aufgerufen, wenn ein Gerät aus der Geräteanforderung 
+		nicht mehr verfügbar ist.
+
+		.. note::
+			Kann von einer abgeleiteten Klasse überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`on_unbind_device`
+		"""
 		self._device_manager.trace("unbinding '%s' [%s] from handle '%s'" \
 			% (device_name(device.identity[5]), device.identity[0], self.name))
 
@@ -2257,6 +2384,10 @@ class DeviceHandle:
 		self.devices.remove(device)
 
 	def for_each_device(self, f):
+		"""
+		Führt eine Funktion für alle verfügbaren Geräte 
+		dieser Geräteanforderung aus.
+		"""
 		for d in self.devices:
 			try:
 				f(d)
@@ -2274,6 +2405,32 @@ class DeviceHandle:
 			device.identity[0], event_code, callback)
 
 	def register_callback(self, event_code, callback):
+		"""
+		Richtet ein Callback für ein Brick(let)-Ereignis ein.
+
+		**Parameter**
+
+		``event_code``
+			Der Code für das Brick(let)-Ereignis. 
+			Der Code kann der TinkerForge-Dokumentation entnommen werden.
+			(Z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.CALLBACK_BUTTON_PRESSED``)
+		``callback``
+			Das Callback, das bei Eintreten des Ereignisses aufgerufen
+			werden soll.
+			Die Signatur muss dem Ereignis entsprechen und ist der
+			TinkerForge-Dokumentation zu entnehmen.
+
+		**Beschreibung**
+
+		Für jeden Ereignis-Code kann in jeder Geräteanforderung
+		immer nur ein Callback registriert werden.
+		Das Callback wird immer aufgerufen, sobald ein verfügbares Brick(let)
+		dieser Geräteanforderung das beschriebene Ereignis auslöst.
+
+		*Siehe auch:*
+		:py:meth:`unregister_callback`,
+		:py:meth:`DeviceManager.add_device_callback`
+		"""
 		self.unregister_callback(event_code)
 		self._callbacks[event_code] = callback
 		if self._device_manager:
@@ -2282,6 +2439,18 @@ class DeviceHandle:
 					device, event_code, callback))
 
 	def unregister_callback(self, event_code):
+		"""
+		Meldet ein Callback von einem Brick(let)-Ereignis ab.
+
+		**Parameter**
+
+		``event_code``
+			Der Code für das Brick(let)-Ereignis.
+
+		*Siehe auch:*
+		:py:meth:`register_callback`,
+		:py:meth:`DeviceManager.remove_device_callback`
+		"""
 		if event_code not in self._callbacks:
 			return
 		if self._device_manager:
@@ -2292,8 +2461,60 @@ class DeviceHandle:
 
 
 class SingleDeviceHandle(DeviceHandle):
+	"""
+	Eine Geräteanforderung für ein einzelnes Brick(let).
 
-	def __init__(self, name, device_name_or_id, bind_callback = None, unbind_callback = None, uid = None, auto_fix = False):
+	**Parameter**
+
+	``name``
+		Der Name der Geräteanforderung. 
+		Der Name wird zur Unterscheidung von mehreren Geräteanforderungen
+		einer Komponente verwendet.
+	``device_name_or_id``
+		Der Typenname oder die Typen-ID des Gerätes.
+		Wird eine Zeichenkette übergeben, wird sie als Name des Brick(let)s
+		interpretiert, z.B. ``'LCD 20x4 Bricklet'``.
+		Wird eine Zahl übergeben, wird sie als Typen-ID interpretiert,
+		z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.DEVICE_IDENTIFIER``.
+	``bind_callback`` (*optional*)
+		Ein Callback das aufgerufen wird, sobald ein Gerät an die
+		Geräteanforderung gebunden wird.
+	``unbind_callback`` (*optional*)
+		Ein Callback das aufgerufen wird, sobald ein gebundenes Gerät
+		nicht mehr verfügbar ist.
+	``uid`` (*optional*)
+		Die UID eines Brick(let)s. Wenn eine UID angegeben wird,
+		akzeptiert die Geräteanforderung nur genau dieses Brick(let).
+		Wenn keine UID angegeben wird, wird das erste Gerät mit dem
+		angegebenen Gerätetyp akzeptiert.
+	``auto_fix`` (*optional*)
+		Gibt an, ob nach der Bindung zwischen einem Gerät und der Geräteanforderung
+		andere Geräte gebunden werden dürfen.
+
+		Mögliche Werte sind ``True``, wenn nach dem ersten gebundenen Gerät
+		andere Geräte gebunden werden dürfen, und ``False``,
+		wenn nach einer Bindung nur noch dieses Gerät gebunden werden darf.
+
+	**Beschreibung**
+
+	Diese Variante einer Geräteanforderung akzeptiert zu jeder Zeit
+	immer nur ein Gerät. 
+	Wird keine UID angegeben, um ein konkretes Brick(let) zu beschreiben,
+	wird das erste Brick(let) des angegebenen Gerätetyps aktzeptiert.
+	Wird die Verbindung zum gebundenen Gerät getrennt, entscheidet der
+	Parameter ``auto_fix`` ob anschließend das nächste verfügbare
+	Gerät mit dem passenden Typ akzeptiert wird oder ob solange gewartet
+	wird, bis das vormals gebundene Brick(let) wieder verfügbar wird.
+
+	*Siehe auch:*
+	:py:class:`DeviceHandle`,
+	:py:class:`MultiDeviceHandle`
+	"""
+
+	def __init__(self, name, device_name_or_id, 
+		bind_callback = None, unbind_callback = None, 
+		uid = None, auto_fix = False):
+
 		super().__init__(name, bind_callback, unbind_callback)
 		self._device_identifier = get_device_identifier(device_name_or_id)
 		self._uid = uid
@@ -2302,7 +2523,15 @@ class SingleDeviceHandle(DeviceHandle):
 
 	@property
 	def device(self):
-	    return self._device
+		"""
+		Gibt das gebundene Brick(let) oder ``None`` zurück.
+
+		Ein Brick(let) wird durch ein Objekt der entsprechenden
+		TinkerForge-Geräteklasse 
+		(wie z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4``)
+		repräsentiert.
+		"""
+		return self._device
 
 	def on_bind_device(self, device):
 		if len(self.devices) > 0:
@@ -2315,15 +2544,46 @@ class SingleDeviceHandle(DeviceHandle):
 		elif device.identity[0] != self._uid:
 			return
 		self._device = device
-		super().on_bind_device(device)
+		self.accept_device(device)
 
-	def on_unbind_device(self, device):
-		super().on_unbind_device(device)
+	def release_device(self, device):
+		super().release_device(device)
 		if self._device == device:
 			self._device = None
 
 
 class MultiDeviceHandle(DeviceHandle):
+	"""
+	Eine Geräteanforderung für alle Brick(let)s eines Typs.
+
+	**Parameter**
+
+	``name``
+		Der Name der Geräteanforderung. 
+		Der Name wird zur Unterscheidung von mehreren Geräteanforderungen
+		einer Komponente verwendet.
+	``device_name_or_id``
+		Der Typenname oder die Typen-ID des Gerätes.
+		Wird eine Zeichenkette übergeben, wird sie als Name des Brick(let)s
+		interpretiert, z.B. ``'LCD 20x4 Bricklet'``.
+		Wird eine Zahl übergeben, wird sie als Typen-ID interpretiert,
+		z.B. ``tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.DEVICE_IDENTIFIER``.
+	``bind_callback`` (*optional*)
+		Ein Callback das aufgerufen wird, sobald ein Gerät an die
+		Geräteanforderung gebunden wird.
+	``unbind_callback`` (*optional*)
+		Ein Callback das aufgerufen wird, sobald ein gebundenes Gerät
+		nicht mehr verfügbar ist.
+
+	**Beschreibung**
+
+	Diese Variante einer Geräteanforderung akzeptiert alle Geräte des
+	angegebenen Gerätetyps.
+
+	*Siehe auch:*
+	:py:class:`DeviceHandle`,
+	:py:class:`SingleDeviceHandle`
+	"""
 
 	def __init__(self, name, device_name_or_id, bind_callback = None, unbind_callback = None):
 		super().__init__(name, bind_callback, unbind_callback)
@@ -2332,7 +2592,7 @@ class MultiDeviceHandle(DeviceHandle):
 	def on_bind_device(self, device):
 		if not device.identity[5] == self._device_identifier:
 			return
-		super().on_bind_device(device)
+		self.accept_device(device)
 
 
 class Slot:
