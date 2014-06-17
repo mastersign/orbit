@@ -1673,12 +1673,25 @@ class Component:
 
 	@property
 	def tracing(self):
+		"""
+		Legt fest, ob Nachverfolgungsmeldungen für diese Komponente
+		auf der Konsole ausgegeben werden sollen.
+
+		Mögliche Werte sind ``True`` oder ``False``.
+
+		*Siehe auch:*
+		:py:meth:`trace`
+		"""
 		return self._tracing
 	@tracing.setter
 	def tracing(self, enabled):
 		self._tracing = enabled
 
 	def trace(self, text):
+		"""
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung 
+		``Component <Job> <Name>`` auf die Konsole.
+		"""
 		if self._tracing == True or \
 			(self._tracing != False and \
 			 self._job and \
@@ -1689,6 +1702,15 @@ class Component:
 
 	@property
 	def event_tracing(self):
+		"""
+		Legt fest, ob über das Nachrichtensystem versendete
+		Nachrichten auf der Konsole protokolliert werden sollen.
+
+		Mögliche Werte sind ``True`` oder ``False``.
+
+		*Siehe auch:*
+		:py:meth:`send`
+		"""
 		return self._event_tracing
 	@event_tracing.setter
 	def event_tracing(self, enabled):
@@ -1705,6 +1727,9 @@ class Component:
 
 	@property
 	def name(self):
+		"""
+		Gibt den Namen der Komponente zurück.
+		"""
 		return self._name
 
 	@property
@@ -1712,11 +1737,38 @@ class Component:
 		return self._job
 
 	def on_add_component(self, job):
+		"""
+		Wird aufgerufen, wenn die Komponente einem Job hinzugefügt wird.
+
+		**Parameter**
+
+		``job``
+			Eine Referenz auf den Job.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Job.add_component`
+		"""
 		if self._job:
 			raise AttributeError("the component is already associated with a job")
 		self._job = job
 
 	def on_remove_component(self):
+		"""
+		Wird aufgerufen, wenn die Komponente aus einem Job entfernt wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Job.remove_component`
+		"""
 		self._job = None
 
 	@property
@@ -1750,18 +1802,56 @@ class Component:
 			self.trace("... disabled")
 
 	def on_core_started(self):
+		"""
+		Wird aufgerufen, wenn der Anwendungskern gestartet wurde.
+		
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:meth:`Core.start`
+		"""
 		# can be overriden in sub classes
 		pass
 
 	def on_core_stopped(self):
+		"""
+		Wird aufgerufen, wenn der Anwendungskern gestoppt wird.
+		
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:meth:`Core.stop`
+		"""
 		# can be overriden in sub classes
 		pass
 
 	def on_job_activated(self):
+		"""
+		Wird aufgerufen, wenn der Eltern-Job der Komponente aktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:attr:`Job.active`,
+		:py:meth:`Core.activate`
+		"""
 		# can be overriden in sub classes
 		pass
 
 	def on_job_deactivated(self):
+		"""
+		Wird aufgerufen, wenn der Eltern-Job der Komponente deaktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:attr:`Job.active`,
+		:py:meth:`Core.deactivate`
+		"""
 		# can be overriden in sub classes
 		pass
 
@@ -1789,6 +1879,16 @@ class Component:
 		self._device_handles.remove(device_handle)
 
 	def add_listener(self, listener):
+		"""
+		Richtet einen Nachrichtenempfänger für das Nachrichtensystem ein.
+
+		Als Empfänger wird üblicherweise ein :py:class:`Slot`-Objekt übergeben.
+
+		*Siehe auch:*
+		:py:meth:`Blackboard.add_listener`,
+		:py:meth:`remove_listener`,
+		:py:meth:`send`
+		"""
 		if listener in self._listeners:
 			return
 		self._listeners.append(listener)
@@ -1797,6 +1897,18 @@ class Component:
 			self._job._core.blackboard.add_listener(listener)
 
 	def remove_listener(self, listener):
+		"""
+		Meldet einen Nachrichtenempfänger vom Nachrichtensystem ab.
+
+		.. note::
+			Es muss das selbe Empfängerobjekt übergeben werden,
+			wie an :py:meth:`add_listener` übergeben wurde.
+
+		*Siehe auch:*
+		:py:meth:`Blackboard.remove_listener`,
+		:py:meth:`add_listener`,
+		:py:meth:`send`
+		"""
 		if listener not in self._listeners:
 			return
 		if self._enabled:
@@ -1804,6 +1916,29 @@ class Component:
 		self._listeners.remove(listener)
 
 	def send(self, name, value = None):
+		"""
+		Versendet eine Nachricht über das Nachrichtensystem.
+
+		**Parameter**
+
+		``name``
+			Der Ereignisname für die Nachricht.
+		``value`` (*optional*)
+			Der Inhalt der Nachricht. Das kann ein beliebiges Objekt sein.
+
+		**Beschreibung**
+
+		Die Methode übergibt die Nachricht an das Nachrichtensystem und kehrt
+		sofort zum Aufrufer zurück. 
+		Die Nachricht wird asynchron an die Empfänger übermittelt. 
+		Als Absender-Job wird der Name des Eltern-Jobs dieser Komponente eingetragen. 
+		Als Absenderkomponente wird der Name dieser Komponente eingetragen.
+
+		*Siehe auch:*
+		:py:meth:`add_listener`,
+		:py:meth:`remove_listener`,
+		:py:meth:`Blackboard.send`
+		"""
 		if not self._enabled:
 			raise AttributeError("this component is not enabled")
 		self.event_trace(name, value)

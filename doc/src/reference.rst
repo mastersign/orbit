@@ -53,6 +53,12 @@ App
 .. autoclass:: orbit.application.App
 	:members:
 
+Component
+---------
+
+.. autoclass:: orbit.application.Component
+	:members:
+
 ===========
 orbit.setup
 ===========
