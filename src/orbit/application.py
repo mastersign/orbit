@@ -410,7 +410,7 @@ class Core:
 			else:
 				raise KeyError("job name not found")
 		else:
-			if application not in self._jobs.values:
+			if application not in self._jobs.values():
 				raise 
 		if self._current_application == application:
 			return
