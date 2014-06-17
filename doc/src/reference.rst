@@ -59,6 +59,36 @@ Component
 .. autoclass:: orbit.application.Component
 	:members:
 
+DeviceHandle
+------------
+
+.. autoclass:: orbit.application.DeviceHandle
+	:members:
+
+SingleDeviceHandle
+------------------
+
+.. autoclass:: orbit.application.SingleDeviceHandle
+	:members:
+
+MultiDeviceHandle
+-----------------
+
+.. autoclass:: orbit.application.MultiDeviceHandle
+	:members:
+
+Slot
+----
+
+.. autoclass:: orbit.application.Slot
+	:members:
+
+Listener
+--------
+
+.. autoclass:: orbit.application.Listener
+	:members:
+
 ===========
 orbit.setup
 ===========
