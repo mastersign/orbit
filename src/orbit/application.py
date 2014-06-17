@@ -7,7 +7,7 @@ Diese Modul enthält die wichtigsten Klassen für die Entwicklung einer
 ORBIT-Anwendung. 
 Eine ORBIT-Anwendung wird von einem :py:class:`Core` verwaltet
 und kann mehrere :py:class:`Job`-Objekte enthalten.
-Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component`-Objekten zusammen.
+Jeder :py:class:`Job` fasst eine Gruppe von :py:class`Component`-Objekten zusammen.
 Ein :py:class:`Job` ist entweder eine :py:class:`App` oder ein :py:class:`Service`.
 
 .. image:: figures/architecture-overview.png
@@ -399,7 +399,8 @@ class Core:
 		*Siehe auch:*
 		:py:meth:`deactivate`,
 		:py:meth:`clear_application_history`,
-		:py:meth:`for_each_active_job`
+		:py:meth:`for_each_active_job`,
+		:py:attr:`Job.active`
 		"""
 		# if only the name is given: lookup job name
 		if type(application) is str:
@@ -451,7 +452,8 @@ class Core:
 
 		*Siehe auch:*
 		:py:meth:`activate`,
-		:py:meth:`clear_application_history`
+		:py:meth:`clear_application_history`,
+		:py:attr:`Job.active`
 		"""
 		# if only the name is given: lookup job name
 		if type(application) is str:
@@ -1077,6 +1079,9 @@ class Blackboard:
 		Startet das Nachrichtensystem.
 
 		Zur Weiterleitung der Nachrichten wird ein dedizierter Thread gestartet.
+
+		*Siehe auch:*
+		:py:meth:`stop`
 		"""
 		if not self._stopped:
 			return
@@ -1098,6 +1103,9 @@ class Blackboard:
 
 		Blockiert solange bis der dedizierte Thread für die Nachrichtenverteilung
 		beendet wurde und kehrt erst anschließend zum Aufrufer zurück.
+
+		*Siehe auch:*
+		:py:meth:`start`
 		"""
 		if self._stopped:
 			return
@@ -1224,6 +1232,9 @@ class Job:
 		auf der Konsole ausgegeben werden sollen.
 
 		Mögliche Werte sind ``True`` oder ``False``.
+
+		*Siehe auch:*
+		:py:meth:`trace`
 		"""
 		return self._tracing
 	@tracing.setter
@@ -1252,6 +1263,9 @@ class Job:
 		Nachrichten auf der Konsole protokolliert werden sollen.
 
 		Mögliche Werte sind ``True`` oder ``False``.
+
+		*Siehe auch:*
+		:py:meth:`send`
 		"""
 		return self._event_tracing
 	@event_tracing.setter
@@ -1297,6 +1311,9 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.install`
 		"""
 		if self._core:
 			raise AttributeError("the job is already associated with a core")
@@ -1310,6 +1327,9 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.uninstall`
 		"""
 		self._core = None
 
@@ -1347,7 +1367,9 @@ class Job:
 
 		*Siehe auch:*
 		:py:meth:`Core.activate`,
-		:py:meth:`Core.deactivate`
+		:py:meth:`Core.deactivate`,
+		:py:meth:`on_activated`,
+		:py:meth:`on_deactivated`
 		"""
 		return self._active
 	@active.setter
@@ -1380,6 +1402,10 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:attr:`active`,
+		:py:meth:`Core.activate`
 		"""
 		def enabler(component):
 			component.enabled = True
@@ -1394,6 +1420,10 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:attr:`active`,
+		:py:meth:`Core.deactivate`
 		"""
 		def disabler(component):
 			component.enabled = False
@@ -1406,12 +1436,20 @@ class Job:
 		Gibt ein Dictionary mit allen Komponenten des Jobs zurück.
 		Die Namen der Komponenten werden als Schlüssel verwendet.
 		Die Komponenten selbst sind die Werte.
+
+		*Siehe auch:*
+		:py:meth:`add_component`,
+		:py:meth:`remove_component`
 		"""
 		return self._components
 
 	def add_component(self, component):
 		"""
 		Fügt dem Job eine Komponente hinzu.
+
+		*Siehe auch:*
+		:py:meth:`remove_component`,
+		:py:attr:`components`
 		"""
 		if component.name in self._components:
 			self.remove_component(self._components[component.name])
@@ -1424,6 +1462,10 @@ class Job:
 	def remove_component(self, component):
 		"""
 		Entfernt eine Komponente aus dem Job.
+
+		*Siehe auch:*
+		:py:meth:`add_component`,
+		:py:attr:`components`
 		"""
 		if component.name not in self._components:
 			raise AttributeError("the given component is not associated with this job")
@@ -1436,6 +1478,9 @@ class Job:
 	def for_each_component(self, f):
 		"""
 		Führt die übergebene Funktion für jede Komponente des Jobs aus.
+
+		*Siehe auch:*
+		:py:attr:`components`
 		"""
 		for component in self._components.values():
 			f(component)
@@ -1448,6 +1493,9 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.start`
 		"""
 		self.for_each_component(
 			lambda c: c.on_core_started())
@@ -1460,6 +1508,9 @@ class Job:
 			Kann von abgeleiteten Klassen überschrieben werden.
 			Eine überschreibende Methode muss jedoch die Implementierung
 			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.stop`
 		"""
 		self.for_each_component(
 			lambda c: c.on_core_stopped())
