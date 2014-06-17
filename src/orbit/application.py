@@ -28,11 +28,11 @@ senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem
 dedizierten Nachrichten-Thread an die Empfänger versandt
 (:py:meth:`Job.send`, :py:meth:`Component.send`).
 
-Für den Empfang von Nachrichten werden :py:class:`Slot`-Objekte verwendet.
-Ein :py:class:`Slot` bindet ein Empfangsmuster/-filter an ein Callback
+Für den Empfang von Nachrichten werden :py:class:`Listener`-Objekte verwendet.
+Ein :py:class:`Listener` bindet ein Empfangsmuster/-filter an ein Callback
 (:py:meth:`Job.listen`, :py:meth:`Component.listen`).
 Wird eine Nachricht über das Nachrichtensystem versandt, welches dem Muster
-eines :py:class:`Slot`-Objekts entspricht, wird das Callback des Slots aufgerufen.
+eines :py:class:`Listener`-Objekts entspricht, wird das Callback des Empfängers aufgerufen.
 """
 
 from datetime import datetime
@@ -76,8 +76,8 @@ class Core:
 	Um die ORBIT-Anwendung zu starten wird die Methode :py:meth:`start`
 	aufgerufen. Um die ORBIT-Anwendung zu beenden, kann entweder direkt
 	die Methode :py:meth:`stop` aufgerufen werden, oder es werden
-	vor dem Start der Anwendung ein oder mehrere Slots 
-	(Ereignisempfänger für das ORBIT-Nachritensystem) hinzugefügt,
+	vor dem Start der Anwendung ein oder mehrere Slots
+	(Ereignisempfänger für das ORBIT-Nachrichtensystem) hinzugefügt,
 	welche die Anwendung stoppen sollen.
 	"""
 
@@ -255,7 +255,7 @@ class Core:
 
 	def add_stopper(self, slot):
 		"""
-		Fügt einen Slot hinzu, der das Stoppen der ORBIT-Anwendung
+		Fügt einen :py:class:`Slot` hinzu, der das Stoppen der ORBIT-Anwendung
 		veranlassen soll.
 
 		*Siehe auch:*
@@ -265,7 +265,7 @@ class Core:
 
 	def remove_stopper(self, slot):
 		"""
-		Entfernt einen Slot, der das Stoppen der ORBIT-Anwendung
+		Entfernt einen :py:class:`Slot`, der das Stoppen der ORBIT-Anwendung
 		veranlassen sollte.
 
 		*Siehe auch:*
@@ -294,7 +294,8 @@ class Core:
 			  und beendet wurde.
 
 		.. warning::
-			Diese Methode darf nicht direkt oder indirekt durch einen Slot 
+			Diese Methode darf nicht direkt oder indirekt durch einen 
+			:py:class:`Slot` oder :py:class:`Listener`
 			aufgerufen werden, da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung
 			blockiert.
 
@@ -944,6 +945,7 @@ class Blackboard:
 
 		*Siehe auch:*
 		:py:class:`Slot`,
+		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`Job.listen`,
@@ -971,6 +973,7 @@ class Blackboard:
 
 		*Siehe auch:*
 		:py:class:`Slot`,
+		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`Job.listen`,
@@ -998,6 +1001,7 @@ class Blackboard:
 
 		*Siehe auch:*
 		:py:class:`Slot`,
+		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`Job.listen`,
@@ -1016,7 +1020,8 @@ class Blackboard:
 		Sie werden benutzt, um zu entscheiden, ob eine Nachricht 
 		an den Empfänger übergeben wird oder nicht. 
 
-		Üblichweise wird als Empfänger ein :py:class:`Slot`-Objekt verwendet.
+		Üblichweise wird als Empfänger ein :py:class:`Listener`-Objekt verwendet,
+		welches mit einem :py:class:`Slot`-Objekt und einem Callback initialisiert wurde.
 
 		| Die Nachricht 
 			*M*: job = ``"A"``, component = ``"1"``, name = ``"a"``, value = ...
@@ -1054,6 +1059,7 @@ class Blackboard:
 
 		*Siehe auch:*
 		:py:class:`Slot`,
+		:py:class:`Listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`send`
 		"""
@@ -1519,9 +1525,10 @@ class Job:
 		"""
 		Richtet einen Nachrichtenempfänger für das Nachrichtensystem ein.
 
-		Als Empfänger wird üblicherweise ein :py:class:`Slot`-Objekt übergeben.
+		Als Empfänger wird üblicherweise ein :py:class:`Listener`-Objekt übergeben.
 
 		*Siehe auch:*
+		:py:class:`Listener`,
 		:py:meth:`Blackboard.add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`send`
@@ -1583,6 +1590,39 @@ class Job:
 
 
 class App(Job):
+	"""
+	Diese Klasse implementiert eine Vordergrundaufgabe in einer ORBIT-Anwendung.
+
+	**Parameter**
+
+	``name``
+		Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.
+	``in_history`` (*optional*)
+		Gibt an, ob diese App in der App-History berücksichtigt werden soll.
+		(*Siehe auch:* :py:meth:`Core.activate`, :py:meth:`Core.deactivate`)
+		Mögliche Werte sind ``True`` wenn die App in der App-History 
+		vermerkt werden soll, sonst ``False``.
+	``activator`` (*optional*)
+		Slots für die Aktivierung der App.
+		Ein einzelner :py:class:`Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		(*Siehe auch:* :py:meth:`add_activator`)
+	``deactivator`` (*optional*)
+		Slots für die Deaktivierung der App.
+		Ein einzelner :py:class:`Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		(*Siehe auch:* :py:meth:`add_deactivator`)
+	
+	**Beschreibung**
+
+	Diese Klasse erbt von :py:class:`Job` und implementiert damit eine Aufgabe 
+	durch die Kombination von verschiedenen Komponenten.
+	Diese Klasse kann direkt instanziert werden oder es kann eine Klasse
+	abgeleitet werden.
+
+	*Siehe auch:*
+	:py:class:`Job`,
+	:py:meth:`add_component`,
+	:py:meth:`Core.install`
+	"""
 
 	def __init__(self, name, in_history = False, 
 		activator = None, deactivator = None):
@@ -1592,22 +1632,32 @@ class App(Job):
 		self._in_history = in_history
 
 		if activator:
-			if type(activator) is list or type(activator) is tuple:
+			try:
 				for a in activator:
 					self.add_activator(a)
-			else:
+			except TypeError:
 				self.add_activator(activator)
 
 		if deactivator:
-			if type(deactivator) is list or type(deactivator) is tuple:
+			try:
 				for d in deactivator:
 					self.add_deactivator(d)
-			else:
+			except TypeError:
 				self.add_deactivator(deactivator)
 
 	@property
 	def in_history(self):
-	    return self._in_history
+		"""
+		Gibt einen Wert zurück, der angibt, ob diese App in der App-History
+		vermerkt wird oder nicht.
+
+		Mögliche Werte sind ``True`` oder ``False``.
+
+		*Siehe auch:*
+		:py:meth:`Core.activate`,
+		:py:meth:`Core.deactivate`
+		"""
+		return self._in_history
 
 	def _process_activator(self, *args):
 		self.trace("activating app %s, caused by event" % self.name)
@@ -1618,28 +1668,100 @@ class App(Job):
 		self._core.deactivate(self)
 
 	def add_activator(self, slot):
+		"""
+		Fügt einen :py:class:`Slot` für die Aktivierung der App hinzu.
+
+		Sobald eine Nachricht über das Nachrichtensystem gesendet
+		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
+		wird die App aktiviert.
+
+		*Siehe auch:*
+		:py:meth:`remove_activator`,
+		:py:meth:`add_deactivator`
+		"""
 		self._activators.add_slot(slot)
 
 	def remove_activator(self, slot):
+		"""
+		Entfernt einen :py:class:`Slot` für die Aktivierung der App.
+
+		.. note::
+			Es muss die selbe Referenz übergeben werden, wie an
+			:py:meth:`add_activator` übergeben wurde.
+
+		*Siehe auch:*
+		:py:meth:`add_activator`
+		"""
 		self._activators.remove_slot(slot)
 
 	def add_deactivator(self, slot):
+		"""
+		Fügt einen :py:class:`Slot` für die Deaktivierung der App hinzu.
+
+		Sobald eine Nachricht über das Nachrichtensystem gesendet
+		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
+		wird die App deaktiviert.
+
+		*Siehe auch:*
+		:py:meth:`remove_deactivator`,
+		:py:meth:`add_activator`
+		"""
 		self._deactivators.add_slot(slot)
 
 	def remove_deactivator(self, slot):
+		"""
+		Entfernt einen :py:class:`Slot` für die Deaktivierung der App.
+
+		.. note::
+			Es muss die selbe Referenz übergeben werden, wie an
+			:py:meth:`add_deactivator` übergeben wurde.
+
+		*Siehe auch:*
+		:py:meth:`add_deactivator`
+		"""
 		self._deactivators.remove_slot(slot)
 	
 	def on_install(self, core):
+		"""
+		Wird aufgerufen, wenn die App installiert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.install`,
+		:py:meth:`Job.on_install`
+		"""
 		super().on_install(core)
 		self._activators.activate(self._core.blackboard)
 		self._deactivators.activate(self._core.blackboard)
 
 	def on_uninstall(self):
+		"""
+		Wird aufgerufen, wenn die App deinstalliert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+			Eine überschreibende Methode muss jedoch die Implementierung
+			der Elternklasse aufrufen.
+
+		*Siehe auch:*
+		:py:meth:`Core.uninstall`,
+		:py:meth:`Job.on_uninstall`
+		"""
 		self._deactivators.deactivate(self._core.blackboard)
 		self._activators.deactivate(self._core.blackboard)
 		super().on_uninstall()
 
 	def activate(self):
+		"""
+		Aktiviert die App.
+
+		*Siehe auch:*
+		:py:meth:`Core.activate`
+		"""
 		if not self.core:
 			raise AttributeError("the job is not associated with a core")
 		if self.active:
@@ -1647,6 +1769,12 @@ class App(Job):
 		self.core.activate(self)
 
 	def deactivate(self):
+		"""
+		Deaktiviert die App.
+
+		*Siehe auch:*
+		:py:meth:`Core:deactivate`
+		"""
 		if not self.core:
 			raise AttributeError("the job is not associated with a core")
 		if not self.active:
@@ -1655,12 +1783,63 @@ class App(Job):
 
 
 class Service(Job):
+	"""
+	Diese Klasse implementiert eine Hintergrundaufgabe in einer ORBIT-Anwendung.
+
+	**Parameter**
+
+	``name``
+		Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.
+
+	**Beschreibung**
+
+	Hintergrundaufgaben werden üblicherweise direkt mit dem Starten der ORBIT-Anwendung
+	aktiviert und erst mit dem Beenden der Anwendung wieder deaktiviert.
+
+	Diese Klasse erbt von :py:class:`Job` und implementiert damit eine Aufgabe 
+	durch die Kombination von verschiedenen Komponenten.
+	Diese Klasse kann direkt instanziert werden oder es kann eine Klasse
+	abgeleitet werden.
+
+	*Siehe auch:*
+	:py:class:`Job`,
+	:py:meth:`add_component`,
+	:py:meth:`Core.install`
+	"""
 
 	def __init__(self, name):
 		super().__init__(name, True)
 
 
 class Component:
+	"""
+	Diese Klasse implementiert eine Komponente als Baustein für eine Aufgabe.
+
+	**Parameter**
+
+	``name``
+		Der Name der Komponente. Der Name muss innerhalb der Aufgabe eindeutig sein.
+
+	**Beschreibung**
+
+	Komponenten sind der typische Weg, in einer ORBIT-Anwendung, mit einem
+	TinkerForge-Brick(let) zu kommunizieren.
+	Eine Komponente wird implementiert, indem eine Klasse von 
+	:py:class:`Component` abgeleitet wird und im Konstruktur 
+	durch den Aufruf von :py:meth:`add_device_handle`
+	Geräteanforderungen eingerichtet werden.
+
+	Komponenten können über das Nachrichtensystem kommunizieren.
+	Dazu können mit dem Aufruf von :py:meth:`add_listener`
+	Empfänger eingerichtet und mit dem Aufruf von :py:meth:`send`
+	Nachrichten versandt werden.
+
+	*Siehe auch:*
+	:py:meth:`Job.add_component`,
+	:py:meth:`add_device_handle`,
+	:py:meth:`add_listener`,
+	:py:meth:`send`
+	"""
 
 	def __init__(self, name):
 		self._job = None
@@ -1734,6 +1913,12 @@ class Component:
 
 	@property
 	def job(self):
+		"""
+		Gibt den Eltern-Job oder ``None`` zurück.
+
+		*Siehe auch:*
+		:py:meth:`Job.add_component`
+		"""
 		return self._job
 
 	def on_add_component(self, job):
@@ -1773,6 +1958,22 @@ class Component:
 
 	@property
 	def enabled(self):
+		"""
+		Gibt an oder legt fest, ob die Komponente aktiv ist.
+
+		Mögliche Werte sind ``True`` wenn die Komponente aktiv ist
+		und ``False`` wenn die Komponente nicht aktiv ist.
+
+		Alle Komponenten eines Jobs werden beim Aktivieren des Jobs
+		automatisch aktiviert und mit dem Deaktivieren des Jobs
+		automatisch deaktiviert. Das manuelle Setzen dieses Attributs
+		ist i.d.R. nicht notwendig.
+
+		Eine aktive Komponente bekommt Geräte (Bricks und Bricklets) zugeordnet
+		und kann Nachrichten empfangen und senden.
+		Eine inaktive Komponente bekommt keine Geräte zugeordnet und
+		erhält auch keine Nachrichten vom Nachrichtensystem zugestellt.
+		"""
 		return self._enabled
 	@enabled.setter
 	def enabled(self, value):
@@ -1856,14 +2057,41 @@ class Component:
 		pass
 
 	def on_enabled(self):
+		"""
+		Wird aufgerufen, wenn die Komponente aktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:attr:`enabled`
+		"""
 		# can be overriden in sub classes
 		pass
 
 	def on_disabled(self):
+		"""
+		Wird aufgerufen, wenn die Komponente deaktiviert wird.
+
+		.. note::
+			Kann von abgeleiteten Klassen überschrieben werden.
+
+		*Siehe auch:*
+		:py:attr:`enabled`
+		"""
 		# can be overriden in sub classes
 		pass
 
 	def add_device_handle(self, device_handle):
+		"""
+		Richtet eine Geräteanforderung ein.
+
+		Als Parameter wird ein :py:class:`SingleDeviceHandle` oder 
+		ein :py:class:`MultiDeviceHandle` übergeben.
+
+		*Siehe auch:*
+		:py:meth:`remove_device_handle`
+		"""
 		if device_handle in self._device_handles:
 			return
 		self._device_handles.append(device_handle)
@@ -1871,6 +2099,19 @@ class Component:
 			self._job._core.device_manager.add_handle(device_handle)
 
 	def remove_device_handle(self, device_handle):
+		"""
+		Entfernt eine Geräteanforderung.
+
+		Als Parameter wird ein :py:class:`SingleDeviceHandle` oder 
+		ein :py:class:`MultiDeviceHandle` übergeben.
+
+		.. note::
+			Es muss die selbe Referenz übergeben werden, wie an
+			:py:meth:`add_device_handle` übergeben wurde.
+
+		*Siehe auch:*
+		:py:meth:`add_device_handle`
+		"""
 		if device_handle not in self._device_handles:
 			return
 		if self._enabled:
@@ -1882,9 +2123,10 @@ class Component:
 		"""
 		Richtet einen Nachrichtenempfänger für das Nachrichtensystem ein.
 
-		Als Empfänger wird üblicherweise ein :py:class:`Slot`-Objekt übergeben.
+		Als Empfänger wird üblicherweise ein :py:class:`Listener`-Objekt übergeben.
 
 		*Siehe auch:*
+		:py:class:`Listener`,
 		:py:meth:`Blackboard.add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`send`
