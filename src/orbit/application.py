@@ -2797,10 +2797,10 @@ class Listener:
 		sollte dieses Attribut vorher gesetzt werden um den Empfänger
 		zu bezeichnen.
 		"""
-	    return self._receiver
+		return self._receiver
 	@receiver.setter
 	def receiver(self, value):
-	    self._receiver = value
+		self._receiver = value
 
 	def __str__(self):
 		return "Listener(job = %s, component = %s, name = %s, predicate: %s, transform: %s, receiver = %s)" \
