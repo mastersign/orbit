@@ -324,7 +324,9 @@ class Core:
 
 		*Siehe auch:*
 		:py:meth:`uninstall`,
-		:py:attr:`jobs`
+		:py:attr:`jobs`,
+		:py:class:`App`,
+		:py:class:`Service`
 		"""
 		if job.core:
 			raise AttributeError("the given job is already associated with a core")
@@ -1445,7 +1447,8 @@ class Job:
 
 		*Siehe auch:*
 		:py:meth:`add_component`,
-		:py:meth:`remove_component`
+		:py:meth:`remove_component`,
+		:py:class:`Component`
 		"""
 		return self._components
 
@@ -1455,7 +1458,8 @@ class Job:
 
 		*Siehe auch:*
 		:py:meth:`remove_component`,
-		:py:attr:`components`
+		:py:attr:`components`,
+		:py:class:`Component`
 		"""
 		if component.name in self._components:
 			self.remove_component(self._components[component.name])
@@ -2596,6 +2600,43 @@ class MultiDeviceHandle(DeviceHandle):
 
 
 class Slot:
+	"""
+	Diese Klasse repräsentiert ein Empfangsmuster für das Nachrichtensystem.
+
+	**Parameter**
+
+	``job``
+		Der Name des versendenen Jobs ein Gruppenname oder ``None``.
+	``component``
+		Der Name der versendenen Komponente, ``'JOB'``, 
+		ein Gruppenname oder ``None``.
+	``name``
+		Der Ereignisname, ein Gruppenname oder ``None``.
+	``predicate`` (*optional*)
+		Ein Prädikat als zusätzlicher Filter für Nachrichten.
+		Eine Funktion mit der Signatur
+		``(job, component, name, value)``, 
+		welche die Nachricht entgegennimmt und ``True`` oder ``False``
+		zurückgibt.
+	``transformation`` (*optional*)
+		Eine Funktion, welche den Inhalt der Nachricht entgegennimmt und
+		einen umgewandelten Inhalt zurückkgibt.
+
+	**Beschreibung**
+
+	Das Empfangsmuster wird verwendet, um ein Callback für den Nachrichtenempfang
+	im Nachrichtensystem zu registrieren. Das Empfangsmuster kann durch einen
+	Aufruf der Methode :py:meth:`listener` mit einem Callback zu einem
+	Empfänger verknüpft	werden.
+
+	Für die Erzeugung von :py:class:`Slot`-Instanzen gibt es einige statische
+	Factory-Methoden: 
+	:py:meth:`for_job`, :py:meth:`for_component` und :py:meth:`for_name`.
+
+	*Siehe auch:*
+	:py:meth:`listener`,
+	:py:class:`Listener`
+	"""
 
 	def __init__(self, job, component, name, predicate = None, transformation = None):
 		self._job = job
@@ -2606,34 +2647,73 @@ class Slot:
 
 	@property
 	def job(self):
+		"""
+		Gibt den Namen des versendenden Jobs, einen Gruppennamen 
+		oder ``None`` zurück.
+		"""
 		return self._job
 
 	@property
 	def component(self):
+		"""
+		Gibt den Namen der versendenden Komponente, ``'JOB'``, 
+		einen Gruppennamen oder ``None`` zurück.
+		"""
 		return self._component
 
 	@property
 	def name(self):
+		"""
+		Gibt den Ereignisnamen, einen Gruppenname oder ``None`` zurück.
+		"""
 		return self._name
 
 	@property
 	def predicate(self):
+		"""
+		Gibt das Filterprädikat oder ``None`` zurück.
+		"""
 		return self._predicate
 
 	@property
 	def transformation(self):
+		"""
+		Gibt die Transformationsfunktion für den Nachrichteninhalt
+		oder ``None`` zurück.
+		"""
 		return self._transformation
 
 	def for_job(job):
+		"""
+		Erzeugt ein Empfangsmuster, welches auf alle Nachrichten von einem
+		Job passt.
+		Es kann auch ein Gruppenname übergegen werden.
+		"""
 		return Slot(job, None, None)
 
 	def for_component(job, component):
+		"""
+		Erzeugt ein Empfangsmuster, welches auf die Nachrichten
+		aller Komponenten mit dem übergegebenen Namen passt.
+		Es kann auch ein Gruppenname übergegen werden.
+		"""
 		return Slot(job, component, None)
 
 	def for_name(name):
+		"""
+		Erzeugt ein Empfangsmuster, welches auf alle Nachrichten
+		für das übergebene Ereignis passt.
+		Es kann auch ein Gruppenname übergegen werden.
+		"""
 		return Slot(None, None, name)
 
 	def listener(self, callback):
+		"""
+		Erzeugt mit dem übergebenen Callback einen Empfänger.
+
+		*Siehe auch:*
+		:py:class:`Listener`
+		"""
 		return Listener(callback, self)
 
 	def __str__(self):
@@ -2643,6 +2723,30 @@ class Slot:
 
 
 class Listener:
+	"""
+	Diese Klasse repräsentiert einen Empfänger für das Nachrichtensystem.
+
+	**Parameter**
+
+	``callback``
+		Das Callback welches beim Eintreffen einer passenden Nachricht
+		aufgerufen werden soll. Die Funktion muss die folgende
+		Signatur besitzen: ``(job, component, name, value)``.
+		Wird eine dynamische Methode statt einer statischen Funktion übergeben,
+		muss die Methode die folgende Signatur besitzen:
+		``(self, job, component, name, value)``.
+	``slot``
+		Ein Empfangsmuster für die Filterung der Nachrichten.
+
+	Ein Empfänger kann mit Hilfe der folgenden Methoden für den
+	Nachrichtenempfang registriert werden:
+	:py:meth:`Blackboard.add_listener`, :py:meth:`Job.add_listener` und
+	:py:meth:`Component.add_listener`.
+
+	*Siehe auch:*
+	:py:class:`Slot`,
+	:py:class:`Blackboard`
+	"""
 
 	def __init__(self, callback, slot):
 		self._callback = callback
@@ -2657,18 +2761,42 @@ class Listener:
 
 	@property
 	def job(self):
+		"""
+		Gibt den Namen des versendenden Jobs, einen Gruppennamen 
+		oder ``None`` zurück.
+		"""
 		return self._slot.job
 
 	@property
 	def component(self):
+		"""
+		Gibt den Namen der versendenden Komponente, ``'JOB'``, 
+		einen Gruppennamen oder ``None`` zurück.
+		"""
 		return self._slot.component
 
 	@property
 	def name(self):
+		"""
+		Gibt den Ereignisnamen, einen Gruppenname oder ``None`` zurück.
+		"""
 		return self._slot.name
 
 	@property
 	def receiver(self):
+		"""
+		Gibt die Bezeichnung des Empfängers zurück.
+
+		Die Bezeichnung wird beim Protokollieren der Nachrichten
+		verwendet, um den Weg der Nachrichten kenntlich zu machen.
+
+		Werden die Methoden :py:meth:`Job.add_listener` oder 
+		:py:meth:`Component.add_listener` verwendet, wird dieses Attribut
+		automatisch gesetzt. Wird der Empfänger direkt mit
+		:py:meth:`Blackboard.add_listener` registriert,
+		sollte dieses Attribut vorher gesetzt werden um den Empfänger
+		zu bezeichnen.
+		"""
 	    return self._receiver
 	@receiver.setter
 	def receiver(self, value):
