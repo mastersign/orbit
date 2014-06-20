@@ -175,20 +175,20 @@ class Blackboard:
 		welches mit einem :py:class:`Slot`-Objekt und einem Callback initialisiert wurde.
 
 		| Die Nachricht 
-			*M*: job = ``"A"``, component = ``"1"``, name = ``"a"``, value = ...
+			*M*: job = ``'A'``, component = ``'1'``, name = ``'a'``, value = ...
 		| wird an alle Empfänger mit dem Empfangsmuster
-		| |lpb| job = ``"A"``, component = ``"1"``, name = ``"a"`` |rpb|
+		| |lpb| job = ``'A'``, component = ``'1'``, name = ``'a'`` |rpb|
 			übergeben.
 
-		| Existiert eine Ereignisnamengruppe mit dem Namen ``"x"`` und den Ereignisnamen
-			``"a"``, ``b"``, ``"c"``, wird die Nachricht *M* auch an alle Empfänger
+		| Existiert eine Ereignisnamengruppe mit dem Namen ``'x'`` und den Ereignisnamen
+			``'a'``, ``b'``, ``'c'``, wird die Nachricht *M* auch an alle Empfänger
 			mit dem Empfangsmuster
-		| |lpb| job = ``"A"``, component = ``"1"``, name = ``"x"`` |rpb|
+		| |lpb| job = ``'A'``, component = ``'1'``, name = ``'x'`` |rpb|
 			übergeben.
 
 		| Hat ein Attribut den Wert ``None``, wird es ignoriert. 
 			Das bedeutet, die Nachricht *M* wird auch an alle Empfänger mit dem Empfangsmuster
-		| |lpb|  job = ``"A"``, component = ``"1"``, name = ``None`` |rpb|
+		| |lpb|  job = ``'A'``, component = ``'1'``, name = ``None`` |rpb|
 			übergeben.
 
 		Der Empfänger muss den Aufruf als Funktion unterstützen. 
