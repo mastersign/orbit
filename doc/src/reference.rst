@@ -89,6 +89,18 @@ Listener
 .. autoclass:: orbit.application.Listener
 	:members:
 
+MultiListener
+-------------
+
+.. autoclass:: orbit.application.MultiListener
+	:members:
+
+MulticastCallback
+-----------------
+
+.. autoclass:: orbit.application.MulticastCallback
+	:members:
+
 ===========
 orbit.setup
 ===========
