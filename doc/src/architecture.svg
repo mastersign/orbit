@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r"
+   sodipodi:docname="architecture.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Send"
+       style="overflow:visible;">
+      <path
+         id="path5676"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.2) rotate(180) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Sstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Sstart"
+       style="overflow:visible">
+      <path
+         id="path5691"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.3) translate(-2.3,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Sstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Sstart"
+       style="overflow:visible">
+      <path
+         id="path5673"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.2) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleOutM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="EmptyTriangleOutM"
+       style="overflow:visible">
+      <path
+         id="path4640"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(-4.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleInM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="EmptyTriangleInM"
+       style="overflow:visible">
+      <path
+         id="path4216"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(-0.4) translate(-4.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleInM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="EmptyTriangleInM-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4216-4"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,1.8,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.2415285"
+     inkscape:cx="463.38357"
+     inkscape:cy="439.46967"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-midpoints="false"
+     inkscape:snap-bbox="true"
+     inkscape:object-nodes="true"
+     inkscape:snap-center="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2987"
+       empspacing="4"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="false"
+       spacingx="8px"
+       spacingy="8px"
+       originy="600px"
+       dotted="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-452.36218)">
+    <path
+       style="fill:none;stroke:#79b068;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 600,80 0,24 -136,0 0,24"
+       id="path4654"
+       inkscape:connector-curvature="0"
+       transform="translate(0,452.36218)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#c8c8c8;fill-opacity:1;stroke:none"
+       id="rect3759"
+       width="96"
+       height="48"
+       x="280"
+       y="580.36218"
+       rx="8"
+       ry="7.9999976"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3769"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;word-spacing:0px"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion3771"><rect
+           id="rect3773"
+           width="137.14285"
+           height="72.85714"
+           x="51.42857"
+           y="51.42857" /></flowRegion><flowPara
+         id="flowPara3775" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+       x="327.9707"
+       y="611.64246"
+       id="text7563"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="327.9707"
+         y="611.64246"
+         id="tspan7565"><tspan
+           x="327.9707"
+           y="611.64246"
+           style="font-family:sans-serif;-inkscape-font-specification:Sans"
+           id="tspan7567">Core</tspan></tspan></text>
+    <g
+       id="g3140"
+       transform="translate(8,-112)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         ry="7.36865"
+         rx="8"
+         y="788.36218"
+         x="232"
+         height="48"
+         width="176"
+         id="rect4249"
+         style="fill:#c8c8c8;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7581"
+         y="817.87976"
+         x="319.02832"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7583"
+           y="817.87976"
+           x="319.02832"
+           sodipodi:role="line"><tspan
+             id="tspan7585"
+             style="font-family:sans-serif;-inkscape-font-specification:Sans"
+             y="817.87976"
+             x="319.02832">DeviceManager</tspan></tspan></text>
+    </g>
+    <g
+       id="g3152"
+       transform="translate(232,-128)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         ry="7.9999976"
+         rx="8"
+         y="900.36218"
+         x="24"
+         height="48.000004"
+         width="144"
+         id="rect5077"
+         style="fill:#9dd0f3;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7575"
+         y="931.81824"
+         x="95.472656"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7577"
+           y="931.81824"
+           x="95.472656"
+           sodipodi:role="line"><tspan
+             id="tspan7579"
+             style="font-family:sans-serif;-inkscape-font-specification:Sans"
+             y="931.81824"
+             x="95.472656">BrickletXYZ</tspan></tspan></text>
+    </g>
+    <g
+       id="g3128"
+       transform="translate(8,-104)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         ry="7.9999976"
+         rx="8"
+         y="780.36218"
+         x="24"
+         height="47.999996"
+         width="160"
+         id="rect5055"
+         style="fill:#9dd0f3;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7569"
+         y="811.81824"
+         x="103.87793"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7571"
+           y="811.81824"
+           x="103.87793"
+           sodipodi:role="line"><tspan
+             id="tspan7573"
+             style="font-family:sans-serif;-inkscape-font-specification:Sans"
+             y="811.81824"
+             x="103.87793">IPConnection</tspan></tspan></text>
+    </g>
+    <g
+       id="g3164"
+       transform="translate(40,-192)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         style="fill:#b9e4ac;fill-opacity:1;stroke:none"
+         id="rect5119"
+         width="144"
+         height="48"
+         x="512"
+         y="772.36218"
+         rx="8"
+         ry="7.9999976" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7459"
+         y="803.46667"
+         x="583.68262"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7461"
+           y="803.46667"
+           x="583.68262"
+           sodipodi:role="line"><tspan
+             id="tspan7463"
+             style="font-family:sans-serif;-inkscape-font-specification:Arial"
+             y="803.46667"
+             x="583.68262">Component</tspan></tspan></text>
+    </g>
+    <g
+       id="g3158"
+       transform="translate(80,-216)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         style="fill:#c8c8c8;fill-opacity:1;stroke:none"
+         id="rect5137"
+         width="160"
+         height="48.000004"
+         x="464"
+         y="892.36218"
+         rx="8"
+         ry="7.9999976" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7587"
+         y="923.81824"
+         x="543.64844"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7589"
+           y="923.81824"
+           x="543.64844"
+           sodipodi:role="line"><tspan
+             id="tspan7591"
+             style="font-family:sans-serif;-inkscape-font-specification:Sans"
+             y="923.81824"
+             x="543.64844">DeviceHandle</tspan></tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 328,724.36218 0,48"
+       id="path5161"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 3;stroke-dashoffset:0"
+       d="m 624,724.36218 0,72 -224,0"
+       id="path5163"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g3134"
+       transform="translate(8,-112)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         ry="7.36865"
+         rx="8"
+         y="692.36218"
+         x="24"
+         height="47.999992"
+         width="160"
+         id="rect4249-3"
+         style="fill:#c8c8c8;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7581-9"
+         y="723.99402"
+         x="104.29785"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7583-2"
+           y="723.99402"
+           x="104.29785"
+           sodipodi:role="line">Configuration<tspan
+   id="tspan7585-8"
+   style="font-family:sans-serif;-inkscape-font-specification:Sans"
+   y="723.99402"
+   x="104.29785" /></tspan></text>
+    </g>
+    <g
+       id="g3170"
+       transform="translate(-88,-192)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="7.9999976"
+         rx="8"
+         y="772.36218"
+         x="512"
+         height="48"
+         width="80"
+         id="rect3172"
+         style="fill:#b9e4ac;fill-opacity:1;stroke:none"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <text
+         xml:space="preserve"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         x="553.06445"
+         y="803.46667"
+         id="text3174"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="553.06445"
+           y="803.46667"
+           id="tspan3176">Job<tspan
+   x="553.06445"
+   y="803.46667"
+   style="font-family:sans-serif;-inkscape-font-specification:Arial"
+   id="tspan3178" /></tspan></text>
+    </g>
+    <g
+       transform="translate(80,-408)"
+       id="g3180"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         ry="7.9999976"
+         rx="8"
+         y="892.36218"
+         x="480"
+         height="48.000004"
+         width="128"
+         id="rect3182"
+         style="fill:#c8c8c8;fill-opacity:1;stroke:none"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <text
+         xml:space="preserve"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         x="543.64844"
+         y="923.81824"
+         id="text3184"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="543.64844"
+           y="923.81824"
+           id="tspan3186">Listener</tspan></text>
+    </g>
+    <g
+       transform="translate(8,-304)"
+       id="g3190"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         style="fill:#c8c8c8;fill-opacity:1;stroke:none"
+         id="rect3192"
+         width="144"
+         height="48"
+         x="248"
+         y="788.36218"
+         rx="8"
+         ry="7.36865"
+         inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\devicemanager-overview.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <text
+         xml:space="preserve"
+         style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:sans-serif;-inkscape-font-specification:Sans"
+         x="319.92676"
+         y="819.81824"
+         id="text3194"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           x="319.92676"
+           y="819.81824"
+           id="tspan3196">Blackboard<tspan
+   x="319.92676"
+   y="819.81824"
+   style="font-family:sans-serif;-inkscape-font-specification:Sans"
+   id="tspan3198" /></tspan></text>
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:connector-curvature="0"
+       id="path3202"
+       d="m 328,628.36218 0,48"
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 328,532.36218 0,48"
+       id="path3204"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 192,700.36218 48,0"
+       id="path3208"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 416,700.36218 128,0"
+       id="path3208-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 192,604.36218 88,0"
+       id="path3208-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path3235"
+       d="m 424,604.36218 -48,0"
+       style="fill:none;stroke:#79b068;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path3235-6"
+       d="m 552,604.36218 -48,0"
+       style="fill:none;stroke:#79b068;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:#8c8c8c;stroke-width:3.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 400,508.36218 160,0"
+       id="path3208-8-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path3235-1"
+       d="m 648,580.36218 0,-48"
+       style="fill:none;stroke:#79b068;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path3235-1-0"
+       d="m 624,676.36218 0,-48"
+       style="fill:none;stroke:#79b068;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:4.81003141;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62551367,0,0,0.6218847,272.77399,451.58648)"
+       inkscape:transform-center-y="-0.47517201"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:4.81112337;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-9"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62522978,0,0,0.6218847,336.8989,499.58648)"
+       inkscape:transform-center-y="-0.4751721"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:4.81112337;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-9-5"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62522979,0,0,0.62188471,384.89889,499.58648)"
+       inkscape:transform-center-y="-0.47517156"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 648,580.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#8c8c8c;fill-opacity:1;stroke:#8c8c8c;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 328,580.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#8c8c8c;fill-opacity:1;stroke:#8c8c8c;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 328,644.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113-8-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#8c8c8c;fill-opacity:1;stroke:#8c8c8c;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 263.95699,604.36218 272,598.88609 280.04301,604.36218 272,609.83827 z"
+       id="path4113-8-2-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 375.95699,604.36218 384,598.88609 392.04301,604.36218 384,609.83827 z"
+       id="path4113-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 503.95699,604.36218 512,598.88609 520.04301,604.36218 512,609.83827 z"
+       id="path4113-4-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:4.81112337;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-9-51"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62522978,0,0,0.6218847,136.8989,547.58648)"
+       inkscape:transform-center-y="-0.4751721"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:4.81112337;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-9-3"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62522978,0,0,0.6218847,264.8989,547.58648)"
+       inkscape:transform-center-y="-0.4751721"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 624,644.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113-3-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:4.81112337;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-9-3-4"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62522978,0,0,0.6218847,360.8989,619.58648)"
+       inkscape:transform-center-y="-0.4751721"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:4.81003141;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-92"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62551367,0,0,0.6218847,256.77399,643.58648)"
+       inkscape:transform-center-y="-0.47517201"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:4.81003141;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-92-2"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62551367,0,0,0.6218847,64.773985,715.58648)"
+       inkscape:transform-center-y="-0.47517201"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 328,740.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113-8-2-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 223.95699,700.36218 232,694.88609 240.04301,700.36218 232,705.83827 z"
+       id="path4113-8-2-3-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#8c8c8c;stroke-width:4.81003141;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4115-92-2-9"
+       sodipodi:sides="5"
+       sodipodi:cx="440"
+       sodipodi:cy="72"
+       sodipodi:r1="8"
+       sodipodi:r2="0"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="0"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 440,64 0,8 7.60845,-2.472136 L 440,72 444.70228,78.472136 440,72 435.29772,78.472136 440,72 432.39155,69.527864 440,72 z"
+       transform="matrix(0.62551367,0,0,0.6218847,136.77399,739.58648)"
+       inkscape:transform-center-y="-0.47517201"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#79b068;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 464,580.40519 -5.47609,-8.04301 5.47609,-8.04301 5.47609,8.04301 z"
+       id="path4113"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>

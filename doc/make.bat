@@ -46,8 +46,7 @@ if "%1" == "clean" (
 	goto end
 )
 
-
-%SPHINXBUILD% 2> nul
+call %SPHINXBUILD% 2> nul
 if errorlevel 9009 (
 	echo.
 	echo.The 'sphinx-build' command was not found. Make sure you have Sphinx
@@ -61,7 +60,7 @@ if errorlevel 9009 (
 )
 
 if "%1" == "html" (
-	%SPHINXBUILD% -b html %ALLSPHINXOPTS% %BUILDDIR%/html
+	call %SPHINXBUILD% -b html %ALLSPHINXOPTS% %BUILDDIR%/html
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The HTML pages are in %BUILDDIR%/html.
@@ -69,7 +68,7 @@ if "%1" == "html" (
 )
 
 if "%1" == "dirhtml" (
-	%SPHINXBUILD% -b dirhtml %ALLSPHINXOPTS% %BUILDDIR%/dirhtml
+	call %SPHINXBUILD% -b dirhtml %ALLSPHINXOPTS% %BUILDDIR%/dirhtml
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The HTML pages are in %BUILDDIR%/dirhtml.
@@ -77,7 +76,7 @@ if "%1" == "dirhtml" (
 )
 
 if "%1" == "singlehtml" (
-	%SPHINXBUILD% -b singlehtml %ALLSPHINXOPTS% %BUILDDIR%/singlehtml
+	call %SPHINXBUILD% -b singlehtml %ALLSPHINXOPTS% %BUILDDIR%/singlehtml
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The HTML pages are in %BUILDDIR%/singlehtml.
@@ -85,7 +84,7 @@ if "%1" == "singlehtml" (
 )
 
 if "%1" == "pickle" (
-	%SPHINXBUILD% -b pickle %ALLSPHINXOPTS% %BUILDDIR%/pickle
+	call %SPHINXBUILD% -b pickle %ALLSPHINXOPTS% %BUILDDIR%/pickle
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished; now you can process the pickle files.
@@ -93,7 +92,7 @@ if "%1" == "pickle" (
 )
 
 if "%1" == "json" (
-	%SPHINXBUILD% -b json %ALLSPHINXOPTS% %BUILDDIR%/json
+	call %SPHINXBUILD% -b json %ALLSPHINXOPTS% %BUILDDIR%/json
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished; now you can process the JSON files.
@@ -101,7 +100,7 @@ if "%1" == "json" (
 )
 
 if "%1" == "htmlhelp" (
-	%SPHINXBUILD% -b htmlhelp %ALLSPHINXOPTS% %BUILDDIR%/htmlhelp
+	call %SPHINXBUILD% -b htmlhelp %ALLSPHINXOPTS% %BUILDDIR%/htmlhelp
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished; now you can run HTML Help Workshop with the ^
@@ -110,7 +109,7 @@ if "%1" == "htmlhelp" (
 )
 
 if "%1" == "qthelp" (
-	%SPHINXBUILD% -b qthelp %ALLSPHINXOPTS% %BUILDDIR%/qthelp
+	call %SPHINXBUILD% -b qthelp %ALLSPHINXOPTS% %BUILDDIR%/qthelp
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished; now you can run "qcollectiongenerator" with the ^
@@ -122,7 +121,7 @@ if "%1" == "qthelp" (
 )
 
 if "%1" == "devhelp" (
-	%SPHINXBUILD% -b devhelp %ALLSPHINXOPTS% %BUILDDIR%/devhelp
+	call %SPHINXBUILD% -b devhelp %ALLSPHINXOPTS% %BUILDDIR%/devhelp
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished.
@@ -130,7 +129,7 @@ if "%1" == "devhelp" (
 )
 
 if "%1" == "epub" (
-	%SPHINXBUILD% -b epub %ALLSPHINXOPTS% %BUILDDIR%/epub
+	call %SPHINXBUILD% -b epub %ALLSPHINXOPTS% %BUILDDIR%/epub
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The epub file is in %BUILDDIR%/epub.
@@ -138,7 +137,7 @@ if "%1" == "epub" (
 )
 
 if "%1" == "latex" (
-	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
+	call %SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished; the LaTeX files are in %BUILDDIR%/latex.
@@ -146,7 +145,7 @@ if "%1" == "latex" (
 )
 
 if "%1" == "latexpdf" (
-	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
+	call %SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
 	cd %BUILDDIR%/latex
 	make all-pdf
 	cd %BUILDDIR%/..
@@ -156,7 +155,7 @@ if "%1" == "latexpdf" (
 )
 
 if "%1" == "latexpdfja" (
-	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
+	call %SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
 	cd %BUILDDIR%/latex
 	make all-pdf-ja
 	cd %BUILDDIR%/..
@@ -166,7 +165,7 @@ if "%1" == "latexpdfja" (
 )
 
 if "%1" == "text" (
-	%SPHINXBUILD% -b text %ALLSPHINXOPTS% %BUILDDIR%/text
+	call %SPHINXBUILD% -b text %ALLSPHINXOPTS% %BUILDDIR%/text
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The text files are in %BUILDDIR%/text.
@@ -174,7 +173,7 @@ if "%1" == "text" (
 )
 
 if "%1" == "man" (
-	%SPHINXBUILD% -b man %ALLSPHINXOPTS% %BUILDDIR%/man
+	call %SPHINXBUILD% -b man %ALLSPHINXOPTS% %BUILDDIR%/man
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The manual pages are in %BUILDDIR%/man.
@@ -182,7 +181,7 @@ if "%1" == "man" (
 )
 
 if "%1" == "texinfo" (
-	%SPHINXBUILD% -b texinfo %ALLSPHINXOPTS% %BUILDDIR%/texinfo
+	call %SPHINXBUILD% -b texinfo %ALLSPHINXOPTS% %BUILDDIR%/texinfo
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The Texinfo files are in %BUILDDIR%/texinfo.
@@ -190,7 +189,7 @@ if "%1" == "texinfo" (
 )
 
 if "%1" == "gettext" (
-	%SPHINXBUILD% -b gettext %I18NSPHINXOPTS% %BUILDDIR%/locale
+	call %SPHINXBUILD% -b gettext %I18NSPHINXOPTS% %BUILDDIR%/locale
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The message catalogs are in %BUILDDIR%/locale.
@@ -198,7 +197,7 @@ if "%1" == "gettext" (
 )
 
 if "%1" == "changes" (
-	%SPHINXBUILD% -b changes %ALLSPHINXOPTS% %BUILDDIR%/changes
+	call %SPHINXBUILD% -b changes %ALLSPHINXOPTS% %BUILDDIR%/changes
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.The overview file is in %BUILDDIR%/changes.
@@ -206,7 +205,7 @@ if "%1" == "changes" (
 )
 
 if "%1" == "linkcheck" (
-	%SPHINXBUILD% -b linkcheck %ALLSPHINXOPTS% %BUILDDIR%/linkcheck
+	call %SPHINXBUILD% -b linkcheck %ALLSPHINXOPTS% %BUILDDIR%/linkcheck
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Link check complete; look for any errors in the above output ^
@@ -215,7 +214,7 @@ or in %BUILDDIR%/linkcheck/output.txt.
 )
 
 if "%1" == "doctest" (
-	%SPHINXBUILD% -b doctest %ALLSPHINXOPTS% %BUILDDIR%/doctest
+	call %SPHINXBUILD% -b doctest %ALLSPHINXOPTS% %BUILDDIR%/doctest
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Testing of doctests in the sources finished, look at the ^
@@ -224,7 +223,7 @@ results in %BUILDDIR%/doctest/output.txt.
 )
 
 if "%1" == "xml" (
-	%SPHINXBUILD% -b xml %ALLSPHINXOPTS% %BUILDDIR%/xml
+	call %SPHINXBUILD% -b xml %ALLSPHINXOPTS% %BUILDDIR%/xml
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The XML files are in %BUILDDIR%/xml.
@@ -232,7 +231,7 @@ if "%1" == "xml" (
 )
 
 if "%1" == "pseudoxml" (
-	%SPHINXBUILD% -b pseudoxml %ALLSPHINXOPTS% %BUILDDIR%/pseudoxml
+	call %SPHINXBUILD% -b pseudoxml %ALLSPHINXOPTS% %BUILDDIR%/pseudoxml
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The pseudo-XML files are in %BUILDDIR%/pseudoxml.

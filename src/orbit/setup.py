@@ -7,24 +7,24 @@
 #       to print the current configuration.
 
 """
-Dieses Modul enthält die Klasse ``Configuration``, 
+Dieses Modul enthält die Klasse :py:class:`orbit.setup.Configuration`, 
 die für die Konfiguration von ORBIT verantwortlich ist.
 
-Dieses Modul kann auch als Skript ausgeführt werden und gibt
-in dann die aktuelle ORBIT-Konfiguration aus.
+Dieses Modul kann auch als Skript ausgeführt werden, es gibt
+dann die aktuelle ORBIT-Konfiguration aus.
 """
 
 import os, json
 
 class Configuration:
 	"""
-	Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT. 
-
+	Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT.
 	Jeder Parameter ist mit einem Standardwert vorbelegt und kann
 	in der Datei ``<Benutzerverzeichnis>/.orbit`` überschrieben werden.
+	Dazu besitzt die Kasse die Methoden :py:meth:`load` and :py:meth:`save`.
+	Die Methode :py:meth:`load` wird bereits automatisch beim Instanzieren aufgerufen.
 
-	Dazu besitzt die Kasse die Methoden ``load()`` and ``save()``.
-	Die Methode ``load()`` wird bereits automatisch beim Instanzieren aufgerufen.
+	Die Klasse unterstützt die String-Darstellung mit :py:func:`str`.
 	"""
 
 	DEFAULT_HOST = "localhost"
@@ -37,53 +37,59 @@ class Configuration:
 
 	@property
 	def host(self):
-	    return self._host
+		"""Der Hostname für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (*string*)"""
+		return self._host
 	@host.setter
 	def host(self, value):
-	    self._host = value
+		self._host = value
 	
 	@property
 	def port(self):
-	    return self._port
+		"""Der Port für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (*int*)"""
+		return self._port
 	@port.setter
 	def port(self, value):
-	    self._port = value
+		self._port = value
 	
 	@property
 	def core_tracing(self):
-	    return self._core_tracing
+		"""Aktiviert die Trace-Nachrichtenausgabe vom ORBIT-Kern. (*bool*)"""
+		return self._core_tracing
 	@core_tracing.setter
 	def core_tracing(self, value):
-	    self._core_tracing = value
+		self._core_tracing = value
 	
 	@property
 	def device_tracing(self):
-	    return self._device_tracing
+		"""Aktiviert die Trace-Nachrichten des Gerätemanagers von ORBIT. (*bool*)"""
+		return self._device_tracing
 	@device_tracing.setter
 	def device_tracing(self, value):
-	    self._device_tracing = value
+		self._device_tracing = value
 	
 	@property
 	def event_tracing(self):
-	    return self._event_tracing
+		"""Aktiviert die Trace-Nachrichten des Nachrichtenbusses von ORBIT. (*bool*)"""
+		return self._event_tracing
 	@event_tracing.setter
 	def event_tracing(self, value):
-	    self._event_tracing = value
+		self._event_tracing = value
 
 	@property
 	def job_tracing(self):
-	    return self._job_tracing
+		"""Aktiviert die Trace-Nachrichten auf Job-Ebene. (*bool*)"""
+		return self._job_tracing
 	@job_tracing.setter
 	def job_tracing(self, value):
-	    self._job_tracing = value
+		self._job_tracing = value
 	
-
 	@property
 	def component_tracing(self):
-	    return self._component_tracing
+		"""Aktiviert die Trace-Nachrichten auf Component-Ebene. (*bool*)"""
+		return self._component_tracing
 	@component_tracing.setter
 	def component_tracing(self, value):
-	    self._component_tracing = value
+		self._component_tracing = value
 	
 
 	def _configfile_path(self):
@@ -145,6 +151,10 @@ class Configuration:
 			self._from_data(configdata)
 
 	def save(self):
+		"""
+		Speichert die Werte aller Parameter in die benutzerspezifische 
+		Konfigurationsdatei.
+		"""
 		self._write_configfile(self._to_data())
 
 	def __str__(self):

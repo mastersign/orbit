@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # Package orbit.components.lcd
 
 from datetime import datetime

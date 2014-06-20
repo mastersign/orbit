@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # Package orbit.components.remoteswitch
 
 from ..application import Component, SingleDeviceHandle
