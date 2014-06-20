@@ -1,7 +1,7 @@
 ORBIT Online-Dokumentation
 ==========================
 
-**ORBIT ist ein Anwendungsrahmen für TinkerForge und Python**
+**ORBIT ist ein Python-Anwendungsrahmen für TinkerForge-Anwendungen**
 
 Version: |release|
 
