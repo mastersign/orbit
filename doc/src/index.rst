@@ -15,6 +15,7 @@ Inhalt
 
 	architecture
 	reference
+	components
 
 Schnellzugriff
 --------------
