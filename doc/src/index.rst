@@ -11,10 +11,10 @@ Inhalt
 ------
 
 .. toctree::
-   :maxdepth: 1
+	:maxdepth: 2
 
-   architecture
-   reference
+	architecture
+	reference
 
 Schnellzugriff
 --------------

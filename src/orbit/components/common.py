@@ -2,7 +2,7 @@
 
 # Package orbit.components.common
 
-from ..application import Component
+from .. import Component
 
 class EventCallbackComponent(Component):
 

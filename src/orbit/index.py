@@ -5,8 +5,10 @@
 """
 Dieses Modul unterstützt das Nachrichtensystem von ORBIT
 mit einer hierarchischen Indexstruktur.
-Es enthält die Klasse :py:class:`MultiLevelReverseIndex` welche
-die Indexstruktur implementiert.
+
+Das Modul enthält die folgenden Klassen:
+
+- :py:class:`MultiLevelReverseIndex`
 """
 
 class MultiLevelReverseIndex:

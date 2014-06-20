@@ -3,7 +3,8 @@
 # Package orbit.components.lcd
 
 from datetime import datetime
-from ..application import Component, SingleDeviceHandle, MultiDeviceHandle
+from .. import Component
+from ..devices import SingleDeviceHandle, MultiDeviceHandle
 from tinkerforge.bricklet_lcd_20x4 import BrickletLCD20x4
 from ..lcdcharset import unicode_to_ks0066u
 

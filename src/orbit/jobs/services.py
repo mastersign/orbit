@@ -2,7 +2,8 @@
 
 # Package orbit.jobs.services
 
-from ..application import Service, Slot
+from .. import Service
+from ..messaging import Slot
 from ..components.common import EventCallbackComponent
 from ..components.timer import ActivityTimerComponent
 from ..components.lcd import LCDBacklightComponent

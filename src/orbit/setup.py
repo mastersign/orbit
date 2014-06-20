@@ -7,11 +7,15 @@
 #       to print the current configuration.
 
 """
-Dieses Modul enthält die Klasse :py:class:`orbit.setup.Configuration`, 
-die für die Konfiguration von ORBIT verantwortlich ist.
+Dieses Modul implementiert die Setup-Steuerung für ORBIT.
 
-Dieses Modul kann auch als Skript ausgeführt werden, es gibt
-dann die aktuelle ORBIT-Konfiguration aus.
+.. note::
+	Dieses Modul kann auch als Skript ausgeführt werden, es gibt
+	dann die aktuelle ORBIT-Konfiguration aus.
+
+Dieses Modul enthält die folgenden Klassen:
+
+- :py:class:`orbit.setup.Configuration`
 """
 
 import os, json

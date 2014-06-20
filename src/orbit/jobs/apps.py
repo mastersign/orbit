@@ -2,7 +2,8 @@
 
 # Package orbit.jobs.apps
 
-from ..application import App, Slot
+from .. import App
+from ..messaging import Slot
 from ..components.timer import IntervalTimerComponent
 from ..components import lcd
 

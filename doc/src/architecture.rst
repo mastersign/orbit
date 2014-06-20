@@ -19,10 +19,10 @@ Für einige Standardaufgaben bringt ORBIT fertige Komponenten und Jobs mit.
 	Eine grobe Übersicht über die Architektur einer ORBIT-Anwendung
 
 | *Siehe auch:*
-| :py:class:`orbit.application.Core`,
-| :py:class:`orbit.application.Component`,
-| :py:class:`orbit.application.App`,
-  :py:class:`orbit.application.Service`
+| :py:class:`orbit.Core`,
+| :py:class:`orbit.Component`,
+| :py:class:`orbit.App`,
+  :py:class:`orbit.Service`
 
 Der Gerätemanager im Kern verwaltet die TinkerForge-Verbindungen und die angeschlossenen
 Brick(let)s. Jede Komponente kann die Zuordnung von ein oder mehreren Brick(let)s eines 
@@ -38,8 +38,8 @@ getrennt, wird den Komponenten das Bricklet wieder entzogen.
 	Eine Übersicht über den Gerätemanager
 
 | *Siehe auch:*
-| :py:class:`orbit.application.Component.add_device_handle`,
-| :py:class:`orbit.application.DeviceManager`
+| :py:class:`orbit.Component.add_device_handle`,
+| :py:class:`orbit.devices.DeviceManager`
 
 Komponenten und Jobs können über ein integriertes, asynchrones Nachrichtensystem kommunizieren.
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs 
@@ -51,11 +51,11 @@ von einander und sorgt für eine robuste Anwendung.
 	Eine Übersicht über das Nachrichtensystem
 
 | *Siehe auch:* 
-| :py:meth:`orbit.application.Component.add_listener`,
-  :py:meth:`orbit.application.Job.add_listener`,
-| :py:meth:`orbit.application.Component.send`,
-  :py:meth:`orbit.application.Job.send`,
-| :py:class:`orbit.application.Blackboard`
+| :py:meth:`orbit.Component.add_listener`,
+  :py:meth:`orbit.Job.add_listener`,
+| :py:meth:`orbit.Component.send`,
+  :py:meth:`orbit.Job.send`,
+| :py:class:`orbit.messaging.Blackboard`
 
 Die folgende Übersicht stellt die wesentlichen Objekte in einer 
 ORBIT-Anwendung und deren Assoziationen dar.

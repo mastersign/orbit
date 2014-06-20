@@ -2,7 +2,8 @@
 
 # Package orbit.components.remoteswitch
 
-from ..application import Component, SingleDeviceHandle
+from .. import Component
+from ..devices import SingleDeviceHandle
 from tinkerforge.bricklet_remote_switch import BrickletRemoteSwitch
 
 RS = BrickletRemoteSwitch

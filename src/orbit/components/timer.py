@@ -5,7 +5,7 @@
 from datetime import datetime
 from time import time
 from threading import Timer, Thread
-from ..application import Component
+from .. import Component
 
 class ActivityTimerComponent(Component):
 
