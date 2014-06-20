@@ -141,7 +141,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -155,7 +155,10 @@
        d="m 600,80 0,24 -136,0 0,24"
        id="path4654"
        inkscape:connector-curvature="0"
-       transform="translate(0,452.36218)" />
+       transform="translate(0,452.36218)"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#c8c8c8;fill-opacity:1;stroke:none"
        id="rect3759"
@@ -171,7 +174,10 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot3769"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;word-spacing:0px"><flowRegion
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;word-spacing:0px"
+       inkscape:export-filename="D:\Repository\Projekte\Privat\Software\Tinkering\doc\src\figures\architecture.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
          id="flowRegion3771"><rect
            id="rect3773"
            width="137.14285"
