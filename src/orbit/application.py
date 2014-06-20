@@ -304,9 +304,8 @@ class Core:
 
 		.. warning::
 			Diese Methode darf nicht direkt oder indirekt durch einen 
-			:py:class:`Slot` oder :py:class:`Listener`
-			aufgerufen werden, da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung
-			blockiert.
+			:py:class:`Listener` aufgerufen werden, 
+			da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung blockiert.
 
 		*Siehe auch:*
 		:py:meth:`stop`,
