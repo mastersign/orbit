@@ -2841,6 +2841,39 @@ class Listener:
 
 
 class MultiListener:
+	"""
+	Diese Klasse implementiert einen Mehrfachempfänger.
+	Das ist ein Mechanismus für den Empfang	von Nachrichten über das Nachrichtensystem, 
+	bei dem mehrere Empfangsmuster mit einem Callback verknüpft	werden.
+
+	**Parameter**
+
+	``name``
+		Der Name des Empfängers.
+	``callback``
+		Eine Funktion die bei einem Nachrichtenempfang aufgerufen werden soll.
+		Die Funktion muss die Signatur ``(job, component, name, value)`` besitzen.
+
+	**Beschreibung**
+
+	Der Mehrfachempfänger wird mit einem Namen und einem Callback initialisiert.
+	Anschließend können mit :py:meth:`add_slot` mehrere Empfangsmuster 
+	eingerichtet werden.
+
+	.. note::
+		Der Mehrfachempfänger erzeugt für jedes Empfangsmuster
+		einen eigenen Empfänger.
+		Passt eine Nachricht zu mehr als einem Empfangsmuster,
+		wird das Callback für die Nachricht auch mehr als einmal aufgerufen.
+
+	Der Mehrfachempfänger muss mit dem Nachrichtensystem verknüpft werden,
+	damit er funktioniert. Dazu wird die Methode :py:meth:`activate` aufgerufen.
+
+	*Siehe auch:*
+	:py:class:`Listener`,
+	:py:meth:`add_slot`,
+	:py:meth:`activate`
+	"""
 
 	def __init__(self, name, callback):
 		self._callback = callback
@@ -2850,17 +2883,32 @@ class MultiListener:
 
 	@property
 	def name(self):
-	    return self._name
+		"""
+		Gibt den Namen des Empfängers zurück.
+		"""
+		return self._name
 
 	@property
 	def slots(self):
+		"""
+		Gibt eine Sequenz mit allen eingerichteten Empfangsmustern zurück.
+		"""
 		return self._listeners.keys()
 
 	@property
 	def listeners(self):
+		"""
+		Gibt eine Sequenz mit allen zur Zeit erzeugten Empfängern zurück.
+		"""
 		return self._listeners.values()
 
 	def add_slot(self, slot):
+		"""
+		Fügt ein Empfangsmuster hinzu.
+
+		*Siehe auch:*
+		:py:class:`Slot`
+		"""
 		listener = slot.listener(self._callback)
 		listener.receiver = self.name
 		self._listeners[slot] = listener
@@ -2868,17 +2916,30 @@ class MultiListener:
 			blackboard.add_listener(listener)
 
 	def remove_slot(self, slot):
+		"""
+		Entfernt ein Empfangsmuster.
+
+		.. note::
+			Es muss die selbe Referenz auf das Empfangsmuster übergeben werden,
+			wie an :py:meth:`add_slot` übergeben wurde.
+		"""
 		listener = self._listeners[slot]
 		del(self._listeners[slot])
 		for blackboard in self._blackboards:
 			blackboard.remove_listener(listener)
 
 	def activate(self, blackboard):
+		"""
+		Verknüpft den Mehrfachempfänger mit dem Nachrichtensystem.
+		"""
 		for listener in self._listeners.values():
 			blackboard.add_listener(listener)
 		self._blackboards.append(blackboard)
 
 	def deactivate(self, blackboard):
+		"""
+		Löst die Verbindung des Mehrfachempfängers vom Nachrichtensystem.
+		"""
 		for listener in self._listeners.values():
 			blackboard.remove_listener(listener)
 		self._blackboards.remove(blackboard)
