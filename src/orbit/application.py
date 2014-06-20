@@ -10,18 +10,27 @@ und kann mehrere :py:class:`Job`-Objekte enthalten.
 Jeder :py:class:`Job` fasst eine Gruppe von :py:class`Component`-Objekten zusammen.
 Ein :py:class:`Job` ist entweder eine :py:class:`App` oder ein :py:class:`Service`.
 
-.. image:: figures/architecture-overview.png
+.. figure:: figures/architecture-overview.png
+	:alt: Architekturübersicht
+
+	Eine Grobübersicht über die Architektur einer ORBIT-Anwendung
 
 Die TinkerForge-Bricklets werden durch den :py:class:`DeviceManager` verwaltet
 und den :py:class:`Component`-Objekten über :py:class:`DeviceHandle`-Objekte zugeordnet.
 
-.. image:: figures/devicemanager-overview.png
+.. figure:: figures/devicemanager-overview.png
+	:alt: Gerätemanager
+
+	Eine Übersicht über den Gerätemanager
 
 :py:class:`Component`- und :py:class:`Job`-Objekte
 kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
 die Klasse :py:class:`Blackboard` implementiert wird.
 
-.. image:: figures/blackboard-overview.png
+.. figure:: figures/blackboard-overview.png
+	:alt: Nachrichtensystem
+
+	Eine Übersicht über das Nachrichtensystem
 
 :py:class:`Component`- und :py:class:`Job`-Objekte können jederzeit Nachrichten
 senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem 
