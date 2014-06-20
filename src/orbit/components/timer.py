@@ -2,12 +2,59 @@
 
 # Package orbit.components.timer
 
+"""
+Dieses Modul enthält einige Komponenten für die zeitabhängige Steuerung.
+
+Enthalten sind die folgenden Komponenten:
+
+- :py:class:`ActivityTimerComponent`
+- :py:class:`IntervalTimerComponent`
+"""
+
 from datetime import datetime
 from time import time
 from threading import Timer, Thread
 from .. import Component
 
 class ActivityTimerComponent(Component):
+	"""
+	Diese Komponente schaltet zwischen den zwei Zuständen 
+	**aktiv** und **inaktiv** um und versendet Nachrichten
+	bei einer Änderung des Zustands. 
+	Der Zustand wird durch Nachrichtenaktivität gesteuert.
+	Dazu empfängt die Komponente Nachrichten mit einem Empfangsmuster
+	und schaltet auf *aktiv*, sobald eine Nachricht eintrifft.
+	Vergeht eine vorgegebene Zeitspanne ohne eingehende Nachrichten,
+	schaltet die Komponente auf *inaktiv*.
+
+	**Parameter**
+
+	``name``
+		Der Name der Komponente.
+	``slot``
+		Das Empfangsmuster für den Empfang der Nachrichten.
+	``initial_state`` (*optional*)
+		Der Anfangszustand der Komponente.
+		Mögliche Werte sind ``True`` für *aktiv* und ``False`` für *inaktiv*.
+		Standardwert ist ``True`` für *aktiv*.
+	``timeout``
+		Die Zeitspanne in Sekunden ohne Nachrichten, bis die Komponente in
+		den Zustand *inaktiv* wechselt.
+
+	**Nachrichten**
+
+	Wenn die Komponente in den Zustand *aktiv* wechselt, 
+	werden die folgenden beiden Nachrichten versandt:
+
+	- *name:* ``'state'``, *value:* ``True``
+	- *name:* ``'on'``, *value:* ``None``
+
+	Wenn die Komponente in den Zustand *inaktiv* wechselt, 
+	werden die folgenden beiden Nachrichten versandt:
+
+	- *name:* ``'state'``, *value:* ``False``
+	- *name:* ``'off'``, *value:* ``None``
+	"""
 
 	def __init__(self, name, slot, 
 		initial_state = True, timeout = 6):
@@ -60,6 +107,23 @@ class ActivityTimerComponent(Component):
 			self.timer = None
 
 class IntervalTimerComponent(Component):
+	"""
+	Diese Komponente implementiert einen Zeitgeber,
+	der in regelmäßigen Abständen eine Nachricht versendet.
+
+	**Parameter**
+
+	``name``
+		Der Name der Komponente.
+	``interval``
+		Das Interval für den Nachrichtenversand in Sekunden.
+
+	**Nachrichten**
+
+	Die Komponente sendet im angegebenen Intervall die folgende Nachricht:
+
+	- *name:* ``'timer'``, *value:* Der Zeitpunkt an dem die Nachricht versandt wurde.
+	"""
 
 	def __init__(self, name, interval = 1):
 
