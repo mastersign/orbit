@@ -7,6 +7,7 @@ Diese gliedern sich in die folgenden Bereiche:
 - Common_
 - Timer_
 - LCD_
+- `Remote Switch`_
 
 Common
 ======
@@ -62,3 +63,13 @@ LCD20x4MenuComponent
 --------------------
 
 .. autoclass:: orbit.components.lcd.LCD20x4MenuComponent
+
+Remote Switch
+=============
+
+.. automodule:: orbit.components.remoteswitch
+
+RemoteSwitchComponent
+---------------------
+
+.. autoclass:: orbit.components.remoteswitch.RemoteSwitchComponent
