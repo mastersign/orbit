@@ -25,7 +25,9 @@ class EscapableApp(App):
 
 class WatchApp(EscapableApp):
 
-	def __init__(self, name, **nargs):
+	def __init__(self, name, 
+		**nargs):
+	
 		super().__init__(name, **nargs)
 
 		self.add_component(
@@ -39,7 +41,10 @@ class WatchApp(EscapableApp):
 
 class MessageApp(EscapableApp):
 
-	def __init__(self, name, lines, **nargs):
+	def __init__(self, name, 
+		lines, 
+		**nargs):
+
 		super().__init__(name, **nargs)
 
 		self.add_component(
@@ -48,7 +53,10 @@ class MessageApp(EscapableApp):
 
 class MenuApp(App):
 
-	def __init__(self, name, entries, **nargs):
+	def __init__(self, name, 
+		entries, 
+		**nargs):
+
 		if 'in_history' not in nargs:
 			nargs['in_history'] = True
 		super().__init__(name, **nargs)
