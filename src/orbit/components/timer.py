@@ -57,9 +57,10 @@ class ActivityTimerComponent(Component):
 	"""
 
 	def __init__(self, name, slot, 
-		initial_state = True, timeout = 6):
+		initial_state = True, timeout = 6,
+		**nargs):
 
-		super().__init__(name)
+		super().__init__(name, **nargs)
 		self.timeout = timeout
 		self.timer = None
 		self.state = False
@@ -125,9 +126,10 @@ class IntervalTimerComponent(Component):
 	- *name:* ``'timer'``, *value:* Der Zeitpunkt an dem die Nachricht versandt wurde.
 	"""
 
-	def __init__(self, name, interval = 1):
+	def __init__(self, name, interval = 1, 
+		**nargs):
 
-		super().__init__(name)
+		super().__init__(name, **nargs)
 		self.next_call = time()
 		self.interval = interval
 		self.timer = None

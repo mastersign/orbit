@@ -28,9 +28,10 @@ class EventCallbackComponent(Component):
 	"""
 
 	def __init__(self, name, 
-		slot, callback):
+		slot, callback,
+		**nargs):
 		
-		super().__init__(name)
+		super().__init__(name, **nargs)
 
 		self.callback = callback
 
