@@ -1,7 +1,7 @@
 ORBIT
 =====
 
-![ORBIT Logo](doc/src/logo.svg)
+![ORBIT Logo](doc/src/logo.png)
 
 ORBIT ist ein [Python][]-Anwendungsrahmen für [TinkerForge][]-Anwendungen.
 
