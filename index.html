@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ORBIT Online-Dokumentation &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="#" />
+    <link rel="next" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">ORBIT Online-Dokumentation</a><ul>
+<li><a class="reference internal" href="#inhalt">Inhalt</a></li>
+<li><a class="reference internal" href="#schnellzugriff">Schnellzugriff</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="architecture.html" title="Next Chapter: Architektur einer ORBIT-Anwendung"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Architektur eine... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="orbit-online-dokumentation">
+<h1>ORBIT Online-Dokumentation<a class="headerlink" href="#orbit-online-dokumentation" title="Permalink zu dieser Überschrift">¶</a></h1>
+<img src="_images/logo.svg" /><p><strong>ORBIT ist ein Python-Anwendungsrahmen für TinkerForge-Anwendungen</strong></p>
+<p>Es ermöglicht dialogbasierte Systeme durch ein einfaches Konzept von Apps und Services. Es unterstützt eine robuste Anwendungsarchitektur durch
+wiederverwendbare Komponenten und die Entkopplung von Anwendungsteilen mit Hilfe eines Nachrichtensystem. Die Verwaltung der Verbindung zu TinkerForge-Bricks und -Bricklets übernimmt ein Gerätemanager, dadurch wird das Entwickeln von Anwendungen, die mit Verbindungsabbrüchen umgehen müssen,
+stark vereinfacht.</p>
+<p>Version: 0.1.0 alpha</p>
+<p>Erstellt am: 24.06.2014</p>
+<p>Dieses Projekt wird nicht von der <a class="reference external" href="http://www.tinkerforge.com/de/">TinkerForge GmbH</a> entwickelt,
+sondern ist ein unabhängiges Projekt von <a class="reference external" href="http://www.mastersign.de/">Tobias Kiertscher</a>.</p>
+<p>ORBIT wird unter der <a class="reference external" href="http://opensource.org/licenses/LGPL-3.0">LGPL-3.0</a> zur Verfügung gestellt.</p>
+<p>Diese Dokumentation ist auch als <a class="reference external" href="orbit.pdf">PDF-Version</a> verfügbar.</p>
+<div class="section" id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="schnellzugriff">
+<h2>Schnellzugriff<a class="headerlink" href="#schnellzugriff" title="Permalink zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Stichwortverzeichnis</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Modulindex</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Suche</em></a></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/index.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

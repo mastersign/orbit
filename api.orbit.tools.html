@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul orbit.tools &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="up" title="API-Referenz" href="reference.html" />
+    <link rel="next" title="Integrierte Komponenten" href="components.html" />
+    <link rel="prev" title="Modul orbit.setup" href="api.orbit.setup.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Modul orbit.tools</a><ul>
+<li><a class="reference internal" href="#multicastcallback">MulticastCallback</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api.orbit.setup.html" title="Previous Chapter: Modul orbit.setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.setu...</span>
+    </a>
+  </li>
+  <li>
+    <a href="components.html" title="Next Chapter: Integrierte Komponenten"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Integrierte Komp... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="module-orbit.tools">
+<span id="modul-orbit-tools"></span><h1>Modul orbit.tools<a class="headerlink" href="#module-orbit.tools" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>Diese Modul enthält unterstützende Klassen und Funktionen.</p>
+<p>Das Modul enthält die folgenden Klassen:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.tools.MulticastCallback" title="orbit.tools.MulticastCallback"><tt class="xref py py-class docutils literal"><span class="pre">MulticastCallback</span></tt></a></li>
+</ul>
+<div class="section" id="multicastcallback">
+<h2>MulticastCallback<a class="headerlink" href="#multicastcallback" title="Permalink zu dieser Überschrift">¶</a></h2>
+<dl class="class">
+<dt id="orbit.tools.MulticastCallback">
+<em class="property">class </em><tt class="descclassname">orbit.tools.</tt><tt class="descname">MulticastCallback</tt><a class="headerlink" href="#orbit.tools.MulticastCallback" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Klasse bildet einen einfachen Mechanismus,
+um mehrere Callbacks mit identischer Signatur zu einem Callback zusammenzufassen.</p>
+<p>Mit <a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a> können Callbacks hinzugefügt werden.
+Mit <a class="reference internal" href="#orbit.tools.MulticastCallback.remove_callback" title="orbit.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a> können Callbacks wieder entfernt werden.</p>
+<p>Die Klasse implementiert die <tt class="docutils literal"><span class="pre">__call__</span></tt>-Methode, daher können Instanzen 
+der Klasse selbst als Callback weitergegeben werden.
+Wird Klasse als Funktion aufgerufen, werden die mit <a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>
+registrierten Funktionen in der gleichen Reihenfolge aufgerufen, in der sie
+hinzugefügt wurden. Dabei werden alle Parameter unverändert weitergegeben.</p>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>,
+<a class="reference internal" href="#orbit.tools.MulticastCallback.remove_callback" title="orbit.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a></p>
+<dl class="method">
+<dt id="orbit.tools.MulticastCallback.add_callback">
+<tt class="descname">add_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit.tools.MulticastCallback.add_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Fügt ein Callback hinzu.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.tools.MulticastCallback.remove_callback">
+<tt class="descname">remove_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit.tools.MulticastCallback.remove_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt ein Callback.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/api.orbit.tools.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

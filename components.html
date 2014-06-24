@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Integrierte Komponenten &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="next" title="Integrierte Jobs" href="jobs.html" />
+    <link rel="prev" title="Modul orbit.tools" href="api.orbit.tools.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Integrierte Komponenten</a><ul>
+<li><a class="reference internal" href="#module-orbit.components.common">Common</a><ul>
+<li><a class="reference internal" href="#eventcallbackcomponent">EventCallbackComponent</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orbit.components.timer">Timer</a><ul>
+<li><a class="reference internal" href="#activitytimercomponent">ActivityTimerComponent</a></li>
+<li><a class="reference internal" href="#intervaltimercomponent">IntervalTimerComponent</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orbit.components.lcd">LCD</a><ul>
+<li><a class="reference internal" href="#lcd20x4buttonscomponent">LCD20x4ButtonsComponent</a></li>
+<li><a class="reference internal" href="#lcd20x4backlightcomponent">LCD20x4BacklightComponent</a></li>
+<li><a class="reference internal" href="#lcd20x4watchcomponent">LCD20x4WatchComponent</a></li>
+<li><a class="reference internal" href="#lcd20x4messagecomponent">LCD20x4MessageComponent</a></li>
+<li><a class="reference internal" href="#lcd20x4menucomponent">LCD20x4MenuComponent</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orbit.components.remoteswitch">Remote Switch</a><ul>
+<li><a class="reference internal" href="#remoteswitchcomponent">RemoteSwitchComponent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api.orbit.tools.html" title="Previous Chapter: Modul orbit.tools"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.tool...</span>
+    </a>
+  </li>
+  <li>
+    <a href="jobs.html" title="Next Chapter: Integrierte Jobs"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Integrierte Jobs &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="integrierte-komponenten">
+<h1>Integrierte Komponenten<a class="headerlink" href="#integrierte-komponenten" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>ORBIT bringt einige integrierte Komponenten mit.
+Diese gliedern sich in die folgenden Bereiche:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#common">Common</a></li>
+<li><a class="reference internal" href="#timer">Timer</a></li>
+<li><a class="reference internal" href="#lcd">LCD</a></li>
+<li><a class="reference internal" href="#remote-switch">Remote Switch</a></li>
+</ul>
+<div class="section" id="module-orbit.components.common">
+<span id="common"></span><h2>Common<a class="headerlink" href="#module-orbit.components.common" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält einige Komponenten für den allgemeinen Einsatz.</p>
+<p>Enthalten sind die folgenden Komponenten:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.components.common.EventCallbackComponent" title="orbit.components.common.EventCallbackComponent"><tt class="xref py py-class docutils literal"><span class="pre">EventCallbackComponent</span></tt></a></li>
+</ul>
+<div class="section" id="eventcallbackcomponent">
+<h3>EventCallbackComponent<a class="headerlink" href="#eventcallbackcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.common.EventCallbackComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.common.</tt><tt class="descname">EventCallbackComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>callback</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.common.EventCallbackComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente wartet mit Hilfe eines Empfangsmusters auf Nachrichten,
+und ruft ein Callback auf, wenn eine passende Nachricht eintrifft.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
+<dd>Das Empfangsmuster für den Empfang der Nachrichten.</dd>
+<dt><tt class="docutils literal"><span class="pre">callback</span></tt></dt>
+<dd>Eine parameterlose Funktion.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-orbit.components.timer">
+<span id="timer"></span><h2>Timer<a class="headerlink" href="#module-orbit.components.timer" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält einige Komponenten für die zeitabhängige Steuerung.</p>
+<p>Enthalten sind die folgenden Komponenten:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.components.timer.ActivityTimerComponent" title="orbit.components.timer.ActivityTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">ActivityTimerComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.components.timer.IntervalTimerComponent" title="orbit.components.timer.IntervalTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">IntervalTimerComponent</span></tt></a></li>
+</ul>
+<div class="section" id="activitytimercomponent">
+<h3>ActivityTimerComponent<a class="headerlink" href="#activitytimercomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.timer.ActivityTimerComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.timer.</tt><tt class="descname">ActivityTimerComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=True</em>, <em>timeout=6</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.timer.ActivityTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente schaltet zwischen den zwei Zuständen 
+<strong>aktiv</strong> und <strong>inaktiv</strong> um und versendet Nachrichten
+bei einer Änderung des Zustands. 
+Der Zustand wird durch Nachrichtenaktivität gesteuert.
+Dazu empfängt die Komponente Nachrichten mit einem Empfangsmuster
+und schaltet auf <em>aktiv</em>, sobald eine Nachricht eintrifft.
+Vergeht eine vorgegebene Zeitspanne ohne eingehende Nachrichten,
+schaltet die Komponente auf <em>inaktiv</em>.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
+<dd>Das Empfangsmuster für den Empfang der Nachrichten.</dd>
+<dt><tt class="docutils literal"><span class="pre">initial_state</span></tt> (<em>optional</em>)</dt>
+<dd>Der Anfangszustand der Komponente.
+Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> für <em>aktiv</em> und <tt class="docutils literal"><span class="pre">False</span></tt> für <em>inaktiv</em>.
+Standardwert ist <tt class="docutils literal"><span class="pre">True</span></tt> für <em>aktiv</em>.</dd>
+<dt><tt class="docutils literal"><span class="pre">timeout</span></tt></dt>
+<dd>Die Zeitspanne in Sekunden ohne Nachrichten, bis die Komponente in
+den Zustand <em>inaktiv</em> wechselt.</dd>
+</dl>
+<p><strong>Nachrichten</strong></p>
+<p>Wenn die Komponente in den Zustand <em>aktiv</em> wechselt, 
+werden die folgenden beiden Nachrichten versandt:</p>
+<ul class="simple">
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'state'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">True</span></tt></li>
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'on'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+<p>Wenn die Komponente in den Zustand <em>inaktiv</em> wechselt, 
+werden die folgenden beiden Nachrichten versandt:</p>
+<ul class="simple">
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'state'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">False</span></tt></li>
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'off'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="intervaltimercomponent">
+<h3>IntervalTimerComponent<a class="headerlink" href="#intervaltimercomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.timer.IntervalTimerComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.timer.</tt><tt class="descname">IntervalTimerComponent</tt><big>(</big><em>name</em>, <em>interval=1</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.timer.IntervalTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente implementiert einen Zeitgeber,
+der in regelmäßigen Abständen eine Nachricht versendet.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">interval</span></tt></dt>
+<dd>Das Interval für den Nachrichtenversand in Sekunden.</dd>
+</dl>
+<p><strong>Nachrichten</strong></p>
+<p>Die Komponente sendet im angegebenen Intervall die folgende Nachricht:</p>
+<ul class="simple">
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'timer'</span></tt>, <em>value:</em> Der Zeitpunkt an dem die Nachricht versandt wurde.</li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-orbit.components.lcd">
+<span id="lcd"></span><h2>LCD<a class="headerlink" href="#module-orbit.components.lcd" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält einige Komponenten für die Steuerung von LCD-Displays.</p>
+<p>Enthalten sind die folgenden Komponenten:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4ButtonsComponent" title="orbit.components.lcd.LCD20x4ButtonsComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4ButtonsComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4BacklightComponent" title="orbit.components.lcd.LCD20x4BacklightComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4BacklightComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4WatchComponent" title="orbit.components.lcd.LCD20x4WatchComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4WatchComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4MessageComponent" title="orbit.components.lcd.LCD20x4MessageComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MessageComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4MenuComponent" title="orbit.components.lcd.LCD20x4MenuComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MenuComponent</span></tt></a></li>
+</ul>
+<div class="section" id="lcd20x4buttonscomponent">
+<h3>LCD20x4ButtonsComponent<a class="headerlink" href="#lcd20x4buttonscomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.lcd.LCD20x4ButtonsComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4ButtonsComponent</tt><big>(</big><em>name</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4ButtonsComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente reagiert auf Tastendruck an allen angeschlossenen
+LCD-20x4-Displays und versendet entsprechende Nachrichten.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+</dl>
+<p><strong>Nachrichten</strong></p>
+<p>Wenn eine Taste gedrückt wird,
+versendet die Komponente die folgende Nachricht:</p>
+<p><em>name:</em> <tt class="docutils literal"><span class="pre">'button_pressed'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">(uid,</span> <span class="pre">no)</span></tt></p>
+<p>Wenn eine Taste losgelassen wird,
+versendet die Komponente die folgende Nachricht:</p>
+<p><em>name:</em> <tt class="docutils literal"><span class="pre">'button_released'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">(uid,</span> <span class="pre">no)</span></tt></p>
+<p>Der Nachrichteninhalt ist jeweils ein Tupel aus UID des LCD-Displays
+und der Tastennummer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="lcd20x4backlightcomponent">
+<h3>LCD20x4BacklightComponent<a class="headerlink" href="#lcd20x4backlightcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.lcd.LCD20x4BacklightComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4BacklightComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=False</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4BacklightComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente schaltet die Hintergrundbeleuchtung
+aller angeschlossener LCD-20x4-Displays entsprechend dem
+Nachrichteninhalt eintreffender Nachrichten.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
+<dd>Das Empfangsmuster für den Nachrichtenempfang.</dd>
+<dt><tt class="docutils literal"><span class="pre">initial_state</span></tt> (<em>optional</em>)</dt>
+<dd>Der Anfangszustand der Hintergrundbeleuchtung.
+Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> für eingeschaltet und <tt class="docutils literal"><span class="pre">False</span></tt>
+für ausgeschaltet. 
+Der Standardwert ist <tt class="docutils literal"><span class="pre">False</span></tt>.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Trifft eine Nachricht ein, die dem abgegebenen Empfangsmuster entspricht,
+wird der Nachrichteninhalt entsprechend der Python-Semantik
+als Wahrheitswert interpretiert. 
+Ist der Wert Wahr, wird die Hintergrundbeleuchtung für aller
+angeschlossenen LCD-20x4-Displays eingeschaltet, andernfalls
+wird sie ausgeschaltet.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="lcd20x4watchcomponent">
+<h3>LCD20x4WatchComponent<a class="headerlink" href="#lcd20x4watchcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.lcd.LCD20x4WatchComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4WatchComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>lcd_uid=None</em>, <em>lines={0: '%d.%m.%Y  %H:%M:%S'}</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4WatchComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente zeigt beim Eintreffen einer Nachricht
+auf einem oder allen LCD-20x4-Displays
+eine formatierte Uhrzeit an.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
+<dd>Das Empfangsmuster für den Nachrichtenempfang.</dd>
+<dt><tt class="docutils literal"><span class="pre">lcd_uid</span></tt> (<em>optional</em>)</dt>
+<dd>Die UID eines LCD-20x4-Displays oder <tt class="docutils literal"><span class="pre">None</span></tt>.
+Wird <tt class="docutils literal"><span class="pre">None</span></tt> angegeben, wird die Uhrzeit auf allen
+angeschlossenen Displays angezeigt.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">lines</span></tt> (<em>optional</em>)</dt>
+<dd>Ein Dictionary welches eine Zeilennummer auf
+eine Formatierungszeichenkette abbildet.
+Die Zeilennummer gibt die 0-basierte Zeile im LCD-Display an.
+Die Formatierungszeichenkette muss der Formatierungssyntax von
+<tt class="xref py py-meth docutils literal"><span class="pre">datetime.strftime()</span></tt> entsprechen.
+Standardwert ist <tt class="docutils literal"><span class="pre">{0:</span> <span class="pre">'%d.%m.%Y</span>&nbsp; <span class="pre">%H:%M:%S'}</span></tt>.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Sobald eine Nachricht empfangen wird, die dem angegebenen
+Empfangsmuster entspricht, wird die aktuelle Uhrzeit
+mit dem im Parameter <tt class="docutils literal"><span class="pre">lines</span></tt> angegebenen Format formatiert
+angezeigt.
+Wenn für Parameter <tt class="docutils literal"><span class="pre">lcd_uid</span></tt> eine UID übergeben wird,
+wird die Uhrzeit nur auf dem Display mit dieser UID angezeigt,
+andernfalls wird die Uhrzeit auf allen angeschlossenen 
+LCD-20x4-Displays angezeigt.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="lcd20x4messagecomponent">
+<h3>LCD20x4MessageComponent<a class="headerlink" href="#lcd20x4messagecomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.lcd.LCD20x4MessageComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4MessageComponent</tt><big>(</big><em>name</em>, <em>lines</em>, <em>lcd_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4MessageComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente zeigt eine konstante Nachricht
+auf einem oder allen LCD-20x4-Displays an.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
+<dd>Das Empfangsmuster für den Nachrichtenempfang.</dd>
+<dt><tt class="docutils literal"><span class="pre">lcd_uid</span></tt> (<em>optional</em>)</dt>
+<dd>Die UID eines LCD-20x4-Displays oder <tt class="docutils literal"><span class="pre">None</span></tt>.
+Wird <tt class="docutils literal"><span class="pre">None</span></tt> angegeben, wird die Nachricht auf allen
+angeschlossenen Displays angezeigt.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">lines</span></tt></dt>
+<dd>Eine Sequenz mit Zeichenketten.
+Es werden maximal 4 Zeichenketten ausgegeben.
+Ist eine Zeichenkette länger als 20 Zeichen, 
+wird der Rest abgeschnitten.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Sobald eine Nachricht empfangen wird, die dem angegebenen
+Empfangsmuster entspricht, wird die Nachricht aus dem
+Parameter <tt class="docutils literal"><span class="pre">lines</span></tt> angezeigt.
+Wenn für Parameter <tt class="docutils literal"><span class="pre">lcd_uid</span></tt> eine UID übergeben wird,
+wird die Nachricht nur auf dem Display mit dieser UID angezeigt,
+andernfalls wird die Nachricht auf allen angeschlossenen 
+LCD-20x4-Displays angezeigt.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="lcd20x4menucomponent">
+<h3>LCD20x4MenuComponent<a class="headerlink" href="#lcd20x4menucomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.lcd.LCD20x4MenuComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4MenuComponent</tt><big>(</big><em>name, lcd_uid=None, entries=[('None', 'none')], **nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4MenuComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente stellt ein Menü mit bis zu 8 Menüpunkten
+auf einem LCD-20x4-Display zur Verfügung.
+Die Navigation im Menü erfolgt mit Hilfe der 4 Tasten
+des LCD-20x4-Bricklets. Wird ein Menüpunkt ausgewählt,
+wird eine Nachricht mit der ID des gewählten Menüpunktes versandt.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">lcd_uid</span></tt> (<em>optional</em>)</dt>
+<dd>Die UID eines LCD-20x4-Displays oder <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">entries</span></tt> (<em>optional</em>)</dt>
+<dd>Eine Sequenz von Menüpunkten.
+Jeder Menüpunkt wird durch ein Tuple aus zwei Zeichenketten
+definiert. Die erste Zeichenkette ist die Beschriftung des Menüpunktes
+und die zweite Zeichekette ist die ID des Menüpunktes.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">[('None',</span> <span class="pre">'none')]</span></tt>.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Wenn für den Parameter <tt class="docutils literal"><span class="pre">lcd_uid</span></tt> eine UID übergeben wird,
+wird das Menü auf dem Display mit der angegebenen UID angezeigt,
+andernfalls wird es auf dem ersten angeschlossenen LCD-20x4-Display
+angezeigt.</p>
+<p>Die Navigation im Menü erfolgt mit den vier Tasten am Display.
+Die Tasten sind von links nach rechts zwischen 0 und 3 durchnummeriert.
+Die Tasten sind wie folgt belegt:</p>
+<ol class="arabic simple" start="0">
+<li>Escape oder Verlassen - sendet eine Nachricht mit dem Ereignisnamen <tt class="docutils literal"><span class="pre">'escape'</span></tt>.</li>
+<li>Zurück - markiert den vorhergehenden Menüpunkt.</li>
+<li>Vorwärts - markiert den nächsten Menüpunkt.</li>
+<li>Enter oder Auswählen - sendet eine Nachricht mit der ID des Menüpunkts als Ereignisname.</li>
+</ol>
+<p><strong>Nachrichten</strong></p>
+<p>Wenn die Taste 0 gedrückt wird, sendet die Komponente die folgende Nachricht:</p>
+<ul class="simple">
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'escape'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+<p>Wenn die Taste 3 gedrückt wird, sendet die Komponente die folgende Nachricht:</p>
+<ul class="simple">
+<li><em>name:</em> <tt class="docutils literal"><span class="pre">'&lt;ID&gt;'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+<p>Wobei <tt class="docutils literal"><span class="pre">&lt;ID&gt;</span></tt> durch die ID des aktuell markierten Menüpunkts ersetzt wird.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-orbit.components.remoteswitch">
+<span id="remote-switch"></span><h2>Remote Switch<a class="headerlink" href="#module-orbit.components.remoteswitch" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält Komponenten für die Steuerung mit einem
+Remote-Switch-Bricklet.</p>
+<p>Enthalten sind die folgenden Komponenten:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.components.remoteswitch.RemoteSwitchComponent" title="orbit.components.remoteswitch.RemoteSwitchComponent"><tt class="xref py py-class docutils literal"><span class="pre">RemoteSwitchComponent</span></tt></a></li>
+</ul>
+<div class="section" id="remoteswitchcomponent">
+<h3>RemoteSwitchComponent<a class="headerlink" href="#remoteswitchcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.components.remoteswitch.RemoteSwitchComponent">
+<em class="property">class </em><tt class="descclassname">orbit.components.remoteswitch.</tt><tt class="descname">RemoteSwitchComponent</tt><big>(</big><em>name</em>, <em>group</em>, <em>socket</em>, <em>on_slot</em>, <em>off_slot</em>, <em>typ='A'</em>, <em>switch_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.remoteswitch.RemoteSwitchComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Komponente steuert eine Funksteckdose mit Hilfe
+des Remote-Switch-Bricklets     wenn Nachrichten über das Nachrichtensystem
+empfangen werden.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der Komponente.</dd>
+<dt><tt class="docutils literal"><span class="pre">group</span></tt></dt>
+<dd>Die Gruppennummer der Funksteckdose.</dd>
+<dt><tt class="docutils literal"><span class="pre">socket</span></tt></dt>
+<dd>Die ID der Funksteckdose.</dd>
+<dt><tt class="docutils literal"><span class="pre">on_slot</span></tt></dt>
+<dd>Ein Empfangsmuster welches die Funksteckdose einschalten soll.</dd>
+<dt><tt class="docutils literal"><span class="pre">on_off</span></tt></dt>
+<dd>Ein Emfpangsmuster welches die Funksteckdose ausschalten soll.</dd>
+<dt><tt class="docutils literal"><span class="pre">typ</span></tt> (<em>optional</em>)</dt>
+<dd>Der Typ der Funksteckdose.
+Mögliche Werte sind <tt class="docutils literal"><span class="pre">'A'</span></tt>, <tt class="docutils literal"><span class="pre">'B'</span></tt> oder <tt class="docutils literal"><span class="pre">'C'</span></tt>.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">'A'</span></tt>.
+Mehr Informationen zu Steckdosentypen sind in der <a class="reference external" href="http://www.tinkerforge.com/de/doc/Hardware/Bricklets/Remote_Switch.html">Remote-Switch-Dokumentation</a>
+zu finden.</dd>
+<dt><tt class="docutils literal"><span class="pre">switch_uid</span></tt> (<em>optional</em>)</dt>
+<dd>Die UID des Remote-Switch-Bricklets oder <tt class="docutils literal"><span class="pre">None</span></tt> für den ersten
+der gefunden wird.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Wenn eine Nachricht mit dem Empfangsmuster von <tt class="docutils literal"><span class="pre">on_slot</span></tt> eintrifft,
+wird der Einschaltbefehl an die angegebene Steckdose gesendet.
+Wenn eine Nachricht mit dem Empfangsmuster von <tt class="docutils literal"><span class="pre">off_slot</span></tt> eintrifft,
+wird der Ausschaltbefehl an die angegebene Steckdose gesendet.</p>
+<p><em>Siehe auch:</em>
+<a class="reference external" href="http://www.tinkerforge.com/de/doc/Hardware/Bricklets/Remote_Switch.html">Remote-Switch-Dokumentation</a></p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/components.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

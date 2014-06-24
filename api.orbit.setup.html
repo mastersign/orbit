@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul orbit.setup &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="up" title="API-Referenz" href="reference.html" />
+    <link rel="next" title="Modul orbit.tools" href="api.orbit.tools.html" />
+    <link rel="prev" title="Modul orbit.messaging" href="api.orbit.messaging.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Modul orbit.setup</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api.orbit.messaging.html" title="Previous Chapter: Modul orbit.messaging"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.mess...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api.orbit.tools.html" title="Next Chapter: Modul orbit.tools"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit.tool... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="module-orbit.setup">
+<span id="modul-orbit-setup"></span><h1>Modul orbit.setup<a class="headerlink" href="#module-orbit.setup" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>Dieses Modul implementiert die Setup-Steuerung für ORBIT.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Dieses Modul kann auch als Skript ausgeführt werden, es gibt
+dann die aktuelle ORBIT-Konfiguration aus.</p>
+</div>
+<p>Dieses Modul enthält die folgenden Klassen:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.setup.Configuration" title="orbit.setup.Configuration"><tt class="xref py py-class docutils literal"><span class="pre">orbit.setup.Configuration</span></tt></a></li>
+</ul>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink zu dieser Überschrift">¶</a></h2>
+<dl class="class">
+<dt id="orbit.setup.Configuration">
+<em class="property">class </em><tt class="descclassname">orbit.setup.</tt><tt class="descname">Configuration</tt><a class="headerlink" href="#orbit.setup.Configuration" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT.
+Jeder Parameter ist mit einem Standardwert vorbelegt und kann
+in der Datei <tt class="docutils literal"><span class="pre">&lt;Benutzerverzeichnis&gt;/.orbit</span></tt> überschrieben werden.
+Dazu besitzt die Kasse die Methoden <a class="reference internal" href="#orbit.setup.Configuration.load" title="orbit.setup.Configuration.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> and <a class="reference internal" href="#orbit.setup.Configuration.save" title="orbit.setup.Configuration.save"><tt class="xref py py-meth docutils literal"><span class="pre">save()</span></tt></a>.
+Die Methode <a class="reference internal" href="#orbit.setup.Configuration.load" title="orbit.setup.Configuration.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> wird bereits automatisch beim Instanzieren aufgerufen.</p>
+<p>Die Klasse unterstützt die String-Darstellung mit <tt class="xref py py-func docutils literal"><span class="pre">str()</span></tt>.</p>
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.component_tracing">
+<tt class="descname">component_tracing</tt><a class="headerlink" href="#orbit.setup.Configuration.component_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Aktiviert die Trace-Nachrichten auf Component-Ebene. (<em>bool</em>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.core_tracing">
+<tt class="descname">core_tracing</tt><a class="headerlink" href="#orbit.setup.Configuration.core_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Aktiviert die Trace-Nachrichtenausgabe vom ORBIT-Kern. (<em>bool</em>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.device_tracing">
+<tt class="descname">device_tracing</tt><a class="headerlink" href="#orbit.setup.Configuration.device_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Aktiviert die Trace-Nachrichten des Gerätemanagers von ORBIT. (<em>bool</em>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.event_tracing">
+<tt class="descname">event_tracing</tt><a class="headerlink" href="#orbit.setup.Configuration.event_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Aktiviert die Trace-Nachrichten des Nachrichtenbusses von ORBIT. (<em>bool</em>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.host">
+<tt class="descname">host</tt><a class="headerlink" href="#orbit.setup.Configuration.host" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Der Hostname für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (<em>string</em>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.job_tracing">
+<tt class="descname">job_tracing</tt><a class="headerlink" href="#orbit.setup.Configuration.job_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Aktiviert die Trace-Nachrichten auf Job-Ebene. (<em>bool</em>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.setup.Configuration.load">
+<tt class="descname">load</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.setup.Configuration.load" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Method lädt die überschrieben Parameterwerte aus der 
+benutzerspezifischen Konfigurationsdatei.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="orbit.setup.Configuration.port">
+<tt class="descname">port</tt><a class="headerlink" href="#orbit.setup.Configuration.port" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Der Port für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (<em>int</em>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.setup.Configuration.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.setup.Configuration.save" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Speichert die Werte aller Parameter in die benutzerspezifische 
+Konfigurationsdatei.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/api.orbit.setup.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

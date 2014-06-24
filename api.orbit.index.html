@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul orbit.index &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="up" title="API-Referenz" href="reference.html" />
+    <link rel="next" title="Modul orbit.messaging" href="api.orbit.messaging.html" />
+    <link rel="prev" title="Modul orbit.devices" href="api.orbit.devices.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Modul orbit.index</a><ul>
+<li><a class="reference internal" href="#multilevelreversedindex">MultiLevelReversedIndex</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="api.orbit.devices.html" title="Previous Chapter: Modul orbit.devices"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.devi...</span>
+    </a>
+  </li>
+  <li>
+    <a href="api.orbit.messaging.html" title="Next Chapter: Modul orbit.messaging"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit.mess... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="module-orbit.index">
+<span id="modul-orbit-index"></span><h1>Modul orbit.index<a class="headerlink" href="#module-orbit.index" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>Dieses Modul unterstützt das Nachrichtensystem von ORBIT
+mit einer hierarchischen Indexstruktur.</p>
+<p>Das Modul enthält die folgenden Klassen:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.index.MultiLevelReverseIndex" title="orbit.index.MultiLevelReverseIndex"><tt class="xref py py-class docutils literal"><span class="pre">MultiLevelReverseIndex</span></tt></a></li>
+</ul>
+<div class="section" id="multilevelreversedindex">
+<h2>MultiLevelReversedIndex<a class="headerlink" href="#multilevelreversedindex" title="Permalink zu dieser Überschrift">¶</a></h2>
+<dl class="class">
+<dt id="orbit.index.MultiLevelReverseIndex">
+<em class="property">class </em><tt class="descclassname">orbit.index.</tt><tt class="descname">MultiLevelReverseIndex</tt><big>(</big><em>attributes</em>, <em>item_attribute_selector = getattr</em>, <em>lookup_attribute_selector = getattr</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese Klasse implementiert eine hierarchischen Indexstruktur
+mit Unterstützung für mehrstufige Schlüssel einschließlich
+Gruppen und Wildcards im Schlüssel.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">attributes</span></tt></dt>
+<dd>Eine Liste mit den Namen der Indexattribute.</dd>
+<dt><tt class="docutils literal"><span class="pre">item_attribut_selector</span></tt> (<em>optional</em>)</dt>
+<dd>Eine Funktion die beim Hinzufügen eines Objektes mit <a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.add" title="orbit.index.MultiLevelReverseIndex.add"><tt class="xref py py-meth docutils literal"><span class="pre">add()</span></tt></a>
+verwendet wird, um den Attributwert unter Angabe des 
+Objektes und des Attributnamens zu ermitteln.
+Standardwert ist <tt class="xref py py-meth docutils literal"><span class="pre">getattr()</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">lookup_attribut_selector</span></tt> (<em>optional</em>)</dt>
+<dd>Eine Funktion die beim Look-Up mit <a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.lookup" title="orbit.index.MultiLevelReverseIndex.lookup"><tt class="xref py py-meth docutils literal"><span class="pre">lookup()</span></tt></a> 
+verwendet wird, um den Attributwert unter Angabe des 
+Schlüsselobjektes und des Attributnamens zu ermitteln.
+Standardwert ist <tt class="xref py py-meth docutils literal"><span class="pre">getattr()</span></tt>.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Der Index wird mit einer Liste von Attributnamen (Indexattribute) initialisiert.
+Jedes Indexattribut steht für eine Ebene des hierarchischen Index.</p>
+<p>Gruppen für jedes Indexattribut können mit <a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.add_group" title="orbit.index.MultiLevelReverseIndex.add_group"><tt class="xref py py-meth docutils literal"><span class="pre">add_group()</span></tt></a> und 
+<a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.delete_group" title="orbit.index.MultiLevelReverseIndex.delete_group"><tt class="xref py py-meth docutils literal"><span class="pre">delete_group()</span></tt></a> verwaltet werden.</p>
+<p>Objekte werden mit <a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.add" title="orbit.index.MultiLevelReverseIndex.add"><tt class="xref py py-meth docutils literal"><span class="pre">add()</span></tt></a> hinzugefügt und anhand der 
+Indexattribute indiziert. Die Attributwerte des Objektes können
+konkrete Werte, ein Gruppennamen oder <cite>None</cite> als Wildcard sein.</p>
+<p>Ein Look-Up erfolgt mit <a class="reference internal" href="#orbit.index.MultiLevelReverseIndex.lookup" title="orbit.index.MultiLevelReverseIndex.lookup"><tt class="xref py py-meth docutils literal"><span class="pre">lookup()</span></tt></a> und der Angabe eines 
+Schlüsselobjekts. Ein Schlüsselobjekt besitzt wie die indizierten Objekte
+alle Indexattribute.
+Zurückgegeben werden bei einem Look-Up alle Objekte, deren 
+Attributwerte zum angegebenen Schlüsselobjekt passen.</p>
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.add">
+<tt class="descname">add</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.add" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Fügt dem Index ein Objekt hinzu.
+Das Objekt wird anhand der Indexattribute indiziert.</p>
+<p>Die Werte der Indexattribute können konkrete Werte, Gruppennamen
+oder <cite>None</cite> als Wildcard sein.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.add_group">
+<tt class="descname">add_group</tt><big>(</big><em>attribute</em>, <em>group</em>, <em>keys</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.add_group" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Fügt dem Index eine Gruppe für ein Attribut hinzu.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">attribute</span></tt></dt>
+<dd>Der Name des Indexattributes für das eine Gruppe eingerichtet werden soll.</dd>
+<dt><tt class="docutils literal"><span class="pre">group</span></tt></dt>
+<dd>Der Gruppenname unter dem Objekte indiziert werden können.</dd>
+<dt><tt class="docutils literal"><span class="pre">keys</span></tt></dt>
+<dd>Eine Sequenz von Werten die bei Look-Ups zu Objekten führen welche
+unter dem Gruppennamen indiziert wurden.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.delete_group">
+<tt class="descname">delete_group</tt><big>(</big><em>attribute</em>, <em>group</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.delete_group" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt eine Gruppe für ein Attribut aus dem Index.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">attribute</span></tt></dt>
+<dd>Der Name des Indexattributes für das die Gruppe entfernt werden soll.</dd>
+<dt><tt class="docutils literal"><span class="pre">group</span></tt></dt>
+<dd>Der Name der Gruppe.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.is_empty">
+<tt class="descname">is_empty</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.is_empty" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Gibt <tt class="docutils literal"><span class="pre">True</span></tt> zurück, wenn der Index kein Objekt enthält,
+sonst <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Der Index ist auch dann leer, wenn Gruppen eingerichtet,
+aber keine Objekte indiziert wurden.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.lookup">
+<tt class="descname">lookup</tt><big>(</big><em>key_obj</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.lookup" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Ruft eine Liste mit allen Objekten ab, deren indizierte Attributwerte zu den
+Attributwerten des übergebenen Schlüsselobjektes passen.</p>
+<p>Damit ein Objekt im Ergebnis enthalten ist, müssen alle
+Indexattribute passen. Ein Indexattribut passt</p>
+<ol class="arabic simple">
+<li>wenn der indizierte Attributwert gleich dem Schlüsselattribut ist</li>
+<li>oder das indizierte Attribut ein Gruppenname 
+und das Schlüsselattribut in dieser Gruppe ist,</li>
+<li>oder das indizierte Attribut <cite>None</cite> ist.</li>
+</ol>
+</dd></dl>
+
+<dl class="method">
+<dt id="orbit.index.MultiLevelReverseIndex.remove">
+<tt class="descname">remove</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#orbit.index.MultiLevelReverseIndex.remove" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Entfernt ein Objekt aus dem Index.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/api.orbit.index.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

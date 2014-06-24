@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Integrierte Jobs &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0 alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="prev" title="Integrierte Komponenten" href="components.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ORBIT</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Integrierte Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit.jobs.services">Services</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Integrierte Jobs</a><ul>
+<li><a class="reference internal" href="#module-orbit.jobs.apps">Apps</a><ul>
+<li><a class="reference internal" href="#escapableapp">EscapableApp</a></li>
+<li><a class="reference internal" href="#watchapp">WatchApp</a></li>
+<li><a class="reference internal" href="#messageapp">MessageApp</a></li>
+<li><a class="reference internal" href="#menuapp">MenuApp</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-orbit.jobs.services">Services</a><ul>
+<li><a class="reference internal" href="#standbyservice">StandbyService</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="components.html" title="Previous Chapter: Integrierte Komponenten"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Integrierte Komp...</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="integrierte-jobs">
+<h1>Integrierte Jobs<a class="headerlink" href="#integrierte-jobs" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>ORBIT bringt einige integrierte <a class="reference internal" href="#apps">Apps</a> und <a class="reference internal" href="#services">Services</a> mit.</p>
+<div class="section" id="module-orbit.jobs.apps">
+<span id="apps"></span><h2>Apps<a class="headerlink" href="#module-orbit.jobs.apps" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält einige Apps und App-Basisklassen 
+für den allgemeinen Einsatz.</p>
+<p>Die folgenden Apps sind enthalten:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.jobs.apps.EscapableApp" title="orbit.jobs.apps.EscapableApp"><tt class="xref py py-class docutils literal"><span class="pre">EscapableApp</span></tt></a> (Basisklasse)</li>
+<li><a class="reference internal" href="#orbit.jobs.apps.WatchApp" title="orbit.jobs.apps.WatchApp"><tt class="xref py py-class docutils literal"><span class="pre">WatchApp</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.jobs.apps.MessageApp" title="orbit.jobs.apps.MessageApp"><tt class="xref py py-class docutils literal"><span class="pre">MessageApp</span></tt></a></li>
+<li><a class="reference internal" href="#orbit.jobs.apps.MenuApp" title="orbit.jobs.apps.MenuApp"><tt class="xref py py-class docutils literal"><span class="pre">MenuApp</span></tt></a></li>
+</ul>
+<div class="section" id="escapableapp">
+<h3>EscapableApp<a class="headerlink" href="#escapableapp" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.jobs.apps.EscapableApp">
+<em class="property">class </em><tt class="descclassname">orbit.jobs.apps.</tt><tt class="descname">EscapableApp</tt><big>(</big><em>*args</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.jobs.apps.EscapableApp" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Dies ist eine Basisklasse für Apps, welche sich durch das
+Drücken der ersten Taste (ganz links) eines LCD-20x4-Displays
+selbst beenden.</p>
+<p>Diese Funktionalität wird häufig in menügesteuerten
+Anwendungen im Zusammenspiel mit einem oder mehreren
+LCD-20x4-Displays benötigt.</p>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="components.html#orbit.components.lcd.LCD20x4ButtonsComponent" title="orbit.components.lcd.LCD20x4ButtonsComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.lcd.LCD20x4ButtonsComponent</span></tt></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="watchapp">
+<h3>WatchApp<a class="headerlink" href="#watchapp" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.jobs.apps.WatchApp">
+<em class="property">class </em><tt class="descclassname">orbit.jobs.apps.</tt><tt class="descname">WatchApp</tt><big>(</big><em>name</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.jobs.apps.WatchApp" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese App zeigt, solange sie aktiviert ist, das Datum und die Uhrzeit
+auf allen angeschlossenen LCD-20x4-Displays an.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der App.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Diese App erbt von <a class="reference internal" href="#orbit.jobs.apps.EscapableApp" title="orbit.jobs.apps.EscapableApp"><tt class="xref py py-class docutils literal"><span class="pre">EscapableApp</span></tt></a> und kann daher mit einem
+Druck auf die erste Taste eines LCD-Displays (ganz links) deaktiviert werden.</p>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="components.html#orbit.components.lcd.LCD20x4WatchComponent" title="orbit.components.lcd.LCD20x4WatchComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.lcd.LCD20x4WatchComponent</span></tt></a>,
+<a class="reference internal" href="components.html#orbit.components.timer.IntervalTimerComponent" title="orbit.components.timer.IntervalTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.timer.IntervalTimerComponent</span></tt></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="messageapp">
+<h3>MessageApp<a class="headerlink" href="#messageapp" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.jobs.apps.MessageApp">
+<em class="property">class </em><tt class="descclassname">orbit.jobs.apps.</tt><tt class="descname">MessageApp</tt><big>(</big><em>name</em>, <em>lines</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.jobs.apps.MessageApp" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese App zeigt, solange sie aktiviert ist, eine vorgegebene
+Nachricht auf allen angeschlossenen LCD-20x4-Displays an.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der App.</dd>
+<dt><tt class="docutils literal"><span class="pre">lines</span></tt></dt>
+<dd>Eine Sequenz mit bis zu vier Zeichenketten.
+Jede Zeichenkette wird in einer der vier LCD-Zeilen     dargestellt. 
+Ist eine Zeichenkette länger als 20 Zeichen, wird der Rest abgeschnitten.</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Diese App erbt von <a class="reference internal" href="#orbit.jobs.apps.EscapableApp" title="orbit.jobs.apps.EscapableApp"><tt class="xref py py-class docutils literal"><span class="pre">EscapableApp</span></tt></a> und kann daher mit einem
+Druck auf die erste Taste eines LCD-Displays (ganz links) deaktiviert werden.</p>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="components.html#orbit.components.lcd.LCD20x4MessageComponent" title="orbit.components.lcd.LCD20x4MessageComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.lcd.LCD20x4MessageComponent</span></tt></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="menuapp">
+<h3>MenuApp<a class="headerlink" href="#menuapp" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.jobs.apps.MenuApp">
+<em class="property">class </em><tt class="descclassname">orbit.jobs.apps.</tt><tt class="descname">MenuApp</tt><big>(</big><em>name</em>, <em>entries</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.jobs.apps.MenuApp" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Diese App zeigt, solange sie aktiviert ist, ein Menü 
+auf dem ersten angeschlossenen LCD-20x4-Display an.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name der App.</dd>
+<dt><tt class="docutils literal"><span class="pre">entries</span></tt></dt>
+<dd>Eine Sequenz mit Menüpunkten.
+(<em>siehe auch:</em> <a class="reference internal" href="components.html#orbit.components.lcd.LCD20x4MenuComponent" title="orbit.components.lcd.LCD20x4MenuComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.lcd.LCD20x4MenuComponent</span></tt></a>)</dd>
+</dl>
+<p><strong>Beschreibung</strong></p>
+<p>Diese App wird durch die <em>escape</em>-Nachricht der Menü-Komponente deaktiviert.
+Sie kann also durch einen Druck auf die erste Taste (ganz links)
+des LCD-Displays deaktiviert werden.</p>
+<div class="admonition note">
+<p class="first admonition-title">Bemerkung</p>
+<p class="last">Das Attribut <a class="reference internal" href="api.orbit.html#orbit.App.in_history" title="orbit.App.in_history"><tt class="xref py py-attr docutils literal"><span class="pre">orbit.App.in_history</span></tt></a> wird 
+für diese App standardmäßig auf <tt class="docutils literal"><span class="pre">True</span></tt> gesetzt.
+In Folge wird die Menü-App in der App-History vermerkt
+und es kann unkompliziert durch mehrere verknüpfte Menü-Apps
+navigiert werden möglich.</p>
+</div>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="components.html#orbit.components.lcd.LCD20x4MenuComponent" title="orbit.components.lcd.LCD20x4MenuComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.lcd.LCD20x4MenuComponent</span></tt></a></p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-orbit.jobs.services">
+<span id="services"></span><h2>Services<a class="headerlink" href="#module-orbit.jobs.services" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Dieses Modul enthält einige Services für den allgemeinen Einsatz.</p>
+<p>Enthalten sind die folgenden Services:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#orbit.jobs.services.StandbyService" title="orbit.jobs.services.StandbyService"><tt class="xref py py-class docutils literal"><span class="pre">StandbyService</span></tt></a></li>
+</ul>
+<div class="section" id="standbyservice">
+<h3>StandbyService<a class="headerlink" href="#standbyservice" title="Permalink zu dieser Überschrift">¶</a></h3>
+<dl class="class">
+<dt id="orbit.jobs.services.StandbyService">
+<em class="property">class </em><tt class="descclassname">orbit.jobs.services.</tt><tt class="descname">StandbyService</tt><big>(</big><em>name</em>, <em>activity_slot</em>, <em>timeout=6</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.jobs.services.StandbyService" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Dieser Service überwacht mit Hilfe eines Empfangsmusters
+die Benutzeraktivität und schaltet die Anwendung nach einem
+vorgegebenen Zeitfenster ohne Aktivität in den Standby-Modus.
+Was soviel bedeutet, wie die Hintergrundbeleuchtung
+der angeschlossenen LCD-Displays abzuschalten und die
+App-History zu leeren.</p>
+<p><strong>Parameter</strong></p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
+<dd>Der Name des Service.</dd>
+<dt><tt class="docutils literal"><span class="pre">activity_slot</span></tt></dt>
+<dd>Ein Empfangsmuster für alle Nachrichten, die als Benutzeraktivität
+interpretiert werde können.</dd>
+<dt><tt class="docutils literal"><span class="pre">timeout</span></tt> (<em>optional</em>)</dt>
+<dd>Das Länge des Zeitfensters für Inaktivität in Sekunden, 
+nach dem in den Standby geschaltet wird.
+Standardwert ist <tt class="docutils literal"><span class="pre">6</span></tt> Sekunden.</dd>
+</dl>
+<p><strong>Nachrichten</strong></p>
+<p>Der Service sendet die folgenden Nachrichten, wenn Benutzeraktivität
+detektiert wird:</p>
+<ul class="simple">
+<li><em>component:</em> <tt class="docutils literal"><span class="pre">'standby_timer'</span></tt>, <em>name:</em> <tt class="docutils literal"><span class="pre">'state'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">True</span></tt></li>
+<li><em>component:</em> <tt class="docutils literal"><span class="pre">'standby_timer'</span></tt>, <em>name:</em> <tt class="docutils literal"><span class="pre">'on'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+<p>Wenn die angegebene Zeitspanne für Inaktivität erreicht ist, wird
+in den Standby-Modus geschaltet und es werden die folgenden Nachrichten versandt:</p>
+<ul class="simple">
+<li><em>component:</em> <tt class="docutils literal"><span class="pre">'standby_timer'</span></tt>, <em>name:</em> <tt class="docutils literal"><span class="pre">'state'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">False</span></tt></li>
+<li><em>component:</em> <tt class="docutils literal"><span class="pre">'standby_timer'</span></tt>, <em>name:</em> <tt class="docutils literal"><span class="pre">'off'</span></tt>, <em>value:</em> <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+<p><em>Siehe auch:</em>
+<a class="reference internal" href="components.html#orbit.components.timer.ActivityTimerComponent" title="orbit.components.timer.ActivityTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit.components.timer.ActivityTimerComponent</span></tt></a></p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/jobs.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
