@@ -8,10 +8,13 @@ und sind gleichzeitig aktiv.
 Von den Apps wird nur die Standard-App beim Start des Kerns akiviert
 und zu jedem Zeitpunkt kann immer nur eine App aktiv sein.
 
+Jobs und Komponenten
+--------------------
+
 Jobs werden aus Komponenten zusammengesetzt. 
 Alle anwendungsspezifischen Fähigkeiten können in eigenen Komponenten
 und Jobs implementiert werden.
-Für einige Standardaufgaben bringt ORBIT fertige Komponenten und Jobs mit.
+Für einige Standardaufgaben bringt ORBIT :doc:`components` und :doc:`jobs` mit.
 
 .. figure:: figures/architecture-overview.*
 	:alt: Architekturübersicht
@@ -24,13 +27,16 @@ Für einige Standardaufgaben bringt ORBIT fertige Komponenten und Jobs mit.
 | :py:class:`orbit.App`,
   :py:class:`orbit.Service`
 
+Gerätemanager
+-------------
+
 Der Gerätemanager im Kern verwaltet die TinkerForge-Verbindungen und die angeschlossenen
 Brick(let)s. Jede Komponente kann die Zuordnung von ein oder mehreren Brick(let)s eines 
 Typs anfordern.
 Dabei können auch UIDs von Brick(let)s als Einschränkung angegeben werden.
 Sobald ein Brick(let) verfügbar ist, wird es den entsprechenden Komponenten zugeordnet
 und die Komponenten werden über die Verfügbarkeit benachrichtigt. Wird eine Verbindung
-getrennt, wird den Komponenten das Bricklet wieder entzogen.
+getrennt, wird den Komponenten das Brick(let) wieder entzogen. 
 
 .. figure:: figures/devicemanager-overview.*
 	:alt: Gerätemanager
@@ -39,7 +45,11 @@ getrennt, wird den Komponenten das Bricklet wieder entzogen.
 
 | *Siehe auch:*
 | :py:class:`orbit.Component.add_device_handle`,
+| :py:class:`orbit.devices.DeviceHandle`,
 | :py:class:`orbit.devices.DeviceManager`
+
+Nachrichtensystem
+-----------------
 
 Komponenten und Jobs können über ein integriertes, asynchrones Nachrichtensystem kommunizieren.
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs 
@@ -56,6 +66,9 @@ von einander und sorgt für eine robuste Anwendung.
 | :py:meth:`orbit.Component.send`,
   :py:meth:`orbit.Job.send`,
 | :py:class:`orbit.messaging.Blackboard`
+
+Übersicht
+---------
 
 Die folgende Übersicht stellt die wesentlichen Objekte in einer 
 ORBIT-Anwendung und deren Assoziationen dar.
