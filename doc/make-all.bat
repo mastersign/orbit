@@ -1,5 +1,7 @@
 pushd %~dp0
 
+call convert-images.bat
+
 call make.bat linkcheck
 call make.bat html
 call make.bat dirhtml

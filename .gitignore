@@ -1,3 +1,7 @@
 __pycache__
 *.pyc
 /doc/out
+/doc/src/figures/*.pdf
+/doc/src/*.pdf
+/doc/src/figures/*.png
+/doc/src/*.png
