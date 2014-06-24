@@ -18,6 +18,11 @@ sondern ist ein unabhängiges Projekt von `Tobias Kiertscher`_.
 
 ORBIT wird unter der `LGPL-3.0`_ zur Verfügung gestellt.
 
+| Die Quelltexte gibt es hier: https://github.com/mastersign/orbit/
+| Fragen und Anregungen bitte an: dev@mastersign.de
+
+Diese Dokumentation ist auch als `PDF-Version`_ verfügbar.
+
 Inhalt
 ------
 
@@ -39,3 +44,4 @@ Schnellzugriff
 .. _`TinkerForge GmbH`: http://www.tinkerforge.com/de/
 .. _`Tobias Kiertscher`: http://www.mastersign.de/
 .. _`LGPL-3.0`: http://opensource.org/licenses/LGPL-3.0
+.. _`PDF-Version`: orbit.pdf
