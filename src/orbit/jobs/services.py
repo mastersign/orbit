@@ -6,7 +6,7 @@ from .. import Service
 from ..messaging import Slot
 from ..components.common import EventCallbackComponent
 from ..components.timer import ActivityTimerComponent
-from ..components.lcd import LCDBacklightComponent
+from ..components.lcd import LCD20x4BacklightComponent
 
 class StandbyService(Service):
 
@@ -19,7 +19,7 @@ class StandbyService(Service):
 				slot = activity_slot))
 
 		self.add_component(
-			LCDBacklightComponent('lcd_backlight',
+			LCD20x4BacklightComponent('lcd_backlight',
 				initial_state = True,
 				slot = Slot(self.name, 'standby_timer', 'state')))
 
