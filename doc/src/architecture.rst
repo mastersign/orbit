@@ -13,7 +13,7 @@ Alle anwendungsspezifischen Fähigkeiten können in eigenen Komponenten
 und Jobs implementiert werden.
 Für einige Standardaufgaben bringt ORBIT fertige Komponenten und Jobs mit.
 
-.. figure:: figures/architecture-overview.png
+.. figure:: figures/architecture-overview.*
 	:alt: Architekturübersicht
 
 	Eine grobe Übersicht über die Architektur einer ORBIT-Anwendung
@@ -32,7 +32,7 @@ Sobald ein Brick(let) verfügbar ist, wird es den entsprechenden Komponenten zug
 und die Komponenten werden über die Verfügbarkeit benachrichtigt. Wird eine Verbindung
 getrennt, wird den Komponenten das Bricklet wieder entzogen.
 
-.. figure:: figures/devicemanager-overview.png
+.. figure:: figures/devicemanager-overview.*
 	:alt: Gerätemanager
 
 	Eine Übersicht über den Gerätemanager
@@ -45,7 +45,7 @@ Komponenten und Jobs können über ein integriertes, asynchrones Nachrichtensyst
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs 
 von einander und sorgt für eine robuste Anwendung.
 
-.. figure:: figures/blackboard-overview.png
+.. figure:: figures/blackboard-overview.*
 	:alt: Nachrichtensystem
 
 	Eine Übersicht über das Nachrichtensystem
@@ -64,7 +64,7 @@ Blau hinterlegte Objekte werden durch die TinkerForge-Python-Bibliothek implemen
 Grün hinterlegte Objekte werden anwendungsspezifisch implementiert,
 wobei Basisklassen die die Implementierung erleichtern.
 
-.. figure:: figures/architecture.png
+.. figure:: figures/architecture.*
 	:alt: Architektur einer ORBIT-Anwendung
 
 	Eine detaillierte Übersicht über die Architektur einer ORBIT-Anwendung
