@@ -51,7 +51,7 @@ class LCD20x4ButtonsComponent(Component):
 	def __init__(self, name, 
 		**nargs):
 		
-		super().__init__(name, **nargs)
+		super(LCD20x4ButtonsComponent, self).__init__(name, **nargs)
 
 		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
@@ -106,7 +106,7 @@ class LCD20x4BacklightComponent(Component):
 		slot, initial_state = False,
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(LCD20x4BacklightComponent, self).__init__(name, **nargs)
 		self.state = initial_state
 
 		self.lcd_handle = MultiDeviceHandle(
@@ -139,7 +139,6 @@ class LCD20x4BacklightComponent(Component):
 		self.lcd_handle.for_each_device(self.update_device)
 
 	def on_core_started(self):
-		super().on_core_started()
 		self.update_devices()
 
 
@@ -184,7 +183,7 @@ class LCD20x4WatchComponent(Component):
 		slot, lcd_uid = None, lines = {0: '%d.%m.%Y  %H:%M:%S'},
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(LCD20x4WatchComponent, self).__init__(name, **nargs)
 		self.lines = lines
 
 		if lcd_uid:
@@ -246,7 +245,7 @@ class LCD20x4MessageComponent(Component):
 		lines, lcd_uid = None,
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(LCD20x4MessageComponent, self).__init__(name, **nargs)
 		self.lines = lines
 
 		if lcd_uid:
@@ -323,7 +322,7 @@ class LCD20x4MenuComponent(Component):
 		lcd_uid = None, entries = [('None', 'none')],
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(LCD20x4MenuComponent, self).__init__(name, **nargs)
 		self.entries = entries
 		self.selected = 0
 		self.active = False

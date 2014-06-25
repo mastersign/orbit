@@ -139,7 +139,7 @@ def device_instance(device_identifier, uid, ipcon):
 		raise KeyError("the given device identifier '%i' is unknown" % device_identifier)
 
 
-class DeviceManager:
+class DeviceManager(object):
 	"""
 	Diese Klasse implementiert den Gerätemanager einer ORBIT-Anwendung.
 
@@ -550,7 +550,7 @@ class DeviceManager:
 				mcc.remove_callback(callback)
 
 
-class DeviceHandle:
+class DeviceHandle(object):
 	"""
 	Diese Klasse ist die Basisklasse für Geräteanforderungen.
 
@@ -740,7 +740,10 @@ class DeviceHandle:
 				f(d)
 			except Error as err:
 				if err.value != -8: # connection lost
-					print(err.description)
+					if self._device_manager:
+						self._device_manager.trace(err.description)
+					else:
+						print(err.description)
 
 	def _install_callback(self, device, event_code, callback):
 		self._device_manager.add_device_callback(
@@ -862,7 +865,7 @@ class SingleDeviceHandle(DeviceHandle):
 		bind_callback = None, unbind_callback = None, 
 		uid = None, auto_fix = False):
 
-		super().__init__(name, bind_callback, unbind_callback)
+		super(SingleDeviceHandle, self).__init__(name, bind_callback, unbind_callback)
 		self._device_identifier = get_device_identifier(device_name_or_id)
 		self._uid = uid
 		self._auto_fix = auto_fix
@@ -894,7 +897,7 @@ class SingleDeviceHandle(DeviceHandle):
 		self.accept_device(device)
 
 	def release_device(self, device):
-		super().release_device(device)
+		super(SingleDeviceHandle, self).release_device(device)
 		if self._device == device:
 			self._device = None
 
@@ -933,7 +936,7 @@ class MultiDeviceHandle(DeviceHandle):
 	"""
 
 	def __init__(self, name, device_name_or_id, bind_callback = None, unbind_callback = None):
-		super().__init__(name, bind_callback, unbind_callback)
+		super(MultiDeviceHandle, self).__init__(name, bind_callback, unbind_callback)
 		self._device_identifier = get_device_identifier(device_name_or_id)
 
 	def on_bind_device(self, device):

@@ -18,7 +18,7 @@ from threading import Thread, Lock, Event
 from .index import MultiLevelReverseIndex
 
 
-class MessageBus:
+class MessageBus(object):
 	"""
 	Diese Klasse implementiert das ORBIT-Nachrichtensystem.
 
@@ -332,7 +332,7 @@ class MessageBus:
 		self._locked(self._queue.append, msg)
 		self._queue_event.set()
 
-	class Message:
+	class Message(object):
 		"""
 		Diese Klasse repräsentiert eine Nachricht im Nachrichtensystem.
 		Sie wird nur intern verwendet.
@@ -345,7 +345,7 @@ class MessageBus:
 			self.value = value
 
 
-class Slot:
+class Slot(object):
 	"""
 	Diese Klasse repräsentiert ein Empfangsmuster für das Nachrichtensystem.
 
@@ -468,7 +468,7 @@ class Slot:
 			   self._transform != None, self._predicate != None)
 
 
-class Listener:
+class Listener(object):
 	"""
 	Diese Klasse repräsentiert einen Empfänger für das Nachrichtensystem.
 
@@ -555,7 +555,7 @@ class Listener:
 			   self._receiver)
 
 
-class MultiListener:
+class MultiListener(object):
 	"""
 	Diese Klasse implementiert einen Mehrfachempfänger.
 	Das ist ein Mechanismus für den Empfang	von Nachrichten über das Nachrichtensystem, 

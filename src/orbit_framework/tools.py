@@ -10,7 +10,7 @@ Das Modul enthält die folgenden Klassen:
 - :py:class:`MulticastCallback`
 """
 
-class MulticastCallback:
+class MulticastCallback(object):
 	"""
 	Diese Klasse bildet einen einfachen Mechanismus,
 	um mehrere Callbacks mit identischer Signatur zu einem Callback zusammenzufassen.

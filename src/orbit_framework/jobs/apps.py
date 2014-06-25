@@ -34,7 +34,7 @@ class EscapableApp(App):
 	"""
 
 	def __init__(self, *args, **nargs):
-		super().__init__(*args, **nargs)
+		super(EscapableApp, self).__init__(*args, **nargs)
 
 		self.add_component(
 			lcd.LCD20x4ButtonsComponent('lcd_buttons'))
@@ -70,7 +70,7 @@ class WatchApp(EscapableApp):
 	def __init__(self, name, 
 		**nargs):
 	
-		super().__init__(name, **nargs)
+		super(WatchApp, self).__init__(name, **nargs)
 
 		self.add_component(
 			IntervalTimerComponent('watch_timer'))
@@ -108,7 +108,7 @@ class MessageApp(EscapableApp):
 		lines, 
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(MessageApp, self).__init__(name, **nargs)
 
 		self.add_component(
 			lcd.LCD20x4MessageComponent('msg', lines))
@@ -149,7 +149,7 @@ class MenuApp(App):
 		**nargs):
 
 		nargs = dict({'in_history': True}, **nargs)
-		super().__init__(name, **nargs)
+		super(MenuApp, self).__init__(name, **nargs)
 
 		self.add_component(
 			lcd.LCD20x4MenuComponent('menu', entries = entries))

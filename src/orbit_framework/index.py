@@ -11,7 +11,7 @@ Das Modul enthält die folgenden Klassen:
 - :py:class:`MultiLevelReverseIndex`
 """
 
-class MultiLevelReverseIndex:
+class MultiLevelReverseIndex(object):
 	"""
 	Diese Klasse implementiert eine hierarchischen Indexstruktur
 	mit Unterstützung für mehrstufige Schlüssel einschließlich
@@ -215,7 +215,7 @@ class MultiLevelReverseIndex:
 
 if __name__ == '__main__':
 
-	class Item:
+	class Item(object):
 		def __init__(self, a, b, c, value):
 			self.a = a
 			self.b = b
@@ -224,7 +224,7 @@ if __name__ == '__main__':
 		def __repr__(self):
 			return self.value
 
-	class Pattern:
+	class Pattern(object):
 		def __init__(self, a, b, c):
 			self.a = a
 			self.b = b

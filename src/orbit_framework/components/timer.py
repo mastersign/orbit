@@ -60,7 +60,7 @@ class ActivityTimerComponent(Component):
 		initial_state = True, timeout = 6,
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(ActivityTimerComponent, self).__init__(name, **nargs)
 		self.timeout = timeout
 		self.timer = None
 		self.state = False
@@ -129,7 +129,7 @@ class IntervalTimerComponent(Component):
 	def __init__(self, name, interval = 1, 
 		**nargs):
 
-		super().__init__(name, **nargs)
+		super(IntervalTimerComponent, self).__init__(name, **nargs)
 		self.next_call = time()
 		self.interval = interval
 		self.timer = None

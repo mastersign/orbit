@@ -59,7 +59,7 @@ class StandbyService(Service):
 		activity_slot, timeout = 6, 
 		**nargs):
 		
-		super().__init__(name, **nargs)
+		super(StandbyService, self).__init__(name, **nargs)
 
 		self.add_component(
 			ActivityTimerComponent('standby_timer',
