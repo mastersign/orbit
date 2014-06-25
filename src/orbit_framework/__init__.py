@@ -207,7 +207,12 @@ class Core:
 		self._stop_event.clear()
 		self._is_started = True
 		self._message_bus.start()
-		self._device_manager.start()
+
+		if not self._device_manager.start():
+			self.message_bus.stop()
+			self._is_started = False
+			self._stop_event.set()
+			return
 
 		self.for_each_job(
 			lambda j: j.on_core_started())

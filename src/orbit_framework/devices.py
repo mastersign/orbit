@@ -21,6 +21,7 @@ Darüber hinaus enthält es einige Hilfsfunktionen für den Umgang mit TinkerFor
 - :py:func:`known_device`
 """
 
+import time
 from .tools import MulticastCallback
 from tinkerforge.ip_connection import IPConnection, Error
 
@@ -208,11 +209,14 @@ class DeviceManager:
 		Startet den Gerätemanager und baut eine Verbindung zu einem TinkerForge-Server auf.
 		Die Verbindungdaten für den Server werden der ORBIT-Konfiguration entnommen.
 
+		Gibt ``True`` zurück, wenn die Verbindung aufgebaut werden konnte, sonst ``False``.
+
 		Siehe auch: :py:meth:`stop`
 		"""
 		if self._conn.get_connection_state() == IPConnection.CONNECTION_STATE_DISCONNECTED:
 			host = self._core.configuration.host
 			port = self._core.configuration.port
+			retry_time = self._core.configuration.connection_retry_time
 			self.trace("connecting to %s:%d ..." % (host, port))
 			connected = False
 			while not connected:
@@ -220,8 +224,23 @@ class DeviceManager:
 					self._conn.connect(host, port)
 					connected = True
 				except TimeoutError:
-					self.trace("... timeout, retry ...")
-			self.trace("... connected")
+					self.trace("... timeout, waiting %d sec, retry ..." % retry_time)
+					try:
+						time.sleep(retry_time)
+					except KeyboardInterrupt:
+						break
+				except ConnectionRefusedError:
+					self.trace("... connection refused, waiting %d, retry ..." % retry_time)
+					try:
+						time.sleep(retry_time)
+					except KeyboardInterrupt:
+						break
+				except KeyboardInterrupt:
+					connected = False
+					break
+			if connected:
+				self.trace("... connected")
+			return connected
 
 	def stop(self):
 		"""
@@ -271,7 +290,7 @@ class DeviceManager:
 		if reason == IPConnection.DISCONNECT_REASON_ERROR:
 			self.trace("connection lost (error)")
 		elif reason == IPConnection.DISCONNECT_REASON_SHUTDOWN:
-			self.trace("connection lost (shutdown")
+			self.trace("connection lost (shutdown)")
 		else:
 			self.trace("connection lost")
 

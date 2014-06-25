@@ -33,6 +33,7 @@ class Configuration:
 
 	DEFAULT_HOST = "localhost"
 	DEFAULT_PORT = 4223
+	DEFAULT_CONNECTION_RETRY_TIME = 10
 	DEFAULT_CORE_TRACING = True
 	DEFAULT_DEVICE_TRACING = True
 	DEFAULT_EVENT_TRACING = False
@@ -55,6 +56,15 @@ class Configuration:
 	def port(self, value):
 		self._port = value
 	
+	@property
+	def connection_retry_time(self):
+		"""Die Zeitspanne in Sekunden nachdem eine fehlgeschlagene IP-Verbindung wieder aufgebaut werden soll."""
+		return self._connection_retry_time
+	@connection_retry_time.setter
+	def connection_retry_time(self, value):
+		self._connection_retry_time = value
+	
+
 	@property
 	def core_tracing(self):
 		"""Aktiviert die Trace-Nachrichtenausgabe vom ORBIT-Kern. (*bool*)"""
@@ -106,6 +116,7 @@ class Configuration:
 	def __init__(self):
 		self._host = Configuration.DEFAULT_HOST
 		self._port = Configuration.DEFAULT_PORT
+		self._connection_retry_time = Configuration.DEFAULT_CONNECTION_RETRY_TIME
 		self._core_tracing = Configuration.DEFAULT_CORE_TRACING
 		self._device_tracing = Configuration.DEFAULT_DEVICE_TRACING
 		self._event_tracing = Configuration.DEFAULT_EVENT_TRACING
@@ -118,6 +129,7 @@ class Configuration:
 		return {
 			'host': self._host,
 			'port': self._port,
+			'connection_retry_time': self._connection_retry_time,
 			'core_tracing': self._core_tracing,
 			'device_tracing': self._device_tracing,
 			'event_tracing': self._event_tracing,
@@ -131,6 +143,8 @@ class Configuration:
 				self.host = str(data['host'])
 			if 'port' in data:
 				self.port = int(data['port'])
+			if 'connection_retry_time' in data:
+				self._connection_retry_time = int(data['connection_retry_time'])
 			if 'core_tracing' in data:
 				self._core_tracing = bool(data['core_tracing'])
 			if 'device_tracing' in data:
@@ -167,6 +181,7 @@ class Configuration:
 			'-----------\n' + \
 			'Host:              ' + str(self.host) + '\n' + \
 			'Port:              ' + str(self.port) + '\n' + \
+			'Retry Timer:       ' + str(self.connection_retry_time) + '\n' + \
 			'Core Tracing:      ' + str(self.core_tracing) + '\n' + \
 			'Device Tracing:    ' + str(self.device_tracing) + '\n' + \
 			'Event Tracing:     ' + str(self.event_tracing) + '\n' + \
