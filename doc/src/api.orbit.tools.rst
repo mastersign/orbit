@@ -1,10 +1,10 @@
-Modul orbit.tools
-#################
+Modul orbit_framework.tools
+###########################
 
-.. automodule:: orbit.tools
+.. automodule:: orbit_framework.tools
 
 MulticastCallback
 -----------------
 
-.. autoclass:: orbit.tools.MulticastCallback
+.. autoclass:: orbit_framework.tools.MulticastCallback
 	:members:

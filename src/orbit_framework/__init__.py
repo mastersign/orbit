@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit
+# Module orbit_framework
 
 """
 Diese Modul enthält die wichtigsten Klassen für die Entwicklung einer

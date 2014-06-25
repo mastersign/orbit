@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.components.common
+# Module orbit_framework.components.common
 
 """
 Dieses Modul enthält einige Komponenten für den allgemeinen Einsatz.

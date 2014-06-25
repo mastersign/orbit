@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.tools
+# Module orbit_framework.tools
 
 """
 Diese Modul enthält unterstützende Klassen und Funktionen.

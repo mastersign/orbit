@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.jobs.apps
+# Module orbit_framework.jobs.apps
 
 """
 Dieses Modul enthält einige Apps und App-Basisklassen 
@@ -30,7 +30,7 @@ class EscapableApp(App):
 	LCD-20x4-Displays benötigt.
 
 	*Siehe auch:*
-	:py:class:`orbit.components.lcd.LCD20x4ButtonsComponent`
+	:py:class:`orbit_framework.components.lcd.LCD20x4ButtonsComponent`
 	"""
 
 	def __init__(self, *args, **nargs):
@@ -63,8 +63,8 @@ class WatchApp(EscapableApp):
 	Druck auf die erste Taste eines LCD-Displays (ganz links) deaktiviert werden.
 
 	*Siehe auch:*
-	:py:class:`orbit.components.lcd.LCD20x4WatchComponent`,
-	:py:class:`orbit.components.timer.IntervalTimerComponent`
+	:py:class:`orbit_framework.components.lcd.LCD20x4WatchComponent`,
+	:py:class:`orbit_framework.components.timer.IntervalTimerComponent`
 	"""
 
 	def __init__(self, name, 
@@ -101,7 +101,7 @@ class MessageApp(EscapableApp):
 	Druck auf die erste Taste eines LCD-Displays (ganz links) deaktiviert werden.
 
 	*Siehe auch:*
-	:py:class:`orbit.components.lcd.LCD20x4MessageComponent`
+	:py:class:`orbit_framework.components.lcd.LCD20x4MessageComponent`
 	"""
 
 	def __init__(self, name, 
@@ -125,7 +125,7 @@ class MenuApp(App):
 		Der Name der App.
 	``entries``
 		Eine Sequenz mit Menüpunkten.
-		(*siehe auch:* :py:class:`orbit.components.lcd.LCD20x4MenuComponent`)
+		(*siehe auch:* :py:class:`orbit_framework.components.lcd.LCD20x4MenuComponent`)
 
 	**Beschreibung**
 
@@ -134,21 +134,21 @@ class MenuApp(App):
 	des LCD-Displays deaktiviert werden.
 
 	.. note::
-		Das Attribut :py:attr:`orbit.App.in_history` wird 
+		Das Attribut :py:attr:`orbit_framework.App.in_history` wird 
 		für diese App standardmäßig auf ``True`` gesetzt.
 		In Folge wird die Menü-App in der App-History vermerkt
 		und es kann unkompliziert durch mehrere	verknüpfte Menü-Apps
 		navigiert werden möglich.
 
 	*Siehe auch:*
-	:py:class:`orbit.components.lcd.LCD20x4MenuComponent`
+	:py:class:`orbit_framework.components.lcd.LCD20x4MenuComponent`
 	"""
 
 	def __init__(self, name, 
 		entries, 
 		**nargs):
 
-		nargs = dict({'in_history': True}, nargs)
+		nargs = dict({'in_history': True}, **nargs)
 		super().__init__(name, **nargs)
 
 		self.add_component(

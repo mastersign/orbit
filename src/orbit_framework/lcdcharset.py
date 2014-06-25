@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.lcdcharset
+# Module orbit_framework.lcdcharset
 
 import sys, types
 

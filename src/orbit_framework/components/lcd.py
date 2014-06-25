@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.components.lcd
+# Module orbit_framework.components.lcd
 
 """
 Dieses Modul enthält einige Komponenten für die Steuerung von LCD-Displays.

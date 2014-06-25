@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.components.remoteswitch
+# Module orbit_framework.components.remoteswitch
 
 """
 Dieses Modul enthält Komponenten für die Steuerung mit einem

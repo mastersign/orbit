@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.messaging
+# Module orbit_framework.messaging
 
 """
 Dieses Modul implementiert das Nachrichtensystem von ORBIT.

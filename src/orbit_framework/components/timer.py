@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.components.timer
+# Module orbit_framework.components.timer
 
 """
 Dieses Modul enthält einige Komponenten für die zeitabhängige Steuerung.

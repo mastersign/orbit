@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.index
+# Module orbit_framework.index
 
 """
 Dieses Modul unterstützt das Nachrichtensystem von ORBIT

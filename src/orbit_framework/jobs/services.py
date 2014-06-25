@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.jobs.services
+# Module orbit_framework.jobs.services
 
 """
 Dieses Modul enthält einige Services für den allgemeinen Einsatz.
@@ -52,7 +52,7 @@ class StandbyService(Service):
 	- *component:* ``'standby_timer'``, *name:* ``'off'``, *value:* ``None``
 
 	*Siehe auch:*
-	:py:class:`orbit.components.timer.ActivityTimerComponent`
+	:py:class:`orbit_framework.components.timer.ActivityTimerComponent`
 	"""
 
 	def __init__(self, name, 

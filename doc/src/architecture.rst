@@ -22,10 +22,10 @@ Für einige Standardaufgaben bringt ORBIT :doc:`components` und :doc:`jobs` mit.
 	Eine grobe Übersicht über die Architektur einer ORBIT-Anwendung
 
 | *Siehe auch:*
-| :py:class:`orbit.Core`,
-| :py:class:`orbit.Component`,
-| :py:class:`orbit.App`,
-  :py:class:`orbit.Service`
+| :py:class:`orbit_framework.Core`,
+| :py:class:`orbit_framework.Component`,
+| :py:class:`orbit_framework.App`,
+  :py:class:`orbit_framework.Service`
 
 Gerätemanager
 -------------
@@ -44,9 +44,9 @@ getrennt, wird den Komponenten das Brick(let) wieder entzogen.
 	Eine Übersicht über den Gerätemanager
 
 | *Siehe auch:*
-| :py:class:`orbit.Component.add_device_handle`,
-| :py:class:`orbit.devices.DeviceHandle`,
-| :py:class:`orbit.devices.DeviceManager`
+| :py:class:`orbit_framework.Component.add_device_handle`,
+| :py:class:`orbit_framework.devices.DeviceHandle`,
+| :py:class:`orbit_framework.devices.DeviceManager`
 
 Nachrichtensystem
 -----------------
@@ -61,11 +61,11 @@ von einander und sorgt für eine robuste Anwendung.
 	Eine Übersicht über das Nachrichtensystem
 
 | *Siehe auch:* 
-| :py:meth:`orbit.Component.add_listener`,
-  :py:meth:`orbit.Job.add_listener`,
-| :py:meth:`orbit.Component.send`,
-  :py:meth:`orbit.Job.send`,
-| :py:class:`orbit.messaging.Blackboard`
+| :py:meth:`orbit_framework.Component.add_listener`,
+  :py:meth:`orbit_framework.Job.add_listener`,
+| :py:meth:`orbit_framework.Component.send`,
+  :py:meth:`orbit_framework.Job.send`,
+| :py:class:`orbit_framework.messaging.Blackboard`
 
 Übersicht
 ---------
