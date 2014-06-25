@@ -15,7 +15,7 @@ und den :py:class:`Component`-Objekten über :py:class:`DeviceHandle`-Objekte zu
 
 :py:class:`Component`- und :py:class:`Job`-Objekte
 kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
-die Klasse :py:class:`Blackboard` implementiert wird.
+die Klasse :py:class:`MessageBus` implementiert wird.
 
 :py:class:`Component`- und :py:class:`Job`-Objekte können jederzeit Nachrichten
 senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem 
@@ -45,7 +45,7 @@ from traceback import print_exc
 from threading import Thread, Lock, Event
 from . import setup
 from .devices import DeviceManager
-from .messaging import Blackboard, MultiListener
+from .messaging import MessageBus, MultiListener
 
 def _trace(text, source):
 	print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + ("%s: %s" % (source, text)))
@@ -90,7 +90,7 @@ class Core:
 		self._configuration = config
 		
 		self._device_manager = DeviceManager(self)
-		self._blackboard = Blackboard(self)
+		self._message_bus = MessageBus(self)
 
 		self._jobs = {}
 		self._default_application = None
@@ -98,7 +98,7 @@ class Core:
 		self._application_history = []
 
 		self._stopper = MultiListener('Core Stopper', self._core_stopper)
-		self._stopper.activate(self._blackboard)
+		self._stopper.activate(self._message_bus)
 
 		self._stop_event = Event()
 		self._stop_event.set()
@@ -147,12 +147,12 @@ class Core:
 		return self._device_manager
 
 	@property
-	def blackboard(self):
+	def message_bus(self):
 		"""
-		Gibt das Nachrichtensystem (:py:class:`Blackboard`) zurück.
+		Gibt das Nachrichtensystem (:py:class:`MessageBus`) zurück.
 		(*schreibgeschützt*)
 		"""
-		return self._blackboard
+		return self._message_bus
 
 	@property
 	def jobs(self):
@@ -206,7 +206,7 @@ class Core:
 		self.trace("starting ...")
 		self._stop_event.clear()
 		self._is_started = True
-		self._blackboard.start()
+		self._message_bus.start()
 		self._device_manager.start()
 
 		self.for_each_job(
@@ -252,7 +252,7 @@ class Core:
 			lambda j: j.on_core_stopped())
 
 		self._device_manager.stop()
-		self._blackboard.stop()
+		self._message_bus.stop()
 		self._is_started = False
 		self.trace("... stopped")
 		self._stop_event.set()
@@ -684,13 +684,13 @@ class Job:
 		if self._active:
 			self.trace("activating ...")
 			for listener in self._listeners:
-				self._core.blackboard.add_listener(listener)
+				self._core.message_bus.add_listener(listener)
 			self.on_activated()
 			self.trace("... activated")
 		else:
 			self.trace("deactivating ...")
 			for listener in self._listeners:
-				self._core.blackboard.remove_listener(listener)
+				self._core.message_bus.remove_listener(listener)
 			self.on_deactivated()
 			self.trace("... deactivated")
 
@@ -825,7 +825,7 @@ class Job:
 
 		*Siehe auch:*
 		:py:class:`.messaging.Listener`,
-		:py:meth:`.messaging.Blackboard.add_listener`,
+		:py:meth:`.messaging.MessageBus.add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`send`
 		"""
@@ -834,7 +834,7 @@ class Job:
 		listener.receiver = self.name
 		self._listeners.append(listener)
 		if self._active:
-			self._core.blackboard.add_listener(listener)
+			self._core.message_bus.add_listener(listener)
 
 	def remove_listener(self, listener):
 		"""
@@ -845,14 +845,14 @@ class Job:
 			wie an :py:meth:`add_listener` übergeben wurde.
 
 		*Siehe auch:*
-		:py:meth:`.messaging.Blackboard.remove_listener`,
+		:py:meth:`.messaging.MessageBus.remove_listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`send`
 		"""
 		if listener not in self._listeners:
 			return
 		if self._active:
-			self._core.blackboard.remove_listener(listener)
+			self._core.message_bus.remove_listener(listener)
 		self._listeners.remove(listener)
 
 	def send(self, name, value = None):
@@ -877,12 +877,12 @@ class Job:
 		*Siehe auch:*
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
-		:py:meth:`.messaging.Blackboard.send`
+		:py:meth:`.messaging.MessageBus.send`
 		"""
 		if not self._active:
 			raise AttributeError("this job is not active")
 		self.event_trace(name, value)
-		self._core.blackboard.send(self.name, 'JOB', name, value)
+		self._core.message_bus.send(self.name, 'JOB', name, value)
 
 
 class Service(Job):
@@ -1060,8 +1060,8 @@ class App(Job):
 		:py:meth:`Job.on_install`
 		"""
 		super().on_install(core)
-		self._activators.activate(self._core.blackboard)
-		self._deactivators.activate(self._core.blackboard)
+		self._activators.activate(self._core.message_bus)
+		self._deactivators.activate(self._core.message_bus)
 
 	def on_uninstall(self):
 		"""
@@ -1076,8 +1076,8 @@ class App(Job):
 		:py:meth:`Core.uninstall`,
 		:py:meth:`Job.on_uninstall`
 		"""
-		self._deactivators.deactivate(self._core.blackboard)
-		self._activators.deactivate(self._core.blackboard)
+		self._deactivators.deactivate(self._core.message_bus)
+		self._activators.deactivate(self._core.message_bus)
 		super().on_uninstall()
 
 	def activate(self):
@@ -1284,7 +1284,7 @@ class Component:
 			self.trace("enabling ...")
 			for listener in self._listeners:
 				listener.receiver = "%s, %s" % (self._job.name, self.name)
-				self._job._core.blackboard.add_listener(listener)
+				self._job._core.message_bus.add_listener(listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.add_handle(device_handle)
 			self.on_enabled()
@@ -1293,7 +1293,7 @@ class Component:
 			self.trace("disabling ...")
 			self.on_disabled()
 			for listener in self._listeners:
-				self._job._core.blackboard.remove_listener(listener)
+				self._job._core.message_bus.remove_listener(listener)
 			for device_handle in self._device_handles:
 				self._job._core.device_manager.remove_handle(device_handle)
 			self.trace("... disabled")
@@ -1423,7 +1423,7 @@ class Component:
 
 		*Siehe auch:*
 		:py:class:`.messaging.Listener`,
-		:py:meth:`.messaging.Blackboard.add_listener`,
+		:py:meth:`.messaging.MessageBus.add_listener`,
 		:py:meth:`remove_listener`,
 		:py:meth:`send`
 		"""
@@ -1432,7 +1432,7 @@ class Component:
 		self._listeners.append(listener)
 		if self._enabled:
 			listener.receiver = "%s, %s" % (self._job.name, self.name)
-			self._job._core.blackboard.add_listener(listener)
+			self._job._core.message_bus.add_listener(listener)
 
 	def remove_listener(self, listener):
 		"""
@@ -1443,14 +1443,14 @@ class Component:
 			wie an :py:meth:`add_listener` übergeben wurde.
 
 		*Siehe auch:*
-		:py:meth:`.messaging.Blackboard.remove_listener`,
+		:py:meth:`.messaging.MessageBus.remove_listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`send`
 		"""
 		if listener not in self._listeners:
 			return
 		if self._enabled:
-			self._job._core.blackboard.remove_listener(listener)
+			self._job._core.message_bus.remove_listener(listener)
 		self._listeners.remove(listener)
 
 	def send(self, name, value = None):
@@ -1475,10 +1475,10 @@ class Component:
 		*Siehe auch:*
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
-		:py:meth:`.messaging.Blackboard.send`
+		:py:meth:`.messaging.MessageBus.send`
 		"""
 		if not self._enabled:
 			raise AttributeError("this component is not enabled")
 		self.event_trace(name, value)
-		self._job._core.blackboard.send(self._job.name, self.name, name, value)
+		self._job._core.message_bus.send(self._job.name, self.name, name, value)
 

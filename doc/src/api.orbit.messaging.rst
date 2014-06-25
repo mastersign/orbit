@@ -3,10 +3,10 @@ Modul orbit_framework.messaging
 
 .. automodule:: orbit_framework.messaging
 
-Blackboard
+MessageBus
 ----------
 
-.. autoclass:: orbit_framework.messaging.Blackboard
+.. autoclass:: orbit_framework.messaging.MessageBus
 	:members:
 
 Slot

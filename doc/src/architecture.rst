@@ -55,7 +55,7 @@ Komponenten und Jobs können über ein integriertes, asynchrones Nachrichtensyst
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs 
 von einander und sorgt für eine robuste Anwendung.
 
-.. figure:: figures/blackboard-overview.*
+.. figure:: figures/messagebus-overview.*
 	:alt: Nachrichtensystem
 
 	Eine Übersicht über das Nachrichtensystem
@@ -65,7 +65,7 @@ von einander und sorgt für eine robuste Anwendung.
   :py:meth:`orbit_framework.Job.add_listener`,
 | :py:meth:`orbit_framework.Component.send`,
   :py:meth:`orbit_framework.Job.send`,
-| :py:class:`orbit_framework.messaging.Blackboard`
+| :py:class:`orbit_framework.messaging.MessageBus`
 
 Übersicht
 ---------

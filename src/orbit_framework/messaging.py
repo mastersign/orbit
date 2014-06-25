@@ -7,7 +7,7 @@ Dieses Modul implementiert das Nachrichtensystem von ORBIT.
 
 Das Modul umfasst die folgenden Klassen:
 
-- :py:class:`Blackboard`
+- :py:class:`MessageBus`
 - :py:class:`Slot`
 - :py:class:`Listener`
 - :py:class:`MultiListener`
@@ -18,7 +18,7 @@ from threading import Thread, Lock, Event
 from .index import MultiLevelReverseIndex
 
 
-class Blackboard:
+class MessageBus:
 	"""
 	Diese Klasse implementiert das ORBIT-Nachrichtensystem.
 
@@ -30,8 +30,8 @@ class Blackboard:
 
 	**Beschreibung**
 
-	Das Nachrichtensystem ist nach dem Blackboard-Entwurfsmuster
-	entwickelt. Nachrichten werden von einem Absender an das Nachrichtensystem
+	Das Nachrichtensystem funktioniert nach dem Broadcast-Prinzip.
+	Nachrichten werden von einem Absender an das Nachrichtensystem
 	übergeben, ohne dass der Absender weiß, wer die Nachricht empfangen wird
 	(:py:meth:`send`).
 
@@ -61,15 +61,15 @@ class Blackboard:
 		self._queue = deque()
 		self._stopped = True
 		self._immediate_stop = False
-		self._worker = Thread(name = 'Orbit Blackboard Queue Worker', target = self._queue_worker)
+		self._worker = Thread(name = 'Orbit MessageBus Queue Worker', target = self._queue_worker)
 
 	def trace(self, text):
 		"""
-		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``Blackboard``
+		Schreibt eine Nachverfolgungsmeldung mit dem Ursprung ``MessageBus``
 		auf die Konsole.
 		"""
 		if self._core.configuration.event_tracing:
-			self._core._trace_function(text, 'Blackboard')
+			self._core._trace_function(text, 'MessageBus')
 
 	def _locked(self, f, *nargs, **kargs):
 		self._lock.acquire()
@@ -242,7 +242,7 @@ class Blackboard:
 		"""
 		if not self._stopped:
 			return
-		self.trace("starting blackboard ...")
+		self.trace("starting message bus ...")
 		self._stopped = False
 		self._immediate_stop = False
 		self._worker.start()
@@ -266,14 +266,14 @@ class Blackboard:
 		"""
 		if self._stopped:
 			return
-		self.trace("stopping blackboard ...")
+		self.trace("stopping message bus ...")
 		self._stopped = True
 		self._immediate_stop = immediate
 		self._queue_event.set()
 		self._worker.join()
 
 	def _queue_worker(self):
-		self.trace("... blackboard started")
+		self.trace("... message bus started")
 		while not self._stopped:
 			# working the queue until it is empty
 			while not self._immediate_stop:
@@ -287,7 +287,7 @@ class Blackboard:
 			self._queue_event.wait()
 			self._queue_event.clear()
 
-		self.trace("... blackboard stopped")
+		self.trace("... message bus stopped")
 
 	def _distribute(self, msg):
 		listeners = self._index.lookup(msg)
@@ -328,7 +328,7 @@ class Blackboard:
 				% (job, component, name))
 			return
 
-		msg = Blackboard.Message(job, component, name, value)
+		msg = MessageBus.Message(job, component, name, value)
 		self._locked(self._queue.append, msg)
 		self._queue_event.set()
 
@@ -486,12 +486,12 @@ class Listener:
 
 	Ein Empfänger kann mit Hilfe der folgenden Methoden für den
 	Nachrichtenempfang registriert werden:
-	:py:meth:`Blackboard.add_listener`, :py:meth:`Job.add_listener` und
+	:py:meth:`MessageBus.add_listener`, :py:meth:`Job.add_listener` und
 	:py:meth:`Component.add_listener`.
 
 	*Siehe auch:*
 	:py:class:`Slot`,
-	:py:class:`Blackboard`
+	:py:class:`MessageBus`
 	"""
 
 	def __init__(self, callback, slot):
@@ -539,7 +539,7 @@ class Listener:
 		Werden die Methoden :py:meth:`Job.add_listener` oder 
 		:py:meth:`Component.add_listener` verwendet, wird dieses Attribut
 		automatisch gesetzt. Wird der Empfänger direkt mit
-		:py:meth:`Blackboard.add_listener` registriert,
+		:py:meth:`MessageBus.add_listener` registriert,
 		sollte dieses Attribut vorher gesetzt werden um den Empfänger
 		zu bezeichnen.
 		"""
@@ -593,7 +593,7 @@ class MultiListener:
 	def __init__(self, name, callback):
 		self._callback = callback
 		self._listeners = {}
-		self._blackboards = []
+		self._message_busses = []
 		self._name = name
 
 	@property
@@ -627,8 +627,8 @@ class MultiListener:
 		listener = slot.listener(self._callback)
 		listener.receiver = self.name
 		self._listeners[slot] = listener
-		for blackboard in self._blackboards:
-			blackboard.add_listener(listener)
+		for message_bus in self._message_busses:
+			message_bus.add_listener(listener)
 
 	def remove_slot(self, slot):
 		"""
@@ -640,21 +640,21 @@ class MultiListener:
 		"""
 		listener = self._listeners[slot]
 		del(self._listeners[slot])
-		for blackboard in self._blackboards:
-			blackboard.remove_listener(listener)
+		for message_bus in self._message_busses:
+			message_bus.remove_listener(listener)
 
-	def activate(self, blackboard):
+	def activate(self, message_bus):
 		"""
 		Verknüpft den Mehrfachempfänger mit dem Nachrichtensystem.
 		"""
 		for listener in self._listeners.values():
-			blackboard.add_listener(listener)
-		self._blackboards.append(blackboard)
+			message_bus.add_listener(listener)
+		self._message_busses.append(message_bus)
 
-	def deactivate(self, blackboard):
+	def deactivate(self, message_bus):
 		"""
 		Löst die Verbindung des Mehrfachempfängers vom Nachrichtensystem.
 		"""
 		for listener in self._listeners.values():
-			blackboard.remove_listener(listener)
-		self._blackboards.remove(blackboard)
+			message_bus.remove_listener(listener)
+		self._message_busses.remove(message_bus)

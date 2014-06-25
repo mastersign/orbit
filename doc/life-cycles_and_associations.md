@@ -3,7 +3,7 @@
 ## Overview
 
 1. `Core()`
-	* `Blackboard()`
+	* `MessageBus()`
 	* `DeviceManager()`
 1. potentially `core.start()`
 1. add *Job*s:
@@ -23,11 +23,11 @@
 1. `core.start()`
 1. `job.active = True`
 	1. `component.enabled = True` 
-		1. `blackboard.add_listener(event_listener)`
+		1. `message_bus.add_listener(event_listener)`
 		1. `device_manager.add_handler(device_handler)`
 1. `job.active = False`
 	1. `component.enabled = False` 
-		1. `blackboard.remove_listener(event_listener)`
+		1. `message_bus.remove_listener(event_listener)`
 		1. `device_manager.remove_handler(device_handler)`
 1. remove *Component*s:
 	1. `job.remove_component(component)`
@@ -69,7 +69,7 @@ by user with optional *Configuration*
 	* for each *Job*s:	
 		* `job.active = False`
 
-## Blackboard
+## MessageBus
 ### Initialization
 by *Core* with reference to *Core*
 ### Associations
@@ -169,17 +169,17 @@ stand alone by user
 	* if `component.enabled` then `device_manager.add_handle(device_handle)`  
 * `add_event_listener(event_listener)` associates *EventListener*s  
   Called by: user and **decorator**
-	* if `component.enabled` then `blackboard.add_listener(event_listener)`
+	* if `component.enabled` then `message_bus.add_listener(event_listener)`
 
 ### Transitions
 
 * `enabled = True`  
   Condition: `job` present and `job.active`
-	* `blackboard.add_listener(event_listener)`
+	* `message_bus.add_listener(event_listener)`
 	* `device_manager.add_handle(device_handler)`
 * `enabled = False`
   Condition: `job` present
-	* `blackboard.remove_listener(event_listener)`
+	* `message_bus.remove_listener(event_listener)`
 	* `device_manager.remove_handle(device_handler)`   
 
 ## Invariants
@@ -225,7 +225,7 @@ by user with *callback*
 ### Associations
 
 * fix association with *callback*
-* `on_add_listener(blackboard)` associated with *Blackboard*  
-  Called by: `blackboard.add_listener(event_listener)`
-* `on_remove_listener(blackboard)` disassociates with *Blackboard*  
-  Called by: `blackboard.remove_listener(event_listener)`
+* `on_add_listener(message_bus)` associated with *MessageBus*  
+  Called by: `message_bus.add_listener(event_listener)`
+* `on_remove_listener(message_bus)` disassociates with *MessageBus*  
+  Called by: `message_bus.remove_listener(event_listener)`

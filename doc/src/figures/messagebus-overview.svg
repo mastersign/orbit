@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="blackboard-overview.svg">
+   sodipodi:docname="messagebus-overview.svg">
   <defs
      id="defs4">
     <marker
@@ -178,7 +178,7 @@
        width="128"
        id="rect5571"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -190,13 +190,13 @@
        width="128"
        id="rect5573"
        style="fill:#ecf8e8;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
        id="rect5575"
        width="128"
@@ -223,7 +223,7 @@
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        ry="7.36865"
        rx="8"
        y="860.36218"
@@ -235,7 +235,7 @@
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
        id="rect5603"
        width="64"
@@ -247,7 +247,7 @@
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        style="fill:#ecf8e8;fill-opacity:1;stroke:none"
        id="rect5605"
        width="64"
@@ -265,7 +265,7 @@
        width="64"
        id="rect5607"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -292,7 +292,7 @@
        width="96"
        id="rect5643"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -304,7 +304,7 @@
        width="96"
        id="rect5645"
        style="fill:#ecf8e8;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -316,7 +316,7 @@
        width="96"
        id="rect5625"
        style="fill:#b9e4ac;fill-opacity:1;stroke:none"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -348,11 +348,11 @@
            x="215.99512"
            y="887.4032"
            style="font-family:sans-serif;-inkscape-font-specification:Sans"
-           id="tspan7531">Blackboard</tspan></tspan></text>
+           id="tspan7531">MessageBus</tspan></tspan></text>
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="3"
        inkscape:connector-type="polyline"
@@ -366,13 +366,13 @@
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="3"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="3"
        inkscape:connector-type="polyline"
@@ -382,7 +382,7 @@
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="3"
        inkscape:connector-type="polyline"
@@ -396,13 +396,13 @@
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="3"
        sodipodi:nodetypes="cc"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
-       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\blackboard-overview.png"
+       inkscape:export-filename="D:\Daten\Projekte\Tinkering\doc\src\figures\messagebus-overview.png"
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="3"
        inkscape:connector-type="polyline"
