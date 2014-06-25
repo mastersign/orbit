@@ -35,18 +35,17 @@ Installation
 ============
 
 ORBIT wird, wie die TinkerForge-Bindings, als Python-Egg installiert.
-Die Datei ``orbit.egg`` ist im `Download von ORBIT`_ enthalten.
+Die Datei ``orbit_framework.egg`` kann als Release_ heruntergeladen werden.
 
 Anschließend kann ORBIT mit *easy_install* installiert werden.
-Dazu muss der Download entpackt und im Wurzelverzeichnis der Befehl
+Dazu wird *easy_install* wie folgt aufgerufen:
 
-	> easy_install orbit.egg
+	> easy_install orbit_framework.egg
 
-aufgerufen werden. 
 Anschließend können die Beispiele ausgeführt werden.
 
 .. _setuptools: https://pypi.python.org/pypi/setuptools
 .. _`Dokumentation der Python-Bindings`: http://www.tinkerforge.com/de/doc/Software/API_Bindings_Python.html
 .. _`Download-Archiv`: http://download.tinkerforge.com/bindings/python/
 .. _`Brick-Deamon`: http://www.tinkerforge.com/de/doc/Software/Brickd.html
-.. _`Download von ORBIT`: https://github.com/mastersign/orbit/releases
+.. _Release: https://github.com/mastersign/orbit/releases
