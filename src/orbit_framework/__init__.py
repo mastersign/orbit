@@ -40,6 +40,7 @@ Das Modul enthält die folgenden Klassen:
 
 __all__ = ["setup", "tools", "index", "messaging", "devices"]
 
+from sys import stdout
 from datetime import datetime
 from traceback import print_exc
 from threading import Thread, Lock, Event
@@ -48,7 +49,10 @@ from .devices import DeviceManager
 from .messaging import MessageBus, MultiListener
 
 def _trace(text, source):
-	print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + ("%s: %s" % (source, text)))
+	stamp = datetime.now().strftime('[%Y-%m-%d %H-%M-%S]')
+	msg = '%s %s: %s\n' % (stamp, source, text)
+	stdout.write(msg)
+	stdout.flush()
 
 
 class Core(object):

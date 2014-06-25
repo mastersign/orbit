@@ -740,7 +740,10 @@ class DeviceHandle(object):
 				f(d)
 			except Error as err:
 				if err.value != -8: # connection lost
-					print(err.description)
+					if self._device_manager:
+						self._device_manager.trace(err.description)
+					else:
+						print(err.description)
 
 	def _install_callback(self, device, event_code, callback):
 		self._device_manager.add_device_callback(
