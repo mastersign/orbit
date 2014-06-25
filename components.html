@@ -34,7 +34,7 @@
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
     <link rel="next" title="Integrierte Jobs" href="jobs.html" />
-    <link rel="prev" title="Modul orbit.tools" href="api.orbit.tools.html" />
+    <link rel="prev" title="Modul orbit_framework.tools" href="api.orbit.tools.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -80,25 +80,30 @@
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Integrierte Komponenten</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.common">Common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.timer">Timer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.lcd">LCD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-orbit.components.remoteswitch">Remote Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit_framework.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit_framework.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit_framework.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-orbit_framework.components.remoteswitch">Remote Switch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -115,16 +120,16 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Integrierte Komponenten</a><ul>
-<li><a class="reference internal" href="#module-orbit.components.common">Common</a><ul>
+<li><a class="reference internal" href="#module-orbit_framework.components.common">Common</a><ul>
 <li><a class="reference internal" href="#eventcallbackcomponent">EventCallbackComponent</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-orbit.components.timer">Timer</a><ul>
+<li><a class="reference internal" href="#module-orbit_framework.components.timer">Timer</a><ul>
 <li><a class="reference internal" href="#activitytimercomponent">ActivityTimerComponent</a></li>
 <li><a class="reference internal" href="#intervaltimercomponent">IntervalTimerComponent</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-orbit.components.lcd">LCD</a><ul>
+<li><a class="reference internal" href="#module-orbit_framework.components.lcd">LCD</a><ul>
 <li><a class="reference internal" href="#lcd20x4buttonscomponent">LCD20x4ButtonsComponent</a></li>
 <li><a class="reference internal" href="#lcd20x4backlightcomponent">LCD20x4BacklightComponent</a></li>
 <li><a class="reference internal" href="#lcd20x4watchcomponent">LCD20x4WatchComponent</a></li>
@@ -132,7 +137,7 @@
 <li><a class="reference internal" href="#lcd20x4menucomponent">LCD20x4MenuComponent</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-orbit.components.remoteswitch">Remote Switch</a><ul>
+<li><a class="reference internal" href="#module-orbit_framework.components.remoteswitch">Remote Switch</a><ul>
 <li><a class="reference internal" href="#remoteswitchcomponent">RemoteSwitchComponent</a></li>
 </ul>
 </li>
@@ -147,7 +152,7 @@
               
                 
   <li>
-    <a href="api.orbit.tools.html" title="Previous Chapter: Modul orbit.tools"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.tool...</span>
+    <a href="api.orbit.tools.html" title="Previous Chapter: Modul orbit_framework.tools"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit_fram...</span>
     </a>
   </li>
   <li>
@@ -189,18 +194,18 @@ Diese gliedern sich in die folgenden Bereiche:</p>
 <li><a class="reference internal" href="#lcd">LCD</a></li>
 <li><a class="reference internal" href="#remote-switch">Remote Switch</a></li>
 </ul>
-<div class="section" id="module-orbit.components.common">
-<span id="common"></span><h2>Common<a class="headerlink" href="#module-orbit.components.common" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="module-orbit_framework.components.common">
+<span id="common"></span><h2>Common<a class="headerlink" href="#module-orbit_framework.components.common" title="Permalink zu dieser Überschrift">¶</a></h2>
 <p>Dieses Modul enthält einige Komponenten für den allgemeinen Einsatz.</p>
 <p>Enthalten sind die folgenden Komponenten:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.components.common.EventCallbackComponent" title="orbit.components.common.EventCallbackComponent"><tt class="xref py py-class docutils literal"><span class="pre">EventCallbackComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.common.EventCallbackComponent" title="orbit_framework.components.common.EventCallbackComponent"><tt class="xref py py-class docutils literal"><span class="pre">EventCallbackComponent</span></tt></a></li>
 </ul>
 <div class="section" id="eventcallbackcomponent">
 <h3>EventCallbackComponent<a class="headerlink" href="#eventcallbackcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.common.EventCallbackComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.common.</tt><tt class="descname">EventCallbackComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>callback</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.common.EventCallbackComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.common.EventCallbackComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.common.</tt><tt class="descname">EventCallbackComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>callback</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.common.EventCallbackComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente wartet mit Hilfe eines Empfangsmusters auf Nachrichten,
 und ruft ein Callback auf, wenn eine passende Nachricht eintrifft.</p>
 <p><strong>Parameter</strong></p>
@@ -216,19 +221,19 @@ und ruft ein Callback auf, wenn eine passende Nachricht eintrifft.</p>
 
 </div>
 </div>
-<div class="section" id="module-orbit.components.timer">
-<span id="timer"></span><h2>Timer<a class="headerlink" href="#module-orbit.components.timer" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="module-orbit_framework.components.timer">
+<span id="timer"></span><h2>Timer<a class="headerlink" href="#module-orbit_framework.components.timer" title="Permalink zu dieser Überschrift">¶</a></h2>
 <p>Dieses Modul enthält einige Komponenten für die zeitabhängige Steuerung.</p>
 <p>Enthalten sind die folgenden Komponenten:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.components.timer.ActivityTimerComponent" title="orbit.components.timer.ActivityTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">ActivityTimerComponent</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.components.timer.IntervalTimerComponent" title="orbit.components.timer.IntervalTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">IntervalTimerComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.timer.ActivityTimerComponent" title="orbit_framework.components.timer.ActivityTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">ActivityTimerComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.timer.IntervalTimerComponent" title="orbit_framework.components.timer.IntervalTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">IntervalTimerComponent</span></tt></a></li>
 </ul>
 <div class="section" id="activitytimercomponent">
 <h3>ActivityTimerComponent<a class="headerlink" href="#activitytimercomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.timer.ActivityTimerComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.timer.</tt><tt class="descname">ActivityTimerComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=True</em>, <em>timeout=6</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.timer.ActivityTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.timer.ActivityTimerComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.timer.</tt><tt class="descname">ActivityTimerComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=True</em>, <em>timeout=6</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.timer.ActivityTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente schaltet zwischen den zwei Zuständen 
 <strong>aktiv</strong> und <strong>inaktiv</strong> um und versendet Nachrichten
 bei einer Änderung des Zustands. 
@@ -270,8 +275,8 @@ werden die folgenden beiden Nachrichten versandt:</p>
 <div class="section" id="intervaltimercomponent">
 <h3>IntervalTimerComponent<a class="headerlink" href="#intervaltimercomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.timer.IntervalTimerComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.timer.</tt><tt class="descname">IntervalTimerComponent</tt><big>(</big><em>name</em>, <em>interval=1</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.timer.IntervalTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.timer.IntervalTimerComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.timer.</tt><tt class="descname">IntervalTimerComponent</tt><big>(</big><em>name</em>, <em>interval=1</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.timer.IntervalTimerComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente implementiert einen Zeitgeber,
 der in regelmäßigen Abständen eine Nachricht versendet.</p>
 <p><strong>Parameter</strong></p>
@@ -290,22 +295,22 @@ der in regelmäßigen Abständen eine Nachricht versendet.</p>
 
 </div>
 </div>
-<div class="section" id="module-orbit.components.lcd">
-<span id="lcd"></span><h2>LCD<a class="headerlink" href="#module-orbit.components.lcd" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="module-orbit_framework.components.lcd">
+<span id="lcd"></span><h2>LCD<a class="headerlink" href="#module-orbit_framework.components.lcd" title="Permalink zu dieser Überschrift">¶</a></h2>
 <p>Dieses Modul enthält einige Komponenten für die Steuerung von LCD-Displays.</p>
 <p>Enthalten sind die folgenden Komponenten:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4ButtonsComponent" title="orbit.components.lcd.LCD20x4ButtonsComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4ButtonsComponent</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4BacklightComponent" title="orbit.components.lcd.LCD20x4BacklightComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4BacklightComponent</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4WatchComponent" title="orbit.components.lcd.LCD20x4WatchComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4WatchComponent</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4MessageComponent" title="orbit.components.lcd.LCD20x4MessageComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MessageComponent</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.components.lcd.LCD20x4MenuComponent" title="orbit.components.lcd.LCD20x4MenuComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MenuComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.lcd.LCD20x4ButtonsComponent" title="orbit_framework.components.lcd.LCD20x4ButtonsComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4ButtonsComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.lcd.LCD20x4BacklightComponent" title="orbit_framework.components.lcd.LCD20x4BacklightComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4BacklightComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.lcd.LCD20x4WatchComponent" title="orbit_framework.components.lcd.LCD20x4WatchComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4WatchComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.lcd.LCD20x4MessageComponent" title="orbit_framework.components.lcd.LCD20x4MessageComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MessageComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.lcd.LCD20x4MenuComponent" title="orbit_framework.components.lcd.LCD20x4MenuComponent"><tt class="xref py py-class docutils literal"><span class="pre">LCD20x4MenuComponent</span></tt></a></li>
 </ul>
 <div class="section" id="lcd20x4buttonscomponent">
 <h3>LCD20x4ButtonsComponent<a class="headerlink" href="#lcd20x4buttonscomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.lcd.LCD20x4ButtonsComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4ButtonsComponent</tt><big>(</big><em>name</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4ButtonsComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.lcd.LCD20x4ButtonsComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.lcd.</tt><tt class="descname">LCD20x4ButtonsComponent</tt><big>(</big><em>name</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.lcd.LCD20x4ButtonsComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente reagiert auf Tastendruck an allen angeschlossenen
 LCD-20x4-Displays und versendet entsprechende Nachrichten.</p>
 <p><strong>Parameter</strong></p>
@@ -328,8 +333,8 @@ und der Tastennummer.</p>
 <div class="section" id="lcd20x4backlightcomponent">
 <h3>LCD20x4BacklightComponent<a class="headerlink" href="#lcd20x4backlightcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.lcd.LCD20x4BacklightComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4BacklightComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=False</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4BacklightComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.lcd.LCD20x4BacklightComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.lcd.</tt><tt class="descname">LCD20x4BacklightComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>initial_state=False</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.lcd.LCD20x4BacklightComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente schaltet die Hintergrundbeleuchtung
 aller angeschlossener LCD-20x4-Displays entsprechend dem
 Nachrichteninhalt eintreffender Nachrichten.</p>
@@ -358,8 +363,8 @@ wird sie ausgeschaltet.</p>
 <div class="section" id="lcd20x4watchcomponent">
 <h3>LCD20x4WatchComponent<a class="headerlink" href="#lcd20x4watchcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.lcd.LCD20x4WatchComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4WatchComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>lcd_uid=None</em>, <em>lines={0: '%d.%m.%Y  %H:%M:%S'}</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4WatchComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.lcd.LCD20x4WatchComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.lcd.</tt><tt class="descname">LCD20x4WatchComponent</tt><big>(</big><em>name</em>, <em>slot</em>, <em>lcd_uid=None</em>, <em>lines={0: '%d.%m.%Y  %H:%M:%S'}</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.lcd.LCD20x4WatchComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente zeigt beim Eintreffen einer Nachricht
 auf einem oder allen LCD-20x4-Displays
 eine formatierte Uhrzeit an.</p>
@@ -397,8 +402,8 @@ LCD-20x4-Displays angezeigt.</p>
 <div class="section" id="lcd20x4messagecomponent">
 <h3>LCD20x4MessageComponent<a class="headerlink" href="#lcd20x4messagecomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.lcd.LCD20x4MessageComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4MessageComponent</tt><big>(</big><em>name</em>, <em>lines</em>, <em>lcd_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4MessageComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.lcd.LCD20x4MessageComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.lcd.</tt><tt class="descname">LCD20x4MessageComponent</tt><big>(</big><em>name</em>, <em>lines</em>, <em>lcd_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.lcd.LCD20x4MessageComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente zeigt eine konstante Nachricht
 auf einem oder allen LCD-20x4-Displays an.</p>
 <p><strong>Parameter</strong></p>
@@ -432,8 +437,8 @@ LCD-20x4-Displays angezeigt.</p>
 <div class="section" id="lcd20x4menucomponent">
 <h3>LCD20x4MenuComponent<a class="headerlink" href="#lcd20x4menucomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.lcd.LCD20x4MenuComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.lcd.</tt><tt class="descname">LCD20x4MenuComponent</tt><big>(</big><em>name, lcd_uid=None, entries=[('None', 'none')], **nargs</em><big>)</big><a class="headerlink" href="#orbit.components.lcd.LCD20x4MenuComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.lcd.LCD20x4MenuComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.lcd.</tt><tt class="descname">LCD20x4MenuComponent</tt><big>(</big><em>name, lcd_uid=None, entries=[('None', 'none')], **nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.lcd.LCD20x4MenuComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente stellt ein Menü mit bis zu 8 Menüpunkten
 auf einem LCD-20x4-Display zur Verfügung.
 Die Navigation im Menü erfolgt mit Hilfe der 4 Tasten
@@ -480,19 +485,19 @@ Die Tasten sind wie folgt belegt:</p>
 
 </div>
 </div>
-<div class="section" id="module-orbit.components.remoteswitch">
-<span id="remote-switch"></span><h2>Remote Switch<a class="headerlink" href="#module-orbit.components.remoteswitch" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="module-orbit_framework.components.remoteswitch">
+<span id="remote-switch"></span><h2>Remote Switch<a class="headerlink" href="#module-orbit_framework.components.remoteswitch" title="Permalink zu dieser Überschrift">¶</a></h2>
 <p>Dieses Modul enthält Komponenten für die Steuerung mit einem
 Remote-Switch-Bricklet.</p>
 <p>Enthalten sind die folgenden Komponenten:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.components.remoteswitch.RemoteSwitchComponent" title="orbit.components.remoteswitch.RemoteSwitchComponent"><tt class="xref py py-class docutils literal"><span class="pre">RemoteSwitchComponent</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.components.remoteswitch.RemoteSwitchComponent" title="orbit_framework.components.remoteswitch.RemoteSwitchComponent"><tt class="xref py py-class docutils literal"><span class="pre">RemoteSwitchComponent</span></tt></a></li>
 </ul>
 <div class="section" id="remoteswitchcomponent">
 <h3>RemoteSwitchComponent<a class="headerlink" href="#remoteswitchcomponent" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.components.remoteswitch.RemoteSwitchComponent">
-<em class="property">class </em><tt class="descclassname">orbit.components.remoteswitch.</tt><tt class="descname">RemoteSwitchComponent</tt><big>(</big><em>name</em>, <em>group</em>, <em>socket</em>, <em>on_slot</em>, <em>off_slot</em>, <em>typ='A'</em>, <em>switch_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit.components.remoteswitch.RemoteSwitchComponent" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.components.remoteswitch.RemoteSwitchComponent">
+<em class="property">class </em><tt class="descclassname">orbit_framework.components.remoteswitch.</tt><tt class="descname">RemoteSwitchComponent</tt><big>(</big><em>name</em>, <em>group</em>, <em>socket</em>, <em>on_slot</em>, <em>off_slot</em>, <em>typ='A'</em>, <em>switch_uid=None</em>, <em>**nargs</em><big>)</big><a class="headerlink" href="#orbit_framework.components.remoteswitch.RemoteSwitchComponent" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Komponente steuert eine Funksteckdose mit Hilfe
 des Remote-Switch-Bricklets     wenn Nachrichten über das Nachrichtensystem
 empfangen werden.</p>
@@ -552,7 +557,7 @@ wird der Ausschaltbefehl an die angegebene Steckdose gesendet.</p>
     </p>
     <p>
         &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
 </footer>

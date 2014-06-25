@@ -6,34 +6,34 @@ ORBIT bringt einige integrierte Apps_ und Services_ mit.
 Apps
 ====
 
-.. automodule:: orbit.jobs.apps
+.. automodule:: orbit_framework.jobs.apps
 
 EscapableApp
 ------------
 
-.. autoclass:: orbit.jobs.apps.EscapableApp
+.. autoclass:: orbit_framework.jobs.apps.EscapableApp
 
 WatchApp
 --------
 
-.. autoclass:: orbit.jobs.apps.WatchApp
+.. autoclass:: orbit_framework.jobs.apps.WatchApp
 
 MessageApp
 ----------
 
-.. autoclass:: orbit.jobs.apps.MessageApp
+.. autoclass:: orbit_framework.jobs.apps.MessageApp
 
 MenuApp
 -------
 
-.. autoclass:: orbit.jobs.apps.MenuApp
+.. autoclass:: orbit_framework.jobs.apps.MenuApp
 
 Services
 ========
 
-.. automodule:: orbit.jobs.services
+.. automodule:: orbit_framework.jobs.services
 
 StandbyService
 --------------
 
-.. autoclass:: orbit.jobs.services.StandbyService
+.. autoclass:: orbit_framework.jobs.services.StandbyService

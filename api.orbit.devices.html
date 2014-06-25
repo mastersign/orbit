@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Modul orbit.devices &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Modul orbit_framework.devices &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -34,8 +34,8 @@
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
     <link rel="up" title="API-Referenz" href="reference.html" />
-    <link rel="next" title="Modul orbit.index" href="api.orbit.index.html" />
-    <link rel="prev" title="Modul orbit" href="api.orbit.html" />
+    <link rel="next" title="Modul orbit_framework.index" href="api.orbit.index.html" />
+    <link rel="prev" title="Modul orbit_framework" href="api.orbit.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -81,25 +81,30 @@
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit.devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.remoteswitch">Remote Switch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -115,7 +120,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Modul orbit.devices</a><ul>
+<li><a class="reference internal" href="#">Modul orbit_framework.devices</a><ul>
 <li><a class="reference internal" href="#klassen">Klassen</a><ul>
 <li><a class="reference internal" href="#devicemanager">DeviceManager</a></li>
 <li><a class="reference internal" href="#devicehandle">DeviceHandle</a></li>
@@ -135,11 +140,11 @@
               
                 
   <li>
-    <a href="api.orbit.html" title="Previous Chapter: Modul orbit"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit</span>
+    <a href="api.orbit.html" title="Previous Chapter: Modul orbit_framework"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit_fram...</span>
     </a>
   </li>
   <li>
-    <a href="api.orbit.index.html" title="Next Chapter: Modul orbit.index"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit.inde... &raquo;</span>
+    <a href="api.orbit.index.html" title="Next Chapter: Modul orbit_framework.index"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit_fram... &raquo;</span>
     </a>
   </li>
               
@@ -167,31 +172,31 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="module-orbit.devices">
-<span id="modul-orbit-devices"></span><h1>Modul orbit.devices<a class="headerlink" href="#module-orbit.devices" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <div class="section" id="module-orbit_framework.devices">
+<span id="modul-orbit-framework-devices"></span><h1>Modul orbit_framework.devices<a class="headerlink" href="#module-orbit_framework.devices" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>Dieses Modul implementiert den Gerätemanager von ORBIT.</p>
 <p>Das Modul umfasst die folgenden Klassen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.devices.DeviceManager" title="orbit.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a></li>
 </ul>
 <p>Darüber hinaus enthält es einige Hilfsfunktionen für den Umgang mit TinkerForge-Gerätetypen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.devices.get_device_identifier" title="orbit.devices.get_device_identifier"><tt class="xref py py-func docutils literal"><span class="pre">get_device_identifier()</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.device_identifier_from_name" title="orbit.devices.device_identifier_from_name"><tt class="xref py py-func docutils literal"><span class="pre">device_identifier_from_name()</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.device_instance" title="orbit.devices.device_instance"><tt class="xref py py-func docutils literal"><span class="pre">device_instance()</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.device_name" title="orbit.devices.device_name"><tt class="xref py py-func docutils literal"><span class="pre">device_name()</span></tt></a></li>
-<li><a class="reference internal" href="#orbit.devices.known_device" title="orbit.devices.known_device"><tt class="xref py py-func docutils literal"><span class="pre">known_device()</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.get_device_identifier" title="orbit_framework.devices.get_device_identifier"><tt class="xref py py-func docutils literal"><span class="pre">get_device_identifier()</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.device_identifier_from_name" title="orbit_framework.devices.device_identifier_from_name"><tt class="xref py py-func docutils literal"><span class="pre">device_identifier_from_name()</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.device_instance" title="orbit_framework.devices.device_instance"><tt class="xref py py-func docutils literal"><span class="pre">device_instance()</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.device_name" title="orbit_framework.devices.device_name"><tt class="xref py py-func docutils literal"><span class="pre">device_name()</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.devices.known_device" title="orbit_framework.devices.known_device"><tt class="xref py py-func docutils literal"><span class="pre">known_device()</span></tt></a></li>
 </ul>
 <div class="section" id="klassen">
 <h2>Klassen<a class="headerlink" href="#klassen" title="Permalink zu dieser Überschrift">¶</a></h2>
 <div class="section" id="devicemanager">
 <h3>DeviceManager<a class="headerlink" href="#devicemanager" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.devices.DeviceManager">
-<em class="property">class </em><tt class="descclassname">orbit.devices.</tt><tt class="descname">DeviceManager</tt><big>(</big><em>core</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager">
+<em class="property">class </em><tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">DeviceManager</tt><big>(</big><em>core</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert den Gerätemanager einer ORBIT-Anwendung.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -212,11 +217,11 @@ zum TinkerForge-Server unterbrochen oder verliert der TinkerForge-Server
 die Verbindung zum Master-Brick (USB-Kabel herausgezogen), entzieht
 der Gerätemanager der Komponente automatisch das Gerät, so dass eine 
 Komponente i.d.R. keine Verbindungsprobleme behandeln muss.</p>
-<p>Umgesetzt wird dieses Konzept mit Hilfe der Klassen <a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a>
-und <a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>.</p>
+<p>Umgesetzt wird dieses Konzept mit Hilfe der Klassen <a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a>
+und <a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>.</p>
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.add_device_callback">
-<tt class="descname">add_device_callback</tt><big>(</big><em>uid</em>, <em>event</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.add_device_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.add_device_callback">
+<tt class="descname">add_device_callback</tt><big>(</big><em>uid</em>, <em>event</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.add_device_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Richtet eine Callback-Funktion für ein Ereignis
 eines Bricks oder eines Bricklets ein.</p>
 <p><strong>Parameter</strong></p>
@@ -244,12 +249,12 @@ zulassen. Der Gerätemanager hingegen unterstützt beliebig viele
 Callbacks für ein Ereignis eines Gerätes.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.remove_device_callback" title="orbit.devices.DeviceManager.remove_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_device_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.remove_device_callback" title="orbit_framework.devices.DeviceManager.remove_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_device_callback()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.add_device_finalizer">
-<tt class="descname">add_device_finalizer</tt><big>(</big><em>device_identifier</em>, <em>finalizer</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.add_device_finalizer" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.add_device_finalizer">
+<tt class="descname">add_device_finalizer</tt><big>(</big><em>device_identifier</em>, <em>finalizer</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.add_device_finalizer" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Richtet eine Abschlussfunktion für einen Brick- oder Bricklet-Typ ein.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -266,12 +271,12 @@ aufgibt (d.h. die Verbindung nicht durch eine Störung unterbrochen wurde),
 ruft er alle Abschlussfunktionen für die entsprechende
 Geräte-ID auf.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_device_initializer" title="orbit.devices.DeviceManager.add_device_initializer"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_initializer()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_device_initializer" title="orbit_framework.devices.DeviceManager.add_device_initializer"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_initializer()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.add_device_initializer">
-<tt class="descname">add_device_initializer</tt><big>(</big><em>device_identifier</em>, <em>initializer</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.add_device_initializer" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.add_device_initializer">
+<tt class="descname">add_device_initializer</tt><big>(</big><em>device_identifier</em>, <em>initializer</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.add_device_initializer" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Richtet eine Initialisierungsfunktion für einen Brick- oder Bricklet-Typ ein.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -288,29 +293,29 @@ zu dem er bisher keine Verbindung aufgebaut hatte,
 ruft er alle Initialisierungsfunktionen für die entsprechende
 Geräte-ID auf.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_device_finalizer" title="orbit.devices.DeviceManager.add_device_finalizer"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_finalizer()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_device_finalizer" title="orbit_framework.devices.DeviceManager.add_device_finalizer"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_finalizer()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.add_handle">
-<tt class="descname">add_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.add_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.add_handle">
+<tt class="descname">add_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.add_handle" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Richtet eine Geräteanforderung (Geräte-Handle) ein.</p>
 <p>Eine Geräteanforderung ist eine Instanz einer Sub-Klasse
-von <a class="reference internal" href="#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>. Das kann entweder eine Instanz von
-<a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> oder von <a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a> sein.</p>
+von <a class="reference internal" href="#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>. Das kann entweder eine Instanz von
+<a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> oder von <a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a> sein.</p>
 <p>Das übergebene Geräte-Handle wird über alle neu entdeckten Geräte
-mit einem Aufruf von <a class="reference internal" href="#orbit.devices.DeviceHandle.on_bind_device" title="orbit.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceHandle.on_bind_device()</span></tt></a> benachrichtigt.
+mit einem Aufruf von <a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_bind_device" title="orbit_framework.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceHandle.on_bind_device()</span></tt></a> benachrichtigt.
 Je nach Konfiguration nimmt das Handle das neue Gerät an oder ignoriert es.
 Verliert der Gerätemanager die Verbindung zu einem Gerät, wird das
 Geräte-Handle ebenfalls mit einem Aufruf von
-<a class="reference internal" href="#orbit.devices.DeviceHandle.on_unbind_device" title="orbit.devices.DeviceHandle.on_unbind_device"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceHandle.on_unbind_device()</span></tt></a> benachrichtigt.</p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_unbind_device" title="orbit_framework.devices.DeviceHandle.on_unbind_device"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceHandle.on_unbind_device()</span></tt></a> benachrichtigt.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.remove_handle" title="orbit.devices.DeviceManager.remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">remove_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.remove_handle" title="orbit_framework.devices.DeviceManager.remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">remove_handle()</span></tt></a></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="orbit.devices.DeviceManager.devices">
-<tt class="descname">devices</tt><a class="headerlink" href="#orbit.devices.DeviceManager.devices" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.devices">
+<tt class="descname">devices</tt><a class="headerlink" href="#orbit_framework.devices.DeviceManager.devices" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Ein Dictionary mit allen zur Zeit verfügbaren Geräten.
 Die UID des Geräts ist der Schlüssel und der Wert ist eine Instanz
 der TinkerForge-Geräte-Klasse 
@@ -318,8 +323,8 @@ der TinkerForge-Geräte-Klasse
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.remove_device_callback">
-<tt class="descname">remove_device_callback</tt><big>(</big><em>uid</em>, <em>event</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.remove_device_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.remove_device_callback">
+<tt class="descname">remove_device_callback</tt><big>(</big><em>uid</em>, <em>event</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.remove_device_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt eine Callback-Funktion von einem Ereignis
 eines Bricks oder eines Bricklets.</p>
 <p><strong>Parameter</strong></p>
@@ -336,40 +341,41 @@ Z.B. <tt class="docutils literal"><span class="pre">tinkerforge.bricklet_lcd_20x
 <p>Für die Aufhebung des Callbacks muss die gleiche Funktionsreferenz übergeben werden
 wie bei der Einrichtung des Callback.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_device_callback" title="orbit.devices.DeviceManager.add_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_device_callback" title="orbit_framework.devices.DeviceManager.add_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_callback()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.remove_handle">
-<tt class="descname">remove_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.remove_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.remove_handle">
+<tt class="descname">remove_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.remove_handle" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt eine Geräteanforderung (Geräte-Handle).</p>
 <p>Eine Geräteanforderung ist eine Instanz einer Sub-Klasse
-von <a class="reference internal" href="#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>. Das kann entweder eine Instanz von
-<a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> oder von <a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a> sein.</p>
+von <a class="reference internal" href="#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>. Das kann entweder eine Instanz von
+<a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> oder von <a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a> sein.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_handle" title="orbit.devices.DeviceManager.add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_handle" title="orbit_framework.devices.DeviceManager.add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_handle()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.start">
-<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.start" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.start" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Startet den Gerätemanager und baut eine Verbindung zu einem TinkerForge-Server auf.
 Die Verbindungdaten für den Server werden der ORBIT-Konfiguration entnommen.</p>
-<p>Siehe auch: <a class="reference internal" href="#orbit.devices.DeviceManager.stop" title="orbit.devices.DeviceManager.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a></p>
+<p>Gibt <tt class="docutils literal"><span class="pre">True</span></tt> zurück, wenn die Verbindung aufgebaut werden konnte, sonst <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Siehe auch: <a class="reference internal" href="#orbit_framework.devices.DeviceManager.stop" title="orbit_framework.devices.DeviceManager.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.stop">
-<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.stop" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.stop">
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.stop" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Trennt die Verbindung zum TinkerForge-Server und beendet den Gerätemanager.</p>
 <p>Vor dem Trennen der Verbindung wird die Zuordnung zwischen den Geräten
 und den Komponenten aufgehoben.</p>
-<p>Siehe auch: <a class="reference internal" href="#orbit.devices.DeviceManager.start" title="orbit.devices.DeviceManager.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a></p>
+<p>Siehe auch: <a class="reference internal" href="#orbit_framework.devices.DeviceManager.start" title="orbit_framework.devices.DeviceManager.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceManager.trace">
-<tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceManager.trace" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceManager.trace">
+<tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceManager.trace" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <tt class="docutils literal"><span class="pre">DeviceManager</span></tt>
 auf die Konsole.</p>
 </dd></dl>
@@ -380,11 +386,11 @@ auf die Konsole.</p>
 <div class="section" id="devicehandle">
 <h3>DeviceHandle<a class="headerlink" href="#devicehandle" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.devices.DeviceHandle">
-<em class="property">class </em><tt class="descclassname">orbit.devices.</tt><tt class="descname">DeviceHandle</tt><big>(</big><em>name</em>, <em>bind_callback</em>, <em>unbind_callback</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle">
+<em class="property">class </em><tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">DeviceHandle</tt><big>(</big><em>name</em>, <em>bind_callback</em>, <em>unbind_callback</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Klasse ist die Basisklasse für Geräteanforderungen.</p>
 <p>Anstelle diese Klasse direkt zu verwenden, werden die beiden Kindklassen
-<a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> und <a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>
+<a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a> und <a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>
 verwendet.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -412,26 +418,26 @@ umfassen.
 Eine Komponente kann jederzeit alle verfügbaren Brick(let)s einer 
 Geräteanforderung abfragen und ansteuern.</p>
 <p>Geräteanforderungen verwalten auch Ereignis-Callbacks für Brick(let)s.
-Eine Komponente kann durch den Aufruf von <a class="reference internal" href="#orbit.devices.DeviceHandle.register_callback" title="orbit.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a>
+Eine Komponente kann durch den Aufruf von <a class="reference internal" href="#orbit_framework.devices.DeviceHandle.register_callback" title="orbit_framework.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a>
 ein Callback für ein Brick(let)-Ereignis einrichten und die Geräteanforderung
-übernimmt gemeinsam mit dem <a class="reference internal" href="#orbit.devices.DeviceManager" title="orbit.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a> die Verwaltung.</p>
+übernimmt gemeinsam mit dem <a class="reference internal" href="#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a> die Verwaltung.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit.Component.add_device_handle" title="orbit.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">orbit.Component.add_device_handle()</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.DeviceHandle.register_callback" title="orbit.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_device_handle()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.register_callback" title="orbit_framework.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a></p>
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.accept_device">
-<tt class="descname">accept_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.accept_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.accept_device">
+<tt class="descname">accept_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.accept_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Nimmt ein Gerät in die Geräteanforderung auf.
-Wird von <a class="reference internal" href="#orbit.devices.DeviceHandle.on_bind_device" title="orbit.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_bind_device()</span></tt></a> aufgerufen.</p>
+Wird von <a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_bind_device" title="orbit_framework.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_bind_device()</span></tt></a> aufgerufen.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.on_bind_device" title="orbit.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_bind_device()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_bind_device" title="orbit_framework.devices.DeviceHandle.on_bind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_bind_device()</span></tt></a></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="orbit.devices.DeviceHandle.devices">
-<tt class="descname">devices</tt><a class="headerlink" href="#orbit.devices.DeviceHandle.devices" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.devices">
+<tt class="descname">devices</tt><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.devices" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Gibt eine Liste mit allen verfügbaren Brick(let)s zurück.</p>
 <p>Ein Brick(let) wird durch ein Objekt der entsprechenden
 TinkerForge-Geräteklasse 
@@ -440,22 +446,22 @@ repräsentiert.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.for_each_device">
-<tt class="descname">for_each_device</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.for_each_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.for_each_device">
+<tt class="descname">for_each_device</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.for_each_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Führt eine Funktion für alle verfügbaren Geräte 
 dieser Geräteanforderung aus.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="orbit.devices.DeviceHandle.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit.devices.DeviceHandle.name" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.name">
+<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.name" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Gibt den Namen der Geräteanforderung zurück.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.on_add_handle">
-<tt class="descname">on_add_handle</tt><big>(</big><em>device_manager</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.on_add_handle" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Wird aufgerufen, wenn die Geräteanforderung im <a class="reference internal" href="#orbit.devices.DeviceManager" title="orbit.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a>
+<dt id="orbit_framework.devices.DeviceHandle.on_add_handle">
+<tt class="descname">on_add_handle</tt><big>(</big><em>device_manager</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.on_add_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Wird aufgerufen, wenn die Geräteanforderung im <a class="reference internal" href="#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a>
 registriert wurde.</p>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
@@ -464,28 +470,28 @@ Eine überschreibende Methode muss jedoch die Implementierung der
 Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_handle" title="orbit.devices.DeviceManager.add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.add_handle()</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.DeviceHandle.on_remove_handle" title="orbit.devices.DeviceHandle.on_remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">on_remove_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_handle" title="orbit_framework.devices.DeviceManager.add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.add_handle()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_remove_handle" title="orbit_framework.devices.DeviceHandle.on_remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">on_remove_handle()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.on_bind_device">
-<tt class="descname">on_bind_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.on_bind_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.on_bind_device">
+<tt class="descname">on_bind_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.on_bind_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn ein beliebiges Gerät verfügbar wird.</p>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Muss von einer abgeleiteten Klasse überschrieben werden.</p>
 </div>
-<p>Eine Implementierung muss die Methode <a class="reference internal" href="#orbit.devices.DeviceHandle.accept_device" title="orbit.devices.DeviceHandle.accept_device"><tt class="xref py py-meth docutils literal"><span class="pre">accept_device()</span></tt></a>
+<p>Eine Implementierung muss die Methode <a class="reference internal" href="#orbit_framework.devices.DeviceHandle.accept_device" title="orbit_framework.devices.DeviceHandle.accept_device"><tt class="xref py py-meth docutils literal"><span class="pre">accept_device()</span></tt></a>
 für alle Geräte aufrufen, die der Geräteanforderung entsprechen.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.accept_device" title="orbit.devices.DeviceHandle.accept_device"><tt class="xref py py-meth docutils literal"><span class="pre">accept_device()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.accept_device" title="orbit_framework.devices.DeviceHandle.accept_device"><tt class="xref py py-meth docutils literal"><span class="pre">accept_device()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.on_remove_handle">
-<tt class="descname">on_remove_handle</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.on_remove_handle" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Wird aufgerufen, wenn die Geräteanforderung im <a class="reference internal" href="#orbit.devices.DeviceManager" title="orbit.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a>
+<dt id="orbit_framework.devices.DeviceHandle.on_remove_handle">
+<tt class="descname">on_remove_handle</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.on_remove_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<dd><p>Wird aufgerufen, wenn die Geräteanforderung im <a class="reference internal" href="#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">DeviceManager</span></tt></a>
 deregistriert wurde.</p>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
@@ -494,23 +500,23 @@ Eine überschreibende Methode muss jedoch die Implementierung der
 Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceManager.remove_handle" title="orbit.devices.DeviceManager.remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.remove_handle()</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.DeviceHandle.on_add_handle" title="orbit.devices.DeviceHandle.on_add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">on_add_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.remove_handle" title="orbit_framework.devices.DeviceManager.remove_handle"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.remove_handle()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_add_handle" title="orbit_framework.devices.DeviceHandle.on_add_handle"><tt class="xref py py-meth docutils literal"><span class="pre">on_add_handle()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.on_unbind_device">
-<tt class="descname">on_unbind_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.on_unbind_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.on_unbind_device">
+<tt class="descname">on_unbind_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.on_unbind_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn ein beliebiges Gerät nicht mehr verfügbar ist.</p>
-<p>Ruft die Methode <a class="reference internal" href="#orbit.devices.DeviceHandle.release_device" title="orbit.devices.DeviceHandle.release_device"><tt class="xref py py-meth docutils literal"><span class="pre">release_device()</span></tt></a> auf, wenn das
+<p>Ruft die Methode <a class="reference internal" href="#orbit_framework.devices.DeviceHandle.release_device" title="orbit_framework.devices.DeviceHandle.release_device"><tt class="xref py py-meth docutils literal"><span class="pre">release_device()</span></tt></a> auf, wenn das
 Gerät in dieser Geräteanforderung gebunden ist.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.release_device" title="orbit.devices.DeviceHandle.release_device"><tt class="xref py py-meth docutils literal"><span class="pre">release_device()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.release_device" title="orbit_framework.devices.DeviceHandle.release_device"><tt class="xref py py-meth docutils literal"><span class="pre">release_device()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.register_callback">
-<tt class="descname">register_callback</tt><big>(</big><em>event_code</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.register_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.register_callback">
+<tt class="descname">register_callback</tt><big>(</big><em>event_code</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.register_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Richtet ein Callback für ein Brick(let)-Ereignis ein.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -530,13 +536,13 @@ immer nur ein Callback registriert werden.
 Das Callback wird immer aufgerufen, sobald ein verfügbares Brick(let)
 dieser Geräteanforderung das beschriebene Ereignis auslöst.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.unregister_callback" title="orbit.devices.DeviceHandle.unregister_callback"><tt class="xref py py-meth docutils literal"><span class="pre">unregister_callback()</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.DeviceManager.add_device_callback" title="orbit.devices.DeviceManager.add_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.add_device_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.unregister_callback" title="orbit_framework.devices.DeviceHandle.unregister_callback"><tt class="xref py py-meth docutils literal"><span class="pre">unregister_callback()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.add_device_callback" title="orbit_framework.devices.DeviceManager.add_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.add_device_callback()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.release_device">
-<tt class="descname">release_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.release_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.release_device">
+<tt class="descname">release_device</tt><big>(</big><em>device</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.release_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn ein Gerät aus der Geräteanforderung 
 nicht mehr verfügbar ist.</p>
 <div class="admonition note">
@@ -546,12 +552,12 @@ Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.on_unbind_device" title="orbit.devices.DeviceHandle.on_unbind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_unbind_device()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.on_unbind_device" title="orbit_framework.devices.DeviceHandle.on_unbind_device"><tt class="xref py py-meth docutils literal"><span class="pre">on_unbind_device()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.devices.DeviceHandle.unregister_callback">
-<tt class="descname">unregister_callback</tt><big>(</big><em>event_code</em><big>)</big><a class="headerlink" href="#orbit.devices.DeviceHandle.unregister_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.DeviceHandle.unregister_callback">
+<tt class="descname">unregister_callback</tt><big>(</big><em>event_code</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.DeviceHandle.unregister_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Meldet ein Callback von einem Brick(let)-Ereignis ab.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -559,8 +565,8 @@ der Elternklasse aufrufen.</p>
 <dd>Der Code für das Brick(let)-Ereignis.</dd>
 </dl>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle.register_callback" title="orbit.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.DeviceManager.remove_device_callback" title="orbit.devices.DeviceManager.remove_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.remove_device_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle.register_callback" title="orbit_framework.devices.DeviceHandle.register_callback"><tt class="xref py py-meth docutils literal"><span class="pre">register_callback()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.DeviceManager.remove_device_callback" title="orbit_framework.devices.DeviceManager.remove_device_callback"><tt class="xref py py-meth docutils literal"><span class="pre">DeviceManager.remove_device_callback()</span></tt></a></p>
 </dd></dl>
 
 </dd></dl>
@@ -569,8 +575,8 @@ der Elternklasse aufrufen.</p>
 <div class="section" id="singledevicehandle">
 <h3>SingleDeviceHandle<a class="headerlink" href="#singledevicehandle" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.devices.SingleDeviceHandle">
-<em class="property">class </em><tt class="descclassname">orbit.devices.</tt><tt class="descname">SingleDeviceHandle</tt><big>(</big><em>name</em>, <em>device_name_or_id</em>, <em>bind_callback=None</em>, <em>unbind_callback=None</em>, <em>uid=None</em>, <em>auto_fix=False</em><big>)</big><a class="headerlink" href="#orbit.devices.SingleDeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.SingleDeviceHandle">
+<em class="property">class </em><tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">SingleDeviceHandle</tt><big>(</big><em>name</em>, <em>device_name_or_id</em>, <em>bind_callback=None</em>, <em>unbind_callback=None</em>, <em>uid=None</em>, <em>auto_fix=False</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.SingleDeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Eine Geräteanforderung für ein einzelnes Brick(let).</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -613,11 +619,11 @@ Parameter <tt class="docutils literal"><span class="pre">auto_fix</span></tt> ob
 Gerät mit dem passenden Typ akzeptiert wird oder ob solange gewartet
 wird, bis das vormals gebundene Brick(let) wieder verfügbar wird.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.MultiDeviceHandle" title="orbit.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">MultiDeviceHandle</span></tt></a></p>
 <dl class="attribute">
-<dt id="orbit.devices.SingleDeviceHandle.device">
-<tt class="descname">device</tt><a class="headerlink" href="#orbit.devices.SingleDeviceHandle.device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.SingleDeviceHandle.device">
+<tt class="descname">device</tt><a class="headerlink" href="#orbit_framework.devices.SingleDeviceHandle.device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Gibt das gebundene Brick(let) oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
 <p>Ein Brick(let) wird durch ein Objekt der entsprechenden
 TinkerForge-Geräteklasse 
@@ -631,8 +637,8 @@ repräsentiert.</p>
 <div class="section" id="multidevicehandle">
 <h3>MultiDeviceHandle<a class="headerlink" href="#multidevicehandle" title="Permalink zu dieser Überschrift">¶</a></h3>
 <dl class="class">
-<dt id="orbit.devices.MultiDeviceHandle">
-<em class="property">class </em><tt class="descclassname">orbit.devices.</tt><tt class="descname">MultiDeviceHandle</tt><big>(</big><em>name</em>, <em>device_name_or_id</em>, <em>bind_callback=None</em>, <em>unbind_callback=None</em><big>)</big><a class="headerlink" href="#orbit.devices.MultiDeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.MultiDeviceHandle">
+<em class="property">class </em><tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">MultiDeviceHandle</tt><big>(</big><em>name</em>, <em>device_name_or_id</em>, <em>bind_callback=None</em>, <em>unbind_callback=None</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.MultiDeviceHandle" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Eine Geräteanforderung für alle Brick(let)s eines Typs.</p>
 <p><strong>Parameter</strong></p>
 <dl class="docutils">
@@ -657,8 +663,8 @@ nicht mehr verfügbar ist.</dd>
 <p>Diese Variante einer Geräteanforderung akzeptiert alle Geräte des
 angegebenen Gerätetyps.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>,
-<a class="reference internal" href="#orbit.devices.SingleDeviceHandle" title="orbit.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">DeviceHandle</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">SingleDeviceHandle</span></tt></a></p>
 </dd></dl>
 
 </div>
@@ -666,34 +672,34 @@ angegebenen Gerätetyps.</p>
 <div class="section" id="funktionen">
 <h2>Funktionen<a class="headerlink" href="#funktionen" title="Permalink zu dieser Überschrift">¶</a></h2>
 <dl class="function">
-<dt id="orbit.devices.get_device_identifier">
-<tt class="descclassname">orbit.devices.</tt><tt class="descname">get_device_identifier</tt><big>(</big><em>name_or_id</em><big>)</big><a class="headerlink" href="#orbit.devices.get_device_identifier" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.get_device_identifier">
+<tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">get_device_identifier</tt><big>(</big><em>name_or_id</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.get_device_identifier" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Ermittelt die Geräte-ID für einen Gerätetyp.
 Es kann der Name des Gerätetyps oder die Geräte-ID übergeben werden.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="orbit.devices.device_identifier_from_name">
-<tt class="descclassname">orbit.devices.</tt><tt class="descname">device_identifier_from_name</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#orbit.devices.device_identifier_from_name" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.device_identifier_from_name">
+<tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">device_identifier_from_name</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.device_identifier_from_name" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Gibt die Geräte-ID für einen Namen zurück.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="orbit.devices.device_instance">
-<tt class="descclassname">orbit.devices.</tt><tt class="descname">device_instance</tt><big>(</big><em>device_identifier</em>, <em>uid</em>, <em>ipcon</em><big>)</big><a class="headerlink" href="#orbit.devices.device_instance" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.device_instance">
+<tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">device_instance</tt><big>(</big><em>device_identifier</em>, <em>uid</em>, <em>ipcon</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.device_instance" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Erzeugt eine TinkerForge-Binding-Instanz anhand 
 der Geräte-ID, der UID und der Verbindung.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="orbit.devices.device_name">
-<tt class="descclassname">orbit.devices.</tt><tt class="descname">device_name</tt><big>(</big><em>device_identifier</em><big>)</big><a class="headerlink" href="#orbit.devices.device_name" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.device_name">
+<tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">device_name</tt><big>(</big><em>device_identifier</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.device_name" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Gibt den Namen eines Gerätetyps anhand der Geräte-ID zurück.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="orbit.devices.known_device">
-<tt class="descclassname">orbit.devices.</tt><tt class="descname">known_device</tt><big>(</big><em>device_identifier</em><big>)</big><a class="headerlink" href="#orbit.devices.known_device" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.devices.known_device">
+<tt class="descclassname">orbit_framework.devices.</tt><tt class="descname">known_device</tt><big>(</big><em>device_identifier</em><big>)</big><a class="headerlink" href="#orbit_framework.devices.known_device" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Überprüft ob eine Geräte-ID bekannt ist.</p>
 </dd></dl>
 
@@ -720,7 +726,7 @@ der Geräte-ID, der UID und der Verbindung.</p>
     </p>
     <p>
         &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
 </footer>

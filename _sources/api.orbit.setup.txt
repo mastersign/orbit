@@ -1,10 +1,10 @@
-Modul orbit.setup
-#################
+Modul orbit_framework.setup
+###########################
 
-.. automodule:: orbit.setup
+.. automodule:: orbit_framework.setup
 
 Configuration
 -------------
 
-.. autoclass:: orbit.setup.Configuration
+.. autoclass:: orbit_framework.setup.Configuration
 	:members:

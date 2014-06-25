@@ -33,7 +33,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
-    <link rel="next" title="API-Referenz" href="reference.html" />
+    <link rel="next" title="Setup" href="setup.html" />
     <link rel="prev" title="ORBIT Online-Dokumentation" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -80,25 +80,30 @@
 <li class="toctree-l2"><a class="reference internal" href="#ubersicht">Übersicht</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.remoteswitch">Remote Switch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -134,7 +139,7 @@
     </a>
   </li>
   <li>
-    <a href="reference.html" title="Next Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">API-Referenz &raquo;</span>
+    <a href="setup.html" title="Next Chapter: Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Setup &raquo;</span>
     </a>
   </li>
               
@@ -181,10 +186,10 @@ Für einige Standardaufgaben bringt ORBIT <a class="reference internal" href="co
 </div>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.Core" title="orbit.Core"><tt class="xref py py-class docutils literal"><span class="pre">orbit.Core</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.Component" title="orbit.Component"><tt class="xref py py-class docutils literal"><span class="pre">orbit.Component</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.App" title="orbit.App"><tt class="xref py py-class docutils literal"><span class="pre">orbit.App</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit.Service" title="orbit.Service"><tt class="xref py py-class docutils literal"><span class="pre">orbit.Service</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Core</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Component</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.App</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Service</span></tt></a></div>
 </div>
 </div>
 <div class="section" id="geratemanager">
@@ -201,9 +206,9 @@ getrennt, wird den Komponenten das Brick(let) wieder entzogen.</p>
 </div>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.Component.add_device_handle" title="orbit.Component.add_device_handle"><tt class="xref py py-class docutils literal"><span class="pre">orbit.Component.add_device_handle</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit.devices.DeviceHandle" title="orbit.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">orbit.devices.DeviceHandle</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit.devices.DeviceManager" title="orbit.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">orbit.devices.DeviceManager</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Component.add_device_handle</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.devices.DeviceHandle</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.devices.DeviceManager</span></tt></a></div>
 </div>
 </div>
 <div class="section" id="nachrichtensystem">
@@ -212,15 +217,15 @@ getrennt, wird den Komponenten das Brick(let) wieder entzogen.</p>
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs
 von einander und sorgt für eine robuste Anwendung.</p>
 <div class="figure">
-<img alt="Nachrichtensystem" src="_images/blackboard-overview.svg" /><p class="caption">Eine Übersicht über das Nachrichtensystem</p>
+<img alt="Nachrichtensystem" src="_images/messagebus-overview.svg" /><p class="caption">Eine Übersicht über das Nachrichtensystem</p>
 </div>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.Component.add_listener" title="orbit.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit.Component.add_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit.Job.add_listener" title="orbit.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit.Job.add_listener()</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit.Component.send" title="orbit.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit.Component.send()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit.Job.send" title="orbit.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit.Job.send()</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.messaging.html#orbit.messaging.Blackboard" title="orbit.messaging.Blackboard"><tt class="xref py py-class docutils literal"><span class="pre">orbit.messaging.Blackboard</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.send()</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.send()</span></tt></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.MessageBus</span></tt></a></div>
 </div>
 </div>
 <div class="section" id="ubersicht">
@@ -257,7 +262,7 @@ wobei Basisklassen die die Implementierung erleichtern.</p>
     </p>
     <p>
         &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
 </footer>

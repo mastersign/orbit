@@ -12,64 +12,64 @@ Diese gliedern sich in die folgenden Bereiche:
 Common
 ======
 
-.. automodule:: orbit.components.common
+.. automodule:: orbit_framework.components.common
 
 EventCallbackComponent
 ----------------------
 
-.. autoclass:: orbit.components.common.EventCallbackComponent
+.. autoclass:: orbit_framework.components.common.EventCallbackComponent
 
 Timer
 =====
 
-.. automodule:: orbit.components.timer
+.. automodule:: orbit_framework.components.timer
 
 ActivityTimerComponent
 ----------------------
 
-.. autoclass:: orbit.components.timer.ActivityTimerComponent
+.. autoclass:: orbit_framework.components.timer.ActivityTimerComponent
 
 IntervalTimerComponent
 ----------------------
 
-.. autoclass:: orbit.components.timer.IntervalTimerComponent
+.. autoclass:: orbit_framework.components.timer.IntervalTimerComponent
 
 LCD
 ===
 
-.. automodule:: orbit.components.lcd
+.. automodule:: orbit_framework.components.lcd
 
 LCD20x4ButtonsComponent
 -----------------------
 
-.. autoclass:: orbit.components.lcd.LCD20x4ButtonsComponent
+.. autoclass:: orbit_framework.components.lcd.LCD20x4ButtonsComponent
 
 LCD20x4BacklightComponent
 -------------------------
 
-.. autoclass:: orbit.components.lcd.LCD20x4BacklightComponent
+.. autoclass:: orbit_framework.components.lcd.LCD20x4BacklightComponent
 
 LCD20x4WatchComponent
 ---------------------
 
-.. autoclass:: orbit.components.lcd.LCD20x4WatchComponent
+.. autoclass:: orbit_framework.components.lcd.LCD20x4WatchComponent
 
 LCD20x4MessageComponent
 -----------------------
 
-.. autoclass:: orbit.components.lcd.LCD20x4MessageComponent
+.. autoclass:: orbit_framework.components.lcd.LCD20x4MessageComponent
 
 LCD20x4MenuComponent
 --------------------
 
-.. autoclass:: orbit.components.lcd.LCD20x4MenuComponent
+.. autoclass:: orbit_framework.components.lcd.LCD20x4MenuComponent
 
 Remote Switch
 =============
 
-.. automodule:: orbit.components.remoteswitch
+.. automodule:: orbit_framework.components.remoteswitch
 
 RemoteSwitchComponent
 ---------------------
 
-.. autoclass:: orbit.components.remoteswitch.RemoteSwitchComponent
+.. autoclass:: orbit_framework.components.remoteswitch.RemoteSwitchComponent

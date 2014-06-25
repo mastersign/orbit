@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API-Referenz &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Setup &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
-    <link rel="next" title="Modul orbit_framework" href="api.orbit.html" />
-    <link rel="prev" title="Setup" href="setup.html" />
+    <link rel="next" title="API-Referenz" href="reference.html" />
+    <link rel="prev" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -80,12 +80,12 @@
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">API-Referenz</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
@@ -119,7 +119,15 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">API-Referenz</a></li>
+<li><a class="reference internal" href="#">Setup</a><ul>
+<li><a class="reference internal" href="#voraussetzungen">Voraussetzungen</a><ul>
+<li><a class="reference internal" href="#software">Software</a></li>
+<li><a class="reference internal" href="#hardware">Hardware</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -129,11 +137,11 @@
               
                 
   <li>
-    <a href="setup.html" title="Previous Chapter: Setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Setup</span>
+    <a href="architecture.html" title="Previous Chapter: Architektur einer ORBIT-Anwendung"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Architektur eine...</span>
     </a>
   </li>
   <li>
-    <a href="api.orbit.html" title="Next Chapter: Modul orbit_framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit_fram... &raquo;</span>
+    <a href="reference.html" title="Next Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">API-Referenz &raquo;</span>
     </a>
   </li>
               
@@ -161,18 +169,43 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="api-referenz">
-<h1>API-Referenz<a class="headerlink" href="#api-referenz" title="Permalink zu dieser Überschrift">¶</a></h1>
-<p>Die öffentliche ORBIT-API besteht aus den folgenden Modulen:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink zu dieser Überschrift">¶</a></h1>
+<div class="section" id="voraussetzungen">
+<h2>Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="software">
+<h3>Software<a class="headerlink" href="#software" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p>ORBIT unterstützt Python 2.6+ und Python 3.x.</p>
+<p>Für die Installation werden die <a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a> benötigt,
+die den Installationsbefehl <em>easy_install</em> zur Verfügung stellen,
+mit dem Python-Eggs installiert werden können.</p>
+<p>ORBIT setzt die TinkerForge-Python-Bindings voraus.
+Diese werden auf der Website von TinkerForge als Download zur Verfügung gestellt.
+Das im Download enthaltene Python-Egg <tt class="docutils literal"><span class="pre">tinkerforge.egg</span></tt> muss mit <em>easy_install</em>
+installiert werden.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/API_Bindings_Python.html">Dokumentation der Python-Bindings</a></li>
+<li><a class="reference external" href="http://download.tinkerforge.com/bindings/python/">Download-Archiv</a></li>
 </ul>
+</div>
+<div class="section" id="hardware">
+<h3>Hardware<a class="headerlink" href="#hardware" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p>Für die Verwendung von TinkerForge ist mindestens ein Master-Brick
+und ein Bricklet erforderlich.
+Wenn der Master-Brick per USB an den Computer (PC, Raspberry PI, o.a.)
+angeschlossen werden soll, muss der <a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/Brickd.html">Brick-Deamon</a> installiert sein.</p>
+<p>Die Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>ORBIT wird, wie die TinkerForge-Bindings, als Python-Egg installiert.
+Die Datei <tt class="docutils literal"><span class="pre">orbit_framework.egg</span></tt> kann als <a class="reference external" href="https://github.com/mastersign/orbit/releases">Release</a> heruntergeladen werden.</p>
+<p>Anschließend kann ORBIT mit <em>easy_install</em> installiert werden.
+Dazu wird <em>easy_install</em> wie folgt aufgerufen:</p>
+<blockquote>
+<div>&gt; easy_install orbit_framework.egg</div></blockquote>
+<p>Anschließend können die Beispiele ausgeführt werden.</p>
 </div>
 </div>
 
@@ -189,7 +222,7 @@
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/reference.txt"
+  <a href="_sources/setup.txt"
      rel="nofollow">Source</a>
 </div>
       

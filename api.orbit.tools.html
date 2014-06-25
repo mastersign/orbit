@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Modul orbit.tools &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Modul orbit_framework.tools &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -35,7 +35,7 @@
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
     <link rel="up" title="API-Referenz" href="reference.html" />
     <link rel="next" title="Integrierte Komponenten" href="components.html" />
-    <link rel="prev" title="Modul orbit.setup" href="api.orbit.setup.html" />
+    <link rel="prev" title="Modul orbit_framework.setup" href="api.orbit.setup.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -81,25 +81,30 @@
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit.devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit.index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit.messaging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit.setup</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework.tools</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.common">Common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.timer">Timer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.lcd">LCD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit.components.remoteswitch">Remote Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.common">Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.timer">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.lcd">LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.remoteswitch">Remote Switch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.apps">Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit.jobs.services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.apps">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.services">Services</a></li>
 </ul>
 </li>
 </ul>
@@ -115,7 +120,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Modul orbit.tools</a><ul>
+<li><a class="reference internal" href="#">Modul orbit_framework.tools</a><ul>
 <li><a class="reference internal" href="#multicastcallback">MulticastCallback</a></li>
 </ul>
 </li>
@@ -128,7 +133,7 @@
               
                 
   <li>
-    <a href="api.orbit.setup.html" title="Previous Chapter: Modul orbit.setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit.setu...</span>
+    <a href="api.orbit.setup.html" title="Previous Chapter: Modul orbit_framework.setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit_fram...</span>
     </a>
   </li>
   <li>
@@ -160,39 +165,39 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="module-orbit.tools">
-<span id="modul-orbit-tools"></span><h1>Modul orbit.tools<a class="headerlink" href="#module-orbit.tools" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <div class="section" id="module-orbit_framework.tools">
+<span id="modul-orbit-framework-tools"></span><h1>Modul orbit_framework.tools<a class="headerlink" href="#module-orbit_framework.tools" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>Diese Modul enthält unterstützende Klassen und Funktionen.</p>
 <p>Das Modul enthält die folgenden Klassen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit.tools.MulticastCallback" title="orbit.tools.MulticastCallback"><tt class="xref py py-class docutils literal"><span class="pre">MulticastCallback</span></tt></a></li>
+<li><a class="reference internal" href="#orbit_framework.tools.MulticastCallback" title="orbit_framework.tools.MulticastCallback"><tt class="xref py py-class docutils literal"><span class="pre">MulticastCallback</span></tt></a></li>
 </ul>
 <div class="section" id="multicastcallback">
 <h2>MulticastCallback<a class="headerlink" href="#multicastcallback" title="Permalink zu dieser Überschrift">¶</a></h2>
 <dl class="class">
-<dt id="orbit.tools.MulticastCallback">
-<em class="property">class </em><tt class="descclassname">orbit.tools.</tt><tt class="descname">MulticastCallback</tt><a class="headerlink" href="#orbit.tools.MulticastCallback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.tools.MulticastCallback">
+<em class="property">class </em><tt class="descclassname">orbit_framework.tools.</tt><tt class="descname">MulticastCallback</tt><a class="headerlink" href="#orbit_framework.tools.MulticastCallback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Diese Klasse bildet einen einfachen Mechanismus,
 um mehrere Callbacks mit identischer Signatur zu einem Callback zusammenzufassen.</p>
-<p>Mit <a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a> können Callbacks hinzugefügt werden.
-Mit <a class="reference internal" href="#orbit.tools.MulticastCallback.remove_callback" title="orbit.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a> können Callbacks wieder entfernt werden.</p>
+<p>Mit <a class="reference internal" href="#orbit_framework.tools.MulticastCallback.add_callback" title="orbit_framework.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a> können Callbacks hinzugefügt werden.
+Mit <a class="reference internal" href="#orbit_framework.tools.MulticastCallback.remove_callback" title="orbit_framework.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a> können Callbacks wieder entfernt werden.</p>
 <p>Die Klasse implementiert die <tt class="docutils literal"><span class="pre">__call__</span></tt>-Methode, daher können Instanzen 
 der Klasse selbst als Callback weitergegeben werden.
-Wird Klasse als Funktion aufgerufen, werden die mit <a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>
+Wird Klasse als Funktion aufgerufen, werden die mit <a class="reference internal" href="#orbit_framework.tools.MulticastCallback.add_callback" title="orbit_framework.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>
 registrierten Funktionen in der gleichen Reihenfolge aufgerufen, in der sie
 hinzugefügt wurden. Dabei werden alle Parameter unverändert weitergegeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit.tools.MulticastCallback.add_callback" title="orbit.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>,
-<a class="reference internal" href="#orbit.tools.MulticastCallback.remove_callback" title="orbit.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.tools.MulticastCallback.add_callback" title="orbit_framework.tools.MulticastCallback.add_callback"><tt class="xref py py-meth docutils literal"><span class="pre">add_callback()</span></tt></a>,
+<a class="reference internal" href="#orbit_framework.tools.MulticastCallback.remove_callback" title="orbit_framework.tools.MulticastCallback.remove_callback"><tt class="xref py py-meth docutils literal"><span class="pre">remove_callback()</span></tt></a></p>
 <dl class="method">
-<dt id="orbit.tools.MulticastCallback.add_callback">
-<tt class="descname">add_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit.tools.MulticastCallback.add_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.tools.MulticastCallback.add_callback">
+<tt class="descname">add_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.tools.MulticastCallback.add_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Fügt ein Callback hinzu.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="orbit.tools.MulticastCallback.remove_callback">
-<tt class="descname">remove_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit.tools.MulticastCallback.remove_callback" title="Permalink zu dieser Definition">¶</a></dt>
+<dt id="orbit_framework.tools.MulticastCallback.remove_callback">
+<tt class="descname">remove_callback</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.tools.MulticastCallback.remove_callback" title="Permalink zu dieser Definition">¶</a></dt>
 <dd><p>Entfernt ein Callback.</p>
 </dd></dl>
 
@@ -221,7 +226,7 @@ hinzugefügt wurden. Dabei werden alle Parameter unverändert weitergegeben.</p>
     </p>
     <p>
         &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.1.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
 </footer>
