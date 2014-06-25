@@ -58,7 +58,7 @@ class Configuration(object):
 	
 	@property
 	def connection_retry_time(self):
-		"""Die Zeitspanne in Sekunden nachdem eine fehlgeschlagene IP-Verbindung wieder aufgebaut werden soll."""
+		"""Die Zeitspanne in Sekunden nachdem eine fehlgeschlagene IP-Verbindung wieder aufgebaut werden soll. (*int*)"""
 		return self._connection_retry_time
 	@connection_retry_time.setter
 	def connection_retry_time(self, value):
