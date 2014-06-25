@@ -2,10 +2,17 @@
 
 set trg=%~dp0\..\..\orbit-gh-pages\
 
+rem check gh-pages working copy
 if not exist "%trg%" (
 	echo ..\orbit-gh-pages not found
 	goto :end
 )
+
+rem check git
+for %%x in (git.exe) do if not [%%~$PATH:x]==[] goto :ok_git
+echo git not on PATH
+goto :end
+:ok_git
 
 pushd "%~dp0"
 

@@ -2,9 +2,9 @@
 
 set pname=orbit_framework
 
-rem search for 7zip
+rem check 7zip
 for %%x in (7z.exe) do if not [%%~$PATH:x]==[] goto :ok_7z
-echo 7zip not on command line
+echo 7z not on PATH
 goto :end
 :ok_7z
 

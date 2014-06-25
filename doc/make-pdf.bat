@@ -1,4 +1,11 @@
+@echo off
 pushd %~dp0
+
+rem search for pdflatex
+for %%x in (pdflatex.exe) do if not [%%~$PATH:x]==[] goto :ok_pdflatex
+echo pdflatex not on PATH (install LaTeX distribution)
+goto :end
+:ok_pdflatex
 
 call convert-images.bat
 call make.bat latex
@@ -10,3 +17,5 @@ for /L %%i in (1,1,3) do (
 popd
 
 popd
+
+:end
