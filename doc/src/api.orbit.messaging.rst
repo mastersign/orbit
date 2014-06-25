@@ -1,28 +1,28 @@
-Modul orbit.messaging
-#####################
+Modul orbit_framework.messaging
+###############################
 
-.. automodule:: orbit.messaging
+.. automodule:: orbit_framework.messaging
 
 Blackboard
 ----------
 
-.. autoclass:: orbit.messaging.Blackboard
+.. autoclass:: orbit_framework.messaging.Blackboard
 	:members:
 
 Slot
 ----
 
-.. autoclass:: orbit.messaging.Slot
+.. autoclass:: orbit_framework.messaging.Slot
 	:members:
 
 Listener
 --------
 
-.. autoclass:: orbit.messaging.Listener
+.. autoclass:: orbit_framework.messaging.Listener
 	:members:
 
 MultiListener
 -------------
 
-.. autoclass:: orbit.messaging.MultiListener
+.. autoclass:: orbit_framework.messaging.MultiListener
 	:members:

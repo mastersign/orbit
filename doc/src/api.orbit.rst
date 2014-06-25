@@ -1,34 +1,34 @@
-Modul orbit
-###########
+Modul orbit_framework
+#####################
 
-.. automodule:: orbit
+.. automodule:: orbit_framework
 
 Core
 ----
 
-.. autoclass:: orbit.Core(config = Configuration())
+.. autoclass:: orbit_framework.Core(config = Configuration())
 	:members:
 
 Job
 ---
 
-.. autoclass:: orbit.Job
+.. autoclass:: orbit_framework.Job
 	:members:
 
 Service
 -------
 
-.. autoclass:: orbit.Service
+.. autoclass:: orbit_framework.Service
 	:members:
 
 App
 ---
 
-.. autoclass:: orbit.App
+.. autoclass:: orbit_framework.App
 	:members:
 
 Component
 ---------
 
-.. autoclass:: orbit.Component
+.. autoclass:: orbit_framework.Component
 	:members:
