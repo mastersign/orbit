@@ -30,6 +30,7 @@ Inhalt
 	:maxdepth: 2
 
 	architecture
+	setup
 	reference
 	components
 	jobs
