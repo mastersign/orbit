@@ -31,7 +31,7 @@ class EventCallbackComponent(Component):
 		slot, callback,
 		**nargs):
 		
-		super().__init__(name, **nargs)
+		super(EventCallbackComponent, self).__init__(name, **nargs)
 
 		self.callback = callback
 

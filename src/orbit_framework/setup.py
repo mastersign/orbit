@@ -20,7 +20,7 @@ Dieses Modul enthält die folgenden Klassen:
 
 import os, json
 
-class Configuration:
+class Configuration(object):
 	"""
 	Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT.
 	Jeder Parameter ist mit einem Standardwert vorbelegt und kann

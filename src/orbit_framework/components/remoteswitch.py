@@ -63,7 +63,7 @@ class RemoteSwitchComponent(Component):
 		group, socket, on_slot, off_slot, typ = 'A', switch_uid = None, 
 		**nargs):
 	
-		super().__init__(name, **nargs)
+		super(RemoteSwitchComponent, self).__init__(name, **nargs)
 
 		self._group = group
 		self._socket = socket

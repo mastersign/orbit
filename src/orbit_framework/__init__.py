@@ -51,7 +51,7 @@ def _trace(text, source):
 	print(datetime.now().strftime("[%Y-%m-%d %H-%M-%S] ") + ("%s: %s" % (source, text)))
 
 
-class Core:
+class Core(object):
 	"""
 	Diese Klasse repräsentiert den Kern einer ORBIT-Anwendung.
 
@@ -489,7 +489,7 @@ class Core:
 			self.activate(self._default_application)
 
 
-class Job:
+class Job(object):
 	"""
 	Dies ist die Basisklasse für Aufgaben in einer ORBIT-Anwendung.
 
@@ -916,7 +916,7 @@ class Service(Job):
 	"""
 
 	def __init__(self, name):
-		super().__init__(name, True)
+		super(Service, self).__init__(name, True)
 
 
 class App(Job):
@@ -956,7 +956,7 @@ class App(Job):
 
 	def __init__(self, name, in_history = False, 
 		activator = None, deactivator = None):
-		super().__init__(name, False)
+		super(App, self).__init__(name, False)
 		self._activators = MultiListener("%s Activator" % name, self._process_activator)
 		self._deactivators = MultiListener("%s Deactivator" % name, self._process_deactivator)
 		self._in_history = in_history
@@ -1064,7 +1064,7 @@ class App(Job):
 		:py:meth:`Core.install`,
 		:py:meth:`Job.on_install`
 		"""
-		super().on_install(core)
+		super(App, self).on_install(core)
 		self._activators.activate(self._core.message_bus)
 		self._deactivators.activate(self._core.message_bus)
 
@@ -1083,7 +1083,7 @@ class App(Job):
 		"""
 		self._deactivators.deactivate(self._core.message_bus)
 		self._activators.deactivate(self._core.message_bus)
-		super().on_uninstall()
+		super(App, self).on_uninstall()
 
 	def activate(self):
 		"""
@@ -1112,7 +1112,7 @@ class App(Job):
 		self.core.deactivate(self)
 
 
-class Component:
+class Component(object):
 	"""
 	Diese Klasse implementiert eine Komponente als Baustein für eine Aufgabe.
 
