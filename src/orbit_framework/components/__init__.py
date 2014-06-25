@@ -2,4 +2,4 @@
 
 # Module orbit_framework.components
 
-__all__ = ["common", "timer", "lcd", "remoteswitch"]
+__all__ = ['common', 'timer', 'lcd', 'remoteswitch']

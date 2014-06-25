@@ -2,4 +2,4 @@
 
 # Module orbit_framework.jobs
 
-__all__ = ["services", "apps"]
+__all__ = ['services', 'apps']

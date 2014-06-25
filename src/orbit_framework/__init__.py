@@ -38,8 +38,6 @@ Das Modul enthält die folgenden Klassen:
 - :py:class:`Component`
 """
 
-__all__ = ["setup", "tools", "index", "messaging", "devices"]
-
 from sys import stdout
 from datetime import datetime
 from traceback import print_exc
@@ -47,6 +45,8 @@ from threading import Thread, Lock, Event
 from . import setup
 from .devices import DeviceManager
 from .messaging import MessageBus, MultiListener
+
+__all__ = ['setup', 'tools', 'index', 'messaging', 'devices']
 
 def _trace(text, source):
 	stamp = datetime.now().strftime('[%Y-%m-%d %H-%M-%S]')
