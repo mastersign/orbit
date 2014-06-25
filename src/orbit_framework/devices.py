@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Package orbit.devices
+# Module orbit_framework.devices
 
 """
 Dieses Modul implementiert den Gerätemanager von ORBIT.
@@ -574,7 +574,7 @@ class DeviceHandle:
 	*Siehe auch:*
 	:py:class:`SingleDeviceHandle`,
 	:py:class:`MultiDeviceHandle`,
-	:py:meth:`orbit.Component.add_device_handle`,
+	:py:meth:`orbit_framework.Component.add_device_handle`,
 	:py:meth:`register_callback`
 	"""
 

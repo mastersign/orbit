@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # coding=utf-8
 
-# Package orbit.setup
+# Module orbit_framework.setup
 
 # Hint: This module is runnable as a script 
 #       to print the current configuration.
@@ -15,7 +15,7 @@ Dieses Modul implementiert die Setup-Steuerung für ORBIT.
 
 Dieses Modul enthält die folgenden Klassen:
 
-- :py:class:`orbit.setup.Configuration`
+- :py:class:`Configuration`
 """
 
 import os, json
