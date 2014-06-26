@@ -31,6 +31,7 @@ Inhalt
 
 	architecture
 	setup
+	examples
 	reference
 	components
 	jobs
