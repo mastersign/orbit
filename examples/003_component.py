@@ -47,7 +47,7 @@ class MyLcdComponent(Component):
 		self._counter = self._counter + 1
 		# Nachricht auf allen durch die Geräteanforderung
 		# gebundenen Display ausgeben
-		self.for_each_device(self.update_display)
+		self._lcd_handle.for_each_device(self.update_display)
 
 	def update_display(self, device):
 		device.clear_display()

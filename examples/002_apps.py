@@ -41,7 +41,7 @@ app1 = MessageApp('MsgApp1', ['Nachricht 1'])
 # Die App durch eine Nachricht aktivieren
 app1.add_activator(
 	Slot('ButtonService', None, 'button_pressed',
-		predicate = lambda (j, c, n, v): v[1] == 1))
+		predicate = lambda j, c, n, v: v[1] == 1))
 
 # Hinweis: In diesem Fall wird ein Prädikat verwendet, 
 #          um den Nachrichtenempfang vom Nachrichteninhalt
@@ -57,7 +57,7 @@ core.install(app1)
 app2 = MessageApp('MsgApp2', ['Nachricht 2'])
 app2.add_activator(
 	Slot('ButtonService', None, 'button_pressed',
-		predicate = lambda (j, c, n, v): v[1] == 2))
+		predicate = lambda j, c, n, v: v[1] == 2))
 core.install(app2)
 
 # Die erste App als Standard-App einrichten.
