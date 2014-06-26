@@ -9,9 +9,8 @@
 
 # Hinweis: Für dieses Beispiel muss es einen Brick-Daemon geben, 
 #          mit dem sich ORBIT verbinden kann und es muss ein 
-#          LCD-20x4-Display-Bricklet angeschlossen sein.
+#          LCD-20x4-Bricklet angeschlossen sein.
 
-# Importieren des Standardeingabe-Objektes für Benutzereingaben
 from sys import stdin
 
 # Importieren der notwendigen Klassen von ORBIT

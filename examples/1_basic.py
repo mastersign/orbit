@@ -11,7 +11,6 @@
 #          erforderlich, aber es muss einen Brick-Daemon geben, 
 #          mit dem sich ORBIT verbinden kann.
 
-# Importieren des Standardeingabe-Objektes für Benutzereingaben
 from sys import stdin
 
 # Importieren der notwendigen Klassen von ORBIT
