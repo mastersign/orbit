@@ -128,13 +128,10 @@ class LCD20x4BacklightComponent(Component):
 
 		self.lcd_handle = MultiDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, 
-			bind_callback = self.bind_lcd)
+			bind_callback = self.self.update_device)
 		self.add_device_handle(self.lcd_handle)
 
 		self.add_listener(slot.listener(self.process_message))
-
-	def bind_lcd(self, device):
-		self.update_device(device)
 
 	def process_message(self, job, component, name, value):
 		self.set_state(value)
@@ -205,10 +202,13 @@ class LCD20x4WatchComponent(Component):
 
 		if lcd_uid:
 			self.lcd_handle = SingleDeviceHandle(
-				'lcd', LCD204.DEVICE_IDENTIFIER, uid = lcd_uid)
+				'lcd', LCD204.DEVICE_IDENTIFIER, 
+				uid = lcd_uid,
+				bind_callback = self.show_time)
 		else:
 			self.lcd_handle = MultiDeviceHandle(
-				'lcds', LCD204.DEVICE_IDENTIFIER)
+				'lcds', LCD204.DEVICE_IDENTIFIER,
+				bind_callback = self.show_time)
 
 		self.add_device_handle(self.lcd_handle)
 
@@ -267,10 +267,13 @@ class LCD20x4MessageComponent(Component):
 
 		if lcd_uid:
 			self.lcd_handle = SingleDeviceHandle(
-				'lcd', LCD204.DEVICE_IDENTIFIER, uid = lcd_uid)
+				'lcd', LCD204.DEVICE_IDENTIFIER, 
+				uid = lcd_uid,
+				bind_callback = self.show_message)
 		else:
 			self.lcd_handle = MultiDeviceHandle(
-				'lcds', LCD204.DEVICE_IDENTIFIER)
+				'lcds', LCD204.DEVICE_IDENTIFIER,
+				bind_callback = self.show_message)
 		self.add_device_handle(self.lcd_handle)
 
 	def on_enabled(self):
@@ -346,15 +349,11 @@ class LCD20x4MenuComponent(Component):
 
 		self.lcd_handle = SingleDeviceHandle(
 			'lcd', LCD204.DEVICE_IDENTIFIER, uid = lcd_uid,
-			bind_callback = self.bind_lcd)
+			bind_callback = self.update_lcd)
 		self.add_device_handle(self.lcd_handle)
 
 		self.lcd_handle.register_callback(
 			LCD204.CALLBACK_BUTTON_PRESSED, self.button_pressed)
-
-	def bind_lcd(self, device):
-		if self.active:
-			self.update_lcd(device)
 
 	def on_enabled(self):
 		self.set_active(True)
