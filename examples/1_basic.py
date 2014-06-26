@@ -8,8 +8,8 @@
 # -------------------------------------------------------------------
 
 # Hinweis: Für dieses Beispiel ist keine TinkerForge-Hardware
-#          erforderlich, aber es muss einen lokal laufenden 
-#          Brick-Deamon geben, mit dem sich ORBIT verbinden kann.
+#          erforderlich, aber es muss einen Brick-Daemon geben, 
+#          mit dem sich ORBIT verbinden kann.
 
 # Importieren des Standardeingabe-Objektes für Benutzereingaben
 from sys import stdin
