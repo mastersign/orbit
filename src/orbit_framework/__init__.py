@@ -241,8 +241,11 @@ class Core(object):
 		self.trace("... started")
 
 		def activator(job):
-			if job.background or job == self.default_application:
+			if job.background:
 				job.active = True
+			elif job == self.default_application:
+				self.activate(job)
+
 		self.for_each_job(activator)
 
 	def stop(self):
