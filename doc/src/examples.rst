@@ -47,7 +47,7 @@ empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.
 LCD 20x4 Display
 
 **Beschreibung:**
-Eine ORBIT-Anwendung mit einem Dienst und zwei Apps.
+Eine ORBIT-Anwendung mit einem Dienst und zwei integrierten Apps.
 
 Das Beispiel demonstriert, wie ein Dienst Tasten-Ereignisse von
 den LCD-Tasten über das Nachrichtensystem versendet und zwei
@@ -59,3 +59,22 @@ Für die zwei Apps wird die integrierte App
 :py:class:`orbit_framework.jobs.apps.MessageApp` verwendet.
 Darüber hinaus wird gezeigt, wie eine App als Standard-App
 für die ORBIT-Anwendung eingerichtet wird.
+
+3. Component
+------------
+
+`Quellcode <https://github.com/mastersign/orbit/blob/master/examples/3_component.py>`_
+
+**Hardware:**
+LCD 20x4 Display
+
+**Beschreibung:**
+Eine ORBIT-Anwendung mit einer eigenenen Komponente.
+
+Das Beispiel demonstriert, wie eine eigene Komponente für 
+die Interaktion mit einem TinkerForge-Bricklet implementiert
+und verwendet wird.
+Die Komponente fängt die Tasten-Ereignisse eines LCD-Displays
+ab, zählt dabei einen Zähler hoch und gibt den aktuellen
+Zählerstand auf dem Display aus.
+Zusätzlich wird gezeigt, wie eine eigene App-Klasse implementiert wird.
