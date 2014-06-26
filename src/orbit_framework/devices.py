@@ -223,21 +223,16 @@ class DeviceManager(object):
 				try:
 					self._conn.connect(host, port)
 					connected = True
-				except TimeoutError:
-					self.trace("... timeout, waiting %d sec, retry ..." % retry_time)
-					try:
-						time.sleep(retry_time)
-					except KeyboardInterrupt:
-						break
-				except ConnectionRefusedError:
-					self.trace("... connection refused, waiting %d, retry ..." % retry_time)
-					try:
-						time.sleep(retry_time)
-					except KeyboardInterrupt:
-						break
 				except KeyboardInterrupt:
 					connected = False
 					break
+				except:
+					connected = False
+					self.trace("... connection failed, waiting %d, retry ..." % retry_time)
+					try:
+						time.sleep(retry_time)
+					except KeyboardInterrupt:
+						break
 			if connected:
 				self.trace("... connected")
 			return connected
