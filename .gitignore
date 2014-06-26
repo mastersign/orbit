@@ -5,3 +5,6 @@ __pycache__
 /doc/src/*.pdf
 /doc/src/figures/*.png
 /doc/src/*.png
+/src/*.egg-info
+/src/build
+/src/dist
