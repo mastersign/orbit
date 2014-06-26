@@ -33,7 +33,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
-    <link rel="next" title="API-Referenz" href="reference.html" />
+    <link rel="next" title="Beispiele" href="examples.html" />
     <link rel="prev" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -83,6 +83,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#voraussetzungen">Voraussetzungen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Beispiele</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#grundlagen">Grundlagen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
@@ -141,7 +145,7 @@
     </a>
   </li>
   <li>
-    <a href="reference.html" title="Next Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">API-Referenz &raquo;</span>
+    <a href="examples.html" title="Next Chapter: Beispiele"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Beispiele &raquo;</span>
     </a>
   </li>
               
@@ -194,7 +198,7 @@ installiert werden.</p>
 und ein Bricklet erforderlich.
 Wenn der Master-Brick per USB an den Computer (PC, Raspberry PI, o.a.)
 angeschlossen werden soll, muss der <a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/Brickd.html">Brick-Deamon</a> installiert sein.</p>
-<p>Die Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.</p>
+<p>Einige der Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.</p>
 </div>
 </div>
 <div class="section" id="installation">
@@ -203,9 +207,10 @@ angeschlossen werden soll, muss der <a class="reference external" href="http://w
 Die Datei <tt class="docutils literal"><span class="pre">orbit_framework.egg</span></tt> kann als <a class="reference external" href="https://github.com/mastersign/orbit/releases">Release</a> heruntergeladen werden.</p>
 <p>Anschließend kann ORBIT mit <em>easy_install</em> installiert werden.
 Dazu wird <em>easy_install</em> wie folgt aufgerufen:</p>
-<blockquote>
-<div>&gt; easy_install orbit_framework.egg</div></blockquote>
-<p>Anschließend können die Beispiele ausgeführt werden.</p>
+<div class="highlight-python"><pre>&gt; easy_install orbit_framework.egg</pre>
+</div>
+<p>Unter Umständen muss der Befehl mit Administrator- bzw. Root-Rechten (z.B. mit <tt class="docutils literal"><span class="pre">sudo</span></tt>) aufgerufen werden.</p>
+<p>Nun ist ORBIT installiert und es können die <a class="reference internal" href="examples.html"><em>Beispiele</em></a> ausgeführt werden.</p>
 </div>
 </div>
 

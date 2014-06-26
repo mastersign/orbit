@@ -86,6 +86,10 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Beispiele</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#grundlagen">Grundlagen</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
@@ -254,7 +258,7 @@ installiert ist, wird eine <tt class="xref py py-exc docutils literal"><span cla
 <dl class="method">
 <dt id="orbit_framework.Core.add_stopper">
 <tt class="descname">add_stopper</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.add_stopper" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt> hinzu, der das Stoppen der ORBIT-Anwendung
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a> hinzu, der das Stoppen der ORBIT-Anwendung
 veranlassen soll.</p>
 <p><em>Siehe auch:</em>
 <a class="reference internal" href="#orbit_framework.Core.remove_stopper" title="orbit_framework.Core.remove_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">remove_stopper()</span></tt></a></p>
@@ -376,7 +380,7 @@ Der Schlüssel ist der Name des Jobs und der Wert ist der Job selbst.</p>
 <dl class="method">
 <dt id="orbit_framework.Core.remove_stopper">
 <tt class="descname">remove_stopper</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.remove_stopper" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt>, der das Stoppen der ORBIT-Anwendung
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a>, der das Stoppen der ORBIT-Anwendung
 veranlassen sollte.</p>
 <p><em>Siehe auch:</em>
 <a class="reference internal" href="#orbit_framework.Core.add_stopper" title="orbit_framework.Core.add_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">add_stopper()</span></tt></a></p>
@@ -811,11 +815,11 @@ Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span><
 vermerkt werden soll, sonst <tt class="docutils literal"><span class="pre">False</span></tt>.</dd>
 <dt><tt class="docutils literal"><span class="pre">activator</span></tt> (<em>optional</em>)</dt>
 <dd>Slots für die Aktivierung der App.
-Ein einzelner <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
+Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
 (<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><tt class="xref py py-meth docutils literal"><span class="pre">add_activator()</span></tt></a>)</dd>
 <dt><tt class="docutils literal"><span class="pre">deactivator</span></tt> (<em>optional</em>)</dt>
 <dd>Slots für die Deaktivierung der App.
-Ein einzelner <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
+Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
 (<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">add_deactivator()</span></tt></a>)</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
@@ -838,7 +842,7 @@ abgeleitet werden.</p>
 <dl class="method">
 <dt id="orbit_framework.App.add_activator">
 <tt class="descname">add_activator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.add_activator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt> für die Aktivierung der App hinzu.</p>
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a> für die Aktivierung der App hinzu.</p>
 <p>Sobald eine Nachricht über das Nachrichtensystem gesendet
 wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
 wird die App aktiviert.</p>
@@ -850,7 +854,7 @@ wird die App aktiviert.</p>
 <dl class="method">
 <dt id="orbit_framework.App.add_deactivator">
 <tt class="descname">add_deactivator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.add_deactivator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt> für die Deaktivierung der App hinzu.</p>
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a> für die Deaktivierung der App hinzu.</p>
 <p>Sobald eine Nachricht über das Nachrichtensystem gesendet
 wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
 wird die App deaktiviert.</p>
@@ -911,7 +915,7 @@ der Elternklasse aufrufen.</p>
 <dl class="method">
 <dt id="orbit_framework.App.remove_activator">
 <tt class="descname">remove_activator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.remove_activator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt> für die Aktivierung der App.</p>
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a> für die Aktivierung der App.</p>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Es muss die selbe Referenz übergeben werden, wie an
@@ -924,7 +928,7 @@ der Elternklasse aufrufen.</p>
 <dl class="method">
 <dt id="orbit_framework.App.remove_deactivator">
 <tt class="descname">remove_deactivator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.remove_deactivator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt> für die Deaktivierung der App.</p>
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.Slot</span></tt></a> für die Deaktivierung der App.</p>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Es muss die selbe Referenz übergeben werden, wie an

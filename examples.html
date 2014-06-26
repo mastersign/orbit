@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>ORBIT Online-Dokumentation &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Beispiele &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -32,8 +32,9 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="#" />
-    <link rel="next" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
+    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="next" title="API-Referenz" href="reference.html" />
+    <link rel="prev" title="Setup" href="setup.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -51,7 +52,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           ORBIT</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
       </div>
@@ -68,10 +69,10 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="#">Site <b class="caret"></b></a>
+     href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
@@ -84,8 +85,8 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Beispiele</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#grundlagen">Grundlagen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Beispiele</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#grundlagen">Grundlagen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
@@ -122,9 +123,13 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">ORBIT Online-Dokumentation</a><ul>
-<li><a class="reference internal" href="#inhalt">Inhalt</a></li>
-<li><a class="reference internal" href="#schnellzugriff">Schnellzugriff</a></li>
+<li><a class="reference internal" href="#">Beispiele</a><ul>
+<li><a class="reference internal" href="#grundlagen">Grundlagen</a><ul>
+<li><a class="reference internal" href="#basic">1. Basic</a></li>
+<li><a class="reference internal" href="#apps">2. Apps</a></li>
+<li><a class="reference internal" href="#component">3. Component</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -136,7 +141,11 @@
               
                 
   <li>
-    <a href="architecture.html" title="Next Chapter: Architektur einer ORBIT-Anwendung"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Architektur eine... &raquo;</span>
+    <a href="setup.html" title="Previous Chapter: Setup"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Setup</span>
+    </a>
+  </li>
+  <li>
+    <a href="reference.html" title="Next Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">API-Referenz &raquo;</span>
     </a>
   </li>
               
@@ -164,73 +173,71 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="orbit-online-dokumentation">
-<h1>ORBIT Online-Dokumentation<a class="headerlink" href="#orbit-online-dokumentation" title="Permalink zu dieser Überschrift">¶</a></h1>
-<img src="_images/logo.svg" /><p><strong>ORBIT ist ein Python-Anwendungsrahmen für TinkerForge-Anwendungen</strong></p>
-<p>Es ermöglicht dialogbasierte Systeme durch ein einfaches Konzept von Apps und Services. Es unterstützt eine robuste Anwendungsarchitektur durch
-wiederverwendbare Komponenten und die Entkopplung von Anwendungsteilen mit Hilfe eines Nachrichtensystem. Die Verwaltung der Verbindung zu TinkerForge-Bricks und -Bricklets übernimmt ein Gerätemanager, dadurch wird das Entwickeln von Anwendungen, die mit Verbindungsabbrüchen umgehen müssen,
-stark vereinfacht.</p>
-<p>Version: 0.1.0 alpha</p>
-<p>Erstellt am: 26.06.2014</p>
-<p>Dieses Projekt wird nicht von der <a class="reference external" href="http://www.tinkerforge.com/de/">TinkerForge GmbH</a> entwickelt,
-sondern ist ein unabhängiges Projekt von <a class="reference external" href="http://www.mastersign.de/">Tobias Kiertscher</a>.</p>
-<p>ORBIT wird unter der <a class="reference external" href="http://opensource.org/licenses/LGPL-3.0">LGPL-3.0</a> zur Verfügung gestellt.</p>
-<div class="line-block">
-<div class="line">Die Quelltexte gibt es hier: <a class="reference external" href="https://github.com/mastersign/orbit/">https://github.com/mastersign/orbit/</a></div>
-<div class="line">Fragen und Anregungen bitte an: <a class="reference external" href="mailto:dev&#37;&#52;&#48;mastersign&#46;de">dev<span>&#64;</span>mastersign<span>&#46;</span>de</a></div>
+  <div class="section" id="beispiele">
+<h1>Beispiele<a class="headerlink" href="#beispiele" title="Permalink zu dieser Überschrift">¶</a></h1>
+<p>Die Python-Quelltexte der Beispiele befinden sich im Verzeichnis <tt class="docutils literal"><span class="pre">examples</span></tt>.
+Für die Ausführung der Beispiele muss ORBIT als Python-Package installiert sein (Siehe <a class="reference internal" href="setup.html"><em>Setup</em></a>),
+Und es muss ein Brick-Deamon laufen.
+Mit der Standardkonfiguration versucht ORBIT
+den Brick-Deamon unter <tt class="docutils literal"><span class="pre">localhost:4223</span></tt> zu erreichen.</p>
+<p>Einige Beispiele setzen ein LCD-20x4-Bricklet und einige
+auch ein Motion-Detector-Bricklet voraus.
+Die Hardware-Voraussetzungen sind für jedes Beispiel
+extra angegeben.</p>
+<div class="section" id="grundlagen">
+<h2>Grundlagen<a class="headerlink" href="#grundlagen" title="Permalink zu dieser Überschrift">¶</a></h2>
+<div class="section" id="basic">
+<h3>1. Basic<a class="headerlink" href="#basic" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/1_basic.py">Quellcode Beispiel 1</a></p>
+<p><strong>Hardware:</strong>
+keine</p>
+<p><strong>Beschreibung:</strong>
+Grundaufbau einer ORBIT-Anwendung mit einem Dienst.</p>
+<p>Das Beispiel demonstriert die Einrichtung, das Starten und Stoppen des Anwendungskerns.
+Darüber hinaus zeigt es, wie mit den beiden integrierten Komponenten
+<a class="reference internal" href="components.html#orbit_framework.components.common.EventCallbackComponent" title="orbit_framework.components.common.EventCallbackComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.components.common.EventCallbackComponent</span></tt></a>
+und <a class="reference internal" href="components.html#orbit_framework.components.timer.IntervalTimerComponent" title="orbit_framework.components.timer.IntervalTimerComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.components.timer.IntervalTimerComponent</span></tt></a>
+in regelmäßigen Abständen eine Funktion aufgerufen werden kann.
+Die beiden Komponenten werden in einem Dienst zusammengefasst,
+damit sie zur gesamten Laufzeit der Anwendung aktiv sind.
+Die Timer-Komponente sendet in regelmäßigen Abständen eine Nachricht
+über das ORBIT-Nachrichtensystem.
+Die Callback-Komponente wird so eingerichtet, dass sie die Timer-Nachrichten
+empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.</p>
 </div>
-<p>Diese Dokumentation ist auch als <a class="reference external" href="orbit.pdf">PDF-Version</a> verfügbar.</p>
-<div class="section" id="inhalt">
-<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink zu dieser Überschrift">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#jobs-und-komponenten">Jobs und Komponenten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#geratemanager">Gerätemanager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#nachrichtensystem">Nachrichtensystem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#ubersicht">Übersicht</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#voraussetzungen">Voraussetzungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Beispiele</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#grundlagen">Grundlagen</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="components.html">Integrierte Komponenten</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.common">Common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.timer">Timer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.lcd">LCD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#module-orbit_framework.components.remoteswitch">Remote Switch</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="jobs.html">Integrierte Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.apps">Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jobs.html#module-orbit_framework.jobs.services">Services</a></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="apps">
+<h3>2. Apps<a class="headerlink" href="#apps" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/2_apps.py">Quellcode Beispiel 2</a></p>
+<p><strong>Hardware:</strong>
+LCD 20x4 Display</p>
+<p><strong>Beschreibung:</strong>
+Eine ORBIT-Anwendung mit einem Dienst und zwei integrierten Apps.</p>
+<p>Das Beispiel demonstriert, wie ein Dienst Tasten-Ereignisse von
+den LCD-Tasten über das Nachrichtensystem versendet und zwei
+Apps abhängig von diesen Nachrichten aktiviert werden.
+Dabei kommt in dem Dienst die integrierte Komponente
+<a class="reference internal" href="components.html#orbit_framework.components.lcd.LCD20x4ButtonsComponent" title="orbit_framework.components.lcd.LCD20x4ButtonsComponent"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.components.lcd.LCD20x4ButtonsComponent</span></tt></a>
+zum Einsatz.
+Für die zwei Apps wird die integrierte App
+<a class="reference internal" href="jobs.html#orbit_framework.jobs.apps.MessageApp" title="orbit_framework.jobs.apps.MessageApp"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.jobs.apps.MessageApp</span></tt></a> verwendet.
+Darüber hinaus wird gezeigt, wie eine App als Standard-App
+für die ORBIT-Anwendung eingerichtet wird.</p>
 </div>
+<div class="section" id="component">
+<h3>3. Component<a class="headerlink" href="#component" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/3_component.py">Quellcode Beispiel 3</a></p>
+<p><strong>Hardware:</strong>
+LCD 20x4 Display</p>
+<p><strong>Beschreibung:</strong>
+Eine ORBIT-Anwendung mit einer eigenenen Komponente.</p>
+<p>Das Beispiel demonstriert, wie eine eigene Komponente für
+die Interaktion mit einem TinkerForge-Bricklet implementiert
+und verwendet wird.
+Die Komponente fängt die Tasten-Ereignisse eines LCD-Displays
+ab, zählt dabei einen Zähler hoch und gibt den aktuellen
+Zählerstand auf dem Display aus.
+Zusätzlich wird gezeigt, wie eine eigene App-Klasse implementiert wird.</p>
 </div>
-<div class="section" id="schnellzugriff">
-<h2>Schnellzugriff<a class="headerlink" href="#schnellzugriff" title="Permalink zu dieser Überschrift">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Stichwortverzeichnis</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Modulindex</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Suche</em></a></li>
-</ul>
 </div>
 </div>
 
@@ -247,7 +254,7 @@ sondern ist ein unabhängiges Projekt von <a class="reference external" href="ht
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/index.txt"
+  <a href="_sources/examples.txt"
      rel="nofollow">Source</a>
 </div>
       

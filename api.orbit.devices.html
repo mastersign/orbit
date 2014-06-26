@@ -86,6 +86,10 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html#installation">Installation</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Beispiele</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#grundlagen">Grundlagen</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework.devices</a></li>
@@ -592,21 +596,25 @@ Wird eine Zahl übergeben, wird sie als Typen-ID interpretiert,
 z.B. <tt class="docutils literal"><span class="pre">tinkerforge.bricklet_lcd_20x4.BrickletLCD20x4.DEVICE_IDENTIFIER</span></tt>.</dd>
 <dt><tt class="docutils literal"><span class="pre">bind_callback</span></tt> (<em>optional</em>)</dt>
 <dd>Ein Callback das aufgerufen wird, sobald ein Gerät an die
-Geräteanforderung gebunden wird.</dd>
+Geräteanforderung gebunden wird.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
 <dt><tt class="docutils literal"><span class="pre">unbind_callback</span></tt> (<em>optional</em>)</dt>
 <dd>Ein Callback das aufgerufen wird, sobald ein gebundenes Gerät
-nicht mehr verfügbar ist.</dd>
+nicht mehr verfügbar ist.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
 <dt><tt class="docutils literal"><span class="pre">uid</span></tt> (<em>optional</em>)</dt>
 <dd>Die UID eines Brick(let)s. Wenn eine UID angegeben wird,
 akzeptiert die Geräteanforderung nur genau dieses Brick(let).
 Wenn keine UID angegeben wird, wird das erste Gerät mit dem
-angegebenen Gerätetyp akzeptiert.</dd>
+angegebenen Gerätetyp akzeptiert.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
 <dt><tt class="docutils literal"><span class="pre">auto_fix</span></tt> (<em>optional</em>)</dt>
 <dd><p class="first">Gibt an, ob nach der Bindung zwischen einem Gerät und der Geräteanforderung
 andere Geräte gebunden werden dürfen.</p>
 <p class="last">Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt>, wenn nach dem ersten gebundenen Gerät
 andere Geräte gebunden werden dürfen, und <tt class="docutils literal"><span class="pre">False</span></tt>,
-wenn nach einer Bindung nur noch dieses Gerät gebunden werden darf.</p>
+wenn nach einer Bindung nur noch dieses Gerät gebunden werden darf.
+Der Standardwert ist <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
 </dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
