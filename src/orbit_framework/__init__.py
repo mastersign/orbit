@@ -289,7 +289,7 @@ class Core(object):
 
 	def add_stopper(self, slot):
 		"""
-		Fügt einen :py:class:`Slot` hinzu, der das Stoppen der ORBIT-Anwendung
+		Fügt einen :py:class:`orbit_framework.messaging.Slot` hinzu, der das Stoppen der ORBIT-Anwendung
 		veranlassen soll.
 
 		*Siehe auch:*
@@ -299,7 +299,7 @@ class Core(object):
 
 	def remove_stopper(self, slot):
 		"""
-		Entfernt einen :py:class:`Slot`, der das Stoppen der ORBIT-Anwendung
+		Entfernt einen :py:class:`orbit_framework.messaging.Slot`, der das Stoppen der ORBIT-Anwendung
 		veranlassen sollte.
 
 		*Siehe auch:*
@@ -955,11 +955,11 @@ class App(Job):
 		vermerkt werden soll, sonst ``False``.
 	``activator`` (*optional*)
 		Slots für die Aktivierung der App.
-		Ein einzelner :py:class:`Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		Ein einzelner :py:class:`orbit_framework.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
 		(*Siehe auch:* :py:meth:`add_activator`)
 	``deactivator`` (*optional*)
 		Slots für die Deaktivierung der App.
-		Ein einzelner :py:class:`Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		Ein einzelner :py:class:`orbit_framework.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
 		(*Siehe auch:* :py:meth:`add_deactivator`)
 	
 	**Beschreibung**
@@ -1020,7 +1020,7 @@ class App(Job):
 
 	def add_activator(self, slot):
 		"""
-		Fügt einen :py:class:`Slot` für die Aktivierung der App hinzu.
+		Fügt einen :py:class:`orbit_framework.messaging.Slot` für die Aktivierung der App hinzu.
 
 		Sobald eine Nachricht über das Nachrichtensystem gesendet
 		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
@@ -1034,7 +1034,7 @@ class App(Job):
 
 	def remove_activator(self, slot):
 		"""
-		Entfernt einen :py:class:`Slot` für die Aktivierung der App.
+		Entfernt einen :py:class:`orbit_framework.messaging.Slot` für die Aktivierung der App.
 
 		.. note::
 			Es muss die selbe Referenz übergeben werden, wie an
@@ -1047,7 +1047,7 @@ class App(Job):
 
 	def add_deactivator(self, slot):
 		"""
-		Fügt einen :py:class:`Slot` für die Deaktivierung der App hinzu.
+		Fügt einen :py:class:`orbit_framework.messaging.Slot` für die Deaktivierung der App hinzu.
 
 		Sobald eine Nachricht über das Nachrichtensystem gesendet
 		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
@@ -1061,7 +1061,7 @@ class App(Job):
 
 	def remove_deactivator(self, slot):
 		"""
-		Entfernt einen :py:class:`Slot` für die Deaktivierung der App.
+		Entfernt einen :py:class:`orbit_framework.messaging.Slot` für die Deaktivierung der App.
 
 		.. note::
 			Es muss die selbe Referenz übergeben werden, wie an
