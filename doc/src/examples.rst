@@ -37,3 +37,25 @@ Die Timer-Komponente sendet in regelmäßigen Abständen eine Nachricht
 über das ORBIT-Nachrichtensystem. 
 Die Callback-Komponente wird so eingerichtet, dass sie die Timer-Nachrichten
 empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.
+
+2. Apps
+-------
+
+`Quellcode <https://github.com/mastersign/orbit/blob/master/examples/2_apps.py>`_
+
+**Hardware:**
+LCD 20x4 Display
+
+**Beschreibung:**
+Eine ORBIT-Anwendung mit einem Dienst und zwei Apps.
+
+Das Beispiel demonstriert, wie ein Dienst Tasten-Ereignisse von
+den LCD-Tasten über das Nachrichtensystem versendet und zwei
+Apps abhängig von diesen Nachrichten aktiviert werden.
+Dabei kommt in dem Dienst die integrierte Komponente 
+:py:class:`orbit_framework.components.lcd.LCD20x4ButtonsComponent` 
+zum Einsatz. 
+Für die zwei Apps wird die integrierte App
+:py:class:`orbit_framework.jobs.apps.MessageApp` verwendet.
+Darüber hinaus wird gezeigt, wie eine App als Standard-App
+für die ORBIT-Anwendung eingerichtet wird.
