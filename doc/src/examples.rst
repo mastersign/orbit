@@ -20,4 +20,20 @@ Grundlagen
 
 `Quellcode <https://github.com/mastersign/orbit/blob/master/examples/1_basic.py>`_
 
+**Hardware:**
+keine
+
+**Beschreibung:**
 Grundaufbau einer ORBIT-Anwendung mit einem Dienst.
+
+Das Beispiel demonstriert die Einrichtung, das Starten und Stoppen des Anwendungskerns. 
+Darüber hinaus zeigt es, wie mit den beiden integrierten Komponenten 
+:py:class:`orbit_framework.components.common.EventCallbackComponent`
+und :py:class:`orbit_framework.components.timer.IntervalTimerComponent`
+in regelmäßigen Abständen eine Funktion aufgerufen werden kann.
+Die beiden Komponenten werden in einem Dienst zusammengefasst,
+damit sie zur gesamten Laufzeit der Anwendung aktiv sind.
+Die Timer-Komponente sendet in regelmäßigen Abständen eine Nachricht
+über das ORBIT-Nachrichtensystem. 
+Die Callback-Komponente wird so eingerichtet, dass sie die Timer-Nachrichten
+empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.
