@@ -6,11 +6,18 @@ echo Inkscape not on PATH
 goto :end
 :ok_inkscape
 
+rem check git
+for %%x in (git.exe) do if not [%%~$PATH:x]==[] goto :ok_git
+echo git not on PATH
+goto :end
+:ok_git
+
 pushd %~dp0
 
 echo | set /p dummy=Converting images ... 
 
 cd src
+git clean -f -X > nul
 for %%F in (*.svg) do (
 	call :build %%F "%%~dpnF"
 )
