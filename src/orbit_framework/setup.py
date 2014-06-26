@@ -20,8 +20,8 @@
 
 # Module orbit_framework.setup
 
-# Hint: Dieses Modul kann als Skript ausgeführt werden,
-#       um die aktuelle ORBIT-Konfiguration anzuzeigen.
+# Hinweis: Dieses Modul kann als Skript ausgeführt werden,
+#          um die aktuelle ORBIT-Konfiguration anzuzeigen.
 
 """
 Dieses Modul implementiert die Setup-Steuerung für ORBIT.

@@ -841,14 +841,17 @@ class SingleDeviceHandle(DeviceHandle):
 	``bind_callback`` (*optional*)
 		Ein Callback das aufgerufen wird, sobald ein Gerät an die
 		Geräteanforderung gebunden wird.
+		Der Standardwert ist ``None``.
 	``unbind_callback`` (*optional*)
 		Ein Callback das aufgerufen wird, sobald ein gebundenes Gerät
 		nicht mehr verfügbar ist.
+		Der Standardwert ist ``None``.
 	``uid`` (*optional*)
 		Die UID eines Brick(let)s. Wenn eine UID angegeben wird,
 		akzeptiert die Geräteanforderung nur genau dieses Brick(let).
 		Wenn keine UID angegeben wird, wird das erste Gerät mit dem
 		angegebenen Gerätetyp akzeptiert.
+		Der Standardwert ist ``None``.
 	``auto_fix`` (*optional*)
 		Gibt an, ob nach der Bindung zwischen einem Gerät und der Geräteanforderung
 		andere Geräte gebunden werden dürfen.
@@ -856,6 +859,7 @@ class SingleDeviceHandle(DeviceHandle):
 		Mögliche Werte sind ``True``, wenn nach dem ersten gebundenen Gerät
 		andere Geräte gebunden werden dürfen, und ``False``,
 		wenn nach einer Bindung nur noch dieses Gerät gebunden werden darf.
+		Der Standardwert ist ``False``.
 
 	**Beschreibung**
 

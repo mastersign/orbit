@@ -29,7 +29,7 @@ und ein Bricklet erforderlich.
 Wenn der Master-Brick per USB an den Computer (PC, Raspberry PI, o.a.)
 angeschlossen werden soll, muss der `Brick-Deamon`_ installiert sein.
 
-Die Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.
+Einige der Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.
 
 Installation
 ============
@@ -39,10 +39,13 @@ Die Datei ``orbit_framework.egg`` kann als Release_ heruntergeladen werden.
 
 Anschließend kann ORBIT mit *easy_install* installiert werden.
 Dazu wird *easy_install* wie folgt aufgerufen:
+::
 
 	> easy_install orbit_framework.egg
 
-Anschließend können die Beispiele ausgeführt werden.
+Unter Umständen muss der Befehl mit Administrator- bzw. Root-Rechten (z.B. mit ``sudo``) aufgerufen werden.
+
+Nun ist ORBIT installiert und es können die :doc:`Beispiele <examples>` ausgeführt werden.
 
 .. _setuptools: https://pypi.python.org/pypi/setuptools
 .. _`Dokumentation der Python-Bindings`: http://www.tinkerforge.com/de/doc/Software/API_Bindings_Python.html
