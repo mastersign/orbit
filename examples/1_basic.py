@@ -60,7 +60,7 @@ core.install(service)
 core.start()
 
 # Auf eine Benutzereingabe warten
-print("\nENTER drücken zum Beenden.\n")
+print(u"\nZum Beenden ENTER drücken.\n")
 stdin.readline()
 
 # Stoppen der Anwendung 
