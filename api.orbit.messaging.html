@@ -290,8 +290,8 @@ im Empfangsmuster angeben.</p>
 <a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Job.listen()</span></tt>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Component.listen()</span></tt></p>
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -314,8 +314,8 @@ im Empfangsmuster angeben.</p>
 <a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Job.listen()</span></tt>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Component.listen()</span></tt></p>
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -338,8 +338,8 @@ im Empfangsmuster angeben.</p>
 <a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Job.listen()</span></tt>,
-<tt class="xref py py-meth docutils literal"><span class="pre">Component.listen()</span></tt></p>
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
 </dd></dl>
 
 <dl class="method">
@@ -537,8 +537,9 @@ muss die Methode die folgende Signatur besitzen:
 </dl>
 <p>Ein Empfänger kann mit Hilfe der folgenden Methoden für den
 Nachrichtenempfang registriert werden:
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a>, <tt class="xref py py-meth docutils literal"><span class="pre">Job.add_listener()</span></tt> und
-<tt class="xref py py-meth docutils literal"><span class="pre">Component.add_listener()</span></tt>.</p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a>, 
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a> und
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a>.</p>
 <p><em>Siehe auch:</em>
 <a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">MessageBus</span></tt></a></p>
@@ -568,12 +569,12 @@ oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p
 <dd><p>Gibt die Bezeichnung des Empfängers zurück.</p>
 <p>Die Bezeichnung wird beim Protokollieren der Nachrichten
 verwendet, um den Weg der Nachrichten kenntlich zu machen.</p>
-<p>Werden die Methoden <tt class="xref py py-meth docutils literal"><span class="pre">Job.add_listener()</span></tt> oder 
-<tt class="xref py py-meth docutils literal"><span class="pre">Component.add_listener()</span></tt> verwendet, wird dieses Attribut
-automatisch gesetzt. Wird der Empfänger direkt mit
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a> registriert,
-sollte dieses Attribut vorher gesetzt werden um den Empfänger
-zu bezeichnen.</p>
+<p>Werden die Methoden <a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a> oder 
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a> verwendet, 
+wird dieses Attribut automatisch gesetzt. 
+Wird der Empfänger direkt mit <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a> 
+registriert, sollte dieses Attribut vorher gesetzt werden,
+um den Empfänger zu bezeichnen.</p>
 </dd></dl>
 
 </dd></dl>
