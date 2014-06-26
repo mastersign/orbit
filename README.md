@@ -3,7 +3,7 @@ ORBIT
 
 ![ORBIT Logo](doc/src/logo.png)
 
-ORBIT ist ein [Python][]-Anwendungsrahmen für [TinkerForge][]-Anwendungen.
+ORBIT ist ein [Python][]-Framework für [TinkerForge][]-Anwendungen.
 
 ORBIT ermöglicht die Entwicklung von dialogbasierten Systemen durch ein 
 einfaches Konzept von Apps und Services. 
