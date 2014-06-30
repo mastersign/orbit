@@ -83,6 +83,9 @@ Eine ORBIT-Anwendung mit einer eigenenen Komponente.
 Das Beispiel demonstriert, wie eine eigene Komponente für 
 die Interaktion mit einem TinkerForge-Bricklet implementiert
 und verwendet wird.
+Dabei werden Klassen implementiert, die von 
+:py:class:`orbit_framework.Component` und von 
+:py:class:`orbit_framework.App` abgeleitet sind.
 Die Komponente fängt die Tasten-Ereignisse eines LCD-Displays
 ab, zählt dabei einen Zähler hoch und gibt den aktuellen
 Zählerstand auf dem Display aus.
