@@ -90,3 +90,32 @@ Die Komponente fängt die Tasten-Ereignisse eines LCD-Displays
 ab, zählt dabei einen Zähler hoch und gibt den aktuellen
 Zählerstand auf dem Display aus.
 Zusätzlich wird gezeigt, wie eine eigene App-Klasse implementiert wird.
+
+Fortgeschritten
+===============
+
+Die Beispiele für Fortgeschrittene demonstrieren den Einsatz einiger 
+zusätzlicher Fähigkeiten des ORBIT-Frameworks.
+
+.. _example_101:
+
+Beispiel 101 Device-Init
+------------------------
+
+`Quellcode Beispiel 101 <https://github.com/mastersign/orbit/blob/master/examples/101_device-init.py>`_
+
+**Hardware:**
+LCD 20x4 Display
+
+**Beschreibung:**
+Eine ORBIT-Anwendung mit Geräteinitialisierer und -abschluss
+
+Das Beispiel zeigt die Einrichtung von Geräteinitialisierungs-
+und -abschlussfunktionen. Dazu baut es auf :ref:`example_002` auf
+und verwendet die beiden Methoden 
+:py:meth:`orbit_framework.devices.DeviceManager.add_device_initializer`
+und :py:meth:`orbit_framework.devices.DeviceManager.add_device_finalizer`.
+Die Initialisierungsfunktion löscht den Textinhalt des LCD-Displays beim
+Starten der Anwendung und schaltet die Hintergrundbeleuchtung ein.
+Die Abschlussfunktion schaltet die Hintergrundbeleuchtung wieder aus
+und löscht ebenfalls den Textinhalt.
