@@ -91,6 +91,28 @@ ab, zählt dabei einen Zähler hoch und gibt den aktuellen
 Zählerstand auf dem Display aus.
 Zusätzlich wird gezeigt, wie eine eigene App-Klasse implementiert wird.
 
+.. _example_004:
+
+Beispiel 004 Menu
+-----------------
+
+`Quellcode Beispiel 004 <https://github.com/mastersign/orbit/blob/master/examples/004_menu.py>`_
+
+**Hardware:**
+LCD 20x4 Display
+
+**Beschreibung:**
+Eine ORBIT-Anwendung mit einem Menü.
+
+Das Beispiel demonstriert wie mit dem LCD 20x4 eine Menüsteuerung umgesetzt
+werden kann. 
+Für das Menü wird die Klasse :py:class:`orbit_framework.jobs.apps.MenuApp` verwendet.
+Die Beispielanwendung bietet Menüpunkte an, von denen einige zu einfachen
+Nachrichten-Apps führen und einige ins Leere.
+Die Nachrichten-Apps können durch Drücken der Taste 0 (ganz links) wieder
+verlassen werden. 
+Dabei wird die App-History verwendet, um zurück ins Menü zu springen.
+
 Fortgeschritten
 ===============
 
