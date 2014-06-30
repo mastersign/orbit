@@ -116,8 +116,8 @@ class MessageBus(object):
 		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
-		:py:meth:`Job.listen`,
-		:py:meth:`Component.listen`
+		:py:meth:`orbit_framework.Job.add_listener`,
+		:py:meth:`orbit_framework.Component.add_listener`
 		"""
 		self._locked(
 			self._index.add_group, 'job', group_name, names)
@@ -144,8 +144,8 @@ class MessageBus(object):
 		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
-		:py:meth:`Job.listen`,
-		:py:meth:`Component.listen`
+		:py:meth:`orbit_framework.Job.add_listener`,
+		:py:meth:`orbit_framework.Component.add_listener`
 		"""
 		self._locked(
 			self._index.add_group, 'component', group_name, names)
@@ -172,8 +172,8 @@ class MessageBus(object):
 		:py:class:`Listener`,
 		:py:meth:`add_listener`,
 		:py:meth:`remove_listener`,
-		:py:meth:`Job.listen`,
-		:py:meth:`Component.listen`
+		:py:meth:`orbit_framework.Job.add_listener`,
+		:py:meth:`orbit_framework.Component.add_listener`
 		"""
 		self._locked(
 			self._index.add_group, 'name', group_name, names)
@@ -503,8 +503,9 @@ class Listener(object):
 
 	Ein Empfänger kann mit Hilfe der folgenden Methoden für den
 	Nachrichtenempfang registriert werden:
-	:py:meth:`MessageBus.add_listener`, :py:meth:`Job.add_listener` und
-	:py:meth:`Component.add_listener`.
+	:py:meth:`MessageBus.add_listener`, 
+	:py:meth:`orbit_framework.Job.add_listener` und
+	:py:meth:`orbit_framework.Component.add_listener`.
 
 	*Siehe auch:*
 	:py:class:`Slot`,
@@ -553,12 +554,12 @@ class Listener(object):
 		Die Bezeichnung wird beim Protokollieren der Nachrichten
 		verwendet, um den Weg der Nachrichten kenntlich zu machen.
 
-		Werden die Methoden :py:meth:`Job.add_listener` oder 
-		:py:meth:`Component.add_listener` verwendet, wird dieses Attribut
-		automatisch gesetzt. Wird der Empfänger direkt mit
-		:py:meth:`MessageBus.add_listener` registriert,
-		sollte dieses Attribut vorher gesetzt werden um den Empfänger
-		zu bezeichnen.
+		Werden die Methoden :py:meth:`orbit_framework.Job.add_listener` oder 
+		:py:meth:`orbit_framework.Component.add_listener` verwendet, 
+		wird dieses Attribut automatisch gesetzt. 
+		Wird der Empfänger direkt mit :py:meth:`MessageBus.add_listener` 
+		registriert, sollte dieses Attribut vorher gesetzt werden,
+		um den Empfänger zu bezeichnen.
 		"""
 		return self._receiver
 	@receiver.setter

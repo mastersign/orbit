@@ -27,12 +27,12 @@ und kann mehrere :py:class:`Job`-Objekte enthalten.
 Jeder :py:class:`Job` fasst eine Gruppe von :py:class:`Component`-Objekten zusammen.
 Ein :py:class:`Job` ist entweder eine :py:class:`App` oder ein :py:class:`Service`.
 
-Die TinkerForge-Bricklets werden durch den :py:class:`DeviceManager` verwaltet
-und den :py:class:`Component`-Objekten über :py:class:`DeviceHandle`-Objekte zugeordnet.
+Die TinkerForge-Bricklets werden durch den :py:class:`.devices.DeviceManager` verwaltet
+und den :py:class:`Component`-Objekten über :py:class:`.devices.DeviceHandle`-Objekte zugeordnet.
 
 :py:class:`Component`- und :py:class:`Job`-Objekte
 kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
-die Klasse :py:class:`MessageBus` implementiert wird.
+die Klasse :py:class:`.messaging.MessageBus` implementiert wird.
 
 :py:class:`Component`- und :py:class:`Job`-Objekte können jederzeit Nachrichten
 senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem 
@@ -41,10 +41,9 @@ dedizierten Nachrichten-Thread an die Empfänger versandt
 
 Für den Empfang von Nachrichten werden :py:class:`.messaging.Listener`-Objekte verwendet.
 Ein :py:class:`.messaging.Listener` bindet ein Empfangsmuster/-filter an ein Callback
-(:py:meth:`Job.listen`, :py:meth:`Component.listen`).
-Wird eine Nachricht über das Nachrichtensystem versandt, welches dem Muster
-eines :py:class:`.messaging.Listener`-Objekts entspricht, 
-wird das Callback des Empfängers aufgerufen.
+(:py:class:`.messaging.Slot`, :py:meth:`Job.add_listener`, :py:meth:`Component.add_listener`).
+Wird eine Nachricht über das Nachrichtensystem versandt, welches dem Empfangsmuster
+entspricht, wird das Callback des Empfängers aufgerufen.
 
 Das Modul enthält die folgenden Klassen:
 
@@ -154,24 +153,33 @@ class Core(object):
 	@property
 	def configuration(self):
 		"""
-		Gibt die ORBIT-Anwendungskonfiguration (:py:class:`..setup.Configuration`) zurück.
+		Gibt die ORBIT-Anwendungskonfiguration zurück.
 		(*schreibgeschützt*)
+
+		*Siehe auch:*
+		:py:class:`.setup.Configuration`
 		"""
 		return self._configuration
 
 	@property
 	def device_manager(self):
 		"""
-		Gibt den Gerätemanager (:py:class:`DeviceManager`) zurück.
+		Gibt den Gerätemanager zurück.
 		(*schreibgeschützt*)
+
+		*Siehe auch:*
+		:py:class:`.devices.DeviceManager`
 		"""
 		return self._device_manager
 
 	@property
 	def message_bus(self):
 		"""
-		Gibt das Nachrichtensystem (:py:class:`MessageBus`) zurück.
+		Gibt das Nachrichtensystem zurück.
 		(*schreibgeschützt*)
+
+		*Siehe auch:*
+		:py:class:`.messaging.MessageBus`
 		"""
 		return self._message_bus
 
@@ -183,6 +191,7 @@ class Core(object):
 		Der Schlüssel ist der Name des Jobs und der Wert ist der Job selbst.
 
 		*Siehe auch:*
+		:py:class:`Job`,
 		:py:meth:`install`,
 		:py:meth:`uninstall`
 		"""
@@ -192,6 +201,9 @@ class Core(object):
 	def default_application(self):
 		"""
 		Gibt die Standard-App zurück oder legt sie fest.
+
+		*Siehe auch:*
+		:py:class:`App`
 		"""
 		return self._default_application
 	@default_application.setter
@@ -292,7 +304,7 @@ class Core(object):
 
 	def add_stopper(self, slot):
 		"""
-		Fügt einen :py:class:`orbit_framework.messaging.Slot` hinzu, der das Stoppen der ORBIT-Anwendung
+		Fügt einen :py:class:`.messaging.Slot` hinzu, der das Stoppen der ORBIT-Anwendung
 		veranlassen soll.
 
 		*Siehe auch:*
@@ -302,7 +314,7 @@ class Core(object):
 
 	def remove_stopper(self, slot):
 		"""
-		Entfernt einen :py:class:`orbit_framework.messaging.Slot`, der das Stoppen der ORBIT-Anwendung
+		Entfernt einen :py:class:`.messaging.Slot`, der das Stoppen der ORBIT-Anwendung
 		veranlassen sollte.
 
 		*Siehe auch:*
@@ -332,7 +344,7 @@ class Core(object):
 
 		.. warning::
 			Diese Methode darf nicht direkt oder indirekt durch einen 
-			:py:class:`Listener` aufgerufen werden, 
+			:py:class:`.messaging.Listener` aufgerufen werden, 
 			da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung blockiert.
 
 		*Siehe auch:*
@@ -958,11 +970,11 @@ class App(Job):
 		vermerkt werden soll, sonst ``False``.
 	``activator`` (*optional*)
 		Slots für die Aktivierung der App.
-		Ein einzelner :py:class:`orbit_framework.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		Ein einzelner :py:class:`.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
 		(*Siehe auch:* :py:meth:`add_activator`)
 	``deactivator`` (*optional*)
 		Slots für die Deaktivierung der App.
-		Ein einzelner :py:class:`orbit_framework.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
+		Ein einzelner :py:class:`.messaging.Slot`, eine Sequenz von Slot-Objekten oder ``None``.
 		(*Siehe auch:* :py:meth:`add_deactivator`)
 	
 	**Beschreibung**
@@ -1023,7 +1035,7 @@ class App(Job):
 
 	def add_activator(self, slot):
 		"""
-		Fügt einen :py:class:`orbit_framework.messaging.Slot` für die Aktivierung der App hinzu.
+		Fügt einen :py:class:`.messaging.Slot` für die Aktivierung der App hinzu.
 
 		Sobald eine Nachricht über das Nachrichtensystem gesendet
 		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
@@ -1037,7 +1049,7 @@ class App(Job):
 
 	def remove_activator(self, slot):
 		"""
-		Entfernt einen :py:class:`orbit_framework.messaging.Slot` für die Aktivierung der App.
+		Entfernt einen :py:class:`.messaging.Slot` für die Aktivierung der App.
 
 		.. note::
 			Es muss die selbe Referenz übergeben werden, wie an
@@ -1050,7 +1062,7 @@ class App(Job):
 
 	def add_deactivator(self, slot):
 		"""
-		Fügt einen :py:class:`orbit_framework.messaging.Slot` für die Deaktivierung der App hinzu.
+		Fügt einen :py:class:`.messaging.Slot` für die Deaktivierung der App hinzu.
 
 		Sobald eine Nachricht über das Nachrichtensystem gesendet
 		wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
@@ -1064,7 +1076,7 @@ class App(Job):
 
 	def remove_deactivator(self, slot):
 		"""
-		Entfernt einen :py:class:`orbit_framework.messaging.Slot` für die Deaktivierung der App.
+		Entfernt einen :py:class:`.messaging.Slot` für die Deaktivierung der App.
 
 		.. note::
 			Es muss die selbe Referenz übergeben werden, wie an
