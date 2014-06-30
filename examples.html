@@ -87,6 +87,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Beispiele</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#grundlagen">Grundlagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fortgeschritten">Fortgeschritten</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API-Referenz</a><ul>
@@ -125,9 +126,14 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Beispiele</a><ul>
 <li><a class="reference internal" href="#grundlagen">Grundlagen</a><ul>
-<li><a class="reference internal" href="#basic">1. Basic</a></li>
-<li><a class="reference internal" href="#apps">2. Apps</a></li>
-<li><a class="reference internal" href="#component">3. Component</a></li>
+<li><a class="reference internal" href="#beispiel-001-basic">Beispiel 001 Basic</a></li>
+<li><a class="reference internal" href="#beispiel-002-apps">Beispiel 002 Apps</a></li>
+<li><a class="reference internal" href="#beispiel-003-component">Beispiel 003 Component</a></li>
+<li><a class="reference internal" href="#beispiel-004-menu">Beispiel 004 Menu</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fortgeschritten">Fortgeschritten</a><ul>
+<li><a class="reference internal" href="#beispiel-101-device-init">Beispiel 101 Device-Init</a></li>
 </ul>
 </li>
 </ul>
@@ -186,9 +192,11 @@ Die Hardware-Voraussetzungen sind für jedes Beispiel
 extra angegeben.</p>
 <div class="section" id="grundlagen">
 <h2>Grundlagen<a class="headerlink" href="#grundlagen" title="Permalink zu dieser Überschrift">¶</a></h2>
-<div class="section" id="basic">
-<h3>1. Basic<a class="headerlink" href="#basic" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/001_basic.py">Quellcode Beispiel 1</a></p>
+<p>Die Grundlagenbeispiele umfassen die wichtigsten Szenarios für den
+Bau einer ORBIT-Anwendung.</p>
+<div class="section" id="beispiel-001-basic">
+<span id="example-001"></span><h3>Beispiel 001 Basic<a class="headerlink" href="#beispiel-001-basic" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/001_basic.py">Quellcode Beispiel 001</a></p>
 <p><strong>Hardware:</strong>
 keine</p>
 <p><strong>Beschreibung:</strong>
@@ -205,9 +213,9 @@ Die Timer-Komponente sendet in regelmäßigen Abständen eine Nachricht
 Die Callback-Komponente wird so eingerichtet, dass sie die Timer-Nachrichten
 empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.</p>
 </div>
-<div class="section" id="apps">
-<h3>2. Apps<a class="headerlink" href="#apps" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/002_apps.py">Quellcode Beispiel 2</a></p>
+<div class="section" id="beispiel-002-apps">
+<span id="example-002"></span><h3>Beispiel 002 Apps<a class="headerlink" href="#beispiel-002-apps" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/002_apps.py">Quellcode Beispiel 002</a></p>
 <p><strong>Hardware:</strong>
 LCD 20x4 Display</p>
 <p><strong>Beschreibung:</strong>
@@ -223,9 +231,9 @@ Für die zwei Apps wird die integrierte App
 Darüber hinaus wird gezeigt, wie eine App als Standard-App
 für die ORBIT-Anwendung eingerichtet wird.</p>
 </div>
-<div class="section" id="component">
-<h3>3. Component<a class="headerlink" href="#component" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/003_component.py">Quellcode Beispiel 3</a></p>
+<div class="section" id="beispiel-003-component">
+<span id="example-003"></span><h3>Beispiel 003 Component<a class="headerlink" href="#beispiel-003-component" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/003_component.py">Quellcode Beispiel 003</a></p>
 <p><strong>Hardware:</strong>
 LCD 20x4 Display</p>
 <p><strong>Beschreibung:</strong>
@@ -233,10 +241,51 @@ Eine ORBIT-Anwendung mit einer eigenenen Komponente.</p>
 <p>Das Beispiel demonstriert, wie eine eigene Komponente für
 die Interaktion mit einem TinkerForge-Bricklet implementiert
 und verwendet wird.
+Dabei werden Klassen implementiert, die von
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Component</span></tt></a> und von
+<a class="reference internal" href="api.orbit.html#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.App</span></tt></a> abgeleitet sind.
 Die Komponente fängt die Tasten-Ereignisse eines LCD-Displays
 ab, zählt dabei einen Zähler hoch und gibt den aktuellen
 Zählerstand auf dem Display aus.
 Zusätzlich wird gezeigt, wie eine eigene App-Klasse implementiert wird.</p>
+</div>
+<div class="section" id="beispiel-004-menu">
+<span id="example-004"></span><h3>Beispiel 004 Menu<a class="headerlink" href="#beispiel-004-menu" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/004_menu.py">Quellcode Beispiel 004</a></p>
+<p><strong>Hardware:</strong>
+LCD 20x4 Display</p>
+<p><strong>Beschreibung:</strong>
+Eine ORBIT-Anwendung mit einem Menü.</p>
+<p>Das Beispiel demonstriert wie mit dem LCD 20x4 eine Menüsteuerung umgesetzt
+werden kann.
+Für das Menü wird die Klasse <a class="reference internal" href="jobs.html#orbit_framework.jobs.apps.MenuApp" title="orbit_framework.jobs.apps.MenuApp"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.jobs.apps.MenuApp</span></tt></a> verwendet.
+Die Beispielanwendung bietet Menüpunkte an, von denen einige zu einfachen
+Nachrichten-Apps führen und einige ins Leere.
+Die Nachrichten-Apps können durch Drücken der Taste 0 (ganz links) wieder
+verlassen werden.
+Dabei wird die App-History verwendet, um zurück ins Menü zu springen.</p>
+</div>
+</div>
+<div class="section" id="fortgeschritten">
+<h2>Fortgeschritten<a class="headerlink" href="#fortgeschritten" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Die Beispiele für Fortgeschrittene demonstrieren den Einsatz einiger
+zusätzlicher Fähigkeiten des ORBIT-Frameworks.</p>
+<div class="section" id="beispiel-101-device-init">
+<span id="example-101"></span><h3>Beispiel 101 Device-Init<a class="headerlink" href="#beispiel-101-device-init" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://github.com/mastersign/orbit/blob/master/examples/101_device-init.py">Quellcode Beispiel 101</a></p>
+<p><strong>Hardware:</strong>
+LCD 20x4 Display</p>
+<p><strong>Beschreibung:</strong>
+Eine ORBIT-Anwendung mit Geräteinitialisierer und -abschluss</p>
+<p>Das Beispiel zeigt die Einrichtung von Geräteinitialisierungs-
+und -abschlussfunktionen. Dazu baut es auf <a class="reference internal" href="#example-002"><em>Beispiel 002 Apps</em></a> auf
+und verwendet die beiden Methoden
+<a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager.add_device_initializer" title="orbit_framework.devices.DeviceManager.add_device_initializer"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.devices.DeviceManager.add_device_initializer()</span></tt></a>
+und <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager.add_device_finalizer" title="orbit_framework.devices.DeviceManager.add_device_finalizer"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.devices.DeviceManager.add_device_finalizer()</span></tt></a>.
+Die Initialisierungsfunktion löscht den Textinhalt des LCD-Displays beim
+Starten der Anwendung und schaltet die Hintergrundbeleuchtung ein.
+Die Abschlussfunktion schaltet die Hintergrundbeleuchtung wieder aus
+und löscht ebenfalls den Textinhalt.</p>
 </div>
 </div>
 </div>
