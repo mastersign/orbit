@@ -15,10 +15,15 @@ extra angegeben.
 Grundlagen
 ==========
 
-1. Basic
---------
+Die Grundlagenbeispiele umfassen die wichtigsten Szenarios für den
+Bau einer ORBIT-Anwendung.
 
-`Quellcode Beispiel 1 <https://github.com/mastersign/orbit/blob/master/examples/001_basic.py>`_
+.. _example_001:
+
+Beispiel 001 Basic
+------------------
+
+`Quellcode Beispiel 001 <https://github.com/mastersign/orbit/blob/master/examples/001_basic.py>`_
 
 **Hardware:**
 keine
@@ -38,10 +43,12 @@ Die Timer-Komponente sendet in regelmäßigen Abständen eine Nachricht
 Die Callback-Komponente wird so eingerichtet, dass sie die Timer-Nachrichten
 empfängt und beim Eintreffen einer Nachricht die Funktion aufruft.
 
-2. Apps
--------
+.. _example_002:
 
-`Quellcode Beispiel 2 <https://github.com/mastersign/orbit/blob/master/examples/002_apps.py>`_
+Beispiel 002 Apps
+-----------------
+
+`Quellcode Beispiel 002 <https://github.com/mastersign/orbit/blob/master/examples/002_apps.py>`_
 
 **Hardware:**
 LCD 20x4 Display
@@ -60,10 +67,12 @@ Für die zwei Apps wird die integrierte App
 Darüber hinaus wird gezeigt, wie eine App als Standard-App
 für die ORBIT-Anwendung eingerichtet wird.
 
-3. Component
-------------
+.. _example_003:
 
-`Quellcode Beispiel 3 <https://github.com/mastersign/orbit/blob/master/examples/003_component.py>`_
+Beispiel 003 Component
+----------------------
+
+`Quellcode Beispiel 003 <https://github.com/mastersign/orbit/blob/master/examples/003_component.py>`_
 
 **Hardware:**
 LCD 20x4 Display
