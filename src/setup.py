@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
   name='orbit_framework',
-  version='0.1.0',
+  version='0.1.0a1',
   description='Ein Python-Framework für robuste TinkerForge-Anwendungen',
   author='Tobias Kiertscher',
   author_email='dev@mastersign.de',
@@ -15,7 +15,7 @@ setup(
     'orbit_framework.components',
     'orbit_framework.jobs',
     ],
-  provides='orbit_framework',
+  provides=['orbit_framework'],
   requires=[
     'tinkerforge (>=2.1.0)'
     ],
@@ -41,5 +41,6 @@ von Anwendungen, die mit Verbindungsabbrüchen umgehen müssen, stark vereinfach
   license='LGPL-3.0',
   install_requires=[
     'setuptools',
+    'tinkerforge>=2.1.0',
     ],
 )

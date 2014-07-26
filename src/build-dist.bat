@@ -1,8 +1,13 @@
 @echo off
 
-set sname=orbit-0.1.0-alpha
-set eggname=orbit_framework.egg
-set pdfname=orbit.pdf
+python "%~dp0\setup.py" --name > "%~dp0\dist\name.txt"
+set /P pname= < "%~dp0\dist\name.txt"
+python "%~dp0\setup.py" --version > "%~dp0\dist\version.txt"
+set /P pversion= < "%~dp0\dist\version.txt"
+
+set sname=%pname%-%pversion%
+set eggname=%pname%.egg
+set pdfname=%pname%.pdf
 
 echo Building distribution package of %sname% ...
 
@@ -16,7 +21,12 @@ pushd "%~dp0\.."
 
 set docpdf=%~dp0\..\doc\out\latex\%pdfname%
 set docarch=%~dp0\..\doc\out\%sname%_html-docs.zip
-set distarch=%~dp0\dist\%sname%.zip
+set distarch=%~dp0\dist\%sname%_complete.zip
+
+rem build the source distribution
+pushd src
+call python setup.py sdist
+popd
 
 rem build the egg distribution package
 call src\build-egg.bat
@@ -33,6 +43,7 @@ del /Q "%docarch%"
 pushd doc\out\html
 7z a -xr!bootstrap-2* -xr!bootswatch-* "%docarch%" .\*
 popd
+copy "%docarch%" src\dist
 
 rem assemble the distribution archive
 del /Q "%distarch%"
