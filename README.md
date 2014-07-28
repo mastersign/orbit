@@ -33,7 +33,7 @@ Eine ausführliche Dokumentation ist unter <http://mastersign.github.io/orbit/> 
 Quickstart
 ----------
 
-ORBIT ist als Python-Package auf PyPI unter <https://pypi.python.org/pypi/orbit_framework> veröffentlicht.
+ORBIT ist als Python-Package auf PyPI unter <https://pypi.python.org/pypi/orbit_framework/> veröffentlicht.
 
 ### Installation
 
