@@ -367,8 +367,9 @@ class Core(object):
 		Jobs können vor oder nach dem Starten der ORBIT-Anwendung 
 		hinzugefügt werden.
 
-		Wird ein Job mehrfach hinzugefügt, wird eine Ausnahme vom Typ 
-		:py:exc:`AttributeError` ausgelöst.
+		Ein Job kann immer nur in einer ORBIT-Anwendung installiert werden.
+		Wird ein Job, der bereits in einer Anwendung installiert ist, 
+		an :py:meth:`install` übergeben, geschieht nichts.
 
 		*Siehe auch:*
 		:py:meth:`uninstall`,
@@ -377,7 +378,7 @@ class Core(object):
 		:py:class:`Service`
 		"""
 		if job.core:
-			raise AttributeError("the given job is already associated with a core")
+			return
 		if job.name in self._jobs:
 			self.uninstall(self._jobs[job.name])
 		self._jobs[job.name] = job
@@ -392,15 +393,16 @@ class Core(object):
 		Ist der Job zur Zeit aktiv, wird er deaktiviert bevor
 		er aus der Anwendung entfernt wird.
 
-		Wird ein Job übergeben, der nicht installiert ist,
-		wird eine Ausnahme vom Typ :py:exc:`AttributeError` ausgelöst.
+		Wird ein Job an :py:meth:`install` übergeben, 
+		der nicht in dieser ORBIT-Anwendung installiert ist,
+		geschieht nicht.
 
 		*Siehe auch:*
 		:py:meth:`install`,
 		:py:attr:`jobs`
 		"""
 		if job.name not in self._jobs:
-			raise AttributeError("the given job is not associated with this core")
+			return
 		if job.active:
 			job.active = False
 		job.on_uninstall()
