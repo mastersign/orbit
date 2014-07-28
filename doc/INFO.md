@@ -4,11 +4,11 @@ Die Dokumentation wird mit [Sphinx](http://sphinx-doc.org/) gebaut.
 
 Für die Installation muss das Python-Paket `sphinx` installiert werden.
 
-    easy_install sphinx
+    pip install sphinx
 
 Die Dokumentation benutzt das Bootstrap-Theme für Sphinx. Dazu muss das Python-Paket `sphinx_bootstrap_theme` installiert werden.
 
-    easy_install sphinx_bootstrap_theme
+    pip install sphinx_bootstrap_theme
 
 Anschließend kann die Dokumentation unter Angabe des Ausgabetyps und des Ausgabeverzeichnisses gebaut werden.
 
