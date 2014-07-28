@@ -29,7 +29,7 @@ git checkout gh-pages
 git pull
 popd
 
-copy /Y out\latex\orbit.pdf "%trg%"
+copy /Y out\latex\orbit_framework.pdf "%trg%"
 del /Q "%trg%\*.html"
 copy /Y out\html\*.* "%trg%"
 del /Q "%trg%\_images\*.*"
