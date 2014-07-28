@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Setup &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Setup &mdash; ORBIT 0.1.0 Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -18,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0 alpha',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -32,7 +32,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
     <link rel="next" title="Beispiele" href="examples.html" />
     <link rel="prev" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
 <meta charset='utf-8'>
@@ -126,11 +126,17 @@
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Setup</a><ul>
 <li><a class="reference internal" href="#voraussetzungen">Voraussetzungen</a><ul>
-<li><a class="reference internal" href="#software">Software</a></li>
+<li><a class="reference internal" href="#software">Software</a><ul>
+<li><a class="reference internal" href="#paket-manager-pip-installieren">Paket-Manager <em>pip</em> installieren</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#hardware">Hardware</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#links">Links</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -181,17 +187,22 @@
 <div class="section" id="software">
 <h3>Software<a class="headerlink" href="#software" title="Permalink zu dieser Überschrift">¶</a></h3>
 <p>ORBIT unterstützt Python 2.6+ und Python 3.x.</p>
-<p>Für die Installation werden die <a class="reference external" href="https://pypi.python.org/pypi/setuptools">setuptools</a> benötigt,
-die den Installationsbefehl <em>easy_install</em> zur Verfügung stellen,
-mit dem Python-Eggs installiert werden können.</p>
-<p>ORBIT setzt die TinkerForge-Python-Bindings voraus.
-Diese werden auf der Website von TinkerForge als Download zur Verfügung gestellt.
-Das im Download enthaltene Python-Egg <tt class="docutils literal"><span class="pre">tinkerforge.egg</span></tt> muss mit <em>easy_install</em>
-installiert werden.</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/API_Bindings_Python.html">Dokumentation der Python-Bindings</a></li>
-<li><a class="reference external" href="http://download.tinkerforge.com/bindings/python/">Download-Archiv</a></li>
-</ul>
+<p>Die Installation kann mit dem Python-Paket-Manager <a class="reference external" href="https://pypi.python.org/pypi/pip">pip</a> durchgeführt werden. Dabei werden die TinkerForge-Python-Bindings automatisch mit installiert.</p>
+<div class="section" id="paket-manager-pip-installieren">
+<h4>Paket-Manager <em>pip</em> installieren<a class="headerlink" href="#paket-manager-pip-installieren" title="Permalink zu dieser Überschrift">¶</a></h4>
+<p>Wenn der Befehl <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">--version</span></tt> auf der Befehlszeile die Version von <em>pip</em> ausgibt, ist <em>pip</em> bereits installiert. Um sicher zu stellen, dass die neueste Version von <em>pip</em> verwendet wird, kann <em>pip</em> aktualisiert werden:</p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; pip install --upgrade pip
+</pre></div>
+</div>
+<p>Falls der Befehl <tt class="docutils literal"><span class="pre">pip</span></tt> nicht verfügbar ist, muss <em>pip</em> zunächst <a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">installiert</a> werden.
+Der einfachste Weg führt über das Setup-Script von <em>pip</em>:</p>
+<p><strong>Linux:</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; wget -qO- https://bootstrap.pypa.io/get-pip.py | sudo python
+</pre></div>
+</div>
+<p><strong>Windows:</strong></p>
+<p>Zunächst <tt class="docutils literal"><span class="pre">https://bootstrap.pypa.io/get-pip.py</span></tt> herunterladen und anschließend <tt class="docutils literal"><span class="pre">python</span> <span class="pre">get-pip.py</span></tt> ausführen.</p>
+</div>
 </div>
 <div class="section" id="hardware">
 <h3>Hardware<a class="headerlink" href="#hardware" title="Permalink zu dieser Überschrift">¶</a></h3>
@@ -199,19 +210,38 @@ installiert werden.</p>
 und ein Bricklet erforderlich.
 Wenn der Master-Brick per USB an den Computer (PC, Raspberry PI, o.a.)
 angeschlossen werden soll, muss der <a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/Brickd.html">Brick-Deamon</a> installiert sein.</p>
-<p>Einige der Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.</p>
+<p>Einige der <a class="reference internal" href="examples.html"><em>Beispiele</em></a> verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.</p>
 </div>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p>ORBIT wird, wie die TinkerForge-Bindings, als Python-Egg installiert.
-Die Datei <tt class="docutils literal"><span class="pre">orbit_framework.egg</span></tt> kann als <a class="reference external" href="https://github.com/mastersign/orbit/releases">Release</a> heruntergeladen werden.</p>
-<p>Anschließend kann ORBIT mit <em>easy_install</em> installiert werden.
-Dazu wird <em>easy_install</em> wie folgt aufgerufen:</p>
-<div class="highlight-python"><pre>&gt; easy_install orbit_framework.egg</pre>
+<p>Um ORBIT zu installieren, reicht der folgende Befehl:</p>
+<p><strong>Linux:</strong></p>
+<p>In einigen Linux-Umgebungen muss die Installation mit Root-Rechten durchgeführt werden. Dazu kann dem Befehl ein <tt class="docutils literal"><span class="pre">sudo</span></tt> vorangestellt werden.</p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; pip install orbit_framework
+</pre></div>
 </div>
-<p>Unter Umständen muss der Befehl mit Administrator- bzw. Root-Rechten (z.B. mit <tt class="docutils literal"><span class="pre">sudo</span></tt>) aufgerufen werden.</p>
+<p><em>Tipp:</em> Um ORBIT unter Linux für eine bestimmte Python-Version zu installieren, können die versionsspezifischen <em>pip</em>-Befehle benutzt werden.</p>
+<p><em>Python 2.7:</em></p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; pip2.7 install orbit_framework
+</pre></div>
+</div>
+<p><em>jüngste Python 3.x:</em></p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; pip3 install orbit_framework
+</pre></div>
+</div>
+<p><strong>Windows:</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre>&gt; pip install orbit_framework
+</pre></div>
+</div>
 <p>Nun ist ORBIT installiert und es können die <a class="reference internal" href="examples.html"><em>Beispiele</em></a> ausgeführt werden.</p>
+<div class="section" id="links">
+<h3>Links<a class="headerlink" href="#links" title="Permalink zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.tinkerforge.com/de/doc/Software/API_Bindings_Python.html">Dokumentation der Python-Bindings</a></li>
+<li><a class="reference external" href="http://download.tinkerforge.com/bindings/python/">Download-Archiv</a></li>
+</ul>
+</div>
 </div>
 </div>
 

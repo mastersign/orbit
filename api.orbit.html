@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Modul orbit_framework &mdash; ORBIT 0.1.0 alpha Dokumentation</title>
+    <title>Modul orbit_framework &mdash; ORBIT 0.1.0 Dokumentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -18,7 +18,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0 alpha',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -32,7 +32,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 alpha Dokumentation" href="index.html" />
+    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
     <link rel="up" title="API-Referenz" href="reference.html" />
     <link rel="next" title="Modul orbit_framework.devices" href="api.orbit.devices.html" />
     <link rel="prev" title="API-Referenz" href="reference.html" />
@@ -345,8 +345,9 @@ Ein Job kann ein Dienst (<a class="reference internal" href="#orbit_framework.Se
 App (<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>) sein.
 Jobs können vor oder nach dem Starten der ORBIT-Anwendung 
 hinzugefügt werden.</p>
-<p>Wird ein Job mehrfach hinzugefügt, wird eine Ausnahme vom Typ 
-<tt class="xref py py-exc docutils literal"><span class="pre">AttributeError</span></tt> ausgelöst.</p>
+<p>Ein Job kann immer nur in einer ORBIT-Anwendung installiert werden.
+Wird ein Job, der bereits in einer Anwendung installiert ist, 
+an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a> übergeben, geschieht nichts.</p>
 <p><em>Siehe auch:</em>
 <a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">uninstall()</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><tt class="xref py py-attr docutils literal"><span class="pre">jobs</span></tt></a>,
@@ -451,8 +452,9 @@ auf die Konsole.</p>
 <dd><p>Entfernt einen Job aus der ORBIT-Anwendung.
 Ist der Job zur Zeit aktiv, wird er deaktiviert bevor
 er aus der Anwendung entfernt wird.</p>
-<p>Wird ein Job übergeben, der nicht installiert ist,
-wird eine Ausnahme vom Typ <tt class="xref py py-exc docutils literal"><span class="pre">AttributeError</span></tt> ausgelöst.</p>
+<p>Wird ein Job an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a> übergeben, 
+der nicht in dieser ORBIT-Anwendung installiert ist,
+geschieht nicht.</p>
 <p><em>Siehe auch:</em>
 <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a>,
 <a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><tt class="xref py py-attr docutils literal"><span class="pre">jobs</span></tt></a></p>
