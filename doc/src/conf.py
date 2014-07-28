@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# orbit documentation build configuration file, created by
+# orbit_framework documentation build configuration file, created by
 # sphinx-quickstart on Sun May 25 16:11:28 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -240,7 +240,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'orbit'
+htmlhelp_basename = 'orbit_framework'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -260,7 +260,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'orbit.tex', u'orbit Documentation',
+  ('index', 'orbit_framework.tex', u'orbit Documentation',
    u'Tobias Kiertscher', 'manual', True),
 ]
 
@@ -290,7 +290,7 @@ latex_domain_indices = True
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'orbit', u'orbit Documentation',
+    ('index', 'orbit_framework', u'orbit_framework Documentation',
      [u'Tobias Kiertscher'], 1)
 ]
 
@@ -304,7 +304,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'orbit', u'orbit Documentation',
+  ('index', 'orbit_framework', u'orbit_framework Documentation',
    u'Tobias Kiertscher', 'orbit', 'One line description of project.',
    'Miscellaneous'),
 ]

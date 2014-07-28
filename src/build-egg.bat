@@ -1,6 +1,6 @@
 @echo off
 
-set pname=orbit_framework
+call "%~dp0\project-vars.bat"
 
 rem check 7zip
 for %%x in (7z.exe) do if not [%%~$PATH:x]==[] goto :ok_7z
@@ -8,25 +8,35 @@ echo 7z not on PATH
 goto :end
 :ok_7z
 
-pushd "%~dp0"
+pushd %src%
 
-del /Q dist\%pname%*.egg
+  del /Q "%dist%\%pname%*.egg"
 
-python setup.py bdist_egg
-rmdir /S /Q %pname%.egg-info
-rmdir /S /Q build
+  python setup.py bdist_egg
+  rmdir /S /Q %pname%.egg-info
+  rmdir /S /Q build
 
-pushd dist
-if exist _tmp ( rmdir /S /Q _tmp )
-7z x -o_tmp %pname%-*.egg
-pushd _tmp
-rem del /S /Q *.pyc
-7z a -xr!__pycache__ -xr!*.pyc ..\%pname%.zip .\*
+  pushd %dist%
+  
+    if exist _tmp ( rmdir /S /Q _tmp )
+    if exist tmp_egg.zip ( del /Q tmp_egg.zip )
+    
+    7z x -o_tmp %pname%-*.egg
+    
+    pushd _tmp
+      7z a -xr!__pycache__ -xr!*.pyc ..\tmp_egg.zip .\*
+    popd
+    
+    rmdir /S /Q _tmp
+    del /Q %pname%*.egg
+    ren tmp_egg.zip "%pname%-%pversion%.egg"
+    
+  popd
+
 popd
-rmdir /S /Q _tmp
-ren %pname%.zip %pname%.egg
-popd
 
-popd
+echo.
+echo Egg created at\n\t%dist%\%pname%-%pversion%.egg
+echo.
 
 :end
