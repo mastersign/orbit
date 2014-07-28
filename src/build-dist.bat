@@ -6,8 +6,8 @@ set eggname=%pfullname%.egg
 set pdfname=%pname%.pdf
 set docpdf=%doc%\out\latex\%pdfname%
 
-set docarch=%dist%\%pfullname%_html-docs.zip
-set distarch=%dist%\%pfullname%_complete.zip
+set docarch=%dist%\%pfullname%-html_docs.zip
+set distarch=%dist%\%pfullname%-complete.zip
 
 echo # Building distribution package(s) of %pfullname% ...
 
