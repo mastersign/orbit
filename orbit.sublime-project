@@ -1,0 +1,28 @@
+{
+	"folders":
+	[
+		{
+			"path": "doc",
+			"name": "Dokumentation",
+			"folder_exclude_patterns": ["out", "src"],
+			"file_exclude_patterns": ["*.cdr", "*.pdf"],
+		},
+		{
+			"path": "doc/src",
+			"name": "Dokumentation Quellen",
+			"file_exclude_patterns": ["*.cdr", "*.pdf"],
+		},
+		{
+			"path": "src",
+			"name": "Quelltexte",
+			"folder_exclude_patterns": ["__pycache__", "dist"],
+			"file_exclude_patterns": ["*.pyc"],
+		},
+		{
+			"path": "examples",
+			"name": "Beispiele",
+			"folder_exclude_patterns": ["__pycache__"],
+			"file_exclude_patterns": ["*.pyc"],
+		},
+	]
+}
