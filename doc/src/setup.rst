@@ -14,7 +14,12 @@ Die Installation kann mit dem Python-Paket-Manager `pip`_ durchgeführt werden. 
 Paket-Manager *pip* installieren
 ''''''''''''''''''''''''''''''''
 
-Wenn der Befehl ``pip --version`` auf der Befehlszeile die Version von *pip* ausgibt, ist *pip* bereits installiert und dieser Abschnitt kann übersprungen werden.
+Wenn der Befehl ``pip --version`` auf der Befehlszeile die Version von *pip* ausgibt, ist *pip* bereits installiert. Um sicher zu stellen, dass die neueste Version von *pip* verwendet wird, kann *pip* aktualisiert werden:
+
+.. code::
+
+	> pip install --upgrade pip
+
 Falls der Befehl ``pip`` nicht verfügbar ist, muss *pip* zunächst `installiert`__ werden.
 Der einfachste Weg führt über das Setup-Script von *pip*:
 
@@ -38,7 +43,7 @@ und ein Bricklet erforderlich.
 Wenn der Master-Brick per USB an den Computer (PC, Raspberry PI, o.a.)
 angeschlossen werden soll, muss der `Brick-Deamon`_ installiert sein.
 
-Einige der Beispiele verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.
+Einige der :doc:`Beispiele <examples>` verwenden ein LCD-20x4-Display-Bricklet und ein Motion-Detector-Bricklet.
 
 Installation
 ============
@@ -47,23 +52,25 @@ Um ORBIT zu installieren, reicht der folgende Befehl:
 
 **Linux:**
 
+In einigen Linux-Umgebungen muss die Installation mit Root-Rechten durchgeführt werden. Dazu kann dem Befehl ein ``sudo`` vorangestellt werden.
+
 .. code::
 
-	> sudo pip install orbit_framework
+	> pip install orbit_framework
 
-*Tipp:* Um ORBIT unter Linux für eine bestimmte Python-Version zu installieren, können die erweiterten *pip*-Befehle benutzt werden.
+*Tipp:* Um ORBIT unter Linux für eine bestimmte Python-Version zu installieren, können die versionsspezifischen *pip*-Befehle benutzt werden.
 
 *Python 2.7:*
 
 .. code::
 
-	> sudo pip2.7 install orbit_framework
+	> pip2.7 install orbit_framework
 
 *jüngste Python 3.x:*
 
 .. code::
 
-	> sudo pip3 install orbit_framework
+	> pip3 install orbit_framework
 
 **Windows:**
 
