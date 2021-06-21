@@ -62,7 +62,19 @@ from . import setup
 from .devices import DeviceManager
 from .messaging import MessageBus, MultiListener
 
-__all__ = ['setup', 'tools', 'index', 'messaging', 'devices']
+__all__ = [
+    'Core',
+    'Job',
+    'Service',
+    'App',
+    'Component',
+    'setup',
+    'tools',
+    'index',
+    'messaging',
+    'devices',
+]
+
 
 def _trace(text, source):
 	stamp = datetime.now().strftime('[%Y-%m-%d %H-%M-%S]')
