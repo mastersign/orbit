@@ -906,7 +906,7 @@ class SingleDeviceHandle(DeviceHandle):
 			return
 		if self._uid == None:
 			if self._auto_fix:
-				self._uid = identity[0]
+				self._uid = device.identity[0]
 		elif device.identity[0] != self._uid:
 			return
 		self._device = device
