@@ -7,8 +7,8 @@
 # Eine ORBIT-Anwendung mit einem Menü.
 # -------------------------------------------------------------------
 
-# Hinweis: Für dieses Beispiel muss es einen Brick-Daemon geben, 
-#          mit dem sich ORBIT verbinden kann und es muss ein 
+# Hinweis: Für dieses Beispiel muss es einen Brick-Daemon geben,
+#          mit dem sich ORBIT verbinden kann und es muss ein
 #          LCD-20x4-Bricklet angeschlossen sein.
 
 from sys import stdin
@@ -24,12 +24,13 @@ from orbit_framework.jobs.apps import MenuApp, MessageApp
 core = Core()
 
 # Die Menü-App mit 5 Menüpunkten erzeugen
-menu_app = MenuApp('MenuApp', 
-	[('Punkt 1', 'one'),
-	 ('Punkt 2', 'two'),
-	 ('Punkt 3', 'three'),
-	 ('Punkt X', 'x'),
-	 ('Punkt Y', 'y')])
+menu_app = MenuApp(
+    'MenuApp',
+    [('Punkt 1', 'one'),
+     ('Punkt 2', 'two'),
+     ('Punkt 3', 'three'),
+     ('Punkt X', 'x'),
+     ('Punkt Y', 'y')])
 core.install(menu_app)
 
 # Nachrichten-App für Menüpunkt 1
@@ -54,7 +55,7 @@ core.install(app3)
 # Das Menü als Standard-App einrichten.
 core.default_application = menu_app
 
-# Hinweis: Die Standard-App wird automatisch beim Start 
+# Hinweis: Die Standard-App wird automatisch beim Start
 #          der Anwendung (und wenn alle anderen Apps deaktiviert
 #          werden) aktiviert.
 
@@ -65,5 +66,5 @@ core.start()
 print(u"\nZum Beenden ENTER drücken.\n")
 stdin.readline()
 
-# Stoppen der Anwendung 
+# Stoppen der Anwendung
 core.stop()

@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------
 
 # Hinweis: Für dieses Beispiel ist keine TinkerForge-Hardware
-#          erforderlich, aber es muss einen Brick-Daemon geben, 
+#          erforderlich, aber es muss einen Brick-Daemon geben,
 #          mit dem sich ORBIT verbinden kann.
 
 from sys import stdin
@@ -21,9 +21,11 @@ from orbit_framework.messaging import Slot
 from orbit_framework.components.common import EventCallbackComponent
 from orbit_framework.components.timer import IntervalTimerComponent
 
-# Eine Aktion die in regelmäßigen Abständen ausgeführt werden soll
+
 def my_action():
-	print("---- Action! ----")
+    """Eine Aktion die in regelmäßigen Abständen ausgeführt werden soll"""
+    print("---- Action! ----")
+
 
 # Den Anwendungskern instanzieren
 core = Core()
@@ -38,19 +40,20 @@ service = Service('ActionService')
 #          und in der Initialisierungsmethode die Komponenten
 #          einrichtet.
 
-# Eine Komponente einrichten, die alle 3 Sekunden 
+# Eine Komponente einrichten, die alle 3 Sekunden
 # eine Nachricht versendet.
 service.add_component(
-	IntervalTimerComponent('action_timer', interval = 3))
+    IntervalTimerComponent('action_timer', interval=3))
 
 # Eine Komponente einrichten, welche die Nachrichten
 # der Komponente 'action_timer' empfängt
-# und bei jeder Nachricht die Funktion 'my_action' 
+# und bei jeder Nachricht die Funktion 'my_action'
 # als Callback aufruft.
 service.add_component(
-	EventCallbackComponent('action_trigger', 
-		Slot('ActionService', 'action_timer', 'timer'),
-		my_action))
+    EventCallbackComponent(
+        'action_trigger',
+        Slot('ActionService', 'action_timer', 'timer'),
+        my_action))
 
 # Installieren des Hintergrunddienstes
 core.install(service)
@@ -62,5 +65,5 @@ core.start()
 print(u"\nZum Beenden ENTER drücken.\n")
 stdin.readline()
 
-# Stoppen der Anwendung 
+# Stoppen der Anwendung
 core.stop()

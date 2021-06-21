@@ -7,8 +7,8 @@
 # Eine ORBIT-Anwendung mit einem Dienst und zwei Apps.
 # -------------------------------------------------------------------
 
-# Hinweis: Für dieses Beispiel muss es einen Brick-Daemon geben, 
-#          mit dem sich ORBIT verbinden kann und es muss ein 
+# Hinweis: Für dieses Beispiel muss es einen Brick-Daemon geben,
+#          mit dem sich ORBIT verbinden kann und es muss ein
 #          LCD-20x4-Bricklet angeschlossen sein.
 
 from sys import stdin
@@ -30,7 +30,7 @@ service = Service('ButtonService')
 # Eine Komponente einrichten, die Nachrichten versendet
 # wenn die Tasten am LCD-Display gedrückt werden.
 service.add_component(
-	LCD20x4ButtonsComponent('buttons'))
+    LCD20x4ButtonsComponent('buttons'))
 
 # Installieren des Hintergrunddienstes
 core.install(service)
@@ -40,13 +40,13 @@ app1 = MessageApp('MsgApp1', ['Nachricht 1'])
 
 # Die App durch eine Nachricht aktivieren
 app1.add_activator(
-	Slot('ButtonService', None, 'button_pressed',
-		predicate = lambda j, c, n, v: v[1] == 1))
+    Slot('ButtonService', None, 'button_pressed',
+         predicate=lambda j, c, n, v: v[1] == 1))
 
-# Hinweis: In diesem Fall wird ein Prädikat verwendet, 
+# Hinweis: In diesem Fall wird ein Prädikat verwendet,
 #          um den Nachrichtenempfang vom Nachrichteninhalt
 #          abhängig zu machen. Die LCD-20x4-Buttons-Komponente
-#          sendet als Nachrichteninhalt ein Tuple aus UID und 
+#          sendet als Nachrichteninhalt ein Tuple aus UID und
 #          Tastennummer. Das hier verwendete Prädikat prüft,
 #          ob die zweite Taste (0-basiert) gedrückt wurde.
 
@@ -56,14 +56,14 @@ core.install(app1)
 # Die zweite App erzeugen und installieren
 app2 = MessageApp('MsgApp2', ['Nachricht 2'])
 app2.add_activator(
-	Slot('ButtonService', None, 'button_pressed',
-		predicate = lambda j, c, n, v: v[1] == 2))
+    Slot('ButtonService', None, 'button_pressed',
+         predicate=lambda j, c, n, v: v[1] == 2))
 core.install(app2)
 
 # Die erste App als Standard-App einrichten.
 core.default_application = app1
 
-# Hinweis: Die Standard-App wird automatisch beim Start 
+# Hinweis: Die Standard-App wird automatisch beim Start
 #          der Anwendung (und wenn alle anderen Apps deaktiviert
 #          werden) aktiviert.
 
@@ -74,5 +74,5 @@ core.start()
 print(u"\nZum Beenden ENTER drücken.\n")
 stdin.readline()
 
-# Stoppen der Anwendung 
+# Stoppen der Anwendung
 core.stop()
