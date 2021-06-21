@@ -56,8 +56,7 @@ Das Modul enthält die folgenden Klassen:
 
 from sys import stdout
 from datetime import datetime
-from traceback import print_exc
-from threading import Thread, Lock, Event
+from threading import Thread, Event
 from . import setup
 from .devices import DeviceManager
 from .messaging import MessageBus, MultiListener
