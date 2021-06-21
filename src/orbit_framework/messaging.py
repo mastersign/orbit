@@ -446,6 +446,7 @@ class Slot(object):
 		"""
 		return self._transformation
 
+	@staticmethod
 	def for_job(job):
 		"""
 		Erzeugt ein Empfangsmuster, welches auf alle Nachrichten von einem
@@ -454,6 +455,7 @@ class Slot(object):
 		"""
 		return Slot(job, None, None)
 
+	@staticmethod
 	def for_component(job, component):
 		"""
 		Erzeugt ein Empfangsmuster, welches auf die Nachrichten
@@ -462,6 +464,7 @@ class Slot(object):
 		"""
 		return Slot(job, component, None)
 
+	@staticmethod
 	def for_name(name):
 		"""
 		Erzeugt ein Empfangsmuster, welches auf alle Nachrichten
@@ -482,7 +485,7 @@ class Slot(object):
 	def __str__(self):
 		return "Slot(job = %s, component = %s, name = %s, predicate: %s, transformation: %s)" \
 			% (self._job, self._component, self._name,
-			   self._transform != None, self._predicate != None)
+				  self._predicate is not None, self._transformation is not None)
 
 
 class Listener(object):
@@ -567,7 +570,7 @@ class Listener(object):
 		self._receiver = value
 
 	def __str__(self):
-		return "Listener(job = %s, component = %s, name = %s, predicate: %s, transform: %s, receiver = %s)" \
+		return "Listener(job = %s, component = %s, name = %s, predicate: %s, transformation: %s, receiver = %s)" \
 			% (self._slot.job, self._slot.component, self._slot.name,
 			   self._slot.transformation != None, self._slot.predicate != None, 
 			   self._receiver)
