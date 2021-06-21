@@ -29,30 +29,31 @@ Enthalten sind die folgenden Komponenten:
 
 from .. import Component
 
+
 class EventCallbackComponent(Component):
-	"""
-	Diese Komponente wartet mit Hilfe eines Empfangsmusters auf Nachrichten,
-	und ruft ein Callback auf, wenn eine passende Nachricht eintrifft.
+    """
+    Diese Komponente wartet mit Hilfe eines Empfangsmusters auf Nachrichten,
+    und ruft ein Callback auf, wenn eine passende Nachricht eintrifft.
 
-	**Parameter**
+    **Parameter**
 
-	``name``
-		Der Name der Komponente.
-	``slot``
-		Das Empfangsmuster für den Empfang der Nachrichten.
-	``callback``
-		Eine parameterlose Funktion.
-	"""
+    ``name``
+        Der Name der Komponente.
+    ``slot``
+        Das Empfangsmuster für den Empfang der Nachrichten.
+    ``callback``
+        Eine parameterlose Funktion.
+    """
 
-	def __init__(self, name, 
-		slot, callback,
-		**nargs):
-		
-		super(EventCallbackComponent, self).__init__(name, **nargs)
+    def __init__(self, name,
+                 slot, callback,
+                 **nargs):
 
-		self.callback = callback
+        super(EventCallbackComponent, self).__init__(name, **nargs)
 
-		self.add_listener(slot.listener(self.process_message))
+        self.callback = callback
 
-	def process_message(self, job, component, name, value):
-		self.callback()
+        self.add_listener(slot.listener(self.process_message))
+
+    def process_message(self, job, component, name, value):
+        self.callback()
