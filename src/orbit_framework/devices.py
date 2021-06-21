@@ -279,7 +279,7 @@ class DeviceManager(object):
 				# bind device and notify components
 				self._bind_device(device_identifier, uid)
 			else:
-				self.trace("could not create a device binding for device identifier " + device_identifier)
+				self.trace("could not create a device binding for device identifier " + str(device_identifier))
 		if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
 			# recognize absence of device
 			self.trace("device absent '%s' [%s]" % (device_name(device_identifier), uid))
