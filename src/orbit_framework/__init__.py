@@ -55,8 +55,10 @@ Das Modul enthält die folgenden Klassen:
 """
 
 from sys import stdout
+from signal import signal, SIGINT
+from time import sleep
 from datetime import datetime
-from threading import Thread, Event
+from threading import Thread
 from . import setup
 from .devices import DeviceManager
 from .messaging import MessageBus, MultiListener
@@ -130,9 +132,6 @@ class Core(object):
 
         self._stopper = MultiListener('Core Stopper', self._core_stopper)
         self._stopper.activate(self._message_bus)
-
-        self._stop_event = Event()
-        self._stop_event.set()
 
         self.trace("core initialized")
 
@@ -249,14 +248,12 @@ class Core(object):
             self.trace("core already started")
             return
         self.trace("starting ...")
-        self._stop_event.clear()
         self._is_started = True
         self._message_bus.start()
 
         if not self._device_manager.start():
             self.message_bus.stop()
             self._is_started = False
-            self._stop_event.set()
             return
 
         self.for_each_job(
@@ -309,7 +306,6 @@ class Core(object):
         self._message_bus.stop()
         self._is_started = False
         self.trace("... stopped")
-        self._stop_event.set()
 
     def _core_stopper(self, *_):
         self.trace("core stopping, caused by event")
@@ -367,10 +363,17 @@ class Core(object):
         """
         if not self._is_started:
             return
-        try:
-            self._stop_event.wait()
-        except KeyboardInterrupt:
+
+        self.trace("Press Ctrl+C to stop the core")
+
+        def handle_signal(*_):
+            self.trace("Interrupted by SIGINT")
             self.stop()
+
+        signal(SIGINT, handle_signal)
+
+        while self.is_started:
+            sleep(1 / 25)
 
     def install(self, job):
         """
