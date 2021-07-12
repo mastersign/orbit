@@ -51,9 +51,9 @@ class RemoteSwitchComponent(Component):
         Die ID der Funksteckdose.
     ``on_slot``
         Ein Empfangsmuster welches die Funksteckdose einschalten soll.
-    ``on_off``
-        Ein Emfpangsmuster welches die Funksteckdose ausschalten soll.
-    ``typ`` (*optional*)
+    ``off_slot``
+        Ein Empfangsmuster welches die Funksteckdose ausschalten soll.
+    ``remote_type`` (*optional*)
         Der Typ der Funksteckdose.
         Mögliche Werte sind ``'A'``, ``'B'`` oder ``'C'``.
         Der Standardwert ist ``'A'``.
@@ -78,14 +78,15 @@ class RemoteSwitchComponent(Component):
     """
 
     def __init__(self, name,
-                 group, socket, on_slot, off_slot, typ='A', switch_uid=None,
+                 group, socket, on_slot, off_slot,
+                 remote_type='A', switch_uid=None,
                  **nargs):
 
         super(RemoteSwitchComponent, self).__init__(name, **nargs)
 
         self._group = group
         self._socket = socket
-        self._typ = typ
+        self._remote_type = remote_type
 
         self.add_listener(on_slot.listener(self._process_on_event))
         self.add_listener(off_slot.listener(self._process_off_event))
@@ -103,11 +104,11 @@ class RemoteSwitchComponent(Component):
             lambda device: self._switch(device, RS.SWITCH_TO_OFF))
 
     def _switch(self, device, state):
-        if self._typ == 'A':
+        if self._remote_type == 'A':
             device.switch_socket_a(self._group, self._socket, state)
-        elif self._typ == 'B':
+        elif self._remote_type == 'B':
             device.switch_socket_b(self._group, self._socket, state)
-        elif self._typ == 'C':
+        elif self._remote_type == 'C':
             device.switch_socket_c(self._group, self._socket, state)
         else:
-            self.trace("invalid remote switch typ: '%s'" % self._typ)
+            self.trace("invalid remote switch typ: '%s'" % self._remote_type)
