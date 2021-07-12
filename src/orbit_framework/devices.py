@@ -277,7 +277,7 @@ class DeviceManager(object):
 
     Dabei behält der Gerätemanager die Kontrolle über den Gerätezugriff.
     Das bedeutet, dass der Gerätemanager die Autorität hat, einer Komponente
-    ein Gerät zur Verügung zu stellen, aber auch wieder zu entziehen.
+    ein Gerät zur Verfügung zu stellen, aber auch wieder zu entziehen.
 
     Eine Komponente bekommt ein von ihm angefordertes Gerät
     i.d.R. dann zugewiesen, wenn die Komponente aktiv
@@ -604,7 +604,7 @@ class DeviceManager(object):
         **Beschreibung**
 
         Da jedes Ereignis andere Ereignisparameter besitzt,
-        muss die richtige Signatur für die Callbackfunktion der TinkerForge-Dokumentation
+        muss die richtige Signatur für die Callback-Funktion der TinkerForge-Dokumentation
         entnommen werden. Die Ereignisparameter werden in der API-Dokumentation
         für jeden Brick und jedes Bricklet im Abschnitt *Callbacks* beschrieben.
 

@@ -38,7 +38,7 @@ class MulticastCallback(object):
 
     Die Klasse implementiert die ``__call__``-Methode, daher können Instanzen
     der Klasse selbst als Callback weitergegeben werden.
-    Wird Klasse als Funktion aufgerufen, werden die mit :py:meth:`add_callback`
+    Wird eine Instanz der Klasse als Funktion aufgerufen, werden die mit :py:meth:`add_callback`
     registrierten Funktionen in der gleichen Reihenfolge aufgerufen, in der sie
     hinzugefügt wurden. Dabei werden alle Parameter unverändert weitergegeben.
 
