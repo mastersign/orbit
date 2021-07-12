@@ -32,9 +32,9 @@ Enthalten sind die folgenden Komponenten:
 """
 
 from datetime import datetime
+from tinkerforge.bricklet_lcd_20x4 import BrickletLCD20x4
 from .. import Component
 from ..devices import SingleDeviceHandle, MultiDeviceHandle
-from tinkerforge.bricklet_lcd_20x4 import BrickletLCD20x4
 from ..lcdcharset import unicode_to_ks0066u
 
 LCD204 = BrickletLCD20x4
@@ -78,13 +78,13 @@ class LCD20x4ButtonsComponent(Component):
     def bind_lcd(self, device):
         uid = device.identity[0]
 
-        def button_pressed(no):
+        def button_pressed(no, **_):
             self.send('button_pressed', (uid, no))
 
         self.lcd_handle.register_callback(
             LCD204.CALLBACK_BUTTON_PRESSED, button_pressed)
 
-        def button_released(no):
+        def button_released(no, **_):
             self.send('button_released', (uid, no))
 
         self.lcd_handle.register_callback(
@@ -363,7 +363,7 @@ class LCD20x4MenuComponent(Component):
     def on_disabled(self):
         self.set_active(False)
 
-    def button_pressed(self, no):
+    def button_pressed(self, no, **_):
         if not self.active:
             return
         if no == 0:

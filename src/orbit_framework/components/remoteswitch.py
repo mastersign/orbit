@@ -95,11 +95,11 @@ class RemoteSwitchComponent(Component):
             'switch', RS.DEVICE_IDENTIFIER, uid=switch_uid)
         self.add_device_handle(self._switch_handle)
 
-    def _process_on_event(self, *args):
+    def _process_on_event(self, *_):
         self._switch_handle.for_each_device(
             lambda device: self._switch(device, RS.SWITCH_TO_ON))
 
-    def _process_off_event(self, *args):
+    def _process_off_event(self, *_):
         self._switch_handle.for_each_device(
             lambda device: self._switch(device, RS.SWITCH_TO_OFF))
 

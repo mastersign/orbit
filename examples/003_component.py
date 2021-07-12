@@ -43,7 +43,7 @@ class MyLcdComponent(Component):
         # Geräteanforderung einrichten
         self.add_device_handle(self._lcd_handle)
 
-    def process_button(self, no):
+    def process_button(self, no, **_):
         # Zähler hochzählen
         self._counter = self._counter + 1
         # Nachricht auf allen durch die Geräteanforderung

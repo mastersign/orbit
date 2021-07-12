@@ -424,13 +424,15 @@ class DeviceManager(object):
         # store reference to binding instance
         self.devices[uid] = device
         # register callbacks
+
         if uid in self._device_callbacks:
             callbacks = self._device_callbacks[uid]
             for event in callbacks:
                 self.trace("binding dispatcher to '%s' [%s] (%s)" %
                            (device_name(device_identifier), uid, event))
                 mcc = callbacks[event]
-                device.register_callback(event, mcc)
+                device.register_callback(
+                    event, lambda *pargs, **nargs: mcc(*pargs, device=device, **nargs))
         # notify device handles
         for device_handle in self._device_handles:
             device_handle.on_bind_device(device)
@@ -630,7 +632,8 @@ class DeviceManager(object):
             if uid in self._devices:
                 device = self._devices[uid]
                 self.trace("binding dispatcher to [%s] (%s)" % (uid, event))
-                device.register_callback(event, mcc)
+                device.register_callback(
+                    event, lambda *pargs, **nargs: mcc(*pargs, device=device, **nargs))
 
         mcc = callbacks[event]
         self.trace("adding callback to dispatcher for [%s] (%s)" % (uid, event))
