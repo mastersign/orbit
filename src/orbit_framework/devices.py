@@ -40,6 +40,7 @@ mit TinkerForge-Gerätetypen:
 """
 
 import time
+import traceback
 from .tools import MulticastCallback
 from tinkerforge.ip_connection import IPConnection, Error
 
@@ -368,28 +369,34 @@ class DeviceManager(object):
 
         Siehe auch: :py:meth:`start`
         """
-        self._finalize_and_unbind_devices()
+        self._unbind_and_finalize_devices()
         if self._conn.get_connection_state() != IPConnection.CONNECTION_STATE_DISCONNECTED:
             self.trace("disconnecting")
             self._conn.disconnect()
 
     def _cb_enumerate(self, uid, connected_uid, position, hardware_version,
                       firmware_version, device_identifier, enumeration_type):
-
         if enumeration_type == IPConnection.ENUMERATION_TYPE_AVAILABLE or \
                 enumeration_type == IPConnection.ENUMERATION_TYPE_CONNECTED:
+            if enumeration_type == IPConnection.ENUMERATION_TYPE_AVAILABLE:
+                enum_type_label = 'available'
+            else:
+                enum_type_label = 'connected'
             # initialize device configuration and bindings
-            self.trace("device present '%s' [%s]" % (device_name(device_identifier), uid))
+            self.trace("device present '%s' [%s] (%s)" %
+                       (device_name(device_identifier), uid, enum_type_label))
             if known_device(device_identifier):
-                # bind device and notify components
-                self._bind_device(device_identifier, uid)
+                if uid not in self._devices:
+                    # bind device and notify components
+                    self._bind_device(device_identifier, uid)
             else:
                 self.trace("could not create a device binding for device identifier " + str(device_identifier))
         if enumeration_type == IPConnection.ENUMERATION_TYPE_DISCONNECTED:
             # recognize absence of device
             self.trace("device absent '%s' [%s]" % (device_name(device_identifier), uid))
-            # unbind device and notify components
-            self._unbind_device(uid)
+            if uid in self._devices:
+                # unbind device and notify components
+                self._unbind_device(uid)
 
     def _cb_connected(self, reason):
         self._connected = True
@@ -405,11 +412,15 @@ class DeviceManager(object):
         self._connected = False
         # recognize lost connection
         if reason == IPConnection.DISCONNECT_REASON_ERROR:
-            self.trace("connection lost (error)")
+            self.trace("connection lost (interrupted)")
         elif reason == IPConnection.DISCONNECT_REASON_SHUTDOWN:
             self.trace("connection lost (shutdown)")
+        elif reason == IPConnection.DISCONNECT_REASON_REQUEST:
+            self.trace("connection lost (request)")
         else:
-            self.trace("connection lost")
+            self.trace("connection lost (reason unknown)")
+        # unbind all currently bound devices
+        self._unbind_devices()
 
     def _bind_device(self, device_identifier, uid):
         self.trace("binding '%s' [%s]" %
@@ -419,6 +430,7 @@ class DeviceManager(object):
         # add passive identity attribute
         identity = device.get_identity()
         device.identity = identity
+
         # initialize device
         self._initialize_device(device)
         # store reference to binding instance
@@ -438,26 +450,26 @@ class DeviceManager(object):
             device_handle.on_bind_device(device)
 
     def _unbind_device(self, uid):
-        if uid in self._devices:
-            device = self._devices[uid]
-            self.trace("unbinding '%s' [%s]" %
-                       (device_name(device.identity[5]), uid))
-            # notify device handles
-            for device_handle in self._device_handles:
-                device_handle.on_unbind_device(device)
-            # delete reference to binding interface
-            del (self._devices[uid])
+        device = self._devices[uid]
+        self.trace("unbinding '%s' [%s]" %
+                   (device_name(device.identity[5]), uid))
+        # notify device handles
+        for device_handle in self._device_handles:
+            device_handle.on_unbind_device(device)
+        # delete reference to binding interface
+        del self._devices[uid]
+        # delete reference to multicast callbacks
+        if uid in list(self._device_callbacks.keys()):
+            del self._device_callbacks[uid]
 
-            # delete reference to multicast callbacks
-            if uid in self._device_callbacks:
-                del (self._device_callbacks[uid])
-        else:
-            self.trace("attempt to unbind not bound device [%s]" % uid)
-
-    def _finalize_and_unbind_devices(self):
+    def _unbind_devices(self):
         for uid in list(self._devices.keys()):
-            self._finalize_device(self._devices[uid])
             self._unbind_device(uid)
+
+    def _unbind_and_finalize_devices(self):
+        for device in list(self._devices.values()):
+            self._unbind_device(device.identity.uid)
+            self._finalize_device(device)
 
     def add_device_initializer(self, device_identifier, initializer):
         """
@@ -497,10 +509,15 @@ class DeviceManager(object):
                 try:
                     initializer(device)
                 except Error as err:
-                    if err.value != -8:  # connection lost
-                        self.trace("Error during initialization of : %s" % err.description)
-                except Exception as exc:
-                    self.trace("Exception caught during device initialization:\n%s" % exc)
+                    if err.value == -8:
+                        # connection lost
+                        pass
+                    else:
+                        self.trace("An initializer for device [%s] failed: %s" %
+                                   (device.identity.uid, traceback.format_exc()))
+                except:
+                    self.trace("Exception caught during initialization of device [%s]:\n%s" %
+                               (device.identity.uid, traceback.format_exc()))
 
     def add_device_finalizer(self, device_identifier, finalizer):
         """
@@ -540,10 +557,15 @@ class DeviceManager(object):
                 try:
                     finalizer(device)
                 except Error as err:
-                    if err.value != -8:  # connection lost
-                        self.trace("Error during device finalization: %s" % err.description)
-                except Exception as exc:
-                    self.trace("Exception caught during device finalization:\n%s" % exc)
+                    if err.value == -8:
+                        # connection lost
+                        pass
+                    else:
+                        self.trace("A finalizer for device [%s] failed: %s" %
+                                   (device.identity.uid, traceback.format_exc()))
+                except:
+                    self.trace("Exception caught during finalization of device [%s]:\n%s" %
+                               (device.identity.uid, traceback.format_exc()))
 
     def add_handle(self, device_handle):
         """
@@ -789,7 +811,7 @@ class DeviceHandle(object):
         *Siehe auch:*
         :py:meth:`accept_device`
         """
-        raise Exception("Not implented. Must be overridden in a child class.")
+        raise Exception("Not implemented. Must be overridden in a child class.")
 
     def accept_device(self, device):
         """
@@ -799,7 +821,7 @@ class DeviceHandle(object):
         *Siehe auch:*
         :py:meth:`on_bind_device`
         """
-        self._device_manager.trace("binding '%s' [%s] to handle '%s'" \
+        self._device_manager.trace("binding '%s' [%s] to handle '%s'"
                                    % (device_name(device.identity[5]), device.identity[0], self.name))
 
         self.devices.append(device)
@@ -838,8 +860,8 @@ class DeviceHandle(object):
         *Siehe auch:*
         :py:meth:`on_unbind_device`
         """
-        self._device_manager.trace("unbinding '%s' [%s] from handle '%s'" \
-                                   % (device_name(device.identity[5]), device.identity[0], self.name))
+        self._device_manager.trace("unbinding '%s' [%s] from handle '%s'" %
+                                   (device_name(device.identity[5]), device.identity[0], self.name))
 
         if self._unbind_callback:
             self._unbind_callback(device)
@@ -859,11 +881,23 @@ class DeviceHandle(object):
             try:
                 f(d)
             except Error as err:
-                if err.value != -8:  # connection lost
+                if err.value == -8:
+                    # connection lost
+                    pass
+                elif err.value == -16:
+                    # device replaced
+                    self._device_manager.trace(
+                        "Handle contains outdated device object for [%s]" %
+                        (d.identity.uid, ))
+                    pass
+                else:
                     if self._device_manager:
-                        self._device_manager.trace(err.description)
+                        self._device_manager.trace(
+                            "Can not call function for device [%s]: %s" %
+                            (d.identity.uid, traceback.format_exc()))
                     else:
-                        print(err.description)
+                        print('Can not call function for device [%s]:' % d.identity.uid)
+                        traceback.print_exc()
 
     def _install_callback(self, device, event_code, callback):
         self._device_manager.add_device_callback(
@@ -927,7 +961,7 @@ class DeviceHandle(object):
             self.for_each_device(
                 lambda device: self._uninstall_callback(
                     device, event_code))
-        del (self._callbacks[event_code])
+        del self._callbacks[event_code]
 
 
 class SingleDeviceHandle(DeviceHandle):
