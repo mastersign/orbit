@@ -78,7 +78,7 @@ __all__ = [
 
 
 def _trace(text, source):
-    stamp = datetime.now().strftime('[%Y-%m-%d %H-%M-%S]')
+    stamp = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     msg = '%s %s: %s\n' % (stamp, source, text)
     stdout.write(msg)
     stdout.flush()
