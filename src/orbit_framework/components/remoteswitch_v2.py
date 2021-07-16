@@ -307,8 +307,7 @@ class RemoteSwitchV2ReceiverComponent(Component):
         device.set_remote_configuration(self._remote_type_code(), self._min_receive_repeats, True)
 
     def _on_unbind(self, device):
-        self.trace('stopping receiver in ' + device.get_identity().uid)
-        device.set_remote_configuration(RS2.REMOTE_TYPE_A, 2, False)
+        self.trace('lost connection to ' + device.identity.uid)
 
     def _can_send(self, group, socket, switch_to, dim_value, repeats):
         if self._group and self._group != group:
