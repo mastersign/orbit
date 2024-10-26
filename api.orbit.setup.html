@@ -1,48 +1,32 @@
 
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="de" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Modul orbit_framework.setup &mdash; ORBIT 0.1.0 Dokumentation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
-    <link rel="up" title="API-Referenz" href="reference.html" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modul orbit_framework.setup &#8212; ORBIT 0.2.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="_static/documentation_options.js?v=eef347c6"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Modul orbit_framework.tools" href="api.orbit.tools.html" />
     <link rel="prev" title="Modul orbit_framework.messaging" href="api.orbit.messaging.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,12 +39,11 @@
         </button>
         <a class="navbar-brand" href="index.html">
           ORBIT</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
                 <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
             
@@ -96,7 +79,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework.setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modul orbit_framework.setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
 </ul>
 </li>
@@ -126,7 +109,22 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Modul orbit_framework.setup</a><ul>
-<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration"><code class="docutils literal notranslate"><span class="pre">Configuration</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.component_tracing"><code class="docutils literal notranslate"><span class="pre">Configuration.component_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.connection_retry_time"><code class="docutils literal notranslate"><span class="pre">Configuration.connection_retry_time</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.core_tracing"><code class="docutils literal notranslate"><span class="pre">Configuration.core_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.device_tracing"><code class="docutils literal notranslate"><span class="pre">Configuration.device_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.event_tracing"><code class="docutils literal notranslate"><span class="pre">Configuration.event_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.host"><code class="docutils literal notranslate"><span class="pre">Configuration.host</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.job_tracing"><code class="docutils literal notranslate"><span class="pre">Configuration.job_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.load"><code class="docutils literal notranslate"><span class="pre">Configuration.load()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.port"><code class="docutils literal notranslate"><span class="pre">Configuration.port</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.setup.Configuration.save"><code class="docutils literal notranslate"><span class="pre">Configuration.save()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -138,11 +136,11 @@
               
                 
   <li>
-    <a href="api.orbit.messaging.html" title="Previous Chapter: Modul orbit_framework.messaging"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit_fram...</span>
+    <a href="api.orbit.messaging.html" title="Previous Chapter: Modul orbit_framework.messaging"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Modul orbit_f...</span>
     </a>
   </li>
   <li>
-    <a href="api.orbit.tools.html" title="Next Chapter: Modul orbit_framework.tools"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit_fram... &raquo;</span>
+    <a href="api.orbit.tools.html" title="Next Chapter: Modul orbit_framework.tools"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Modul orbit_f... &raquo;</span>
     </a>
   </li>
               
@@ -168,97 +166,97 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-orbit_framework.setup">
-<span id="modul-orbit-framework-setup"></span><h1>Modul orbit_framework.setup<a class="headerlink" href="#module-orbit_framework.setup" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <section id="module-orbit_framework.setup">
+<span id="modul-orbit-framework-setup"></span><h1>Modul orbit_framework.setup<a class="headerlink" href="#module-orbit_framework.setup" title="Link to this heading">¶</a></h1>
 <p>Dieses Modul implementiert die Setup-Steuerung für ORBIT.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Dieses Modul kann auch als Skript ausgeführt werden, es gibt
+<p class="admonition-title">Bemerkung</p>
+<p>Dieses Modul kann auch als Skript ausgeführt werden, es gibt
 dann die aktuelle ORBIT-Konfiguration aus.</p>
 </div>
 <p>Dieses Modul enthält die folgenden Klassen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><tt class="xref py py-class docutils literal"><span class="pre">Configuration</span></tt></a></li>
+<li><p><a class="reference internal" href="#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a></p></li>
 </ul>
-<div class="section" id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.setup.Configuration">
-<em class="property">class </em><tt class="descclassname">orbit_framework.setup.</tt><tt class="descname">Configuration</tt><a class="headerlink" href="#orbit_framework.setup.Configuration" title="Permalink zu dieser Definition">¶</a></dt>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.setup.</span></span><span class="sig-name descname"><span class="pre">Configuration</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse verwaltet globale Konfigurationsparameter für ORBIT.
 Jeder Parameter ist mit einem Standardwert vorbelegt und kann
-in der Datei <tt class="docutils literal"><span class="pre">&lt;Benutzerverzeichnis&gt;/.orbit</span></tt> überschrieben werden.
-Dazu besitzt die Kasse die Methoden <a class="reference internal" href="#orbit_framework.setup.Configuration.load" title="orbit_framework.setup.Configuration.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> and <a class="reference internal" href="#orbit_framework.setup.Configuration.save" title="orbit_framework.setup.Configuration.save"><tt class="xref py py-meth docutils literal"><span class="pre">save()</span></tt></a>.
-Die Methode <a class="reference internal" href="#orbit_framework.setup.Configuration.load" title="orbit_framework.setup.Configuration.load"><tt class="xref py py-meth docutils literal"><span class="pre">load()</span></tt></a> wird bereits automatisch beim Instanzieren aufgerufen.</p>
-<p>Die Klasse unterstützt die String-Darstellung mit <tt class="xref py py-func docutils literal"><span class="pre">str()</span></tt>.</p>
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.component_tracing">
-<tt class="descname">component_tracing</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.component_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+in der Datei <code class="docutils literal notranslate"><span class="pre">&lt;Benutzerverzeichnis&gt;/.orbit</span></code> überschrieben werden.
+Dazu besitzt die Kasse die Methoden <a class="reference internal" href="#orbit_framework.setup.Configuration.load" title="orbit_framework.setup.Configuration.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load()</span></code></a> and <a class="reference internal" href="#orbit_framework.setup.Configuration.save" title="orbit_framework.setup.Configuration.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save()</span></code></a>.
+Die Methode <a class="reference internal" href="#orbit_framework.setup.Configuration.load" title="orbit_framework.setup.Configuration.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load()</span></code></a> wird bereits automatisch beim Instanzieren aufgerufen.</p>
+<p>Die Klasse unterstützt die String-Darstellung mit <code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code>.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.component_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_tracing</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.component_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die Trace-Nachrichten auf Component-Ebene. (<em>bool</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.connection_retry_time">
-<tt class="descname">connection_retry_time</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.connection_retry_time" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.connection_retry_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connection_retry_time</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.connection_retry_time" title="Link to this definition">¶</a></dt>
 <dd><p>Die Zeitspanne in Sekunden nachdem eine fehlgeschlagene IP-Verbindung wieder aufgebaut werden soll. (<em>int</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.core_tracing">
-<tt class="descname">core_tracing</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.core_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.core_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">core_tracing</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.core_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die Trace-Nachrichtenausgabe vom ORBIT-Kern. (<em>bool</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.device_tracing">
-<tt class="descname">device_tracing</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.device_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.device_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_tracing</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.device_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die Trace-Nachrichten des Gerätemanagers von ORBIT. (<em>bool</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.event_tracing">
-<tt class="descname">event_tracing</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.event_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.event_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_tracing</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.event_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die Trace-Nachrichten des Nachrichtenbusses von ORBIT. (<em>bool</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.host">
-<tt class="descname">host</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.host" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.host">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.host" title="Link to this definition">¶</a></dt>
 <dd><p>Der Hostname für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (<em>string</em>)</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.job_tracing">
-<tt class="descname">job_tracing</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.job_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.job_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">job_tracing</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.job_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die Trace-Nachrichten auf Job-Ebene. (<em>bool</em>)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.setup.Configuration.load">
-<tt class="descname">load</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.setup.Configuration.load" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Diese Method lädt die überschrieben Parameterwerte aus der 
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.setup.Configuration.load" title="Link to this definition">¶</a></dt>
+<dd><p>Diese Method lädt die überschrieben Parameterwerte aus der
 benutzerspezifischen Konfigurationsdatei.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.setup.Configuration.port">
-<tt class="descname">port</tt><a class="headerlink" href="#orbit_framework.setup.Configuration.port" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#orbit_framework.setup.Configuration.port" title="Link to this definition">¶</a></dt>
 <dd><p>Der Port für die Netzwerkverbindung zum Brick-Deamon oder Master-Brick. (<em>int</em>)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.setup.Configuration.save">
-<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.setup.Configuration.save" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Speichert die Werte aller Parameter in die benutzerspezifische 
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.setup.Configuration.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.setup.Configuration.save" title="Link to this definition">¶</a></dt>
+<dd><p>Speichert die Werte aller Parameter in die benutzerspezifische
 Konfigurationsdatei.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -273,14 +271,14 @@ Konfigurationsdatei.</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/api.orbit.setup.txt"
+  <a href="_sources/api.orbit.setup.rst.txt"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Copyright 2024 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

@@ -1,48 +1,32 @@
 
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="de" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Modul orbit_framework.messaging &mdash; ORBIT 0.1.0 Dokumentation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
-    <link rel="up" title="API-Referenz" href="reference.html" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modul orbit_framework.messaging &#8212; ORBIT 0.2.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="_static/documentation_options.js?v=eef347c6"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Modul orbit_framework.setup" href="api.orbit.setup.html" />
     <link rel="prev" title="Modul orbit_framework.index" href="api.orbit.index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,12 +39,11 @@
         </button>
         <a class="navbar-brand" href="index.html">
           ORBIT</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
                 <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
             
@@ -95,7 +78,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.html">Modul orbit_framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework.messaging</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modul orbit_framework.messaging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.setup.html">Modul orbit_framework.setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.tools.html">Modul orbit_framework.tools</a></li>
 </ul>
@@ -126,10 +109,60 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Modul orbit_framework.messaging</a><ul>
-<li><a class="reference internal" href="#messagebus">MessageBus</a></li>
-<li><a class="reference internal" href="#slot">Slot</a></li>
-<li><a class="reference internal" href="#listener">Listener</a></li>
-<li><a class="reference internal" href="#multilistener">MultiListener</a></li>
+<li><a class="reference internal" href="#messagebus">MessageBus</a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus"><code class="docutils literal notranslate"><span class="pre">MessageBus</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.Message"><code class="docutils literal notranslate"><span class="pre">MessageBus.Message</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener"><code class="docutils literal notranslate"><span class="pre">MessageBus.add_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.component_group"><code class="docutils literal notranslate"><span class="pre">MessageBus.component_group()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.job_group"><code class="docutils literal notranslate"><span class="pre">MessageBus.job_group()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.name_group"><code class="docutils literal notranslate"><span class="pre">MessageBus.name_group()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener"><code class="docutils literal notranslate"><span class="pre">MessageBus.remove_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.send"><code class="docutils literal notranslate"><span class="pre">MessageBus.send()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.start"><code class="docutils literal notranslate"><span class="pre">MessageBus.start()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.stop"><code class="docutils literal notranslate"><span class="pre">MessageBus.stop()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus.trace"><code class="docutils literal notranslate"><span class="pre">MessageBus.trace()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#slot">Slot</a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot"><code class="docutils literal notranslate"><span class="pre">Slot</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.component"><code class="docutils literal notranslate"><span class="pre">Slot.component</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.for_component"><code class="docutils literal notranslate"><span class="pre">Slot.for_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.for_job"><code class="docutils literal notranslate"><span class="pre">Slot.for_job()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.for_name"><code class="docutils literal notranslate"><span class="pre">Slot.for_name()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.job"><code class="docutils literal notranslate"><span class="pre">Slot.job</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.listener"><code class="docutils literal notranslate"><span class="pre">Slot.listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.name"><code class="docutils literal notranslate"><span class="pre">Slot.name</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.predicate"><code class="docutils literal notranslate"><span class="pre">Slot.predicate</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Slot.transformation"><code class="docutils literal notranslate"><span class="pre">Slot.transformation</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#listener">Listener</a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.Listener"><code class="docutils literal notranslate"><span class="pre">Listener</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.Listener.component"><code class="docutils literal notranslate"><span class="pre">Listener.component</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Listener.job"><code class="docutils literal notranslate"><span class="pre">Listener.job</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Listener.name"><code class="docutils literal notranslate"><span class="pre">Listener.name</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.Listener.receiver"><code class="docutils literal notranslate"><span class="pre">Listener.receiver</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multilistener">MultiListener</a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener"><code class="docutils literal notranslate"><span class="pre">MultiListener</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.activate"><code class="docutils literal notranslate"><span class="pre">MultiListener.activate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot"><code class="docutils literal notranslate"><span class="pre">MultiListener.add_slot()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.deactivate"><code class="docutils literal notranslate"><span class="pre">MultiListener.deactivate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.listeners"><code class="docutils literal notranslate"><span class="pre">MultiListener.listeners</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.name"><code class="docutils literal notranslate"><span class="pre">MultiListener.name</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.remove_slot"><code class="docutils literal notranslate"><span class="pre">MultiListener.remove_slot()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener.slots"><code class="docutils literal notranslate"><span class="pre">MultiListener.slots</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -141,11 +174,11 @@
               
                 
   <li>
-    <a href="api.orbit.index.html" title="Previous Chapter: Modul orbit_framework.index"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Modul orbit_fram...</span>
+    <a href="api.orbit.index.html" title="Previous Chapter: Modul orbit_framework.index"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Modul orbit_f...</span>
     </a>
   </li>
   <li>
-    <a href="api.orbit.setup.html" title="Next Chapter: Modul orbit_framework.setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit_fram... &raquo;</span>
+    <a href="api.orbit.setup.html" title="Next Chapter: Modul orbit_framework.setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Modul orbit_f... &raquo;</span>
     </a>
   </li>
               
@@ -171,502 +204,502 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-orbit_framework.messaging">
-<span id="modul-orbit-framework-messaging"></span><h1>Modul orbit_framework.messaging<a class="headerlink" href="#module-orbit_framework.messaging" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <section id="module-orbit_framework.messaging">
+<span id="modul-orbit-framework-messaging"></span><h1>Modul orbit_framework.messaging<a class="headerlink" href="#module-orbit_framework.messaging" title="Link to this heading">¶</a></h1>
 <p>Dieses Modul implementiert das Nachrichtensystem von ORBIT.</p>
 <p>Das Modul umfasst die folgenden Klassen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">MessageBus</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.messaging.MultiListener" title="orbit_framework.messaging.MultiListener"><tt class="xref py py-class docutils literal"><span class="pre">MultiListener</span></tt></a></li>
+<li><p><a class="reference internal" href="#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">MessageBus</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.messaging.MultiListener" title="orbit_framework.messaging.MultiListener"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiListener</span></code></a></p></li>
 </ul>
-<div class="section" id="messagebus">
-<h2>MessageBus<a class="headerlink" href="#messagebus" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.messaging.MessageBus">
-<em class="property">class </em><tt class="descclassname">orbit_framework.messaging.</tt><tt class="descname">MessageBus</tt><big>(</big><em>core</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus" title="Permalink zu dieser Definition">¶</a></dt>
+<section id="messagebus">
+<h2>MessageBus<a class="headerlink" href="#messagebus" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.messaging.</span></span><span class="sig-name descname"><span class="pre">MessageBus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert das ORBIT-Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">core</span></tt></dt>
-<dd>Ein Verweis auf den Anwendungskern der ORBIT-Anwendung.
-Eine Instanz der Klasse <tt class="xref py py-class docutils literal"><span class="pre">Core</span></tt>.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">core</span></code></dt><dd><p>Ein Verweis auf den Anwendungskern der ORBIT-Anwendung.
+Eine Instanz der Klasse <code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code>.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Das Nachrichtensystem funktioniert nach dem Broadcast-Prinzip.
 Nachrichten werden von einem Absender an das Nachrichtensystem
 übergeben, ohne dass der Absender weiß, wer die Nachricht empfangen wird
-(<a class="reference internal" href="#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a>).</p>
-<p>Empfänger können sich mit einem Empfangsmuster (<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>) 
-bei dem Nachrichtensystem registrieren (<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>)
+(<a class="reference internal" href="#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a>).</p>
+<p>Empfänger können sich mit einem Empfangsmuster (<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>)
+bei dem Nachrichtensystem registrieren (<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>)
 und bekommen alle Nachrichten zugestellt, die ihrem Empfangsmuster entsprechen.</p>
-<p>Das Zustellen der Nachrichten (der Aufruf der Empfänger-Callbacks) 
+<p>Das Zustellen der Nachrichten (der Aufruf der Empfänger-Callbacks)
 erfolgt in einem dedizierten Thread. Das hat den Vorteil, dass das Versenden
 einer Nachricht ein asynchroner Vorgang ist, der den Absender nicht blockiert.</p>
 <p>Jede Nachricht ist einem Ereignis zugeordnet. Dieses Ereignis ist
 durch einen Job, eine Komponente und einen Ereignisnamen definiert.
 Der Absender eines Ereignisses gibt beim Versenden einer Nachricht
 den Namen des Ereignisses an.</p>
-<p>Um das Erzeugen von Empfangsmustern (<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>) zu vereinfachen,
+<p>Um das Erzeugen von Empfangsmustern (<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>) zu vereinfachen,
 können Jobs, Komponenten und Ereignisnamen zu Gruppen zusammengefasst werden
-(<a class="reference internal" href="#orbit_framework.messaging.MessageBus.job_group" title="orbit_framework.messaging.MessageBus.job_group"><tt class="xref py py-meth docutils literal"><span class="pre">job_group()</span></tt></a>, <a class="reference internal" href="#orbit_framework.messaging.MessageBus.component_group" title="orbit_framework.messaging.MessageBus.component_group"><tt class="xref py py-meth docutils literal"><span class="pre">component_group()</span></tt></a>, <a class="reference internal" href="#orbit_framework.messaging.MessageBus.name_group" title="orbit_framework.messaging.MessageBus.name_group"><tt class="xref py py-meth docutils literal"><span class="pre">name_group()</span></tt></a>).</p>
-<dl class="class">
-<dt id="orbit_framework.messaging.MessageBus.Message">
-<em class="property">class </em><tt class="descname">Message</tt><big>(</big><em>job</em>, <em>component</em>, <em>name</em>, <em>value</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.Message" title="Permalink zu dieser Definition">¶</a></dt>
+(<a class="reference internal" href="#orbit_framework.messaging.MessageBus.job_group" title="orbit_framework.messaging.MessageBus.job_group"><code class="xref py py-meth docutils literal notranslate"><span class="pre">job_group()</span></code></a>, <a class="reference internal" href="#orbit_framework.messaging.MessageBus.component_group" title="orbit_framework.messaging.MessageBus.component_group"><code class="xref py py-meth docutils literal notranslate"><span class="pre">component_group()</span></code></a>, <a class="reference internal" href="#orbit_framework.messaging.MessageBus.name_group" title="orbit_framework.messaging.MessageBus.name_group"><code class="xref py py-meth docutils literal notranslate"><span class="pre">name_group()</span></code></a>).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.Message">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.Message" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse repräsentiert eine Nachricht im Nachrichtensystem.
 Sie wird nur intern verwendet.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.add_listener">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">add_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.add_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.add_listener">
+<span class="sig-name descname"><span class="pre">add_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.add_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Registriert einen Empfänger mit einem Empfangsmuster im Nachrichtensystem.</p>
-<p>Das Empfangsmuster besteht aus den drei Attributen 
-<tt class="docutils literal"><span class="pre">job</span></tt>, <tt class="docutils literal"><span class="pre">component</span></tt> und <tt class="docutils literal"><span class="pre">name</span></tt>.
-Diese Attribute können jeweils einen Namen, einen Gruppennamen oder <tt class="docutils literal"><span class="pre">None</span></tt> enthalten.
-Sie werden benutzt, um zu entscheiden, ob eine Nachricht 
+<p>Das Empfangsmuster besteht aus den drei Attributen
+<code class="docutils literal notranslate"><span class="pre">job</span></code>, <code class="docutils literal notranslate"><span class="pre">component</span></code> und <code class="docutils literal notranslate"><span class="pre">name</span></code>.
+Diese Attribute können jeweils einen Namen, einen Gruppennamen oder <code class="docutils literal notranslate"><span class="pre">None</span></code> enthalten.
+Sie werden benutzt, um zu entscheiden, ob eine Nachricht
 an den Empfänger übergeben wird oder nicht.</p>
-<p>Üblichweise wird als Empfänger ein <a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>-Objekt verwendet,
-welches mit einem <a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>-Objekt und einem Callback initialisiert wurde.</p>
+<p>Üblichweise wird als Empfänger ein <a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>-Objekt verwendet,
+welches mit einem <a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>-Objekt und einem Callback initialisiert wurde.</p>
 <div class="line-block">
-<div class="line">Die Nachricht 
-<em>M</em>: job = <tt class="docutils literal"><span class="pre">'A'</span></tt>, component = <tt class="docutils literal"><span class="pre">'1'</span></tt>, name = <tt class="docutils literal"><span class="pre">'a'</span></tt>, value = ...</div>
+<div class="line">Die Nachricht
+<em>M</em>: job = <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, component = <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, name = <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, value = …</div>
 <div class="line">wird an alle Empfänger mit dem Empfangsmuster</div>
-<div class="line">〈 job = <tt class="docutils literal"><span class="pre">'A'</span></tt>, component = <tt class="docutils literal"><span class="pre">'1'</span></tt>, name = <tt class="docutils literal"><span class="pre">'a'</span></tt> 〉
+<div class="line">〈 job = <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, component = <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, name = <code class="docutils literal notranslate"><span class="pre">'a'</span></code> 〉
 übergeben.</div>
 </div>
 <div class="line-block">
-<div class="line">Existiert eine Ereignisnamengruppe mit dem Namen <tt class="docutils literal"><span class="pre">'x'</span></tt> und den Ereignisnamen
-<tt class="docutils literal"><span class="pre">'a'</span></tt>, <tt class="docutils literal"><span class="pre">b'</span></tt>, <tt class="docutils literal"><span class="pre">'c'</span></tt>, wird die Nachricht <em>M</em> auch an alle Empfänger
+<div class="line">Existiert eine Ereignisnamengruppe mit dem Namen <code class="docutils literal notranslate"><span class="pre">'x'</span></code> und den Ereignisnamen
+<code class="docutils literal notranslate"><span class="pre">'a'</span></code>, <code class="docutils literal notranslate"><span class="pre">b'</span></code>, <code class="docutils literal notranslate"><span class="pre">'c'</span></code>, wird die Nachricht <em>M</em> auch an alle Empfänger
 mit dem Empfangsmuster</div>
-<div class="line">〈 job = <tt class="docutils literal"><span class="pre">'A'</span></tt>, component = <tt class="docutils literal"><span class="pre">'1'</span></tt>, name = <tt class="docutils literal"><span class="pre">'x'</span></tt> 〉
+<div class="line">〈 job = <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, component = <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, name = <code class="docutils literal notranslate"><span class="pre">'x'</span></code> 〉
 übergeben.</div>
 </div>
 <div class="line-block">
-<div class="line">Hat ein Attribut den Wert <tt class="docutils literal"><span class="pre">None</span></tt>, wird es ignoriert. 
+<div class="line">Hat ein Attribut den Wert <code class="docutils literal notranslate"><span class="pre">None</span></code>, wird es ignoriert.
 Das bedeutet, die Nachricht <em>M</em> wird auch an alle Empfänger mit dem Empfangsmuster</div>
-<div class="line">〈  job = <tt class="docutils literal"><span class="pre">'A'</span></tt>, component = <tt class="docutils literal"><span class="pre">'1'</span></tt>, name = <tt class="docutils literal"><span class="pre">None</span></tt> 〉
+<div class="line">〈  job = <code class="docutils literal notranslate"><span class="pre">'A'</span></code>, component = <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, name = <code class="docutils literal notranslate"><span class="pre">None</span></code> 〉
 übergeben.</div>
 </div>
-<p>Der Empfänger muss den Aufruf als Funktion unterstützen. 
+<p>Der Empfänger muss den Aufruf als Funktion unterstützen.
 Er wird für die Übergabe der Nachricht mit den folgenden vier Parametern aufgerufen:</p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">job</span></tt></dt>
-<dd>Der Name des versendenden Jobs</dd>
-<dt><tt class="docutils literal"><span class="pre">component</span></tt></dt>
-<dd>Der Name der versendenden Komponente</dd>
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name des Ereignisses</dd>
-<dt><tt class="docutils literal"><span class="pre">value</span></tt></dt>
-<dd>Der Nachrichteninhalt</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">job</span></code></dt><dd><p>Der Name des versendenden Jobs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">component</span></code></dt><dd><p>Der Name der versendenden Komponente</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name des Ereignisses</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code></dt><dd><p>Der Nachrichteninhalt</p>
+</dd>
 </dl>
 <p>Die Parameter werden in der dargestellten Reihenfolge als Positionsparameter übergeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.component_group">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">component_group</tt><big>(</big><em>group_name</em>, <em>*names</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.component_group" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.component_group">
+<span class="sig-name descname"><span class="pre">component_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.component_group" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet eine Absendergruppe auf Komponentenebene ein.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">group_name</span></tt></dt>
-<dd>Der Name der Gruppe.</dd>
-<dt><tt class="docutils literal"><span class="pre">names</span></tt> (<em>var args</em>)</dt>
-<dd>Die Namen der Komponenten, welche in der Gruppe zusammengefasst werden sollen.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">group_name</span></code></dt><dd><p>Der Name der Gruppe.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">names</span></code> (<em>var args</em>)</dt><dd><p>Die Namen der Komponenten, welche in der Gruppe zusammengefasst werden sollen.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Durch eine Absendergruppe auf Komponentenebene kann ein Slot
-anstelle eines spezifischen Komponentennamens einen Gruppennamen 
+anstelle eines spezifischen Komponentennamens einen Gruppennamen
 im Empfangsmuster angeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.job_group">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">job_group</tt><big>(</big><em>group_name</em>, <em>*names</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.job_group" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.job_group">
+<span class="sig-name descname"><span class="pre">job_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.job_group" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet eine Absendergruppe auf Job-Ebene ein.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">group_name</span></tt></dt>
-<dd>Der Name der Gruppe.</dd>
-<dt><tt class="docutils literal"><span class="pre">names</span></tt> (<em>var args</em>)</dt>
-<dd>Die Namen der Jobs, welche in der Gruppe zusammengefasst werden sollen.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">group_name</span></code></dt><dd><p>Der Name der Gruppe.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">names</span></code> (<em>var args</em>)</dt><dd><p>Die Namen der Jobs, welche in der Gruppe zusammengefasst werden sollen.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Durch eine Absendergruppe auf Job-Ebene kann ein Slot
-anstelle eines spezifischen Jobnamens einen Gruppennamen 
+anstelle eines spezifischen Jobnamens einen Gruppennamen
 im Empfangsmuster angeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.name_group">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">name_group</tt><big>(</big><em>group_name</em>, <em>*names</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.name_group" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.name_group">
+<span class="sig-name descname"><span class="pre">name_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.name_group" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet eine Absendergruppe auf Ereignisebene ein.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">group_name</span></tt></dt>
-<dd>Der Name der Gruppe.</dd>
-<dt><tt class="docutils literal"><span class="pre">names</span></tt> (<em>var args</em>)</dt>
-<dd>Die Namen der Ereignisse, welche in der Gruppe zusammengefasst werden sollen.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">group_name</span></code></dt><dd><p>Der Name der Gruppe.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">names</span></code> (<em>var args</em>)</dt><dd><p>Die Namen der Ereignisse, welche in der Gruppe zusammengefasst werden sollen.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Durch eine Absendergruppe auf Ereignisebene kann ein Slot
-anstelle eines spezifischen Ereignisnamens einen Gruppennamen 
+anstelle eines spezifischen Ereignisnamens einen Gruppennamen
 im Empfangsmuster angeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.remove_listener">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">remove_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.remove_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.remove_listener">
+<span class="sig-name descname"><span class="pre">remove_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.remove_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Entfernt einen Empfänger und sein Empfangsmuster aus dem Nachrichtensystem.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss das gleiche Objekt übergeben werden, wie an <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss das gleiche Objekt übergeben werden, wie an <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>
 übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.send">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">send</tt><big>(</big><em>job</em>, <em>component</em>, <em>name</em>, <em>value</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.send" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.send" title="Link to this definition">¶</a></dt>
 <dd><p>Sendet eine Nachricht über das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">job</span></tt></dt>
-<dd>Der versendende Job</dd>
-<dt><tt class="docutils literal"><span class="pre">component</span></tt></dt>
-<dd>Die versendende Komponente</dd>
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Ereignisname</dd>
-<dt><tt class="docutils literal"><span class="pre">value</span></tt></dt>
-<dd>Der Inhalt der Nachricht</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">job</span></code></dt><dd><p>Der versendende Job</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">component</span></code></dt><dd><p>Die versendende Komponente</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Ereignisname</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code></dt><dd><p>Der Inhalt der Nachricht</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Die Nachricht wird in die Warteschlange eingestellt.
 Der Aufruf kehrt sofort wieder zum Aufrufer zurück.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.start">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.start" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.start" title="Link to this definition">¶</a></dt>
 <dd><p>Startet das Nachrichtensystem.</p>
 <p>Zur Weiterleitung der Nachrichten wird ein dedizierter Thread gestartet.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.stop" title="orbit_framework.messaging.MessageBus.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.stop" title="orbit_framework.messaging.MessageBus.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.stop">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">stop</tt><big>(</big><em>immediate=False</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.stop" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">immediate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.stop" title="Link to this definition">¶</a></dt>
 <dd><p>Beendet das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">immediate</span></tt> (<em>optional</em>)</dt>
-<dd><tt class="docutils literal"><span class="pre">True</span></tt> wenn wartende Nachrichten nicht mehr abgearbeitet
-werden sollen, <tt class="docutils literal"><span class="pre">False</span></tt> wenn erst alle wartenden Nachrichten
-abgearbeitet werden sollen.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">immediate</span></code> (<em>optional</em>)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> wenn wartende Nachrichten nicht mehr abgearbeitet
+werden sollen, <code class="docutils literal notranslate"><span class="pre">False</span></code> wenn erst alle wartenden Nachrichten
+abgearbeitet werden sollen.</p>
+</dd>
 </dl>
 <p>Blockiert solange bis der dedizierte Thread für die Nachrichtenverteilung
 beendet wurde und kehrt erst anschließend zum Aufrufer zurück.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.start" title="orbit_framework.messaging.MessageBus.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.start" title="orbit_framework.messaging.MessageBus.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MessageBus.trace">
-<tt class="descclassname">MessageBus.</tt><tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MessageBus.trace" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <tt class="docutils literal"><span class="pre">MessageBus</span></tt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MessageBus.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MessageBus.trace" title="Link to this definition">¶</a></dt>
+<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <code class="docutils literal notranslate"><span class="pre">MessageBus</span></code>
 auf die Konsole.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="slot">
-<h2>Slot<a class="headerlink" href="#slot" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.messaging.Slot">
-<em class="property">class </em><tt class="descclassname">orbit_framework.messaging.</tt><tt class="descname">Slot</tt><big>(</big><em>job</em>, <em>component</em>, <em>name</em>, <em>predicate=None</em>, <em>transformation=None</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Slot" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="slot">
+<h2>Slot<a class="headerlink" href="#slot" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.messaging.</span></span><span class="sig-name descname"><span class="pre">Slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predicate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Slot" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse repräsentiert ein Empfangsmuster für das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">job</span></tt></dt>
-<dd>Der Name des versendenen Jobs ein Gruppenname oder <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">component</span></tt></dt>
-<dd>Der Name der versendenen Komponente, <tt class="docutils literal"><span class="pre">'JOB'</span></tt>, 
-ein Gruppenname oder <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Ereignisname, ein Gruppenname oder <tt class="docutils literal"><span class="pre">None</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">predicate</span></tt> (<em>optional</em>)</dt>
-<dd>Ein Prädikat als zusätzlicher Filter für Nachrichten.
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">job</span></code></dt><dd><p>Der Name des versendenen Jobs ein Gruppenname oder <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">component</span></code></dt><dd><p>Der Name der versendenen Komponente, <code class="docutils literal notranslate"><span class="pre">'JOB'</span></code>,
+ein Gruppenname oder <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Ereignisname, ein Gruppenname oder <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">predicate</span></code> (<em>optional</em>)</dt><dd><p>Ein Prädikat als zusätzlicher Filter für Nachrichten.
 Eine Funktion mit der Signatur
-<tt class="docutils literal"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></tt>, 
-welche die Nachricht entgegennimmt und <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>
-zurückgibt.</dd>
-<dt><tt class="docutils literal"><span class="pre">transformation</span></tt> (<em>optional</em>)</dt>
-<dd>Eine Funktion, welche den Inhalt der Nachricht entgegennimmt und
-einen umgewandelten Inhalt zurückkgibt.</dd>
+<code class="docutils literal notranslate"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></code>,
+welche die Nachricht entgegennimmt und <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>
+zurückgibt.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">transformation</span></code> (<em>optional</em>)</dt><dd><p>Eine Funktion, welche den Inhalt der Nachricht entgegennimmt und
+einen umgewandelten Inhalt zurückkgibt.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Das Empfangsmuster wird verwendet, um ein Callback für den Nachrichtenempfang
 im Nachrichtensystem zu registrieren. Das Empfangsmuster kann durch einen
-Aufruf der Methode <a class="reference internal" href="#orbit_framework.messaging.Slot.listener" title="orbit_framework.messaging.Slot.listener"><tt class="xref py py-meth docutils literal"><span class="pre">listener()</span></tt></a> mit einem Callback zu einem
-Empfänger verknüpft     werden.</p>
-<p>Für die Erzeugung von <a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>-Instanzen gibt es einige statische
-Factory-Methoden: 
-<a class="reference internal" href="#orbit_framework.messaging.Slot.for_job" title="orbit_framework.messaging.Slot.for_job"><tt class="xref py py-meth docutils literal"><span class="pre">for_job()</span></tt></a>, <a class="reference internal" href="#orbit_framework.messaging.Slot.for_component" title="orbit_framework.messaging.Slot.for_component"><tt class="xref py py-meth docutils literal"><span class="pre">for_component()</span></tt></a> und <a class="reference internal" href="#orbit_framework.messaging.Slot.for_name" title="orbit_framework.messaging.Slot.for_name"><tt class="xref py py-meth docutils literal"><span class="pre">for_name()</span></tt></a>.</p>
+Aufruf der Methode <a class="reference internal" href="#orbit_framework.messaging.Slot.listener" title="orbit_framework.messaging.Slot.listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">listener()</span></code></a> mit einem Callback zu einem
+Empfänger verknüpft werden.</p>
+<p>Für die Erzeugung von <a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>-Instanzen gibt es einige statische
+Factory-Methoden:
+<a class="reference internal" href="#orbit_framework.messaging.Slot.for_job" title="orbit_framework.messaging.Slot.for_job"><code class="xref py py-meth docutils literal notranslate"><span class="pre">for_job()</span></code></a>, <a class="reference internal" href="#orbit_framework.messaging.Slot.for_component" title="orbit_framework.messaging.Slot.for_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">for_component()</span></code></a> und <a class="reference internal" href="#orbit_framework.messaging.Slot.for_name" title="orbit_framework.messaging.Slot.for_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">for_name()</span></code></a>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot.listener" title="orbit_framework.messaging.Slot.listener"><tt class="xref py py-meth docutils literal"><span class="pre">listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a></p>
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Slot.component">
-<tt class="descname">component</tt><a class="headerlink" href="#orbit_framework.messaging.Slot.component" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Namen der versendenden Komponente, <tt class="docutils literal"><span class="pre">'JOB'</span></tt>, 
-einen Gruppennamen oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot.listener" title="orbit_framework.messaging.Slot.listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.component">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component</span></span><a class="headerlink" href="#orbit_framework.messaging.Slot.component" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Namen der versendenden Komponente, <code class="docutils literal notranslate"><span class="pre">'JOB'</span></code>,
+einen Gruppennamen oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.Slot.for_component">
-<tt class="descname">for_component</tt><big>(</big><em>job</em>, <em>component</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Slot.for_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.for_component">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">for_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Slot.for_component" title="Link to this definition">¶</a></dt>
 <dd><p>Erzeugt ein Empfangsmuster, welches auf die Nachrichten
 aller Komponenten mit dem übergegebenen Namen passt.
 Es kann auch ein Gruppenname übergegen werden.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.Slot.for_job">
-<tt class="descname">for_job</tt><big>(</big><em>job</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Slot.for_job" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.for_job">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">for_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Slot.for_job" title="Link to this definition">¶</a></dt>
 <dd><p>Erzeugt ein Empfangsmuster, welches auf alle Nachrichten von einem
 Job passt.
 Es kann auch ein Gruppenname übergegen werden.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.Slot.for_name">
-<tt class="descname">for_name</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Slot.for_name" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.for_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">for_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Slot.for_name" title="Link to this definition">¶</a></dt>
 <dd><p>Erzeugt ein Empfangsmuster, welches auf alle Nachrichten
 für das übergebene Ereignis passt.
 Es kann auch ein Gruppenname übergegen werden.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Slot.job">
-<tt class="descname">job</tt><a class="headerlink" href="#orbit_framework.messaging.Slot.job" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Namen des versendenden Jobs, einen Gruppennamen 
-oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.job">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">job</span></span><a class="headerlink" href="#orbit_framework.messaging.Slot.job" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Namen des versendenden Jobs, einen Gruppennamen
+oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.Slot.listener">
-<tt class="descname">listener</tt><big>(</big><em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Slot.listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.listener">
+<span class="sig-name descname"><span class="pre">listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Slot.listener" title="Link to this definition">¶</a></dt>
 <dd><p>Erzeugt mit dem übergebenen Callback einen Empfänger.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Slot.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.messaging.Slot.name" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Ereignisnamen, einen Gruppenname oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#orbit_framework.messaging.Slot.name" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Ereignisnamen, einen Gruppenname oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Slot.predicate">
-<tt class="descname">predicate</tt><a class="headerlink" href="#orbit_framework.messaging.Slot.predicate" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt das Filterprädikat oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.predicate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predicate</span></span><a class="headerlink" href="#orbit_framework.messaging.Slot.predicate" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt das Filterprädikat oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Slot.transformation">
-<tt class="descname">transformation</tt><a class="headerlink" href="#orbit_framework.messaging.Slot.transformation" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Slot.transformation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transformation</span></span><a class="headerlink" href="#orbit_framework.messaging.Slot.transformation" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt die Transformationsfunktion für den Nachrichteninhalt
-oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="listener">
-<h2>Listener<a class="headerlink" href="#listener" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.messaging.Listener">
-<em class="property">class </em><tt class="descclassname">orbit_framework.messaging.</tt><tt class="descname">Listener</tt><big>(</big><em>callback</em>, <em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.Listener" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="listener">
+<h2>Listener<a class="headerlink" href="#listener" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Listener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.messaging.</span></span><span class="sig-name descname"><span class="pre">Listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.Listener" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse repräsentiert einen Empfänger für das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">callback</span></tt></dt>
-<dd>Das Callback welches beim Eintreffen einer passenden Nachricht
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">callback</span></code></dt><dd><p>Das Callback welches beim Eintreffen einer passenden Nachricht
 aufgerufen werden soll. Die Funktion muss die folgende
-Signatur besitzen: <tt class="docutils literal"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></tt>.
+Signatur besitzen: <code class="docutils literal notranslate"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></code>.
 Wird eine dynamische Methode statt einer statischen Funktion übergeben,
 muss die Methode die folgende Signatur besitzen:
-<tt class="docutils literal"><span class="pre">(self,</span> <span class="pre">job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">slot</span></tt></dt>
-<dd>Ein Empfangsmuster für die Filterung der Nachrichten.</dd>
+<code class="docutils literal notranslate"><span class="pre">(self,</span> <span class="pre">job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">slot</span></code></dt><dd><p>Ein Empfangsmuster für die Filterung der Nachrichten.</p>
+</dd>
 </dl>
 <p>Ein Empfänger kann mit Hilfe der folgenden Methoden für den
 Nachrichtenempfang registriert werden:
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a>, 
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a> und
-<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a>.</p>
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MessageBus.add_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a> und
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">MessageBus</span></tt></a></p>
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Listener.component">
-<tt class="descname">component</tt><a class="headerlink" href="#orbit_framework.messaging.Listener.component" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Namen der versendenden Komponente, <tt class="docutils literal"><span class="pre">'JOB'</span></tt>, 
-einen Gruppennamen oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">MessageBus</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Listener.component">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component</span></span><a class="headerlink" href="#orbit_framework.messaging.Listener.component" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Namen der versendenden Komponente, <code class="docutils literal notranslate"><span class="pre">'JOB'</span></code>,
+einen Gruppennamen oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Listener.job">
-<tt class="descname">job</tt><a class="headerlink" href="#orbit_framework.messaging.Listener.job" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Namen des versendenden Jobs, einen Gruppennamen 
-oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Listener.job">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">job</span></span><a class="headerlink" href="#orbit_framework.messaging.Listener.job" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Namen des versendenden Jobs, einen Gruppennamen
+oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Listener.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.messaging.Listener.name" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Ereignisnamen, einen Gruppenname oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Listener.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#orbit_framework.messaging.Listener.name" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Ereignisnamen, einen Gruppenname oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.Listener.receiver">
-<tt class="descname">receiver</tt><a class="headerlink" href="#orbit_framework.messaging.Listener.receiver" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.Listener.receiver">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">receiver</span></span><a class="headerlink" href="#orbit_framework.messaging.Listener.receiver" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt die Bezeichnung des Empfängers zurück.</p>
 <p>Die Bezeichnung wird beim Protokollieren der Nachrichten
 verwendet, um den Weg der Nachrichten kenntlich zu machen.</p>
-<p>Werden die Methoden <a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a> oder 
-<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a> verwendet, 
-wird dieses Attribut automatisch gesetzt. 
-Wird der Empfänger direkt mit <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">MessageBus.add_listener()</span></tt></a> 
+<p>Werden die Methoden <a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a> oder
+<a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a> verwendet,
+wird dieses Attribut automatisch gesetzt.
+Wird der Empfänger direkt mit <a class="reference internal" href="#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MessageBus.add_listener()</span></code></a>
 registriert, sollte dieses Attribut vorher gesetzt werden,
 um den Empfänger zu bezeichnen.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="multilistener">
-<h2>MultiListener<a class="headerlink" href="#multilistener" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.messaging.MultiListener">
-<em class="property">class </em><tt class="descclassname">orbit_framework.messaging.</tt><tt class="descname">MultiListener</tt><big>(</big><em>name</em>, <em>callback</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MultiListener" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="multilistener">
+<h2>MultiListener<a class="headerlink" href="#multilistener" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.messaging.</span></span><span class="sig-name descname"><span class="pre">MultiListener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MultiListener" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert einen Mehrfachempfänger.
-Das ist ein Mechanismus für den Empfang von Nachrichten über das Nachrichtensystem, 
-bei dem mehrere Empfangsmuster mit einem Callback verknüpft     werden.</p>
+Das ist ein Mechanismus für den Empfang von Nachrichten über das Nachrichtensystem,
+bei dem mehrere Empfangsmuster mit einem Callback verknüpft werden.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name des Empfängers.</dd>
-<dt><tt class="docutils literal"><span class="pre">callback</span></tt></dt>
-<dd>Eine Funktion die bei einem Nachrichtenempfang aufgerufen werden soll.
-Die Funktion muss die Signatur <tt class="docutils literal"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></tt> besitzen.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name des Empfängers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">callback</span></code></dt><dd><p>Eine Funktion die bei einem Nachrichtenempfang aufgerufen werden soll.
+Die Funktion muss die Signatur <code class="docutils literal notranslate"><span class="pre">(job,</span> <span class="pre">component,</span> <span class="pre">name,</span> <span class="pre">value)</span></code> besitzen.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Der Mehrfachempfänger wird mit einem Namen und einem Callback initialisiert.
-Anschließend können mit <a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><tt class="xref py py-meth docutils literal"><span class="pre">add_slot()</span></tt></a> mehrere Empfangsmuster 
+Anschließend können mit <a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_slot()</span></code></a> mehrere Empfangsmuster
 eingerichtet werden.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Der Mehrfachempfänger erzeugt für jedes Empfangsmuster
+<p class="admonition-title">Bemerkung</p>
+<p>Der Mehrfachempfänger erzeugt für jedes Empfangsmuster
 einen eigenen Empfänger.
 Passt eine Nachricht zu mehr als einem Empfangsmuster,
 wird das Callback für die Nachricht auch mehr als einmal aufgerufen.</p>
 </div>
 <p>Der Mehrfachempfänger muss mit dem Nachrichtensystem verknüpft werden,
-damit er funktioniert. Dazu wird die Methode <a class="reference internal" href="#orbit_framework.messaging.MultiListener.activate" title="orbit_framework.messaging.MultiListener.activate"><tt class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a> aufgerufen.</p>
+damit er funktioniert. Dazu wird die Methode <a class="reference internal" href="#orbit_framework.messaging.MultiListener.activate" title="orbit_framework.messaging.MultiListener.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">activate()</span></code></a> aufgerufen.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">Listener</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><tt class="xref py py-meth docutils literal"><span class="pre">add_slot()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.messaging.MultiListener.activate" title="orbit_framework.messaging.MultiListener.activate"><tt class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a></p>
-<dl class="method">
-<dt id="orbit_framework.messaging.MultiListener.activate">
-<tt class="descname">activate</tt><big>(</big><em>message_bus</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MultiListener.activate" title="Permalink zu dieser Definition">¶</a></dt>
+<a class="reference internal" href="#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_slot()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.messaging.MultiListener.activate" title="orbit_framework.messaging.MultiListener.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">activate()</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.activate">
+<span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message_bus</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.activate" title="Link to this definition">¶</a></dt>
 <dd><p>Verknüpft den Mehrfachempfänger mit dem Nachrichtensystem.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MultiListener.add_slot">
-<tt class="descname">add_slot</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MultiListener.add_slot" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.add_slot">
+<span class="sig-name descname"><span class="pre">add_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.add_slot" title="Link to this definition">¶</a></dt>
 <dd><p>Fügt ein Empfangsmuster hinzu.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">Slot</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slot</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MultiListener.deactivate">
-<tt class="descname">deactivate</tt><big>(</big><em>message_bus</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MultiListener.deactivate" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.deactivate">
+<span class="sig-name descname"><span class="pre">deactivate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message_bus</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.deactivate" title="Link to this definition">¶</a></dt>
 <dd><p>Löst die Verbindung des Mehrfachempfängers vom Nachrichtensystem.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.MultiListener.listeners">
-<tt class="descname">listeners</tt><a class="headerlink" href="#orbit_framework.messaging.MultiListener.listeners" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.listeners">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">listeners</span></span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.listeners" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt eine Sequenz mit allen zur Zeit erzeugten Empfängern zurück.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.MultiListener.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.messaging.MultiListener.name" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.name" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt den Namen des Empfängers zurück.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.messaging.MultiListener.remove_slot">
-<tt class="descname">remove_slot</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.messaging.MultiListener.remove_slot" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.remove_slot">
+<span class="sig-name descname"><span class="pre">remove_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.remove_slot" title="Link to this definition">¶</a></dt>
 <dd><p>Entfernt ein Empfangsmuster.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss die selbe Referenz auf das Empfangsmuster übergeben werden,
-wie an <a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><tt class="xref py py-meth docutils literal"><span class="pre">add_slot()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss die selbe Referenz auf das Empfangsmuster übergeben werden,
+wie an <a class="reference internal" href="#orbit_framework.messaging.MultiListener.add_slot" title="orbit_framework.messaging.MultiListener.add_slot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_slot()</span></code></a> übergeben wurde.</p>
 </div>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.messaging.MultiListener.slots">
-<tt class="descname">slots</tt><a class="headerlink" href="#orbit_framework.messaging.MultiListener.slots" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.messaging.MultiListener.slots">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slots</span></span><a class="headerlink" href="#orbit_framework.messaging.MultiListener.slots" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt eine Sequenz mit allen eingerichteten Empfangsmustern zurück.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -681,14 +714,14 @@ wie an <a class="reference internal" href="#orbit_framework.messaging.MultiListe
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/api.orbit.messaging.txt"
+  <a href="_sources/api.orbit.messaging.rst.txt"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Copyright 2024 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

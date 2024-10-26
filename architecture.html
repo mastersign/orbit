@@ -1,47 +1,32 @@
 
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="de" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Architektur einer ORBIT-Anwendung &mdash; ORBIT 0.1.0 Dokumentation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Architektur einer ORBIT-Anwendung &#8212; ORBIT 0.2.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="_static/documentation_options.js?v=eef347c6"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Setup" href="setup.html" />
     <link rel="prev" title="ORBIT Online-Dokumentation" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -54,12 +39,11 @@
         </button>
         <a class="navbar-brand" href="index.html">
           ORBIT</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
                 <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
             
@@ -73,7 +57,7 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Architektur einer ORBIT-Anwendung</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architektur einer ORBIT-Anwendung</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#jobs-und-komponenten">Jobs und Komponenten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#geratemanager">Gerätemanager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nachrichtensystem">Nachrichtensystem</a></li>
@@ -140,11 +124,11 @@
               
                 
   <li>
-    <a href="index.html" title="Previous Chapter: ORBIT Online-Dokumentation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; ORBIT Online-Dok...</span>
+    <a href="index.html" title="Previous Chapter: ORBIT Online-Dokumentation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; ORBIT Online-...</span>
     </a>
   </li>
   <li>
-    <a href="setup.html" title="Next Chapter: Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Setup &raquo;</span>
+    <a href="setup.html" title="Next Chapter: Setup"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Setup &raquo;</span>
     </a>
   </li>
               
@@ -170,35 +154,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="architektur-einer-orbit-anwendung">
-<h1>Architektur einer ORBIT-Anwendung<a class="headerlink" href="#architektur-einer-orbit-anwendung" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <section id="architektur-einer-orbit-anwendung">
+<h1>Architektur einer ORBIT-Anwendung<a class="headerlink" href="#architektur-einer-orbit-anwendung" title="Link to this heading">¶</a></h1>
 <p>Eine ORBIT-Anwendung besteht aus einem Kern und assoziierten Jobs.
 Jobs können Dienste oder Apps sein.
 Die Dienste werden automatisch beim Start des Kerns aktiviert
 und sind gleichzeitig aktiv.
 Von den Apps wird nur die Standard-App beim Start des Kerns akiviert
 und zu jedem Zeitpunkt kann immer nur eine App aktiv sein.</p>
-<div class="section" id="jobs-und-komponenten">
-<h2>Jobs und Komponenten<a class="headerlink" href="#jobs-und-komponenten" title="Permalink zu dieser Überschrift">¶</a></h2>
+<section id="jobs-und-komponenten">
+<h2>Jobs und Komponenten<a class="headerlink" href="#jobs-und-komponenten" title="Link to this heading">¶</a></h2>
 <p>Jobs werden aus Komponenten zusammengesetzt.
 Alle anwendungsspezifischen Fähigkeiten können in eigenen Komponenten
 und Jobs implementiert werden.
-Für einige Standardaufgaben bringt ORBIT <a class="reference internal" href="components.html"><em>Integrierte Komponenten</em></a> und <a class="reference internal" href="jobs.html"><em>Integrierte Jobs</em></a> mit.</p>
-<div class="figure">
-<img alt="Architekturübersicht" src="_images/architecture-overview.svg" /><p class="caption">Eine grobe Übersicht über die Architektur einer ORBIT-Anwendung</p>
-</div>
+Für einige Standardaufgaben bringt ORBIT <a class="reference internal" href="components.html"><span class="doc">Integrierte Komponenten</span></a> und <a class="reference internal" href="jobs.html"><span class="doc">Integrierte Jobs</span></a> mit.</p>
+<figure class="align-default" id="id1">
+<img alt="Architekturübersicht" src="_images/architecture-overview.svg" /><figcaption>
+<p><span class="caption-text">Eine grobe Übersicht über die Architektur einer ORBIT-Anwendung</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Core</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Component</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.App</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Service</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Core" title="orbit_framework.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.Core</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.Component</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.App</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.Service</span></code></a></div>
 </div>
-</div>
-<div class="section" id="geratemanager">
-<h2>Gerätemanager<a class="headerlink" href="#geratemanager" title="Permalink zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="geratemanager">
+<h2>Gerätemanager<a class="headerlink" href="#geratemanager" title="Link to this heading">¶</a></h2>
 <p>Der Gerätemanager im Kern verwaltet die TinkerForge-Verbindungen und die angeschlossenen
 Brick(let)s. Jede Komponente kann die Zuordnung von ein oder mehreren Brick(let)s eines
 Typs anfordern.
@@ -206,46 +192,52 @@ Dabei können auch UIDs von Brick(let)s als Einschränkung angegeben werden.
 Sobald ein Brick(let) verfügbar ist, wird es den entsprechenden Komponenten zugeordnet
 und die Komponenten werden über die Verfügbarkeit benachrichtigt. Wird eine Verbindung
 getrennt, wird den Komponenten das Brick(let) wieder entzogen.</p>
-<div class="figure">
-<img alt="Gerätemanager" src="_images/devicemanager-overview.svg" /><p class="caption">Eine Übersicht über den Gerätemanager</p>
-</div>
+<figure class="align-default" id="id2">
+<img alt="Gerätemanager" src="_images/devicemanager-overview.svg" /><figcaption>
+<p><span class="caption-text">Eine Übersicht über den Gerätemanager</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.Component.add_device_handle</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.devices.DeviceHandle</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.devices.DeviceManager</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.Component.add_device_handle</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.devices.DeviceHandle</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.devices.DeviceManager</span></code></a></div>
 </div>
-</div>
-<div class="section" id="nachrichtensystem">
-<h2>Nachrichtensystem<a class="headerlink" href="#nachrichtensystem" title="Permalink zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="nachrichtensystem">
+<h2>Nachrichtensystem<a class="headerlink" href="#nachrichtensystem" title="Link to this heading">¶</a></h2>
 <p>Komponenten und Jobs können über ein integriertes, asynchrones Nachrichtensystem kommunizieren.
 Das Nachrichtensystem ermöglicht eine weitgehende Entkopplung der Komponenten und Jobs
 von einander und sorgt für eine robuste Anwendung.</p>
-<div class="figure">
-<img alt="Nachrichtensystem" src="_images/messagebus-overview.svg" /><p class="caption">Eine Übersicht über das Nachrichtensystem</p>
-</div>
+<figure class="align-default" id="id3">
+<img alt="Nachrichtensystem" src="_images/messagebus-overview.svg" /><figcaption>
+<p><span class="caption-text">Eine Übersicht über das Nachrichtensystem</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line"><em>Siehe auch:</em></div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.add_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.add_listener()</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Component.send()</span></tt></a>,
-<a class="reference internal" href="api.orbit.html#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">orbit_framework.Job.send()</span></tt></a>,</div>
-<div class="line"><a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">orbit_framework.messaging.MessageBus</span></tt></a></div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.add_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.add_listener()</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.html#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Component.send()</span></code></a>,
+<a class="reference internal" href="api.orbit.html#orbit_framework.Job.send" title="orbit_framework.Job.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">orbit_framework.Job.send()</span></code></a>,</div>
+<div class="line"><a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">orbit_framework.messaging.MessageBus</span></code></a></div>
 </div>
-</div>
-<div class="section" id="ubersicht">
-<h2>Übersicht<a class="headerlink" href="#ubersicht" title="Permalink zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ubersicht">
+<h2>Übersicht<a class="headerlink" href="#ubersicht" title="Link to this heading">¶</a></h2>
 <p>Die folgende Übersicht stellt die wesentlichen Objekte in einer
 ORBIT-Anwendung und deren Assoziationen dar.
 Grau hinterlegte Objekte werden von ORBIT implementiert.
 Blau hinterlegte Objekte werden durch die TinkerForge-Python-Bibliothek implementiert.
 Grün hinterlegte Objekte werden anwendungsspezifisch implementiert,
 wobei Basisklassen die die Implementierung erleichtern.</p>
-<div class="figure">
-<img alt="Architektur einer ORBIT-Anwendung" src="_images/architecture.svg" /><p class="caption">Eine detaillierte Übersicht über die Architektur einer ORBIT-Anwendung</p>
-</div>
-</div>
-</div>
+<figure class="align-default" id="id4">
+<img alt="Architektur einer ORBIT-Anwendung" src="_images/architecture.svg" /><figcaption>
+<p><span class="caption-text">Eine detaillierte Übersicht über die Architektur einer ORBIT-Anwendung</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
 
 
     </div>
@@ -260,14 +252,14 @@ wobei Basisklassen die die Implementierung erleichtern.</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/architecture.txt"
+  <a href="_sources/architecture.rst.txt"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Copyright 2024 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

@@ -1,48 +1,32 @@
 
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="de" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Modul orbit_framework &mdash; ORBIT 0.1.0 Dokumentation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="index.html" />
-    <link rel="up" title="API-Referenz" href="reference.html" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modul orbit_framework &#8212; ORBIT 0.2.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="_static/documentation_options.js?v=eef347c6"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Modul orbit_framework.devices" href="api.orbit.devices.html" />
     <link rel="prev" title="API-Referenz" href="reference.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -55,12 +39,11 @@
         </button>
         <a class="navbar-brand" href="index.html">
           ORBIT</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
                 <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
             
@@ -92,7 +75,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API-Referenz</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Modul orbit_framework</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modul orbit_framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.devices.html">Modul orbit_framework.devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.index.html">Modul orbit_framework.index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.orbit.messaging.html">Modul orbit_framework.messaging</a></li>
@@ -126,11 +109,102 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Modul orbit_framework</a><ul>
-<li><a class="reference internal" href="#core">Core</a></li>
-<li><a class="reference internal" href="#job">Job</a></li>
-<li><a class="reference internal" href="#service">Service</a></li>
-<li><a class="reference internal" href="#app">App</a></li>
-<li><a class="reference internal" href="#component">Component</a></li>
+<li><a class="reference internal" href="#core">Core</a><ul>
+<li><a class="reference internal" href="#orbit_framework.Core"><code class="docutils literal notranslate"><span class="pre">Core</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.Core.activate"><code class="docutils literal notranslate"><span class="pre">Core.activate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.add_stopper"><code class="docutils literal notranslate"><span class="pre">Core.add_stopper()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.clear_application_history"><code class="docutils literal notranslate"><span class="pre">Core.clear_application_history()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.configuration"><code class="docutils literal notranslate"><span class="pre">Core.configuration</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.deactivate"><code class="docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.default_application"><code class="docutils literal notranslate"><span class="pre">Core.default_application</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.device_manager"><code class="docutils literal notranslate"><span class="pre">Core.device_manager</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.for_each_active_job"><code class="docutils literal notranslate"><span class="pre">Core.for_each_active_job()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.for_each_job"><code class="docutils literal notranslate"><span class="pre">Core.for_each_job()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.install"><code class="docutils literal notranslate"><span class="pre">Core.install()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.is_started"><code class="docutils literal notranslate"><span class="pre">Core.is_started</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.jobs"><code class="docutils literal notranslate"><span class="pre">Core.jobs</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.message_bus"><code class="docutils literal notranslate"><span class="pre">Core.message_bus</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.remove_stopper"><code class="docutils literal notranslate"><span class="pre">Core.remove_stopper()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.start"><code class="docutils literal notranslate"><span class="pre">Core.start()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.stop"><code class="docutils literal notranslate"><span class="pre">Core.stop()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.trace"><code class="docutils literal notranslate"><span class="pre">Core.trace()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.uninstall"><code class="docutils literal notranslate"><span class="pre">Core.uninstall()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Core.wait_for_stop"><code class="docutils literal notranslate"><span class="pre">Core.wait_for_stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#job">Job</a><ul>
+<li><a class="reference internal" href="#orbit_framework.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.Job.active"><code class="docutils literal notranslate"><span class="pre">Job.active</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.add_component"><code class="docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.add_listener"><code class="docutils literal notranslate"><span class="pre">Job.add_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.background"><code class="docutils literal notranslate"><span class="pre">Job.background</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.components"><code class="docutils literal notranslate"><span class="pre">Job.components</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.configuration"><code class="docutils literal notranslate"><span class="pre">Job.configuration</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.core"><code class="docutils literal notranslate"><span class="pre">Job.core</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.event_tracing"><code class="docutils literal notranslate"><span class="pre">Job.event_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.for_each_component"><code class="docutils literal notranslate"><span class="pre">Job.for_each_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.name"><code class="docutils literal notranslate"><span class="pre">Job.name</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_activated"><code class="docutils literal notranslate"><span class="pre">Job.on_activated()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_core_started"><code class="docutils literal notranslate"><span class="pre">Job.on_core_started()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_core_stopped"><code class="docutils literal notranslate"><span class="pre">Job.on_core_stopped()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_deactivated"><code class="docutils literal notranslate"><span class="pre">Job.on_deactivated()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_install"><code class="docutils literal notranslate"><span class="pre">Job.on_install()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.on_uninstall"><code class="docutils literal notranslate"><span class="pre">Job.on_uninstall()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.remove_component"><code class="docutils literal notranslate"><span class="pre">Job.remove_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.remove_listener"><code class="docutils literal notranslate"><span class="pre">Job.remove_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.send"><code class="docutils literal notranslate"><span class="pre">Job.send()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.trace"><code class="docutils literal notranslate"><span class="pre">Job.trace()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Job.tracing"><code class="docutils literal notranslate"><span class="pre">Job.tracing</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#service">Service</a><ul>
+<li><a class="reference internal" href="#orbit_framework.Service"><code class="docutils literal notranslate"><span class="pre">Service</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#app">App</a><ul>
+<li><a class="reference internal" href="#orbit_framework.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.App.activate"><code class="docutils literal notranslate"><span class="pre">App.activate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.add_activator"><code class="docutils literal notranslate"><span class="pre">App.add_activator()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.add_deactivator"><code class="docutils literal notranslate"><span class="pre">App.add_deactivator()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.deactivate"><code class="docutils literal notranslate"><span class="pre">App.deactivate()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.in_history"><code class="docutils literal notranslate"><span class="pre">App.in_history</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.on_install"><code class="docutils literal notranslate"><span class="pre">App.on_install()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.on_uninstall"><code class="docutils literal notranslate"><span class="pre">App.on_uninstall()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.remove_activator"><code class="docutils literal notranslate"><span class="pre">App.remove_activator()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.App.remove_deactivator"><code class="docutils literal notranslate"><span class="pre">App.remove_deactivator()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#component">Component</a><ul>
+<li><a class="reference internal" href="#orbit_framework.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a><ul>
+<li><a class="reference internal" href="#orbit_framework.Component.add_device_handle"><code class="docutils literal notranslate"><span class="pre">Component.add_device_handle()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.add_listener"><code class="docutils literal notranslate"><span class="pre">Component.add_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.enabled"><code class="docutils literal notranslate"><span class="pre">Component.enabled</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.event_tracing"><code class="docutils literal notranslate"><span class="pre">Component.event_tracing</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.job"><code class="docutils literal notranslate"><span class="pre">Component.job</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.name"><code class="docutils literal notranslate"><span class="pre">Component.name</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_add_component"><code class="docutils literal notranslate"><span class="pre">Component.on_add_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_core_started"><code class="docutils literal notranslate"><span class="pre">Component.on_core_started()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_core_stopped"><code class="docutils literal notranslate"><span class="pre">Component.on_core_stopped()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_disabled"><code class="docutils literal notranslate"><span class="pre">Component.on_disabled()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_enabled"><code class="docutils literal notranslate"><span class="pre">Component.on_enabled()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_job_activated"><code class="docutils literal notranslate"><span class="pre">Component.on_job_activated()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_job_deactivated"><code class="docutils literal notranslate"><span class="pre">Component.on_job_deactivated()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.on_remove_component"><code class="docutils literal notranslate"><span class="pre">Component.on_remove_component()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.remove_device_handle"><code class="docutils literal notranslate"><span class="pre">Component.remove_device_handle()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.remove_listener"><code class="docutils literal notranslate"><span class="pre">Component.remove_listener()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.send"><code class="docutils literal notranslate"><span class="pre">Component.send()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.trace"><code class="docutils literal notranslate"><span class="pre">Component.trace()</span></code></a></li>
+<li><a class="reference internal" href="#orbit_framework.Component.tracing"><code class="docutils literal notranslate"><span class="pre">Component.tracing</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -142,11 +216,11 @@
               
                 
   <li>
-    <a href="reference.html" title="Previous Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; API-Referenz</span>
+    <a href="reference.html" title="Previous Chapter: API-Referenz"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; API-Referenz</span>
     </a>
   </li>
   <li>
-    <a href="api.orbit.devices.html" title="Next Chapter: Modul orbit_framework.devices"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Modul orbit_fram... &raquo;</span>
+    <a href="api.orbit.devices.html" title="Next Chapter: Modul orbit_framework.devices"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Modul orbit_f... &raquo;</span>
     </a>
   </li>
               
@@ -172,233 +246,233 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-orbit_framework">
-<span id="modul-orbit-framework"></span><h1>Modul orbit_framework<a class="headerlink" href="#module-orbit_framework" title="Permalink zu dieser Überschrift">¶</a></h1>
+  <section id="module-orbit_framework">
+<span id="modul-orbit-framework"></span><h1>Modul orbit_framework<a class="headerlink" href="#module-orbit_framework" title="Link to this heading">¶</a></h1>
 <p>Diese Modul enthält die wichtigsten Klassen für die Entwicklung einer
-ORBIT-Anwendung. 
-Eine ORBIT-Anwendung wird von einem <a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">Core</span></tt></a> verwaltet
-und kann mehrere <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>-Objekte enthalten.
-Jeder <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> fasst eine Gruppe von <a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a>-Objekten zusammen.
-Ein <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> ist entweder eine <a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> oder ein <a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a>.</p>
-<p>Die TinkerForge-Bricklets werden durch den <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">devices.DeviceManager</span></tt></a> verwaltet
-und den <a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a>-Objekten über <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">devices.DeviceHandle</span></tt></a>-Objekte zugeordnet.</p>
-<p><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a>- und <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>-Objekte
+ORBIT-Anwendung.
+Eine ORBIT-Anwendung wird von einem <a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a> verwaltet
+und kann mehrere <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>-Objekte enthalten.
+Jeder <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> fasst eine Gruppe von <a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>-Objekten zusammen.
+Ein <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> ist entweder eine <a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> oder ein <a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a>.</p>
+<p>Die TinkerForge-Bricklets werden durch den <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.DeviceManager</span></code></a> verwaltet
+und den <a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>-Objekten über <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceHandle" title="orbit_framework.devices.DeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.DeviceHandle</span></code></a>-Objekte zugeordnet.</p>
+<p><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>- und <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>-Objekte
 kommunizieren asynchron über das ORBIT-Nachrichtensystem welches durch
-die Klasse <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">messaging.MessageBus</span></tt></a> implementiert wird.</p>
-<p><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a>- und <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>-Objekte können jederzeit Nachrichten
-senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem 
+die Klasse <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.MessageBus</span></code></a> implementiert wird.</p>
+<p><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>- und <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>-Objekte können jederzeit Nachrichten
+senden. Diese Nachrichten werden in einer Warteschlange abgelegt und in einem
 dedizierten Nachrichten-Thread an die Empfänger versandt
-(<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">Job.send()</span></tt></a>, <a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">Component.send()</span></tt></a>).</p>
-<p>Für den Empfang von Nachrichten werden <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a>-Objekte verwendet.
-Ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a> bindet ein Empfangsmuster/-filter an ein Callback
-(<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a>, <a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_listener()</span></tt></a>, <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">Component.add_listener()</span></tt></a>).
+(<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.send()</span></code></a>, <a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Component.send()</span></code></a>).</p>
+<p>Für den Empfang von Nachrichten werden <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a>-Objekte verwendet.
+Ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a> bindet ein Empfangsmuster/-filter an ein Callback
+(<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a>, <a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_listener()</span></code></a>, <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Component.add_listener()</span></code></a>).
 Wird eine Nachricht über das Nachrichtensystem versandt, welches dem Empfangsmuster
 entspricht, wird das Callback des Empfängers aufgerufen.</p>
 <p>Das Modul enthält die folgenden Klassen:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">Core</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a></li>
-<li><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a></li>
+<li><p><a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a></p></li>
+<li><p><a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p></li>
 </ul>
-<div class="section" id="core">
-<h2>Core<a class="headerlink" href="#core" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.Core">
-<em class="property">class </em><tt class="descclassname">orbit_framework.</tt><tt class="descname">Core</tt><big>(</big><em>config = Configuration()</em><big>)</big><a class="headerlink" href="#orbit_framework.Core" title="Permalink zu dieser Definition">¶</a></dt>
+<section id="core">
+<h2>Core<a class="headerlink" href="#core" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.Core">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.</span></span><span class="sig-name descname"><span class="pre">Core</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Configuration()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse repräsentiert den Kern einer ORBIT-Anwendung.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">config</span></tt> (<em>optional</em>)</dt>
-<dd>Die Konfiguration für die ORBIT-Anwendung. 
-Eine Instanz der Klasse <a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><tt class="xref py py-class docutils literal"><span class="pre">setup.Configuration</span></tt></a>.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">config</span></code> (<em>optional</em>)</dt><dd><p>Die Konfiguration für die ORBIT-Anwendung.
+Eine Instanz der Klasse <a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">setup.Configuration</span></code></a>.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Diese Klasse ist verantwortlich für die Einrichtung des Nachrichtensystems
 und der Geräteverwaltung. Des Weiteren verwaltet sie alle Dienste
 und Apps, die in der ORBIT-Anwendung verwendet werden.</p>
 <p>Für die Einrichtung einer Anwendung wird zunächst eine Instanz von
-<a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">Core</span></tt></a> erzeugt. Dabei kann optional
-eine benutzerdefinierte Konfiguration (<a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><tt class="xref py py-class docutils literal"><span class="pre">setup.Configuration</span></tt></a>)
-an den Konstruktor übergeben werden. 
+<a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a> erzeugt. Dabei kann optional
+eine benutzerdefinierte Konfiguration (<a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">setup.Configuration</span></code></a>)
+an den Konstruktor übergeben werden.
 Anschließend werden durch den mehrfachen Aufruf von
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a> Jobs hinzugefügt. Jobs können 
-Dienste (<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a>) oder Apps (<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>) sein.
-Über die Eigenschaft <a class="reference internal" href="#orbit_framework.Core.default_application" title="orbit_framework.Core.default_application"><tt class="xref py py-attr docutils literal"><span class="pre">default_application</span></tt></a> kann eine App
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a> Jobs hinzugefügt. Jobs können
+Dienste (<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a>) oder Apps (<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>) sein.
+Über die Eigenschaft <a class="reference internal" href="#orbit_framework.Core.default_application" title="orbit_framework.Core.default_application"><code class="xref py py-attr docutils literal notranslate"><span class="pre">default_application</span></code></a> kann eine App
 als Standard-App festgelegt werden.</p>
-<p>Um die ORBIT-Anwendung zu starten wird die Methode <a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a>
+<p>Um die ORBIT-Anwendung zu starten wird die Methode <a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a>
 aufgerufen. Um die ORBIT-Anwendung zu beenden, kann entweder direkt
-die Methode <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a> aufgerufen werden, oder es werden
+die Methode <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> aufgerufen werden, oder es werden
 vor dem Start der Anwendung ein oder mehrere Slots
 (Ereignisempfänger für das ORBIT-Nachrichtensystem) hinzugefügt,
 welche die Anwendung stoppen sollen.</p>
-<dl class="method">
-<dt id="orbit_framework.Core.activate">
-<tt class="descname">activate</tt><big>(</big><em>application</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.activate" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.activate">
+<span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.activate" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert eine App. Die App kann direkt übergeben
 oder durch ihren Namen identifiziert werden.</p>
 <p>Zu jedem Zeitpunkt ist immer nur eine App aktiv.
 Ist bereits eine andere App aktiv, wird diese deaktiviert,
 bevor die übergebene App aktiviert wird.</p>
-<p>Ist die Eigenschaft <a class="reference internal" href="#orbit_framework.App.in_history" title="orbit_framework.App.in_history"><tt class="xref py py-attr docutils literal"><span class="pre">App.in_history</span></tt></a> der bereits aktiven App 
-gleich <tt class="docutils literal"><span class="pre">True</span></tt>, wird die App vor dem Deaktivieren in der
+<p>Ist die Eigenschaft <a class="reference internal" href="#orbit_framework.App.in_history" title="orbit_framework.App.in_history"><code class="xref py py-attr docutils literal notranslate"><span class="pre">App.in_history</span></code></a> der bereits aktiven App
+gleich <code class="docutils literal notranslate"><span class="pre">True</span></code>, wird die App vor dem Deaktivieren in der
 App-History vermerkt.</p>
 <p>Wird der Name einer App übergeben, die nicht in der ORBIT-Anwendung
-installiert ist, wird eine <tt class="xref py py-exc docutils literal"><span class="pre">KeyError</span></tt> ausgelöst.</p>
+installiert ist, wird eine <code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code> ausgelöst.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">deactivate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.clear_application_history" title="orbit_framework.Core.clear_application_history"><tt class="xref py py-meth docutils literal"><span class="pre">clear_application_history()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.for_each_active_job" title="orbit_framework.Core.for_each_active_job"><tt class="xref py py-meth docutils literal"><span class="pre">for_each_active_job()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">Job.active</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deactivate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.clear_application_history" title="orbit_framework.Core.clear_application_history"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_application_history()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.for_each_active_job" title="orbit_framework.Core.for_each_active_job"><code class="xref py py-meth docutils literal notranslate"><span class="pre">for_each_active_job()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Job.active</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.add_stopper">
-<tt class="descname">add_stopper</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.add_stopper" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a> hinzu, der das Stoppen der ORBIT-Anwendung
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.add_stopper">
+<span class="sig-name descname"><span class="pre">add_stopper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.add_stopper" title="Link to this definition">¶</a></dt>
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a> hinzu, der das Stoppen der ORBIT-Anwendung
 veranlassen soll.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.remove_stopper" title="orbit_framework.Core.remove_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">remove_stopper()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.remove_stopper" title="orbit_framework.Core.remove_stopper"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_stopper()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.clear_application_history">
-<tt class="descname">clear_application_history</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Core.clear_application_history" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.clear_application_history">
+<span class="sig-name descname"><span class="pre">clear_application_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.clear_application_history" title="Link to this definition">¶</a></dt>
 <dd><p>Leert die App-History.</p>
-<p>Das hat zur Folge, dass nach dem Deaktivieren 
+<p>Das hat zur Folge, dass nach dem Deaktivieren
 der zur Zeit aktiven App die Standard-App oder gar keine
 aktiviert wird.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">activate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.configuration">
-<tt class="descname">configuration</tt><a class="headerlink" href="#orbit_framework.Core.configuration" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configuration</span></span><a class="headerlink" href="#orbit_framework.Core.configuration" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt die ORBIT-Anwendungskonfiguration zurück.
 (<em>schreibgeschützt</em>)</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><tt class="xref py py-class docutils literal"><span class="pre">setup.Configuration</span></tt></a></p>
+<a class="reference internal" href="api.orbit.setup.html#orbit_framework.setup.Configuration" title="orbit_framework.setup.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">setup.Configuration</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.deactivate">
-<tt class="descname">deactivate</tt><big>(</big><em>application</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.deactivate" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.deactivate">
+<span class="sig-name descname"><span class="pre">deactivate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">application</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.deactivate" title="Link to this definition">¶</a></dt>
 <dd><p>Deaktiviert eine App. Die App App kann direkt übergeben
 oder durch ihren Namen identifiziert werden.</p>
 <p>Nach dem Deaktivieren der App wird geprüft, ob in der App-History
 eine App vermerkt ist, welche vorher aktiv war. Ist dies der
 Fall wird jene App automatisch aktiviert.</p>
 <p>Ist die App-History leer, wird geprüft ob eine Standard-App
-registriert ist (<a class="reference internal" href="#orbit_framework.Core.default_application" title="orbit_framework.Core.default_application"><tt class="xref py py-attr docutils literal"><span class="pre">default_application</span></tt></a>) und ggf. diese aktiviert.</p>
+registriert ist (<a class="reference internal" href="#orbit_framework.Core.default_application" title="orbit_framework.Core.default_application"><code class="xref py py-attr docutils literal notranslate"><span class="pre">default_application</span></code></a>) und ggf. diese aktiviert.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.clear_application_history" title="orbit_framework.Core.clear_application_history"><tt class="xref py py-meth docutils literal"><span class="pre">clear_application_history()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">Job.active</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">activate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.clear_application_history" title="orbit_framework.Core.clear_application_history"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_application_history()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Job.active</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.default_application">
-<tt class="descname">default_application</tt><a class="headerlink" href="#orbit_framework.Core.default_application" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.default_application">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_application</span></span><a class="headerlink" href="#orbit_framework.Core.default_application" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt die Standard-App zurück oder legt sie fest.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.device_manager">
-<tt class="descname">device_manager</tt><a class="headerlink" href="#orbit_framework.Core.device_manager" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.device_manager">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_manager</span></span><a class="headerlink" href="#orbit_framework.Core.device_manager" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt den Gerätemanager zurück.
 (<em>schreibgeschützt</em>)</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><tt class="xref py py-class docutils literal"><span class="pre">devices.DeviceManager</span></tt></a></p>
+<a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.DeviceManager" title="orbit_framework.devices.DeviceManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.DeviceManager</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.for_each_active_job">
-<tt class="descname">for_each_active_job</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.for_each_active_job" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.for_each_active_job">
+<span class="sig-name descname"><span class="pre">for_each_active_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.for_each_active_job" title="Link to this definition">¶</a></dt>
 <dd><p>Führt eine Funktion für jeden aktiven Job aus.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">activate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.for_each_job">
-<tt class="descname">for_each_job</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.for_each_job" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.for_each_job">
+<span class="sig-name descname"><span class="pre">for_each_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.for_each_job" title="Link to this definition">¶</a></dt>
 <dd><p>Führt eine Funktion für jeden installierten Job aus.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><tt class="xref py py-attr docutils literal"><span class="pre">jobs</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">uninstall()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">jobs</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uninstall()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.install">
-<tt class="descname">install</tt><big>(</big><em>job</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.install" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt der ORBIT-Anwendung einen Job (<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>) hinzu.
-Ein Job kann ein Dienst (<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a>) oder eine 
-App (<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>) sein.
-Jobs können vor oder nach dem Starten der ORBIT-Anwendung 
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.install">
+<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.install" title="Link to this definition">¶</a></dt>
+<dd><p>Fügt der ORBIT-Anwendung einen Job (<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>) hinzu.
+Ein Job kann ein Dienst (<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a>) oder eine
+App (<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>) sein.
+Jobs können vor oder nach dem Starten der ORBIT-Anwendung
 hinzugefügt werden.</p>
 <p>Ein Job kann immer nur in einer ORBIT-Anwendung installiert werden.
-Wird ein Job, der bereits in einer Anwendung installiert ist, 
-an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a> übergeben, geschieht nichts.</p>
+Wird ein Job, der bereits in einer Anwendung installiert ist,
+an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a> übergeben, geschieht nichts.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">uninstall()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><tt class="xref py py-attr docutils literal"><span class="pre">jobs</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uninstall()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">jobs</span></code></a>,
+<a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.is_started">
-<tt class="descname">is_started</tt><a class="headerlink" href="#orbit_framework.Core.is_started" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.is_started">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_started</span></span><a class="headerlink" href="#orbit_framework.Core.is_started" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt an ob die ORBIT-Anwendung gestartet wurde oder nicht.
 (<em>schreibgeschützt</em>)
-Ist <tt class="docutils literal"><span class="pre">True</span></tt> wenn die Anwendung läuft, sonst <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+Ist <code class="docutils literal notranslate"><span class="pre">True</span></code> wenn die Anwendung läuft, sonst <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.jobs">
-<tt class="descname">jobs</tt><a class="headerlink" href="#orbit_framework.Core.jobs" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.jobs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">jobs</span></span><a class="headerlink" href="#orbit_framework.Core.jobs" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt ein Dictionary mit allen installierten Jobs zurück.
 (<em>schreibgeschützt</em>)
 Der Schlüssel ist der Name des Jobs und der Wert ist der Job selbst.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">uninstall()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">uninstall()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Core.message_bus">
-<tt class="descname">message_bus</tt><a class="headerlink" href="#orbit_framework.Core.message_bus" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Core.message_bus">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">message_bus</span></span><a class="headerlink" href="#orbit_framework.Core.message_bus" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt das Nachrichtensystem zurück.
 (<em>schreibgeschützt</em>)</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><tt class="xref py py-class docutils literal"><span class="pre">messaging.MessageBus</span></tt></a></p>
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus" title="orbit_framework.messaging.MessageBus"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.MessageBus</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.remove_stopper">
-<tt class="descname">remove_stopper</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.remove_stopper" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a>, der das Stoppen der ORBIT-Anwendung
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.remove_stopper">
+<span class="sig-name descname"><span class="pre">remove_stopper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.remove_stopper" title="Link to this definition">¶</a></dt>
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a>, der das Stoppen der ORBIT-Anwendung
 veranlassen sollte.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.add_stopper" title="orbit_framework.Core.add_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">add_stopper()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.add_stopper" title="orbit_framework.Core.add_stopper"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stopper()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.start">
-<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Core.start" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.start" title="Link to this definition">¶</a></dt>
 <dd><p>Startet die ORBIT-Anwendung.</p>
 <p>Beim Start wird das Nachrichtensystem gestartet und damit
 die Weiterleitung von Ereignissen zwischen den Jobs und
@@ -409,19 +483,19 @@ und die angeschlossenen Bricks und Bricklets ermittelt.</p>
 werden zunächst alle Dienste, und zum Schluss die Standard-App
 aktiviert.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
+<p class="admonition-title">Bemerkung</p>
+<p>Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
 bereits gestartet wurde, wird lediglich eine Meldung
 auf der Konsole ausgegeben.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.is_started" title="orbit_framework.Core.is_started"><tt class="xref py py-attr docutils literal"><span class="pre">is_started</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.is_started" title="orbit_framework.Core.is_started"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_started</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.stop">
-<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Core.stop" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.stop" title="Link to this definition">¶</a></dt>
 <dd><p>Stoppt die ORBIT-Anwendung.</p>
 <p>Beim Stoppen werden zunächst alle Jobs (Dienste und Apps)
 deaktiviert. Anschließend wird der Gerätemanager
@@ -429,584 +503,584 @@ beendet und dabei die Verbindung zum TinkerForge-Server getrennt.
 Zum Schluss wird das Nachrichtensystem beendet und die Weiterleitung
 von Ereignissen gestoppt.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
+<p class="admonition-title">Bemerkung</p>
+<p>Wird diese Methode aufgerufen, wenn die ORBIT-Anwendung
 nicht gestartet ist, wird lediglich eine Meldung auf der Konsole
 ausgegeben.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><tt class="xref py py-meth docutils literal"><span class="pre">start()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.is_started" title="orbit_framework.Core.is_started"><tt class="xref py py-attr docutils literal"><span class="pre">is_started</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.is_started" title="orbit_framework.Core.is_started"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_started</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.trace">
-<tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.trace" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <tt class="docutils literal"><span class="pre">Core</span></tt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.trace" title="Link to this definition">¶</a></dt>
+<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <code class="docutils literal notranslate"><span class="pre">Core</span></code>
 auf die Konsole.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.uninstall">
-<tt class="descname">uninstall</tt><big>(</big><em>job</em><big>)</big><a class="headerlink" href="#orbit_framework.Core.uninstall" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.uninstall">
+<span class="sig-name descname"><span class="pre">uninstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.uninstall" title="Link to this definition">¶</a></dt>
 <dd><p>Entfernt einen Job aus der ORBIT-Anwendung.
 Ist der Job zur Zeit aktiv, wird er deaktiviert bevor
 er aus der Anwendung entfernt wird.</p>
-<p>Wird ein Job an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a> übergeben, 
+<p>Wird ein Job an <a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a> übergeben,
 der nicht in dieser ORBIT-Anwendung installiert ist,
 geschieht nicht.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">install()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><tt class="xref py py-attr docutils literal"><span class="pre">jobs</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">install()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.jobs" title="orbit_framework.Core.jobs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">jobs</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Core.wait_for_stop">
-<tt class="descname">wait_for_stop</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Core.wait_for_stop" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Core.wait_for_stop">
+<span class="sig-name descname"><span class="pre">wait_for_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Core.wait_for_stop" title="Link to this definition">¶</a></dt>
 <dd><p>Blockiert solange den Aufrufer, bis die ORBIT-Anwendung beendet wurde.</p>
-<p>Der Grund für das Beenden kann ein direkter Aufruf von <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a>
+<p>Der Grund für das Beenden kann ein direkter Aufruf von <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a>
 oder das Abfangen eines Ereignisses von einem der Stopper-Slots sein.</p>
 <p>Zusätzlich wird das Unterbrechungssignal (SIGINT z.B. Strg+C) abgefangen.
 Tritt das Unterbrechungssignal auf, wird die ORBIT-Anwendung durch den Aufruf
-von <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a> gestoppt und die Methode kehrt zum Aufrufer zurück.</p>
+von <a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> gestoppt und die Methode kehrt zum Aufrufer zurück.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
+<p class="admonition-title">Bemerkung</p>
 <p>Die Methode kehrt erst dann zum Aufrufer zurück,</p>
-<ul class="last simple">
-<li>wenn alle Jobs deaktiviert wurden,</li>
-<li>der Gerätemanager alle Bricks und Bricklets freigegeben und die Verbindung
-zum TinkerForge-Server beendet hat</li>
-<li>und das Nachrichtensystem alle ausstehenden Ereignisse weitergeleitet hat
-und beendet wurde.</li>
+<ul class="simple">
+<li><p>wenn alle Jobs deaktiviert wurden,</p></li>
+<li><p>der Gerätemanager alle Bricks und Bricklets freigegeben und die Verbindung
+zum TinkerForge-Server beendet hat</p></li>
+<li><p>und das Nachrichtensystem alle ausstehenden Ereignisse weitergeleitet hat
+und beendet wurde.</p></li>
 </ul>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warnung</p>
-<p class="last">Diese Methode darf nicht direkt oder indirekt durch einen 
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a> aufgerufen werden, 
+<p class="admonition-title">Warnung</p>
+<p>Diese Methode darf nicht direkt oder indirekt durch einen
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a> aufgerufen werden,
 da sie andernfalls das Nachrichtensystem der ORBIT-Anwendung blockiert.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">stop()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.add_stopper" title="orbit_framework.Core.add_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">add_stopper()</span></tt></a>, 
-<a class="reference internal" href="#orbit_framework.Core.remove_stopper" title="orbit_framework.Core.remove_stopper"><tt class="xref py py-meth docutils literal"><span class="pre">remove_stopper()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.add_stopper" title="orbit_framework.Core.add_stopper"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stopper()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.remove_stopper" title="orbit_framework.Core.remove_stopper"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_stopper()</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="job">
-<h2>Job<a class="headerlink" href="#job" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.Job">
-<em class="property">class </em><tt class="descclassname">orbit_framework.</tt><tt class="descname">Job</tt><big>(</big><em>name</em>, <em>background</em><big>)</big><a class="headerlink" href="#orbit_framework.Job" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="job">
+<h2>Job<a class="headerlink" href="#job" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.Job">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job" title="Link to this definition">¶</a></dt>
 <dd><p>Dies ist die Basisklasse für Aufgaben in einer ORBIT-Anwendung.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name der Aufgabe. 
-Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</dd>
-<dt><tt class="docutils literal"><span class="pre">background</span></tt></dt>
-<dd><tt class="docutils literal"><span class="pre">True</span></tt> wenn die Aufgabe als Hintergrunddienst laufen soll,
-sonst <tt class="docutils literal"><span class="pre">False`</span></tt>.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name der Aufgabe.
+Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">background</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> wenn die Aufgabe als Hintergrunddienst laufen soll,
+sonst <code class="docutils literal notranslate"><span class="pre">False`</span></code>.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Ein Job wird durch die Zusammenstellung von Komponenten implementiert.
-Wird ein Job aktiviert, werden alle seine Komponenten aktiviert. 
+Wird ein Job aktiviert, werden alle seine Komponenten aktiviert.
 Wird ein Job deaktiviert, werden alle seine Komponenten deaktiviert.
 Ein aktiver Job kann Nachrichten über das Nachrichtensystem austauschen.
 Ein inaktiver Job kann keine Nachrichten senden oder empfangen.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Die <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>-Klasse sollte nicht direkt verwendet werden.
-Statt dessen sollten die abgeleiteten Klassen <a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><tt class="xref py py-class docutils literal"><span class="pre">Service</span></tt></a>
-und <a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><tt class="xref py py-class docutils literal"><span class="pre">App</span></tt></a> verwendet werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Die <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>-Klasse sollte nicht direkt verwendet werden.
+Statt dessen sollten die abgeleiteten Klassen <a class="reference internal" href="#orbit_framework.Service" title="orbit_framework.Service"><code class="xref py py-class docutils literal notranslate"><span class="pre">Service</span></code></a>
+und <a class="reference internal" href="#orbit_framework.App" title="orbit_framework.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> verwendet werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><tt class="xref py py-meth docutils literal"><span class="pre">remove_component()</span></tt></a></p>
-<dl class="attribute">
-<dt id="orbit_framework.Job.active">
-<tt class="descname">active</tt><a class="headerlink" href="#orbit_framework.Job.active" title="Permalink zu dieser Definition">¶</a></dt>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_component()</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.active">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">active</span></span><a class="headerlink" href="#orbit_framework.Job.active" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt einen Wert zurück oder legt ihn fest, der angibt, ob der Job aktiv ist.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Dieses Attribut sollte nicht direkt gesetzt werden.
-Statt dessen sollte <a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a> und 
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a> verwendet werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Dieses Attribut sollte nicht direkt gesetzt werden.
+Statt dessen sollte <a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a> und
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a> verwendet werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.on_activated" title="orbit_framework.Job.on_activated"><tt class="xref py py-meth docutils literal"><span class="pre">on_activated()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.on_deactivated" title="orbit_framework.Job.on_deactivated"><tt class="xref py py-meth docutils literal"><span class="pre">on_deactivated()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.on_activated" title="orbit_framework.Job.on_activated"><code class="xref py py-meth docutils literal notranslate"><span class="pre">on_activated()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.on_deactivated" title="orbit_framework.Job.on_deactivated"><code class="xref py py-meth docutils literal notranslate"><span class="pre">on_deactivated()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.add_component">
-<tt class="descname">add_component</tt><big>(</big><em>component</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.add_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.add_component">
+<span class="sig-name descname"><span class="pre">add_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.add_component" title="Link to this definition">¶</a></dt>
 <dd><p>Fügt dem Job eine Komponente hinzu.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><tt class="xref py py-meth docutils literal"><span class="pre">remove_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><tt class="xref py py-attr docutils literal"><span class="pre">components</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><code class="xref py py-attr docutils literal notranslate"><span class="pre">components</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.add_listener">
-<tt class="descname">add_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.add_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.add_listener">
+<span class="sig-name descname"><span class="pre">add_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.add_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet einen Nachrichtenempfänger für das Nachrichtensystem ein.</p>
-<p>Als Empfänger wird üblicherweise ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a>-Objekt übergeben.</p>
+<p>Als Empfänger wird üblicherweise ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a>-Objekt übergeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a>,
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.remove_listener" title="orbit_framework.Job.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a>,
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.remove_listener" title="orbit_framework.Job.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.background">
-<tt class="descname">background</tt><a class="headerlink" href="#orbit_framework.Job.background" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.background">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">background</span></span><a class="headerlink" href="#orbit_framework.Job.background" title="Link to this definition">¶</a></dt>
 <dd><p>Legt fest, ob der Job als Hintergrunddienst
 ausgeführt wird oder als Vordergrund-App.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> für Hintergrunddienst 
-oder <tt class="docutils literal"><span class="pre">False</span></tt> für Vordergrund-App.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> für Hintergrunddienst
+oder <code class="docutils literal notranslate"><span class="pre">False</span></code> für Vordergrund-App.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.components">
-<tt class="descname">components</tt><a class="headerlink" href="#orbit_framework.Job.components" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.components">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">components</span></span><a class="headerlink" href="#orbit_framework.Job.components" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt ein Dictionary mit allen Komponenten des Jobs zurück.
 Die Namen der Komponenten werden als Schlüssel verwendet.
 Die Komponenten selbst sind die Werte.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><tt class="xref py py-meth docutils literal"><span class="pre">remove_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.configuration">
-<tt class="descname">configuration</tt><a class="headerlink" href="#orbit_framework.Job.configuration" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configuration</span></span><a class="headerlink" href="#orbit_framework.Job.configuration" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt die Anwendungskonfiguration zurück.
-Wenn der Job nicht installiert ist, wird <tt class="docutils literal"><span class="pre">None</span></tt> zurück gegeben.</p>
+Wenn der Job nicht installiert ist, wird <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück gegeben.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.core">
-<tt class="descname">core</tt><a class="headerlink" href="#orbit_framework.Job.core" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.core">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">core</span></span><a class="headerlink" href="#orbit_framework.Job.core" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt eine Referenz auf den Anwendungskern zurück.
-Wenn der Job nicht installiert ist, wird <tt class="docutils literal"><span class="pre">None</span></tt> zurück gegeben.</p>
+Wenn der Job nicht installiert ist, wird <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück gegeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><tt class="xref py py-class docutils literal"><span class="pre">Core</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">Core.install()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core" title="orbit_framework.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">Core</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.install()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.event_tracing">
-<tt class="descname">event_tracing</tt><a class="headerlink" href="#orbit_framework.Job.event_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.event_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_tracing</span></span><a class="headerlink" href="#orbit_framework.Job.event_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Legt fest, ob über das Nachrichtensystem versendete
 Nachrichten auf der Konsole protokolliert werden sollen.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.for_each_component">
-<tt class="descname">for_each_component</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.for_each_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.for_each_component">
+<span class="sig-name descname"><span class="pre">for_each_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.for_each_component" title="Link to this definition">¶</a></dt>
 <dd><p>Führt die übergebene Funktion für jede Komponente des Jobs aus.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><tt class="xref py py-attr docutils literal"><span class="pre">components</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><code class="xref py py-attr docutils literal notranslate"><span class="pre">components</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.Job.name" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#orbit_framework.Job.name" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt den Namen des Jobs zurück.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_activated">
-<tt class="descname">on_activated</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_activated" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_activated">
+<span class="sig-name descname"><span class="pre">on_activated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_activated" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Job aktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">active</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">active</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_core_started">
-<tt class="descname">on_core_started</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_core_started" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_core_started">
+<span class="sig-name descname"><span class="pre">on_core_started</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_core_started" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Anwendungskern gestartet wurde.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><tt class="xref py py-meth docutils literal"><span class="pre">Core.start()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.start()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_core_stopped">
-<tt class="descname">on_core_stopped</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_core_stopped" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_core_stopped">
+<span class="sig-name descname"><span class="pre">on_core_stopped</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_core_stopped" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Anwendungskern gestoppt wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">Core.stop()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.stop()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_deactivated">
-<tt class="descname">on_deactivated</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_deactivated" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_deactivated">
+<span class="sig-name descname"><span class="pre">on_deactivated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_deactivated" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Job deaktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">active</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">active</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_install">
-<tt class="descname">on_install</tt><big>(</big><em>core</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_install" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_install">
+<span class="sig-name descname"><span class="pre">on_install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_install" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Job installiert wird.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">core</span></tt></dt>
-<dd>Eine Referenz auf den Anwendungskern.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">core</span></code></dt><dd><p>Eine Referenz auf den Anwendungskern.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">Core.install()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.install()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.on_uninstall">
-<tt class="descname">on_uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Job.on_uninstall" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.on_uninstall">
+<span class="sig-name descname"><span class="pre">on_uninstall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.on_uninstall" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Job deinstalliert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">Core.uninstall()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.uninstall()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.remove_component">
-<tt class="descname">remove_component</tt><big>(</big><em>component</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.remove_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.remove_component">
+<span class="sig-name descname"><span class="pre">remove_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.remove_component" title="Link to this definition">¶</a></dt>
 <dd><p>Entfernt eine Komponente aus dem Job.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><tt class="xref py py-attr docutils literal"><span class="pre">components</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.components" title="orbit_framework.Job.components"><code class="xref py py-attr docutils literal notranslate"><span class="pre">components</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.remove_listener">
-<tt class="descname">remove_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.remove_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.remove_listener">
+<span class="sig-name descname"><span class="pre">remove_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.remove_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Meldet einen Nachrichtenempfänger vom Nachrichtensystem ab.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss das selbe Empfängerobjekt übergeben werden,
-wie an <a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss das selbe Empfängerobjekt übergeben werden,
+wie an <a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a> übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.remove_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.remove_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.send" title="orbit_framework.Job.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.send">
-<tt class="descname">send</tt><big>(</big><em>name</em>, <em>value=None</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.send" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.send" title="Link to this definition">¶</a></dt>
 <dd><p>Versendet eine Nachricht über das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Ereignisname für die Nachricht.</dd>
-<dt><tt class="docutils literal"><span class="pre">value</span></tt> (<em>optional</em>)</dt>
-<dd>Der Inhalt der Nachricht. Das kann ein beliebiges Objekt sein.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Ereignisname für die Nachricht.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code> (<em>optional</em>)</dt><dd><p>Der Inhalt der Nachricht. Das kann ein beliebiges Objekt sein.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Die Methode übergibt die Nachricht an das Nachrichtensystem und kehrt
-sofort zum Aufrufer zurück. 
-Die Nachricht wird asynchron an die Empfänger übermittelt. 
-Als Absender-Job wird der Name dieses Jobs eingetragen. 
-Als Absenderkomponente wird <tt class="docutils literal"><span class="pre">JOB</span></tt> eingetragen.</p>
+sofort zum Aufrufer zurück.
+Die Nachricht wird asynchron an die Empfänger übermittelt.
+Als Absender-Job wird der Name dieses Jobs eingetragen.
+Als Absenderkomponente wird <code class="docutils literal notranslate"><span class="pre">JOB</span></code> eingetragen.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.remove_listener" title="orbit_framework.Job.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.send()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.add_listener" title="orbit_framework.Job.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.remove_listener" title="orbit_framework.Job.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Job.trace">
-<tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit_framework.Job.trace" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <tt class="docutils literal"><span class="pre">Service</span> <span class="pre">&lt;Name&gt;</span></tt>
-oder <tt class="docutils literal"><span class="pre">App</span> <span class="pre">&lt;Name&gt;</span></tt> auf die Konsole.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Job.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Job.trace" title="Link to this definition">¶</a></dt>
+<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">&lt;Name&gt;</span></code>
+oder <code class="docutils literal notranslate"><span class="pre">App</span> <span class="pre">&lt;Name&gt;</span></code> auf die Konsole.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Job.tracing">
-<tt class="descname">tracing</tt><a class="headerlink" href="#orbit_framework.Job.tracing" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Legt fest, ob Nachverfolgungsmeldungen für diesen Job 
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Job.tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tracing</span></span><a class="headerlink" href="#orbit_framework.Job.tracing" title="Link to this definition">¶</a></dt>
+<dd><p>Legt fest, ob Nachverfolgungsmeldungen für diesen Job
 auf der Konsole ausgegeben werden sollen.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.trace" title="orbit_framework.Job.trace"><tt class="xref py py-meth docutils literal"><span class="pre">trace()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.trace" title="orbit_framework.Job.trace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">trace()</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="service">
-<h2>Service<a class="headerlink" href="#service" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.Service">
-<em class="property">class </em><tt class="descclassname">orbit_framework.</tt><tt class="descname">Service</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#orbit_framework.Service" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="service">
+<h2>Service<a class="headerlink" href="#service" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.Service">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.</span></span><span class="sig-name descname"><span class="pre">Service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">nargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Service" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert eine Hintergrundaufgabe in einer ORBIT-Anwendung.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Hintergrundaufgaben werden üblicherweise direkt mit dem Starten der ORBIT-Anwendung
 aktiviert und erst mit dem Beenden der Anwendung wieder deaktiviert.</p>
-<p>Diese Klasse erbt von <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> und implementiert damit eine Aufgabe 
+<p>Diese Klasse erbt von <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> und implementiert damit eine Aufgabe
 durch die Kombination von verschiedenen Komponenten.
 Diese Klasse kann direkt instanziert werden oder es kann eine Klasse
 abgeleitet werden.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">Core.install()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.install()</span></code></a></p>
 </dd></dl>
 
-</div>
-<div class="section" id="app">
-<h2>App<a class="headerlink" href="#app" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.App">
-<em class="property">class </em><tt class="descclassname">orbit_framework.</tt><tt class="descname">App</tt><big>(</big><em>name</em>, <em>in_history=False</em>, <em>activator=None</em>, <em>deactivator=None</em><big>)</big><a class="headerlink" href="#orbit_framework.App" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="app">
+<h2>App<a class="headerlink" href="#app" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.App">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deactivator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">nargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert eine Vordergrundaufgabe in einer ORBIT-Anwendung.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</dd>
-<dt><tt class="docutils literal"><span class="pre">in_history</span></tt> (<em>optional</em>)</dt>
-<dd>Gibt an, ob diese App in der App-History berücksichtigt werden soll.
-(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a>, <a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a>)
-Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> wenn die App in der App-History 
-vermerkt werden soll, sonst <tt class="docutils literal"><span class="pre">False</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">activator</span></tt> (<em>optional</em>)</dt>
-<dd>Slots für die Aktivierung der App.
-Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
-(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><tt class="xref py py-meth docutils literal"><span class="pre">add_activator()</span></tt></a>)</dd>
-<dt><tt class="docutils literal"><span class="pre">deactivator</span></tt> (<em>optional</em>)</dt>
-<dd>Slots für die Deaktivierung der App.
-Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a>, eine Sequenz von Slot-Objekten oder <tt class="docutils literal"><span class="pre">None</span></tt>.
-(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">add_deactivator()</span></tt></a>)</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name der Aufgabe. Der Name muss innerhalb der ORBIT-Anwendung eindeutig sein.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">in_history</span></code> (<em>optional</em>)</dt><dd><p>Gibt an, ob diese App in der App-History berücksichtigt werden soll.
+(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a>, <a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a>)
+Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> wenn die App in der App-History
+vermerkt werden soll, sonst <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">activator</span></code> (<em>optional</em>)</dt><dd><p>Slots für die Aktivierung der App.
+Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a>, eine Sequenz von Slot-Objekten oder <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_activator()</span></code></a>)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">deactivator</span></code> (<em>optional</em>)</dt><dd><p>Slots für die Deaktivierung der App.
+Ein einzelner <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a>, eine Sequenz von Slot-Objekten oder <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+(<em>Siehe auch:</em> <a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_deactivator()</span></code></a>)</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
-<p>Diese Klasse erbt von <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a> und implementiert damit eine Aufgabe 
+<p>Diese Klasse erbt von <a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a> und implementiert damit eine Aufgabe
 durch die Kombination von verschiedenen Komponenten.
 Diese Klasse kann direkt instanziert werden oder es kann eine Klasse
 abgeleitet werden.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><tt class="xref py py-class docutils literal"><span class="pre">Job</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">Core.install()</span></tt></a></p>
-<dl class="method">
-<dt id="orbit_framework.App.activate">
-<tt class="descname">activate</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.App.activate" title="Permalink zu dieser Definition">¶</a></dt>
+<a class="reference internal" href="#orbit_framework.Job" title="orbit_framework.Job"><code class="xref py py-class docutils literal notranslate"><span class="pre">Job</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.install()</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.activate">
+<span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.activate" title="Link to this definition">¶</a></dt>
 <dd><p>Aktiviert die App.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.add_activator">
-<tt class="descname">add_activator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.add_activator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a> für die Aktivierung der App hinzu.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.add_activator">
+<span class="sig-name descname"><span class="pre">add_activator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.add_activator" title="Link to this definition">¶</a></dt>
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a> für die Aktivierung der App hinzu.</p>
 <p>Sobald eine Nachricht über das Nachrichtensystem gesendet
 wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
 wird die App aktiviert.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.App.remove_activator" title="orbit_framework.App.remove_activator"><tt class="xref py py-meth docutils literal"><span class="pre">remove_activator()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">add_deactivator()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.App.remove_activator" title="orbit_framework.App.remove_activator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_activator()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_deactivator()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.add_deactivator">
-<tt class="descname">add_deactivator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.add_deactivator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a> für die Deaktivierung der App hinzu.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.add_deactivator">
+<span class="sig-name descname"><span class="pre">add_deactivator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.add_deactivator" title="Link to this definition">¶</a></dt>
+<dd><p>Fügt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a> für die Deaktivierung der App hinzu.</p>
 <p>Sobald eine Nachricht über das Nachrichtensystem gesendet
 wird, welche dem Empfangsmuster des übergebenen Slots entspricht,
 wird die App deaktiviert.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.App.remove_deactivator" title="orbit_framework.App.remove_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">remove_deactivator()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><tt class="xref py py-meth docutils literal"><span class="pre">add_activator()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.App.remove_deactivator" title="orbit_framework.App.remove_deactivator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_deactivator()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_activator()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.deactivate">
-<tt class="descname">deactivate</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.App.deactivate" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.deactivate">
+<span class="sig-name descname"><span class="pre">deactivate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.deactivate" title="Link to this definition">¶</a></dt>
 <dd><p>Deaktiviert die App.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.App.in_history">
-<tt class="descname">in_history</tt><a class="headerlink" href="#orbit_framework.App.in_history" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.App.in_history">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">in_history</span></span><a class="headerlink" href="#orbit_framework.App.in_history" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt einen Wert zurück, der angibt, ob diese App in der App-History
 vermerkt wird oder nicht.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.on_install">
-<tt class="descname">on_install</tt><big>(</big><em>core</em><big>)</big><a class="headerlink" href="#orbit_framework.App.on_install" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.on_install">
+<span class="sig-name descname"><span class="pre">on_install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.on_install" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die App installiert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><tt class="xref py py-meth docutils literal"><span class="pre">Core.install()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.on_install" title="orbit_framework.Job.on_install"><tt class="xref py py-meth docutils literal"><span class="pre">Job.on_install()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.install" title="orbit_framework.Core.install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.install()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.on_install" title="orbit_framework.Job.on_install"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.on_install()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.on_uninstall">
-<tt class="descname">on_uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.App.on_uninstall" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.on_uninstall">
+<span class="sig-name descname"><span class="pre">on_uninstall</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.on_uninstall" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die App deinstalliert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">Core.uninstall()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Job.on_uninstall" title="orbit_framework.Job.on_uninstall"><tt class="xref py py-meth docutils literal"><span class="pre">Job.on_uninstall()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.uninstall" title="orbit_framework.Core.uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.uninstall()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Job.on_uninstall" title="orbit_framework.Job.on_uninstall"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.on_uninstall()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.remove_activator">
-<tt class="descname">remove_activator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.remove_activator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a> für die Aktivierung der App.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.remove_activator">
+<span class="sig-name descname"><span class="pre">remove_activator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.remove_activator" title="Link to this definition">¶</a></dt>
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a> für die Aktivierung der App.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss die selbe Referenz übergeben werden, wie an
-<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><tt class="xref py py-meth docutils literal"><span class="pre">add_activator()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss die selbe Referenz übergeben werden, wie an
+<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_activator()</span></code></a> übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><tt class="xref py py-meth docutils literal"><span class="pre">add_activator()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.App.add_activator" title="orbit_framework.App.add_activator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_activator()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.App.remove_deactivator">
-<tt class="descname">remove_deactivator</tt><big>(</big><em>slot</em><big>)</big><a class="headerlink" href="#orbit_framework.App.remove_deactivator" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Slot</span></tt></a> für die Deaktivierung der App.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.App.remove_deactivator">
+<span class="sig-name descname"><span class="pre">remove_deactivator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.App.remove_deactivator" title="Link to this definition">¶</a></dt>
+<dd><p>Entfernt einen <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Slot" title="orbit_framework.messaging.Slot"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Slot</span></code></a> für die Deaktivierung der App.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss die selbe Referenz übergeben werden, wie an
-<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">add_deactivator()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss die selbe Referenz übergeben werden, wie an
+<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_deactivator()</span></code></a> übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><tt class="xref py py-meth docutils literal"><span class="pre">add_deactivator()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.App.add_deactivator" title="orbit_framework.App.add_deactivator"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_deactivator()</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="component">
-<h2>Component<a class="headerlink" href="#component" title="Permalink zu dieser Überschrift">¶</a></h2>
-<dl class="class">
-<dt id="orbit_framework.Component">
-<em class="property">class </em><tt class="descclassname">orbit_framework.</tt><tt class="descname">Component</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#orbit_framework.Component" title="Permalink zu dieser Definition">¶</a></dt>
+</section>
+<section id="component">
+<h2>Component<a class="headerlink" href="#component" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="orbit_framework.Component">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">orbit_framework.</span></span><span class="sig-name descname"><span class="pre">Component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component" title="Link to this definition">¶</a></dt>
 <dd><p>Diese Klasse implementiert eine Komponente als Baustein für eine Aufgabe.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Name der Komponente. Der Name muss innerhalb der Aufgabe eindeutig sein.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Name der Komponente. Der Name muss innerhalb der Aufgabe eindeutig sein.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Komponenten sind der typische Weg, in einer ORBIT-Anwendung, mit einem
 TinkerForge-Brick(let) zu kommunizieren.
-Eine Komponente wird implementiert, indem eine Klasse von 
-<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><tt class="xref py py-class docutils literal"><span class="pre">Component</span></tt></a> abgeleitet wird und im Konstruktur 
-durch den Aufruf von <a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_handle()</span></tt></a>
+Eine Komponente wird implementiert, indem eine Klasse von
+<a class="reference internal" href="#orbit_framework.Component" title="orbit_framework.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a> abgeleitet wird und im Konstruktur
+durch den Aufruf von <a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_device_handle()</span></code></a>
 Geräteanforderungen eingerichtet werden.</p>
 <p>Komponenten können über das Nachrichtensystem kommunizieren.
-Dazu können mit dem Aufruf von <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>
-Empfänger eingerichtet und mit dem Aufruf von <a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a>
+Dazu können mit dem Aufruf von <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>
+Empfänger eingerichtet und mit dem Aufruf von <a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a>
 Nachrichten versandt werden.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_component()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_handle()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
-<dl class="method">
-<dt id="orbit_framework.Component.add_device_handle">
-<tt class="descname">add_device_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.add_device_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_device_handle()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.add_device_handle">
+<span class="sig-name descname"><span class="pre">add_device_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.add_device_handle" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet eine Geräteanforderung ein.</p>
-<p>Als Parameter wird ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">devices.SingleDeviceHandle</span></tt></a> oder 
-ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">devices.MultiDeviceHandle</span></tt></a> übergeben.</p>
+<p>Als Parameter wird ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.SingleDeviceHandle</span></code></a> oder
+ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.MultiDeviceHandle</span></code></a> übergeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.remove_device_handle" title="orbit_framework.Component.remove_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">remove_device_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.remove_device_handle" title="orbit_framework.Component.remove_device_handle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_device_handle()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.add_listener">
-<tt class="descname">add_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.add_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.add_listener">
+<span class="sig-name descname"><span class="pre">add_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.add_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Richtet einen Nachrichtenempfänger für das Nachrichtensystem ein.</p>
-<p>Als Empfänger wird üblicherweise ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a>-Objekt übergeben.</p>
+<p>Als Empfänger wird üblicherweise ein <a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a>-Objekt übergeben.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><tt class="xref py py-class docutils literal"><span class="pre">messaging.Listener</span></tt></a>,
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.remove_listener" title="orbit_framework.Component.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.Listener" title="orbit_framework.messaging.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">messaging.Listener</span></code></a>,
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.add_listener" title="orbit_framework.messaging.MessageBus.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.remove_listener" title="orbit_framework.Component.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Component.enabled">
-<tt class="descname">enabled</tt><a class="headerlink" href="#orbit_framework.Component.enabled" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Component.enabled">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enabled</span></span><a class="headerlink" href="#orbit_framework.Component.enabled" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt an oder legt fest, ob die Komponente aktiv ist.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> wenn die Komponente aktiv ist
-und <tt class="docutils literal"><span class="pre">False</span></tt> wenn die Komponente nicht aktiv ist.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> wenn die Komponente aktiv ist
+und <code class="docutils literal notranslate"><span class="pre">False</span></code> wenn die Komponente nicht aktiv ist.</p>
 <p>Alle Komponenten eines Jobs werden beim Aktivieren des Jobs
 automatisch aktiviert und mit dem Deaktivieren des Jobs
 automatisch deaktiviert. Das manuelle Setzen dieses Attributs
@@ -1017,211 +1091,211 @@ Eine inaktive Komponente bekommt keine Geräte zugeordnet und
 erhält auch keine Nachrichten vom Nachrichtensystem zugestellt.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Component.event_tracing">
-<tt class="descname">event_tracing</tt><a class="headerlink" href="#orbit_framework.Component.event_tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Component.event_tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event_tracing</span></span><a class="headerlink" href="#orbit_framework.Component.event_tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Legt fest, ob über das Nachrichtensystem versendete
 Nachrichten auf der Konsole protokolliert werden sollen.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Component.job">
-<tt class="descname">job</tt><a class="headerlink" href="#orbit_framework.Component.job" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Gibt den Eltern-Job oder <tt class="docutils literal"><span class="pre">None</span></tt> zurück.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Component.job">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">job</span></span><a class="headerlink" href="#orbit_framework.Component.job" title="Link to this definition">¶</a></dt>
+<dd><p>Gibt den Eltern-Job oder <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_component()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Component.name">
-<tt class="descname">name</tt><a class="headerlink" href="#orbit_framework.Component.name" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Component.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#orbit_framework.Component.name" title="Link to this definition">¶</a></dt>
 <dd><p>Gibt den Namen der Komponente zurück.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_add_component">
-<tt class="descname">on_add_component</tt><big>(</big><em>job</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_add_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_add_component">
+<span class="sig-name descname"><span class="pre">on_add_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_add_component" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die Komponente einem Job hinzugefügt wird.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">job</span></tt></dt>
-<dd>Eine Referenz auf den Job.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">job</span></code></dt><dd><p>Eine Referenz auf den Job.</p>
+</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.add_component()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.add_component" title="orbit_framework.Job.add_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.add_component()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_core_started">
-<tt class="descname">on_core_started</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_core_started" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_core_started">
+<span class="sig-name descname"><span class="pre">on_core_started</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_core_started" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Anwendungskern gestartet wurde.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><tt class="xref py py-meth docutils literal"><span class="pre">Core.start()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.start" title="orbit_framework.Core.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.start()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_core_stopped">
-<tt class="descname">on_core_stopped</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_core_stopped" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_core_stopped">
+<span class="sig-name descname"><span class="pre">on_core_stopped</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_core_stopped" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Anwendungskern gestoppt wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><tt class="xref py py-meth docutils literal"><span class="pre">Core.stop()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Core.stop" title="orbit_framework.Core.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.stop()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_disabled">
-<tt class="descname">on_disabled</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_disabled" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_disabled">
+<span class="sig-name descname"><span class="pre">on_disabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_disabled" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die Komponente deaktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.enabled" title="orbit_framework.Component.enabled"><tt class="xref py py-attr docutils literal"><span class="pre">enabled</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.enabled" title="orbit_framework.Component.enabled"><code class="xref py py-attr docutils literal notranslate"><span class="pre">enabled</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_enabled">
-<tt class="descname">on_enabled</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_enabled" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_enabled">
+<span class="sig-name descname"><span class="pre">on_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_enabled" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die Komponente aktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.enabled" title="orbit_framework.Component.enabled"><tt class="xref py py-attr docutils literal"><span class="pre">enabled</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.enabled" title="orbit_framework.Component.enabled"><code class="xref py py-attr docutils literal notranslate"><span class="pre">enabled</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_job_activated">
-<tt class="descname">on_job_activated</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_job_activated" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_job_activated">
+<span class="sig-name descname"><span class="pre">on_job_activated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_job_activated" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Eltern-Job der Komponente aktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">Job.active</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.activate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Job.active</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.activate" title="orbit_framework.Core.activate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.activate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_job_deactivated">
-<tt class="descname">on_job_deactivated</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_job_deactivated" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_job_deactivated">
+<span class="sig-name descname"><span class="pre">on_job_deactivated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_job_deactivated" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn der Eltern-Job der Komponente deaktiviert wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><tt class="xref py py-attr docutils literal"><span class="pre">Job.active</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><tt class="xref py py-meth docutils literal"><span class="pre">Core.deactivate()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.active" title="orbit_framework.Job.active"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Job.active</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Core.deactivate" title="orbit_framework.Core.deactivate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Core.deactivate()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.on_remove_component">
-<tt class="descname">on_remove_component</tt><big>(</big><big>)</big><a class="headerlink" href="#orbit_framework.Component.on_remove_component" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.on_remove_component">
+<span class="sig-name descname"><span class="pre">on_remove_component</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.on_remove_component" title="Link to this definition">¶</a></dt>
 <dd><p>Wird aufgerufen, wenn die Komponente aus einem Job entfernt wird.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Kann von abgeleiteten Klassen überschrieben werden.
+<p class="admonition-title">Bemerkung</p>
+<p>Kann von abgeleiteten Klassen überschrieben werden.
 Eine überschreibende Methode muss jedoch die Implementierung
 der Elternklasse aufrufen.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><tt class="xref py py-meth docutils literal"><span class="pre">Job.remove_component()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Job.remove_component" title="orbit_framework.Job.remove_component"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Job.remove_component()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.remove_device_handle">
-<tt class="descname">remove_device_handle</tt><big>(</big><em>device_handle</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.remove_device_handle" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.remove_device_handle">
+<span class="sig-name descname"><span class="pre">remove_device_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_handle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.remove_device_handle" title="Link to this definition">¶</a></dt>
 <dd><p>Entfernt eine Geräteanforderung.</p>
-<p>Als Parameter wird ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">devices.SingleDeviceHandle</span></tt></a> oder 
-ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><tt class="xref py py-class docutils literal"><span class="pre">devices.MultiDeviceHandle</span></tt></a> übergeben.</p>
+<p>Als Parameter wird ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.SingleDeviceHandle" title="orbit_framework.devices.SingleDeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.SingleDeviceHandle</span></code></a> oder
+ein <a class="reference internal" href="api.orbit.devices.html#orbit_framework.devices.MultiDeviceHandle" title="orbit_framework.devices.MultiDeviceHandle"><code class="xref py py-class docutils literal notranslate"><span class="pre">devices.MultiDeviceHandle</span></code></a> übergeben.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss die selbe Referenz übergeben werden, wie an
-<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_handle()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss die selbe Referenz übergeben werden, wie an
+<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_device_handle()</span></code></a> übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><tt class="xref py py-meth docutils literal"><span class="pre">add_device_handle()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.add_device_handle" title="orbit_framework.Component.add_device_handle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_device_handle()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.remove_listener">
-<tt class="descname">remove_listener</tt><big>(</big><em>listener</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.remove_listener" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.remove_listener">
+<span class="sig-name descname"><span class="pre">remove_listener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.remove_listener" title="Link to this definition">¶</a></dt>
 <dd><p>Meldet einen Nachrichtenempfänger vom Nachrichtensystem ab.</p>
 <div class="admonition note">
-<p class="first admonition-title">Bemerkung</p>
-<p class="last">Es muss das selbe Empfängerobjekt übergeben werden,
-wie an <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a> übergeben wurde.</p>
+<p class="admonition-title">Bemerkung</p>
+<p>Es muss das selbe Empfängerobjekt übergeben werden,
+wie an <a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a> übergeben wurde.</p>
 </div>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.remove_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><tt class="xref py py-meth docutils literal"><span class="pre">send()</span></tt></a></p>
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.remove_listener" title="orbit_framework.messaging.MessageBus.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.remove_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.send" title="orbit_framework.Component.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.send">
-<tt class="descname">send</tt><big>(</big><em>name</em>, <em>value=None</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.send" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.send" title="Link to this definition">¶</a></dt>
 <dd><p>Versendet eine Nachricht über das Nachrichtensystem.</p>
 <p><strong>Parameter</strong></p>
-<dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">name</span></tt></dt>
-<dd>Der Ereignisname für die Nachricht.</dd>
-<dt><tt class="docutils literal"><span class="pre">value</span></tt> (<em>optional</em>)</dt>
-<dd>Der Inhalt der Nachricht. Das kann ein beliebiges Objekt sein.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Der Ereignisname für die Nachricht.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">value</span></code> (<em>optional</em>)</dt><dd><p>Der Inhalt der Nachricht. Das kann ein beliebiges Objekt sein.</p>
+</dd>
 </dl>
 <p><strong>Beschreibung</strong></p>
 <p>Die Methode übergibt die Nachricht an das Nachrichtensystem und kehrt
-sofort zum Aufrufer zurück. 
-Die Nachricht wird asynchron an die Empfänger übermittelt. 
-Als Absender-Job wird der Name des Eltern-Jobs dieser Komponente eingetragen. 
+sofort zum Aufrufer zurück.
+Die Nachricht wird asynchron an die Empfänger übermittelt.
+Als Absender-Job wird der Name des Eltern-Jobs dieser Komponente eingetragen.
 Als Absenderkomponente wird der Name dieser Komponente eingetragen.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><tt class="xref py py-meth docutils literal"><span class="pre">add_listener()</span></tt></a>,
-<a class="reference internal" href="#orbit_framework.Component.remove_listener" title="orbit_framework.Component.remove_listener"><tt class="xref py py-meth docutils literal"><span class="pre">remove_listener()</span></tt></a>,
-<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><tt class="xref py py-meth docutils literal"><span class="pre">messaging.MessageBus.send()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.add_listener" title="orbit_framework.Component.add_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_listener()</span></code></a>,
+<a class="reference internal" href="#orbit_framework.Component.remove_listener" title="orbit_framework.Component.remove_listener"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_listener()</span></code></a>,
+<a class="reference internal" href="api.orbit.messaging.html#orbit_framework.messaging.MessageBus.send" title="orbit_framework.messaging.MessageBus.send"><code class="xref py py-meth docutils literal notranslate"><span class="pre">messaging.MessageBus.send()</span></code></a></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="orbit_framework.Component.trace">
-<tt class="descname">trace</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#orbit_framework.Component.trace" title="Permalink zu dieser Definition">¶</a></dt>
-<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung 
-<tt class="docutils literal"><span class="pre">Component</span> <span class="pre">&lt;Job&gt;</span> <span class="pre">&lt;Name&gt;</span></tt> auf die Konsole.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="orbit_framework.Component.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#orbit_framework.Component.trace" title="Link to this definition">¶</a></dt>
+<dd><p>Schreibt eine Nachverfolgungsmeldung mit dem Ursprung
+<code class="docutils literal notranslate"><span class="pre">Component</span> <span class="pre">&lt;Job&gt;</span> <span class="pre">&lt;Name&gt;</span></code> auf die Konsole.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="orbit_framework.Component.tracing">
-<tt class="descname">tracing</tt><a class="headerlink" href="#orbit_framework.Component.tracing" title="Permalink zu dieser Definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="orbit_framework.Component.tracing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tracing</span></span><a class="headerlink" href="#orbit_framework.Component.tracing" title="Link to this definition">¶</a></dt>
 <dd><p>Legt fest, ob Nachverfolgungsmeldungen für diese Komponente
 auf der Konsole ausgegeben werden sollen.</p>
-<p>Mögliche Werte sind <tt class="docutils literal"><span class="pre">True</span></tt> oder <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<p>Mögliche Werte sind <code class="docutils literal notranslate"><span class="pre">True</span></code> oder <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p><em>Siehe auch:</em>
-<a class="reference internal" href="#orbit_framework.Component.trace" title="orbit_framework.Component.trace"><tt class="xref py py-meth docutils literal"><span class="pre">trace()</span></tt></a></p>
+<a class="reference internal" href="#orbit_framework.Component.trace" title="orbit_framework.Component.trace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">trace()</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -1236,14 +1310,14 @@ auf der Konsole ausgegeben werden sollen.</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/api.orbit.txt"
+  <a href="_sources/api.orbit.rst.txt"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Copyright 2024 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

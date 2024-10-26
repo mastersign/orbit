@@ -1,46 +1,31 @@
 
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="de" data-content_root="./">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>ORBIT Online-Dokumentation &mdash; ORBIT 0.1.0 Dokumentation</title>
-    
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="_static/style-tweak.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="ORBIT 0.1.0 Dokumentation" href="#" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ORBIT Online-Dokumentation &#8212; ORBIT 0.2.0 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css?v=4468db6d" />
+    <script src="_static/documentation_options.js?v=eef347c6"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=70a09b52"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Architektur einer ORBIT-Anwendung" href="architecture.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 
   <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
     <div class="container">
@@ -53,12 +38,11 @@
         </button>
         <a class="navbar-brand" href="#">
           ORBIT</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
                 <li><a href="https://github.com/mastersign/orbit">on GitHub</a></li>
             
@@ -137,7 +121,7 @@
               
                 
   <li>
-    <a href="architecture.html" title="Next Chapter: Architektur einer ORBIT-Anwendung"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Architektur eine... &raquo;</span>
+    <a href="architecture.html" title="Next Chapter: Architektur einer ORBIT-Anwendung"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Architektur e... &raquo;</span>
     </a>
   </li>
               
@@ -163,16 +147,16 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="orbit-online-dokumentation">
-<h1>ORBIT Online-Dokumentation<a class="headerlink" href="#orbit-online-dokumentation" title="Permalink zu dieser Überschrift">¶</a></h1>
-<img src="_images/logo.svg" /><p><strong>ORBIT ist ein Python-Anwendungsrahmen für TinkerForge-Anwendungen</strong></p>
+  <section id="orbit-online-dokumentation">
+<h1>ORBIT Online-Dokumentation<a class="headerlink" href="#orbit-online-dokumentation" title="Link to this heading">¶</a></h1>
+<img alt="_images/logo.svg" src="_images/logo.svg" /><p><strong>ORBIT ist ein Python-Anwendungsrahmen für TinkerForge-Anwendungen</strong></p>
 <p>Es ermöglicht dialogbasierte Systeme durch ein einfaches Konzept von Apps und Services. Es unterstützt eine robuste Anwendungsarchitektur durch
 wiederverwendbare Komponenten und die Entkopplung von Anwendungsteilen mit Hilfe eines Nachrichtensystem. Die Verwaltung der Verbindung zu TinkerForge-Bricks und -Bricklets übernimmt ein Gerätemanager, dadurch wird das Entwickeln von Anwendungen, die mit Verbindungsabbrüchen umgehen müssen,
 stark vereinfacht.</p>
-<p>Version: 0.1.0</p>
-<p>Erstellt am: 28.07.2014</p>
+<p>Version: 0.2.0</p>
+<p>Erstellt am: 26.10.2024</p>
 <p>Dieses Projekt wird nicht von der <a class="reference external" href="http://www.tinkerforge.com/de/">TinkerForge GmbH</a> entwickelt,
 sondern ist ein unabhängiges Projekt von <a class="reference external" href="http://www.mastersign.de/">Tobias Kiertscher</a>.</p>
 <p>ORBIT wird unter der <a class="reference external" href="http://opensource.org/licenses/LGPL-3.0">LGPL-3.0</a> zur Verfügung gestellt.</p>
@@ -181,8 +165,8 @@ sondern ist ein unabhängiges Projekt von <a class="reference external" href="ht
 <div class="line">Fragen und Anregungen bitte an: <a class="reference external" href="mailto:dev&#37;&#52;&#48;mastersign&#46;de">dev<span>&#64;</span>mastersign<span>&#46;</span>de</a></div>
 </div>
 <p>Diese Dokumentation ist auch als <a class="reference external" href="http://mastersign.github.io/orbit/orbit_framework.pdf">PDF-Version</a> verfügbar.</p>
-<div class="section" id="inhalt">
-<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink zu dieser Überschrift">¶</a></h2>
+<section id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architektur einer ORBIT-Anwendung</a><ul>
@@ -225,16 +209,16 @@ sondern ist ein unabhängiges Projekt von <a class="reference external" href="ht
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="schnellzugriff">
-<h2>Schnellzugriff<a class="headerlink" href="#schnellzugriff" title="Permalink zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="schnellzugriff">
+<h2>Schnellzugriff<a class="headerlink" href="#schnellzugriff" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Stichwortverzeichnis</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Modulindex</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Suche</em></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Stichwortverzeichnis</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Modulindex</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Suche</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
     </div>
@@ -249,14 +233,14 @@ sondern ist ein unabhängiges Projekt von <a class="reference external" href="ht
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/index.txt"
+  <a href="_sources/index.rst.txt"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2014 by Tobias Kiertscher.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Copyright 2024 by Tobias Kiertscher.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>
