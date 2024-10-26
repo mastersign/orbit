@@ -10,7 +10,7 @@ with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
 
 setup(
   name='orbit_framework',
-  version='0.2.0-SNAPSHOT',
+  version='0.2.0',
   description='Ein Python-Framework für robuste TinkerForge-Anwendungen',
   author='Tobias Kiertscher',
   author_email='dev@mastersign.de',
