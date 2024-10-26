@@ -32,8 +32,8 @@ popd
 goto :end
 
 :build
-call inkscape -f %1 -A "%2.pdf"
-call inkscape -f %1 -e "%2.png"
+call inkscape --export-filename "%2.pdf" "%1"
+call inkscape --export-filename "%2.png" "%1"
 goto :EOF
 
 :end
